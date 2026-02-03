@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export function generateStaticParams() {
@@ -5,5 +6,9 @@ export function generateStaticParams() {
 }
 
 export default function page() {
-  return <div>page</div>
+  return (
+    <div>
+      <Link href='/'>Home</Link>
+    </div>
+  )
 }

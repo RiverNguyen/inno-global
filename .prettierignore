@@ -103,6 +103,9 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+.codex/
+.cursor/
+.agents/
 
 # Package lock files
 package-lock.json
