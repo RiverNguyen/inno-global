@@ -55,7 +55,7 @@ html {
 
 @media (max-width: 639px) {
   html {
-    font-size: 4.26666667vw;
+    font-size: 5.12vw;
   }
 }
 
@@ -180,6 +180,7 @@ input[type='number'] {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
