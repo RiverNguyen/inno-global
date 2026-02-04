@@ -10,7 +10,7 @@ export default function SectionBanner() {
           width={1600}
           height={565}
           loading='eager'
-          src={'/images/about-us/d-banner-pc.webp'}
+          src={'/images/about-us/d-banner-pc.jpg'}
           className='h-full w-full object-cover'
         />
       </div>
@@ -21,7 +21,7 @@ export default function SectionBanner() {
           width={375}
           height={405}
           loading='eager'
-          src={'/images/about-us/d-banner-mb.webp'}
+          src={'/images/about-us/d-banner-mb.jpg'}
           className='h-full w-full object-cover'
         />
       </div>

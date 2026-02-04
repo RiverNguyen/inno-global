@@ -79,6 +79,12 @@ const config: Config = {
         '.pc-body-14-r': {
           '@apply text-[0.72917rem] font-normal leading-normal': {},
         },
+        '.pc-sub-12-r': {
+          '@apply text-[0.625rem] font-normal leading-normal tracking-[-0.00625rem]': {},
+        },
+        '.pc-body-18-m-primary': {
+          '@apply text-[0.9375rem] font-semibold leading-normal': {},
+        },
       })
     }),
   ],
