@@ -87,7 +87,7 @@ const BoardSection = ({ title, directors }: { title: string; directors: typeof b
 export default function BoardOfDirectors() {
   return (
     <>
-      <div className="w-full max-w-[74.6875rem] mx-auto flex flex-col gap-[5rem] py-[4.16667rem] xsm:gap-[1.66667rem] xsm:px-[0.83333rem] xsm:pb-0 xsm:pt-[1.66667rem]">
+      <div className="max-w-[74.6875rem] mx-auto flex flex-col gap-[5rem] py-[4.16667rem] xsm:gap-[1.66667rem] xsm:px-[0.83333rem] xsm:pb-0 xsm:pt-[1.66667rem]">
         {/* Hội đồng quản trị */}
         <BoardSection title="Hội đồng Quản trị" directors={boardOfDirectors} />
 
@@ -97,13 +97,13 @@ export default function BoardOfDirectors() {
 
       {/* Pagination */}
       <div className="bg-white py-[2.96875rem] xsm:py-[3.33333rem] xsm:px-[0.83333rem]">
-        <div className="flex w-full max-w-[75.1rem] mx-auto justify-between items-center">
+        <div className="flex max-w-[75.1rem] mx-auto justify-between items-center">
           <Link href='' type="button" className="flex items-center gap-[0.3125rem] cursor-pointer">
             <ICArrowLeft className="size-[0.83333rem] xsm:size-[0.625rem]" />
             <span className="text-[#D32F2F] font-open-sans text-[0.83333rem] leading-[150%] [text-box-trim:trim-both] [text-box-edge:cap_alphabetic] xsm:text-[0.625rem]">Trang B</span>
           </Link>
 
-          <Link href='' className="flex py-[0.41667rem] items-center justify-center border-b border-[#D32F2F] text-[#D32F2F] font-open-sans text-[0.83333rem] font-semibold leading-[130%] tracking-[-0.00833rem] xsm:text-[0.625rem] xsm:leading-[150%] xsm:tracking-normal">
+          <Link href='' className="flex-center py-[0.41667rem] border-b border-[#D32F2F] text-[#D32F2F] font-open-sans text-[0.83333rem] font-semibold leading-[130%] tracking-[-0.00833rem] xsm:text-[0.625rem] xsm:leading-[150%] xsm:tracking-normal">
             Về chúng tôi
           </Link>
 

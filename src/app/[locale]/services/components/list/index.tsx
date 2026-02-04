@@ -54,27 +54,24 @@ export default function List() {
               src={service.image}
               alt={service.title}
               width={704}
-              height={400}
-              className="w-[full] flex-1 min-h-0 object-cover"
+              height={363}
+              className="w-full h-[18.9rem] object-cover absolute top-0 left-0 group-hover:translate-y-[-3.125rem] transition-transform duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] xsm:h-full"
             />
-            <div className="absolute inset-0 opacity-46 bg-[linear-gradient(180deg,#000_47.12%,rgba(29,29,29,0.72)_71.63%,rgba(102,102,102,0.00)_100%)] sm:hidden"></div>
-            <div className="flex flex-col p-[1.45833rem] justify-center bg-[#F0F0F0] xsm:absolute xsm:bottom-[1.32135rem] xsm:left-0 xsm:w-full xsm:bg-transparent xsm:py-[0.20833rem] xsm:px-[0.41667rem] xsm:justify-start xsm:gap-[0.41667rem]">
+            <div className="absolute inset-0 opacity-[0.46] bg-[linear-gradient(180deg,#000_47.12%,rgba(29,29,29,0.72)_71.63%,rgba(102,102,102,0.00)_100%)] sm:hidden"></div>
+
+            <div className="absolute top-full left-0 translate-y-[-4.8rem] group-hover:translate-y-[-100%] transition-transform duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] w-full flex flex-col gap-[0.52083rem] p-[1.45833rem] justify-center bg-[#F0F0F0] xsm:absolute-y-center xsm:bg-transparent xsm:py-[0.20833rem] xsm:px-[0.41667rem] xsm:justify-start xsm:gap-[0.41667rem]">
               <div className="flex justify-between items-center">
-                <h3 className="group-hover:text-[#D32F2F] transition-colors duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] line-clamp-1 text-[#090909] font-open-sans text-[1.25rem] font-semibold leading-[150%] xsm:line-clamp-2 xsm:text-white xsm:text-[0.72917rem] xsm:flex-1">
+                <h3 className="group-hover:text-primary-red-100 transition-colors duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] line-clamp-1 text-en font-open-sans text-[1.25rem] font-semibold leading-[150%] xsm:line-clamp-2 xsm:text-white xsm:text-[0.72917rem] xsm:flex-1">
                   {service.title}
                 </h3>
-                <div className="flex items-center justify-center p-[0.46875rem] rounded-full bg-[rgba(9,9,9,0.10)] backdrop-blur-[20px] xsm:hidden">
+                <div className="flex-center p-[0.46875rem] rounded-full bg-[rgba(9,9,9,0.10)] backdrop-blur-[20px] xsm:hidden">
                   <IconChevronRight className="size-[0.83333rem]" />
                 </div>
                 <IconArrowRight className="size-[0.72917rem] hidden xsm:block" />
               </div>
-              <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] group-hover:grid-rows-[1fr] group-hover:opacity-90 xsm:hidden">
-                <div className="min-h-0 overflow-hidden">
-                  <p className="pt-[0.52083rem] text-[rgba(9,9,9,0.60)] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
+              <p className="group-hover:opacity-90 transition-opacity duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] opacity-0 text-en-60 text-justify font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:hidden">
+                {service.description}
+              </p>
             </div>
           </Link>
         ))}
