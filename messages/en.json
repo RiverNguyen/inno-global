@@ -1,6 +1,17 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "ProjectListPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbProject": "Project",
+    "investor": "Investor",
+    "location": "Location",
+    "title": "Projects",
+    "placeholderSearch": "Seach keyword",
+    "sort": "Sort",
+    "reset": "Reset",
+    "apply": "Apply",
+    "sortPopup": "Sort"
   }
 }
-
