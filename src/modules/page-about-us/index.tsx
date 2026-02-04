@@ -1,12 +1,20 @@
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 
 import Breadcrumb from '@/components/shared/Breadcrumb'
+import ROUTES from '@/configs/routes'
 import SectionAbout from '@/modules/page-about-us/sections/SectionAbout'
 import SectionBanner from '@/modules/page-about-us/sections/SectionBanner'
 import SectionMission from '@/modules/page-about-us/sections/SectionMission'
 import SectionVision from '@/modules/page-about-us/sections/SectionVision'
 
 export default function PageAboutUs() {
+  const t = useTranslations('Breadcrumb')
+  const locale = useLocale()
+  const navBreadcrumbItems = [
+    { label: t('homePage'), href: locale === 'vi' ? ROUTES.homeVi : ROUTES.homeEn },
+  ]
+  const lastBreadcrumbItem = { label: t('aboutUsPage') }
   return (
     <main className='font-open-sans relative overflow-hidden bg-white'>
       <Image
@@ -20,8 +28,8 @@ export default function PageAboutUs() {
         <SectionBanner />
         <div className='xsm:py-0 xsm:space-y-0 mx-auto max-w-[75rem] space-y-[7.29167rem] py-[6.25rem]'>
           <Breadcrumb
-            navItems={[{ label: 'Trang chủ', href: '/' }]}
-            lastItem={{ label: 'Về chúng tôi' }}
+            navItems={navBreadcrumbItems}
+            lastItem={lastBreadcrumbItem}
             classNameContainer='mb-[1.25rem] xsm:hidden'
           />
           <SectionAbout />

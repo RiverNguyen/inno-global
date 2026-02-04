@@ -1,6 +1,19 @@
 {
   "HomePage": {
     "title": "Hello world!"
+  },
+  "DetailServicePage": {
+    "sectionRelatedProjects": {
+      "title": "Related projects"
+    },
+    "sectionRelatedBlogs": {
+      "title": "Related blogs"
+    }
+  },
+  "Breadcrumb": {
+    "homePage": "Home",
+    "servicePage": "Services",
+    "aboutUsPage": "About us",
+    "detailServicePage": "Detail service"
   }
 }
-

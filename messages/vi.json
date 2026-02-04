@@ -1,6 +1,19 @@
 {
   "HomePage": {
     "title": "Xin chào!"
+  },
+  "DetailServicePage": {
+    "sectionRelatedProjects": {
+      "title": "Dự án liên quan"
+    },
+    "sectionRelatedBlogs": {
+      "title": "Bài viết liên quan"
+    }
+  },
+  "Breadcrumb": {
+    "homePage": "Trang chủ",
+    "servicePage": "Dịch vụ",
+    "aboutUsPage": "Về chúng tôi",
+    "detailServicePage": "Chi tiết dịch vụ"
   }
 }
-

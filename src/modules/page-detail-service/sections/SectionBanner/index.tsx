@@ -1,4 +1,7 @@
+import { useLocale, useTranslations } from 'next-intl'
+
 import Breadcrumb from '@/components/shared/Breadcrumb'
+import ROUTES from '@/configs/routes'
 import BannerSlides from '@/modules/page-detail-service/sections/SectionBanner/BannerSlides'
 
 const MOCK_DATA = {
@@ -26,6 +29,14 @@ const MOCK_DATA = {
 }
 
 export default function SectionBanner() {
+  const t = useTranslations('Breadcrumb')
+  const locale = useLocale()
+  const navBreadcrumbItems = [
+    { label: t('homePage'), href: locale === 'vi' ? ROUTES.homeVi : ROUTES.homeEn },
+    { label: t('servicePage'), href: locale === 'vi' ? ROUTES.servicesVi : ROUTES.servicesEn },
+  ]
+  const lastBreadcrumbItem = { label: t('detailServicePage') }
+
   return (
     <section className='xsm:h-[21.09375rem] relative h-[29.42708rem]'>
       <div className='absolute top-0 left-0 z-0 h-full w-full'>
@@ -37,11 +48,8 @@ export default function SectionBanner() {
       <div className='xsm:py-[1.25rem] xsm:px-[0.83333rem] absolute right-0 bottom-0 left-0 z-5 mx-auto max-w-[75rem] py-[3.33333rem]'>
         <div className='xsm:gap-y-[0.78125rem] flex flex-col gap-y-[0.9375rem]'>
           <Breadcrumb
-            navItems={[
-              { label: 'Trang chủ', href: '/' },
-              { label: 'Dịch vụ', href: '/dich-vu' },
-            ]}
-            lastItem={{ label: 'Chi tiết dịch vụ' }}
+            navItems={navBreadcrumbItems}
+            lastItem={lastBreadcrumbItem}
             classNameNavItems='text-white/50'
             classNameLastItem='text-white'
             classNameIcon='text-white'
