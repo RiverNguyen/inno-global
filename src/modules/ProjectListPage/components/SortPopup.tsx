@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/drawer'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { slugify } from '@/utils/slugify'
+import { useState } from 'react'
 
 interface SortPopupProps {
   label: string
@@ -27,7 +28,15 @@ interface SortPopupProps {
 }
 
 export default function SortPopup({ label, items, onChange }: SortPopupProps) {
+  const [selectedItem, setSelectedItem] = useState<string>('')
+
   const t = useTranslations('ProjectListPage')
+
+  const handleChange = (value: string) => {
+    setSelectedItem(value)
+    onChange()
+  }
+
   return (
     <>
       <Popover>
@@ -53,7 +62,8 @@ export default function SortPopup({ label, items, onChange }: SortPopupProps) {
                 <input
                   type='radio'
                   id={slugify(item.value)}
-                  onChange={onChange}
+                  checked={item.value === selectedItem}
+                  onChange={() => handleChange(item.value)}
                   className='size-[1.04167rem] rounded-[5.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
                 />
               </div>
@@ -102,7 +112,8 @@ export default function SortPopup({ label, items, onChange }: SortPopupProps) {
                   <input
                     type='radio'
                     id={slugify(item.value)}
-                    onChange={onChange}
+                    checked={item.value === selectedItem}
+                    onChange={() => handleChange(item.value)}
                     className='size-[1.04333rem] rounded-[5.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
                   />
                 </div>

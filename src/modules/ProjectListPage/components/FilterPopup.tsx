@@ -1,5 +1,6 @@
 'use client'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 
 import ICChevronDown from '@/components/icons/ICChevronDown'
 import ICChevronRight from '@/components/icons/ICChevronRight'
@@ -15,6 +16,7 @@ import {
 } from '@/components/ui/drawer'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { slugify } from '@/utils/slugify'
+import { scrollToSection } from '@/utils/scrollToSection'
 
 interface FilterPopupProps {
   label: string
@@ -26,7 +28,20 @@ interface FilterPopupProps {
 }
 
 export default function FilterPopup({ label, items, onChange }: FilterPopupProps) {
+  const [selected, setSelected] = useState<string[]>([])
+
   const t = useTranslations('ProjectListPage')
+
+  const handleChange = (value: string) => {
+    setSelected(
+      (prev) =>
+        prev.includes(value)
+          ? prev.filter((v) => v !== value) // remove
+          : [...prev, value], // add
+    )
+    onChange()
+    // scrollToSection('project-list')
+  }
 
   return (
     <>
@@ -53,7 +68,8 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
                 <input
                   type='checkbox'
                   id={slugify(item.value)}
-                  onChange={onChange}
+                  checked={selected.includes(item.value)}
+                  onChange={() => handleChange(item.value)}
                   className='size-[1.04167rem] rounded-[0.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
                 />
               </div>
@@ -103,7 +119,8 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
                   <input
                     type='checkbox'
                     id={slugify(item.value)}
-                    onChange={onChange}
+                    checked={selected.includes(item.value)}
+                    onChange={() => handleChange(item.value)}
                     className='peer size-[1.04167rem] rounded-[0.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
                   />
                 </div>

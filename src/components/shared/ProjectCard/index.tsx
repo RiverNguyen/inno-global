@@ -13,7 +13,6 @@ interface IProject {
   investor: string
   location: string
   link: string
-  imageHover: string
 }
 
 interface IProjectCard {
@@ -35,14 +34,7 @@ export default function ProjectCard({ project, wrapperClassname }: IProjectCard)
           alt={project.title}
           width={460}
           height={291}
-          className='absolute top-0 left-0 size-full object-cover z-1 transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:group-hover:opacity-0 lg:group-hover:scale-120'
-        />
-        <Image
-          src={project.imageHover}
-          alt={project.title}
-          width={460}
-          height={291}
-          className='absolute top-0 left-0 size-full object-cover transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:group-hover:scale-120'
+          className='size-full object-cover z-1 transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:group-hover:scale-120'
         />
       </div>
       <div className='pt-[0.72917rem]'>

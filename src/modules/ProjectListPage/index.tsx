@@ -4,7 +4,6 @@ import { useTranslations } from 'next-intl'
 import ICChevronRight from '@/components/icons/ICChevronRight'
 import ICClose from '@/components/icons/ICClose'
 import ICSearch from '@/components/icons/ICSearch'
-import ICSort from '@/components/icons/ICSort'
 import ProjectCard from '@/components/shared/ProjectCard'
 import {
   Breadcrumb,
@@ -19,7 +18,6 @@ import SortPopup from './components/SortPopup'
 const projects = [
   {
     image: '/projects/project-1.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -27,7 +25,6 @@ const projects = [
   },
   {
     image: '/projects/project-1.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -35,7 +32,6 @@ const projects = [
   },
   {
     image: '/projects/project-2.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -43,7 +39,6 @@ const projects = [
   },
   {
     image: '/projects/project-3.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -51,7 +46,6 @@ const projects = [
   },
   {
     image: '/projects/project-4.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -59,7 +53,6 @@ const projects = [
   },
   {
     image: '/projects/project-5.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -67,7 +60,6 @@ const projects = [
   },
   {
     image: '/projects/project-1.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -75,7 +67,6 @@ const projects = [
   },
   {
     image: '/projects/project-1.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -83,7 +74,6 @@ const projects = [
   },
   {
     image: '/projects/project-2.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -91,7 +81,6 @@ const projects = [
   },
   {
     image: '/projects/project-3.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -99,7 +88,6 @@ const projects = [
   },
   {
     image: '/projects/project-4.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -107,7 +95,6 @@ const projects = [
   },
   {
     image: '/projects/project-5.webp',
-    imageHover: '/projects/project-hover.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
@@ -136,7 +123,7 @@ export default function ProjectListPage() {
           </BreadcrumbItem>
         </Breadcrumb>
         <h1 className='xsm:px-[0.83333rem] font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] text-[rbga(9,9,9,0.8)] pt-[3.125rem] mb-[0.41667rem] xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0'>
-          {t('title')}
+          Danh sách dự án
         </h1>
         <div className='py-5 w-full flex items-center justify-between xsm:pt-[1.25rem] xsm:pb-[0.83rem] xsm:flex-col'>
           <div
@@ -239,12 +226,12 @@ export default function ProjectListPage() {
             }}
           >
             <div className='flex items-center space-x-[0.41667rem]'>
-              <span className='font-open-sans text-[0.83333rem] font-semibold leading-normal text-[#090909] xsm:text-[0.72917rem] xsm:leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+              <span className='whitespace-nowrap font-open-sans text-[0.83333rem] font-semibold leading-normal text-[#090909] xsm:text-[0.72917rem] xsm:leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
                 Loại hình:
               </span>
               <div className='flex items-center space-x-[1.04167rem] bg-[#F0F0F0] p-[0.46875rem_0.52083rem]'>
                 <div className='flex items-center space-x-[0.36458rem] font-open-sans text-[0.72917rem] font-normal leading-[150%] text-[#090909]'>
-                  <span className='inline-block [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+                  <span className='inline-block [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] whitespace-nowrap'>
                     Demo 1
                   </span>
                   <button
@@ -256,7 +243,37 @@ export default function ProjectListPage() {
                 </div>
                 <div className='h-[0.83333rem] w-[0.05208rem] shrink-0 bg-[rgba(9,9,9,0.08)]'></div>
                 <div className='flex items-center space-x-[0.36458rem] font-open-sans text-[0.72917rem] font-normal leading-[150%] text-[#090909]'>
-                  <span className='inline-block [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+                  <span className='inline-block [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] whitespace-nowrap'>
+                    Demo 1
+                  </span>
+                  <button
+                    type='button'
+                    className='shrink-0 cursor-pointer'
+                  >
+                    <ICClose className='size-[0.83333rem]' />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className='flex items-center space-x-[0.41667rem]'>
+              <span className='whitespace-nowrap font-open-sans text-[0.83333rem] font-semibold leading-normal text-[#090909] xsm:text-[0.72917rem] xsm:leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+                Dịch vụ tham gia:
+              </span>
+              <div className='flex items-center space-x-[1.04167rem] bg-[#F0F0F0] p-[0.46875rem_0.52083rem]'>
+                <div className='flex items-center space-x-[0.36458rem] font-open-sans text-[0.72917rem] font-normal leading-[150%] text-[#090909]'>
+                  <span className='inline-block [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] whitespace-nowrap'>
+                    Demo 1
+                  </span>
+                  <button
+                    type='button'
+                    className='shrink-0 cursor-pointer'
+                  >
+                    <ICClose className='size-[0.83333rem]' />
+                  </button>
+                </div>
+                <div className='h-[0.83333rem] w-[0.05208rem] shrink-0 bg-[rgba(9,9,9,0.08)]'></div>
+                <div className='flex items-center space-x-[0.36458rem] font-open-sans text-[0.72917rem] font-normal leading-[150%] text-[#090909]'>
+                  <span className='inline-block [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] whitespace-nowrap'>
                     Demo 1
                   </span>
                   <button
@@ -269,7 +286,10 @@ export default function ProjectListPage() {
               </div>
             </div>
           </div>
-          <div className='pt-[2.08333rem] grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem] xsm:grid-cols-1 xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:gap-y-[1.04167rem]'>
+          <div
+            id='project-list'
+            className='pt-[2.08333rem] grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem] xsm:grid-cols-1 xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:gap-y-[1.04167rem]'
+          >
             {projects?.map((project, i) => (
               <ProjectCard
                 key={i}
