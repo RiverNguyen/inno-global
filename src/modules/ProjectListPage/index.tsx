@@ -126,7 +126,7 @@ export default function ProjectListPage() {
           Danh sách dự án
         </h1>
       </div>
-      <div className='bg-white sm:sticky sm:top-0 sm:z-5 py-5 w-full xsm:pt-[1.25rem] xsm:pb-[0.83rem] '>
+      <div className='bg-white sticky top-0 z-5 py-5 w-full xsm:pt-[1.25rem] xsm:pb-[0.83rem] '>
         <div className='max-w-[75rem] mx-auto xsm:max-w-full flex items-center justify-between xsm:flex-col'>
           <div
             className='xsm:w-full flex items-center space-x-[0.72917rem] xsm:order-2 xsm:px-[0.83333rem] xsm:overflow-x-auto xsm:space-x-[0.3125rem]'
