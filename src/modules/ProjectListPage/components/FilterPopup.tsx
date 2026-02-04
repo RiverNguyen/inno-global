@@ -16,7 +16,6 @@ import {
 } from '@/components/ui/drawer'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { slugify } from '@/utils/slugify'
-import { scrollToSection } from '@/utils/scrollToSection'
 
 interface FilterPopupProps {
   label: string
@@ -40,7 +39,6 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
           : [...prev, value], // add
     )
     onChange()
-    // scrollToSection('project-list')
   }
 
   return (

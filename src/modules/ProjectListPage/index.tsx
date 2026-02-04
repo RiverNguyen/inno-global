@@ -125,9 +125,11 @@ export default function ProjectListPage() {
         <h1 className='xsm:px-[0.83333rem] font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] text-[rbga(9,9,9,0.8)] pt-[3.125rem] mb-[0.41667rem] xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0'>
           Danh sách dự án
         </h1>
-        <div className='py-5 w-full flex items-center justify-between xsm:pt-[1.25rem] xsm:pb-[0.83rem] xsm:flex-col'>
+      </div>
+      <div className='bg-white sm:sticky sm:top-0 sm:z-5 py-5 w-full xsm:pt-[1.25rem] xsm:pb-[0.83rem] '>
+        <div className='max-w-[75rem] mx-auto xsm:max-w-full flex items-center justify-between xsm:flex-col'>
           <div
-            className='xsm:w-full flex items-center space-x-[0.72917rem] xsm:order-2 xsm:px-[0.83333rem] overflow-x-auto xsm:space-x-[0.3125rem]'
+            className='xsm:w-full flex items-center space-x-[0.72917rem] xsm:order-2 xsm:px-[0.83333rem] xsm:overflow-x-auto xsm:space-x-[0.3125rem]'
             style={{
               scrollbarWidth: 'none',
             }}
