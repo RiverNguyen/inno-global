@@ -71,31 +71,31 @@ export default function Page() {
   return (
     <main
       ref={rootRef}
-      className='bg-white relative'
+      className='relative bg-white'
     >
       <section
         data-snap
-        className='bg-red-200 h-screen'
+        className='h-screen bg-red-200'
       ></section>
       <section
         data-snap
-        className='bg-black h-[50vh]'
+        className='h-[50vh] bg-black'
       ></section>
       <section
         data-snap
-        className='bg-yellow-100 h-[80vh]'
+        className='h-[80vh] bg-yellow-100'
       ></section>
       <section
         data-snap
-        className='bg-black h-[70vh]'
+        className='h-[70vh] bg-black'
       ></section>
       <section
         data-snap
-        className='bg-red-300 h-[50vh]'
+        className='h-[50vh] bg-red-300'
       ></section>
       <section
         data-snap
-        className='bg-yellow-500 h-[60vh]'
+        className='h-[60vh] bg-yellow-500'
       ></section>
     </main>
   )
