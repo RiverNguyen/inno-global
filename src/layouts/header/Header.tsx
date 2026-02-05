@@ -65,12 +65,12 @@ export default function Header() {
       <div
         onClick={handleCloseSearch}
         className={cn(
-          'fixed top-0 left-0 size-full bg-black/60 z-[98] pointer-events-none opacity-0 transition-all duration-500',
+          'pointer-events-none fixed top-0 left-0 z-[98] size-full bg-black/60 opacity-0 transition-all duration-500',
           openSearch && 'pointer-events-auto opacity-100',
         )}
       ></div>
-      <header className='fixed top-0 left-0 w-full z-[99] h-[3.65rem] xsm:h-[2.92rem] bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px] flex-y-center xsm:bg-white/80'>
-        <div className='container flex items-center justify-between xsm:px-[0.83333rem]'>
+      <header className='xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]'>
+        <div className='xsm:px-[0.83333rem] container flex items-center justify-between'>
           {/* navigation */}
           <nav className='flex-y-center w-fit'>
             <Link href='/'>
@@ -80,14 +80,15 @@ export default function Header() {
                 width={93}
                 height={44}
                 unoptimized
-                className='h-[2.29167rem] xsm:h-[1.5625rem] w-auto'
+                priority
+                className='xsm:h-[1.5625rem] h-[2.29167rem] w-auto'
               />
             </Link>
-            <div className='relative ml-[2.08rem] xsm:hidden'>
+            <div className='xsm:hidden relative ml-[2.08rem]'>
               <div
                 className={cn(
-                  'flex-y-center space-x-[1.46rem] absolute-y-center left-0 w-fit',
-                  openSearch && 'opacity-0 pointer-events-none',
+                  'flex-y-center absolute-y-center left-0 w-fit space-x-[1.46rem]',
+                  openSearch && 'pointer-events-none opacity-0',
                 )}
               >
                 {links.map((link) => (
@@ -103,28 +104,28 @@ export default function Header() {
             </div>
           </nav>
           {/* search */}
-          <div className='flex-y-center space-x-5 xsm:hidden'>
+          <div className='flex-y-center xsm:hidden space-x-5'>
             <button
               onClick={handleOpenSearch}
               className={cn(
-                'size-[1.875rem] flex-y-center bg-white/80 rounded-full transition-all duration-500 relative',
+                'flex-y-center relative size-[1.875rem] rounded-full bg-white/80 transition-all duration-500',
                 openSearch && 'w-[51.04167rem] shrink-0 overflow-hidden',
               )}
             >
               {openSearch && (
                 <input
                   type='text'
-                  className='pc-body-14-r placeholder:text-text-60 w-full h-full pl-[0.73rem] pr-[2rem] outline-none border-none focus:border-none focus:ring-0 focus:outline-none text-text-100'
+                  className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none'
                   placeholder='Nhập từ khoá tìm kiếm'
                 />
               )}
-              <div className='size-[1.875rem] flex-center absolute top-0 right-0'>
-                <ICSearchHead className='size-[0.72917rem] text-text-100 rounded-full' />
+              <div className='flex-center absolute top-0 right-0 size-[1.875rem]'>
+                <ICSearchHead className='text-text-100 size-[0.72917rem] rounded-full' />
               </div>
             </button>
             <Link
               href='/line-he'
-              className='inline-block pc-body-16-r text-en'
+              className='pc-body-16-r text-en inline-block'
             >
               Liên hệ
             </Link>
@@ -132,7 +133,7 @@ export default function Header() {
               <span>Đăng nhập</span>
               <ICUser className='size-[0.83333rem] text-white' />
             </ButtonRed>
-            <div className='flex-y-center space-x-[0.4rem] pc-body-16-r text-text-100'>
+            <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.4rem]'>
               <Link
                 href='/'
                 locale='vi'
@@ -140,7 +141,7 @@ export default function Header() {
               >
                 VI
               </Link>
-              <div className='border-l border-solid border-text-60 h-[0.625rem]'></div>
+              <div className='border-text-60 h-[0.625rem] border-l border-solid'></div>
               <Link
                 href='/'
                 locale='en'
@@ -150,26 +151,27 @@ export default function Header() {
             </div>
           </div>
           {/* mobile menu */}
-          <div className='flex items-center w-fit rounded-[5.20833rem] bg-[rgba(9,_9,_9,_0.10)]'>
+          <div className='flex w-fit items-center rounded-[5.20833rem] bg-[rgba(9,_9,_9,_0.10)] sm:hidden'>
             <button
               onClick={handleOpenSearch}
-              className='w-fit h-[1.875rem] px-[0.62rem]'
+              className='h-[1.875rem] w-fit px-[0.62rem]'
             >
-              <ICSearchHead className='size-[0.9375rem] text-text-80' />
+              <ICSearchHead className='text-text-80 size-[0.9375rem]' />
             </button>
-            <div className='border-l border-solid border-[rgba(9,_9,_9,_0.60)]/[0.28] h-[0.9375rem]'></div>
+            <div className='h-[0.9375rem] border-l border-solid border-[rgba(9,_9,_9,_0.60)]/[0.28]'></div>
             <button
-              className='w-fit h-[1.875rem] px-[0.62rem]'
+              className='h-[1.875rem] w-fit px-[0.62rem]'
               onClick={handleToggleMenu}
             >
-              <ICMenu className='size-[0.9375rem] text-text-80' />
+              <ICMenu className='text-text-80 size-[0.9375rem]' />
             </button>
           </div>
         </div>
       </header>
+      {/* mobile menu */}
       <div
         className={cn(
-          'fixed h-screen top-0 left-0 w-full z-[98] bg-white sm:hidden pt-[calc(2.92rem+0.31rem)] px-[0.83333rem] overflow-y-auto transition-all duration-500 translate-x-full',
+          'fixed top-0 left-0 z-[98] h-screen w-full translate-x-full overflow-y-auto bg-white px-[0.83333rem] pt-[calc(2.92rem+0.31rem)] transition-all duration-500 sm:hidden',
           openMenu && 'translate-x-0',
         )}
       >
@@ -177,24 +179,25 @@ export default function Header() {
           <Link
             key={link.href}
             href={link.href}
-            className='mb-header-16-m text-en whitespace-nowrap py-[0.94rem] border-b border-solid border-[rgba(9,9,9,0.08)] block'
+            className='mb-header-16-m text-en block border-b border-solid border-[rgba(9,9,9,0.08)] py-[0.94rem] whitespace-nowrap'
           >
             {link.label}
           </Link>
         ))}
-        <ButtonRed className='w-full mt-[2.19rem] mb-[0.83rem]'>
+        <ButtonRed className='mt-[2.19rem] mb-[0.83rem] w-full'>
           <span>Đăng nhập</span>
           <ICUser className='size-[0.83333rem] text-white' />
         </ButtonRed>
         <ButtonOutline className='w-full'>Liên hệ</ButtonOutline>
       </div>
+      {/* search */}
       <div
         className={cn(
-          'fixed h-screen top-0 left-0 w-full z-[98] bg-white sm:hidden pt-[calc(2.92rem+0.31rem)] px-[0.83333rem] overflow-y-auto transition-all duration-500 translate-x-full',
+          'fixed top-0 left-0 z-[98] h-screen w-full translate-x-full overflow-y-auto bg-white px-[0.83333rem] pt-[calc(2.92rem+0.31rem)] transition-all duration-500 sm:hidden',
           openSearch && 'translate-x-0',
         )}
       >
-        <div className='flex-y-center justify-between h-[1.87rem]'>
+        <div className='flex-y-center h-[1.87rem] justify-between'>
           <span className='mb-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
           <Image
             src='/header/ic-trash.svg'
@@ -205,14 +208,14 @@ export default function Header() {
             unoptimized
           />
         </div>
-        <div className='w-full h-fit'>
+        <div className='h-fit w-full'>
           {Array.from({ length: 20 }).map((_, index) => (
             <button
               key={index}
-              className='mb-body-14-r text-text-100 flex-y-center justify-between w-full h-[2.34rem]'
+              className='mb-body-14-r text-text-100 flex-y-center h-[2.34rem] w-full justify-between'
             >
               <span>Demo {index + 1}</span>
-              <ICClose className='size-[1rem] shrink-0 text-title-m' />
+              <ICClose className='text-title-m size-[1rem] shrink-0' />
             </button>
           ))}
         </div>
