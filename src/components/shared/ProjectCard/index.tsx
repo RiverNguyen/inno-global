@@ -18,31 +18,48 @@ interface IProject {
 interface IProjectCard {
   project: IProject
   wrapperClassname?: string
+  classNameTitle?: string
+  classNameThumbnail?: string
 }
 
-export default function ProjectCard({ project, wrapperClassname }: IProjectCard) {
+export default function ProjectCard({
+  project,
+  wrapperClassname,
+  classNameTitle,
+  classNameThumbnail,
+}: IProjectCard) {
   const t = useTranslations('ProjectListPage')
 
   return (
     <Link
       href={project.link}
-      className={cn('relative overflow-hidden group', wrapperClassname)}
+      className={cn('group relative overflow-hidden', wrapperClassname)}
     >
-      <div className='relative flex items-center justify-center w-full h-[15.15625rem] rounded-[0.20833rem] xsm:h-[11.30984rem] xsm:rounded-[0.1576rem] overflow-hidden'>
+      <div
+        className={cn(
+          'xsm:h-[11.30984rem] xsm:rounded-[0.1576rem] relative flex h-[15.15625rem] w-full items-center justify-center overflow-hidden rounded-[0.20833rem]',
+          classNameThumbnail,
+        )}
+      >
         <Image
           src={project.image}
           alt={project.title}
           width={460}
           height={291}
-          className='size-full object-cover z-1 transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:group-hover:scale-120'
+          className='z-1 size-full object-cover transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:group-hover:scale-120'
         />
       </div>
       <div className='pt-[0.72917rem]'>
-        <div className='flex items-center justify-between mb-[0.3125rem]'>
-          <h3 className='font-open-sans text-[0.9375rem] font-semibold leading-[150%] text-[#090909]'>
+        <div className='mb-[0.3125rem] flex items-center justify-between'>
+          <h3
+            className={cn(
+              'font-open-sans text-[0.9375rem] leading-[150%] font-semibold text-[#090909]',
+              classNameTitle,
+            )}
+          >
             {project?.title}
           </h3>
-          <div className='lg:opacity-0 inline-flex items-center space-x-[0.20833rem] font-open-sans text-[0.72917rem] font-normal leading-[150%] text-[#D32F2F] transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:group-hover:opacity-100 xsm:hidden'>
+          <div className='font-open-sans xsm:hidden inline-flex items-center space-x-[0.20833rem] text-[0.72917rem] leading-[150%] font-normal text-[#D32F2F] transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:opacity-0 lg:group-hover:opacity-100'>
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
               Xem chi tiết
             </span>
@@ -50,7 +67,7 @@ export default function ProjectCard({ project, wrapperClassname }: IProjectCard)
           </div>
         </div>
         <div className='flex flex-col space-y-[0.46875rem]'>
-          <div className='flex items-center space-x-[0.3125rem] font-open-sans text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
+          <div className='font-open-sans flex items-center space-x-[0.3125rem] text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
             <Image
               src='/projects/d-brifecase-tick.png'
               alt=''
@@ -65,7 +82,7 @@ export default function ProjectCard({ project, wrapperClassname }: IProjectCard)
               {project?.investor}
             </span>
           </div>
-          <div className='flex items-center space-x-[0.3125rem] font-open-sans text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
+          <div className='font-open-sans flex items-center space-x-[0.3125rem] text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
             <Image
               src='/projects/d-location.png'
               alt=''
