@@ -1,6 +1,7 @@
+import fetchData from '@/fetches/fetchData'
+
 import ENV from '@/config-global.env'
 import ENDPOINTS from '@/constants/endpoints'
-import fetchData from '@/fetches/fetchData'
 import parseRankMathHead from '@/utils/parseRankMathHead'
 
 // NOTE: phần này cần thay nếu tên page trong CMS khác với tên page trên site web thì cần dùng replaceAll để thay thế
