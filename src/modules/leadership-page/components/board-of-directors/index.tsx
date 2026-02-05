@@ -1,52 +1,27 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import type { SVGProps } from 'react'
 
-const boardOfDirectors = [
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-1.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-2.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-3.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-4.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-1.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-2.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-3.webp',
-  },
-]
+type DirectorCard = {
+  name: string
+  position: string
+  image: string
+  href: string
+}
 
-const BoardSection = ({ title, directors }: { title: string; directors: typeof boardOfDirectors }) => (
+type BoardSectionData = {
+  title: string
+  directors: DirectorCard[]
+}
+
+const BoardSection = ({ title, directors }: { title: string; directors: DirectorCard[] }) => (
   <div className="flex flex-col gap-[3.33333rem] xsm:gap-[1.25rem]">
     <h2 className="text-[rgba(9,9,9,0.80)] font-open-sans text-[1.875rem] font-semibold text-center leading-[1.35417rem] xsm:text-[1.04167rem] xsm:leading-[150%]">
       {title}
     </h2>
     <div className="flex flex-wrap justify-center gap-y-[3.33333rem] gap-x-[1.77rem] xsm:gap-y-[0.625rem] xsm:gap-x-[0.83333rem]">
       {directors.map((director, index) => (
-        <Link href='' key={index} className="relative w-[17.34375rem] xsm:w-[8.5112rem]">
+        <Link href={director.href} key={index} className="relative w-[17.34375rem] xsm:w-[8.5112rem]">
           <Image
             src='/leadership/overlay.webp'
             alt="overlay"
@@ -84,15 +59,15 @@ const BoardSection = ({ title, directors }: { title: string; directors: typeof b
   </div>
 )
 
-export default function BoardOfDirectors() {
+export default function BoardOfDirectors({ sections, locale }: { sections: BoardSectionData[]; locale: string }) {
+  const getAboutUsHref = (locale: string) => locale === 'en' ? '/about-us' : '/ve-chung-toi'
+
   return (
     <>
       <div className="max-w-[74.6875rem] mx-auto flex flex-col gap-[5rem] py-[4.16667rem] xsm:gap-[1.66667rem] xsm:px-[0.83333rem] xsm:pb-0 xsm:pt-[1.66667rem]">
-        {/* Hội đồng quản trị */}
-        <BoardSection title="Hội đồng Quản trị" directors={boardOfDirectors} />
-
-        {/* Ban giám đốc */}
-        <BoardSection title="Ban Giám đốc" directors={boardOfDirectors} />
+        {sections.map((section) => (
+          <BoardSection key={section.title} title={section.title} directors={section.directors} />
+        ))}
       </div>
 
       {/* Pagination */}
@@ -103,7 +78,7 @@ export default function BoardOfDirectors() {
             <span className="text-[#D32F2F] font-open-sans text-[0.83333rem] leading-[150%] [text-box-trim:trim-both] [text-box-edge:cap_alphabetic] xsm:text-[0.625rem]">Trang B</span>
           </Link>
 
-          <Link href='' className="flex-center py-[0.41667rem] border-b border-[#D32F2F] text-[#D32F2F] font-open-sans text-[0.83333rem] font-semibold leading-[130%] tracking-[-0.00833rem] xsm:text-[0.625rem] xsm:leading-[150%] xsm:tracking-normal">
+          <Link href={getAboutUsHref(locale)} className="flex-center py-[0.41667rem] border-b border-[#D32F2F] text-[#D32F2F] font-open-sans text-[0.83333rem] font-semibold leading-[130%] tracking-[-0.00833rem] xsm:text-[0.625rem] xsm:leading-[150%] xsm:tracking-normal">
             Về chúng tôi
           </Link>
 
@@ -113,12 +88,11 @@ export default function BoardOfDirectors() {
           </Link>
         </div>
       </div>
-
     </>
   )
 }
 
-const ICArrowLeft = (props: React.SVGProps<SVGSVGElement>) => {
+const ICArrowLeft = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" {...props}>
       <path d="M6.38016 3.95312L2.3335 7.99979L6.38016 12.0465" stroke="#D32F2F" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />

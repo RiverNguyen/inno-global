@@ -1,7 +1,7 @@
 import Leadership from '@/modules/leadership-page'
 
-const LeadershipPage = () => {
-  return <Leadership />
-}
+export default async function LeadershipPage({ params }: { params: Promise<{ locale: string }> }) {
+  const [{ locale }] = await Promise.all([params])
 
-export default LeadershipPage
+  return <Leadership locale={locale} />
+}

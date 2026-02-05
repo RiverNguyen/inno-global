@@ -13,5 +13,10 @@
     "reset": "Reset",
     "apply": "Apply",
     "sortPopup": "Sort"
+  },
+  "LeadershipPage": {
+    "title": "Leadership",
+    "home": "Home",
+    "about": "About us"
   }
 }

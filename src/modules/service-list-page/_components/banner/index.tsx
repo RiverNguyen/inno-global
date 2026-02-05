@@ -31,7 +31,7 @@ export default function Banner() {
             </BreadcrumbList>
           </Breadcrumb>
         </div>
-        <h1 className="text-white open-sans text-[3.33333rem] font-semibold leading-[2.39583rem] xsm:text-[#090909] xsm:text-[1.35417rem] xsm:leading-[120%]">
+        <h1 className="text-white font-open-sans text-[3.33333rem] font-semibold leading-[2.39583rem] xsm:text-[#090909] xsm:text-[1.35417rem] xsm:leading-[120%]">
           Dịch vụ
         </h1>
       </div>

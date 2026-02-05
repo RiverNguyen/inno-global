@@ -13,5 +13,10 @@
     "reset": "Đặt lại",
     "apply": "Áp dụng",
     "sortPopup": "Sắp xếp theo"
+  },
+  "LeadershipPage": {
+    "title": "Ban Lãnh Đạo Công Ty",
+    "home": "Trang chủ",
+    "about": "Về chúng tôi"
   }
 }

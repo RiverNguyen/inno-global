@@ -1,9 +1,7 @@
 import Leadership from '@/modules/leadership-page'
 
-export default function LeadershipPage() {
-  return (
-    <main className="bg-[#F8F8F8] xsm:bg-white">
-      <Leadership />
-    </main>
-  )
+export default async function LeadershipPage({ params }: { params: Promise<{ locale: string }> }) {
+  const [{ locale }] = await Promise.all([params])
+
+  return <Leadership locale={locale} />
 }
