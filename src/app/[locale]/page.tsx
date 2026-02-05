@@ -4,7 +4,7 @@
 // import { useTranslations } from 'next-intl'
 
 import gsap from 'gsap'
-import { Observer } from 'gsap/Observer'
+import { Observer } from 'gsap/all'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { useEffect, useRef } from 'react'
 
