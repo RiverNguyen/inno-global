@@ -1,6 +1,7 @@
-import Link from 'next/link'
+import { useLocale } from 'next-intl'
 import { SVGProps } from 'react'
 
+import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 interface BreadcrumbProps {
@@ -22,6 +23,8 @@ export default function Breadcrumb({
   classNameItemsContainer,
   classNameIcon,
 }: BreadcrumbProps) {
+  const locale = useLocale()
+
   return (
     <nav className={cn('relative', classNameContainer)}>
       <ul
@@ -36,6 +39,7 @@ export default function Breadcrumb({
             className='flex shrink-0 items-center space-x-[0.52083rem]'
           >
             <Link
+              locale={locale}
               href={item?.href || '#'}
               className={cn(
                 'text-primary/40 pc-body-14-r shrink-0 cursor-pointer',

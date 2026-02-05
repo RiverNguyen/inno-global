@@ -48,7 +48,11 @@ export default function SectionRelatedBlogs() {
   const locale = useLocale()
 
   return (
-    <section className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] xsm:px-[0.83333rem] relative'>
+    <section
+      id='related-blogs'
+      data-section-target
+      className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] xsm:px-[0.83333rem] relative'
+    >
       <div className='xsm:space-y-[1.04167rem] mx-auto max-w-[75rem] space-y-[2.08333rem]'>
         <TitleSection>{t('sectionRelatedBlogs.title')}</TitleSection>
         <div className='xsm:grid-cols-1 xsm:gap-[1.04167rem] grid grid-cols-3 gap-[2.08333rem]'>
