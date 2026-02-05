@@ -3,10 +3,11 @@
 // import Link from 'next/link'
 // import { useTranslations } from 'next-intl'
 
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { Observer } from 'gsap/Observer'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 // export const dynamicParams = false
 // export function generateStaticParams() {
@@ -19,15 +20,12 @@ export default function Page() {
   // const t = useTranslations('HomePage')
   const rootRef = useRef<HTMLElement | null>(null)
 
-  useEffect(() => {
-    if (!rootRef.current) return
-
-    let observer: Observer | null = null
-
-    const ctx = gsap.context(() => {
+  useGSAP(
+    () => {
       const sections = gsap.utils.toArray<HTMLElement>('[data-snap]')
       if (sections.length === 0) return
 
+      let observer: Observer | null = null
       let index = 0
       let isAnimating = false
 
@@ -51,22 +49,31 @@ export default function Page() {
         })
       }
 
-      observer = Observer.create({
-        type: 'wheel,touch',
-        preventDefault: true,
-        allowClicks: true,
-        tolerance: 10,
-        wheelSpeed: 1,
-        onDown: () => scrollToSection(index + 1),
-        onUp: () => scrollToSection(index - 1),
-      })
-    }, rootRef)
+      const mm = gsap.matchMedia()
+      mm.add('(min-width: 1025px)', () => {
+        observer = Observer.create({
+          type: 'wheel,touch',
+          preventDefault: true,
+          allowClicks: true,
+          tolerance: 10,
+          wheelSpeed: 1,
+          onDown: () => scrollToSection(index + 1),
+          onUp: () => scrollToSection(index - 1),
+        })
 
-    return () => {
-      observer?.kill()
-      ctx.revert()
-    }
-  }, [])
+        return () => {
+          observer?.kill()
+          observer = null
+        }
+      })
+
+      return () => {
+        observer?.kill()
+        mm.revert()
+      }
+    },
+    { scope: rootRef },
+  )
 
   return (
     <main
