@@ -1,13 +1,13 @@
 import Image from 'next/image'
-import React from 'react'
 
+import { IAcfImage } from '@/interfaces/acf-wp.interface'
 import { cn } from '@/lib/utils'
 
 interface CardVisionMissionProps {
   alignContent?: 'left' | 'right'
   title?: string
   content?: string
-  thumbnail?: { alt?: string; url: string }
+  thumbnail?: IAcfImage
   classNameCard?: string
   classNameTitle?: string
   classNameContent?: string
@@ -49,7 +49,7 @@ export default function CardVisionMission({
           <div
             dangerouslySetInnerHTML={{ __html: content || '' }}
             className={cn(
-              'text-primary xsm:text-[0.83333rem] xsm:tracking-[-0.01667rem] text-justify text-[1.25rem] leading-[1.5] tracking-[-0.025rem] [&_li]:ml-[1.5rem] [&_ol]:list-decimal [&_strong]:font-bold [&_ul]:list-disc',
+              'text-primary xsm:text-[0.83333rem] xsm:tracking-[-0.01667rem] text-[1.25rem] leading-[1.5] tracking-[-0.025rem] [&_li]:ml-[1.5rem] [&_ol]:list-decimal [&_strong]:font-bold [&_ul]:list-disc',
               classNameContent,
             )}
           ></div>
