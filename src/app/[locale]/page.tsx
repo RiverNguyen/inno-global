@@ -9,6 +9,8 @@ import { Observer } from 'gsap/Observer'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { useRef } from 'react'
 
+import BannerHome from '@/app/[locale]/_components/banner/BannerHome'
+
 // export const dynamicParams = false
 // export function generateStaticParams() {
 //   return [{ locale: 'vi' }, { locale: 'en' }]
@@ -80,10 +82,9 @@ export default function Page() {
       ref={rootRef}
       className='relative bg-white'
     >
-      <section
-        data-snap
-        className='h-screen bg-red-200'
-      ></section>
+      <section data-snap>
+        <BannerHome />
+      </section>
       <section
         data-snap
         className='h-[50vh] bg-black'
