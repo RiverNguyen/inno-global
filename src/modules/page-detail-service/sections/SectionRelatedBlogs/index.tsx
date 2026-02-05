@@ -9,37 +9,37 @@ const MOCK_DATA = [
     title: 'Seminar đào tạo và phát triển lên văn hóa doanh nghiệp INNO Gitiho',
     category: 'XÂY DỰNG',
     date: '30.10.2025',
-    thumbnail: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
+    thumbnail: { alt: '', url: '/images/detail-service/d-blog-1.webp' },
   },
   {
     title: 'Seminar đào tạo và phát triển lên văn hóa doanh nghiệp INNO Gitiho',
     category: 'XÂY DỰNG',
     date: '30.10.2025',
-    thumbnail: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
+    thumbnail: { alt: '', url: '/images/detail-service/d-blog-2.webp' },
   },
   {
     title: 'Seminar đào tạo và phát triển lên văn hóa doanh nghiệp INNO Gitiho',
     category: 'XÂY DỰNG',
     date: '30.10.2025',
-    thumbnail: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
+    thumbnail: { alt: '', url: '/images/detail-service/d-blog-3.webp' },
   },
   {
     title: 'Seminar đào tạo và phát triển lên văn hóa doanh nghiệp INNO Gitiho',
     category: 'XÂY DỰNG',
     date: '30.10.2025',
-    thumbnail: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
+    thumbnail: { alt: '', url: '/images/detail-service/d-blog-4.webp' },
   },
   {
     title: 'Seminar đào tạo và phát triển lên văn hóa doanh nghiệp INNO Gitiho',
     category: 'XÂY DỰNG',
     date: '30.10.2025',
-    thumbnail: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
+    thumbnail: { alt: '', url: '/images/detail-service/d-blog-5.webp' },
   },
   {
     title: 'Seminar đào tạo và phát triển lên văn hóa doanh nghiệp INNO Gitiho',
     category: 'XÂY DỰNG',
     date: '30.10.2025',
-    thumbnail: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
+    thumbnail: { alt: '', url: '/images/detail-service/d-blog-6.webp' },
   },
 ]
 

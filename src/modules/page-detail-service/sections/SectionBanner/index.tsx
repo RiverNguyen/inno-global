@@ -10,20 +10,20 @@ const MOCK_DATA = {
     'INNO cung cấp giải pháp kiến trúc toàn diện, kết hợp hài hòa giữa công năng, thẩm mỹ và sự phù hợp với bối cảnh. Mỗi dự án được nghiên cứu kỹ lưỡng',
   slideItems: [
     {
-      image_pc: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
-      image_mobile: { alt: '', url: '/images/detail-service/d-image-1-mb.jpg' },
+      image_pc: { alt: '', url: '/images/detail-service/d-banner-pc.jpg' },
+      image_mobile: { alt: '', url: '/images/detail-service/d-banner-mb.jpg' },
     },
     {
-      image_pc: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
-      image_mobile: { alt: '', url: '/images/detail-service/d-image-1-mb.jpg' },
+      image_pc: { alt: '', url: '/images/detail-service/d-banner-pc.jpg' },
+      image_mobile: { alt: '', url: '/images/detail-service/d-banner-mb.jpg' },
     },
     {
-      image_pc: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
-      image_mobile: { alt: '', url: '/images/detail-service/d-image-1-mb.jpg' },
+      image_pc: { alt: '', url: '/images/detail-service/d-banner-pc.jpg' },
+      image_mobile: { alt: '', url: '/images/detail-service/d-banner-mb.jpg' },
     },
     {
-      image_pc: { alt: '', url: '/images/detail-service/d-image-1.jpg' },
-      image_mobile: { alt: '', url: '/images/detail-service/d-image-1-mb.jpg' },
+      image_pc: { alt: '', url: '/images/detail-service/d-banner-pc.jpg' },
+      image_mobile: { alt: '', url: '/images/detail-service/d-banner-mb.jpg' },
     },
   ],
 }

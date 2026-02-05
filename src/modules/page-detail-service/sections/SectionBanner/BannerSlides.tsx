@@ -83,17 +83,17 @@ export default function BannerSlides({ slideItems }: BannerSlidesProps) {
                 src={item?.image_pc?.url}
                 alt={item?.image_pc?.alt || ''}
                 loading={index === 0 ? 'eager' : 'lazy'}
-                className='absolute top-0 left-0 size-full object-cover will-change-transform'
+                className='xsm:hidden absolute top-0 left-0 block size-full object-cover will-change-transform'
               />
             )}
             {item?.image_mobile && item?.image_mobile?.url && (
               <Image
-                width={1920}
-                height={1080}
+                width={375}
+                height={405}
                 src={item?.image_mobile?.url}
                 alt={item?.image_mobile?.alt || ''}
                 loading={index === 0 ? 'eager' : 'lazy'}
-                className='absolute top-0 left-0 size-full object-cover will-change-transform'
+                className='xsm:block absolute top-0 left-0 hidden size-full object-cover will-change-transform'
               />
             )}
           </div>
