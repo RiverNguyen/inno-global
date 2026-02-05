@@ -146,7 +146,7 @@ export default function ProjectListPage() {
                   value: 'demo noi dung 2',
                 },
               ]}
-              onChange={() => {}}
+              onChange={() => { }}
             />
             <FilterPopup
               label='Dịch vụ tham gia'
@@ -160,7 +160,7 @@ export default function ProjectListPage() {
                   value: 'demo noi dung 2',
                 },
               ]}
-              onChange={() => {}}
+              onChange={() => { }}
             />
             <FilterPopup
               label='Địa điểm'
@@ -174,7 +174,7 @@ export default function ProjectListPage() {
                   value: 'demo noi dung 2',
                 },
               ]}
-              onChange={() => {}}
+              onChange={() => { }}
             />
             <FilterPopup
               label='Năm'
@@ -188,7 +188,7 @@ export default function ProjectListPage() {
                   value: 'demo noi dung 2',
                 },
               ]}
-              onChange={() => {}}
+              onChange={() => { }}
             />
           </div>
           <div className='xsm:w-full flex items-center space-x-[0.9375rem] xsm:space-x-[0.41667rem] xsm:px-[0.83333rem] xsm:mb-[0.72917rem]'>
@@ -214,7 +214,7 @@ export default function ProjectListPage() {
                   value: 'oldest',
                 },
               ]}
-              onChange={() => {}}
+              onChange={() => { }}
             />
           </div>
         </div>

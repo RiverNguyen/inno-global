@@ -1,6 +1,7 @@
 'use client'
+
 import { useTranslations } from 'next-intl'
-import './style.css'
+import { useState } from 'react'
 
 import ICChevronRight from '@/components/icons/ICChevronRight'
 import ICClose from '@/components/icons/ICClose'
@@ -16,7 +17,8 @@ import {
 } from '@/components/ui/drawer'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { slugify } from '@/utils/slugify'
-import { useState } from 'react'
+
+import './style.css'
 
 interface SortPopupProps {
   label: string

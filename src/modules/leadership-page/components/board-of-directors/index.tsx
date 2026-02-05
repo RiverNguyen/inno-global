@@ -1,41 +1,41 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
 
 const boardOfDirectors = [
   {
-    name: "Lê Thanh Sơn",
-    position: "Chủ Tịch Hội Đồng",
-    image: "/leadership/d-leadership-1.webp",
+    name: 'Lê Thanh Sơn',
+    position: 'Chủ Tịch Hội Đồng',
+    image: '/leadership/d-leadership-1.webp',
   },
   {
-    name: "Lê Thanh Sơn",
-    position: "Chủ Tịch Hội Đồng",
-    image: "/leadership/d-leadership-2.webp",
+    name: 'Lê Thanh Sơn',
+    position: 'Chủ Tịch Hội Đồng',
+    image: '/leadership/d-leadership-2.webp',
   },
   {
-    name: "Lê Thanh Sơn",
-    position: "Chủ Tịch Hội Đồng",
-    image: "/leadership/d-leadership-3.webp",
+    name: 'Lê Thanh Sơn',
+    position: 'Chủ Tịch Hội Đồng',
+    image: '/leadership/d-leadership-3.webp',
   },
   {
-    name: "Lê Thanh Sơn",
-    position: "Chủ Tịch Hội Đồng",
-    image: "/leadership/d-leadership-4.webp",
+    name: 'Lê Thanh Sơn',
+    position: 'Chủ Tịch Hội Đồng',
+    image: '/leadership/d-leadership-4.webp',
   },
   {
-    name: "Lê Thanh Sơn",
-    position: "Chủ Tịch Hội Đồng",
-    image: "/leadership/d-leadership-1.webp",
+    name: 'Lê Thanh Sơn',
+    position: 'Chủ Tịch Hội Đồng',
+    image: '/leadership/d-leadership-1.webp',
   },
   {
-    name: "Lê Thanh Sơn",
-    position: "Chủ Tịch Hội Đồng",
-    image: "/leadership/d-leadership-2.webp",
+    name: 'Lê Thanh Sơn',
+    position: 'Chủ Tịch Hội Đồng',
+    image: '/leadership/d-leadership-2.webp',
   },
   {
-    name: "Lê Thanh Sơn",
-    position: "Chủ Tịch Hội Đồng",
-    image: "/leadership/d-leadership-3.webp",
+    name: 'Lê Thanh Sơn',
+    position: 'Chủ Tịch Hội Đồng',
+    image: '/leadership/d-leadership-3.webp',
   },
 ]
 
@@ -82,7 +82,7 @@ const BoardSection = ({ title, directors }: { title: string; directors: typeof b
       ))}
     </div>
   </div>
-);
+)
 
 export default function BoardOfDirectors() {
   return (
