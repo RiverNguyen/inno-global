@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next lint --fix && npm run format && next build --debug-prerender",
+    "build": "npm run lint && npm run format && next build --debug-prerender",
     "start": "next start",
-    "lint": "eslint",
-    "lint:fix": "next lint --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "vercel-build": "next build"
