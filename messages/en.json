@@ -18,5 +18,11 @@
     "title": "Leadership",
     "home": "Home",
     "about": "About us"
+  },
+  "FounderPage": {
+    "title": "Founder",
+    "home": "Home",
+    "about": "About us",
+    "ceoMessage": "CEO Message"
   }
 }

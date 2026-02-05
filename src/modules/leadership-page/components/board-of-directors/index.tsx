@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { SVGProps } from 'react'
+
+import SectionPagination from '@/components/shared/SectionPagination'
 
 type DirectorCard = {
   name: string
@@ -71,31 +72,11 @@ export default function BoardOfDirectors({ sections, locale }: { sections: Board
       </div>
 
       {/* Pagination */}
-      <div className="bg-white py-[2.96875rem] xsm:py-[3.33333rem] xsm:px-[0.83333rem]">
-        <div className="flex max-w-[75.1rem] mx-auto justify-between items-center">
-          <Link href='' type="button" className="flex items-center gap-[0.3125rem] cursor-pointer">
-            <ICArrowLeft className="size-[0.83333rem] xsm:size-[0.625rem]" />
-            <span className="text-[#D32F2F] font-open-sans text-[0.83333rem] leading-[150%] [text-box-trim:trim-both] [text-box-edge:cap_alphabetic] xsm:text-[0.625rem]">Trang B</span>
-          </Link>
-
-          <Link href={getAboutUsHref(locale)} className="flex-center py-[0.41667rem] border-b border-[#D32F2F] text-[#D32F2F] font-open-sans text-[0.83333rem] font-semibold leading-[130%] tracking-[-0.00833rem] xsm:text-[0.625rem] xsm:leading-[150%] xsm:tracking-normal">
-            Về chúng tôi
-          </Link>
-
-          <Link href='' type="button" className="flex items-center gap-[0.375rem] cursor-pointer">
-            <span className="text-[#D32F2F] font-open-sans text-[0.83333rem] leading-[150%] [text-box-trim:trim-both] [text-box-edge:cap_alphabetic] xsm:text-[0.625rem]">Trang A</span>
-            <ICArrowLeft className="w-[1rem] h-[1rem] rotate-180" />
-          </Link>
-        </div>
-      </div>
+      <SectionPagination
+        prev={{ href: '', label: 'Trang B' }}
+        center={{ href: getAboutUsHref(locale), label: 'Về chúng tôi' }}
+        next={{ href: '', label: 'Trang A' }}
+      />
     </>
-  )
-}
-
-const ICArrowLeft = (props: SVGProps<SVGSVGElement>) => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" {...props}>
-      <path d="M6.38016 3.95312L2.3335 7.99979L6.38016 12.0465" stroke="#D32F2F" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
   )
 }

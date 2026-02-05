@@ -18,5 +18,11 @@
     "title": "Ban Lãnh Đạo Công Ty",
     "home": "Trang chủ",
     "about": "Về chúng tôi"
+  },
+  "FounderPage": {
+    "title": "Người Thành Lập",
+    "home": "Trang chủ",
+    "about": "Về chúng tôi",
+    "ceoMessage": "Tin Nhắn Từ Giám Đốc Điều Hành"
   }
 }
