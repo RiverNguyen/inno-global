@@ -13,10 +13,11 @@
   "vueIndentScriptAndStyle": false,
   "proseWrap": "preserve",
   "insertPragma": false,
-  "printWidth": 100,
+  "printWidth": 120,
   "requirePragma": false,
   "tabWidth": 2,
   "useTabs": false,
   "embeddedLanguageFormatting": "auto",
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

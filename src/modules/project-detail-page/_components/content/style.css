@@ -1,0 +1,273 @@
+#project_detail * {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+/* Container chứa nhiều ảnh alignleft → xếp ngang (CMS thường dùng p hoặc span) */
+#project_detail span:has(> img.alignleft),
+#project_detail p:has(> img.alignleft),
+#project_detail div:has(> img.alignleft) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-top: 1.46rem;
+}
+
+#project_detail img.alignleft {
+  display: inline-block;
+  flex: 1 1 calc(50% - 0.5rem);
+  min-width: 12rem;
+  max-width: calc(50% - 0.5rem);
+  width: calc(50% - 0.5rem);
+  box-sizing: border-box;
+  object-fit: cover;
+  vertical-align: top;
+  margin-top: 0;
+}
+
+/* Khoảng cách khi 2 ảnh alignleft đứng cạnh nhau (không có span/p/div bọc) */
+#project_detail img.alignleft + img.alignleft {
+  margin-left: 1rem;
+}
+
+/* Đã có flex container (span/p/div) thì dùng gap, không cần margin thừa */
+#project_detail span:has(> img.alignleft) > img.alignleft + img.alignleft,
+#project_detail p:has(> img.alignleft) > img.alignleft + img.alignleft,
+#project_detail div:has(> img.alignleft) > img.alignleft + img.alignleft {
+  margin-left: 0;
+}
+
+#project_detail h1,
+#project_detail h2,
+#project_detail h3,
+#project_detail h4,
+#project_detail h5,
+#project_detail h6 {
+  font-weight: 500;
+  color: #2e2e2e;
+  margin-top: 2.5rem;
+}
+
+#project_detail h1 {
+  font-size: 1.75rem;
+  line-height: 3.6rem;
+}
+
+#project_detail h2 {
+  font-size: 1.25rem;
+  line-height: 150%;
+}
+
+#project_detail h3 {
+  font-size: 1.125rem;
+}
+
+#project_detail h4 {
+  font-size: 1rem;
+}
+
+#project_detail h5 {
+  font-size: 0.875rem;
+}
+
+#project_detail h6 {
+  font-size: 0.75rem;
+}
+
+#project_detail p {
+  color: var(--Text-80, rgba(9, 9, 9, 0.8));
+
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+#project_detail img {
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  margin-top: 1.46rem;
+  margin-bottom: 1.3rem;
+}
+
+/* Wrapper cho table để scroll ngang khi nội dung rộng */
+#project_detail .table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+#project_detail .table-wrapper table {
+  margin-top: 0;
+}
+
+#project_detail table {
+  margin-top: 2.5rem;
+}
+
+#project_detail th,
+#project_detail td {
+  font-weight: 400;
+  border: 1px solid #2e2e2e;
+  text-align: center;
+  font-size: 1rem;
+  color: #2e2e2e;
+  padding: 0.5rem;
+}
+
+#project_detail th {
+  font-weight: 700;
+}
+
+#project_detail ul {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-top: 1rem;
+  list-style: disc inside;
+}
+
+#project_detail a {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #d32f2f;
+  margin-top: 1rem;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: all 0.15s ease-in-out;
+}
+
+@media (min-width: 1024px) {
+  #project_detail a:hover {
+    text-decoration-color: #d32f2f;
+  }
+}
+
+@media (max-width: 639px) {
+  #project_detail {
+    width: 100%;
+    overflow: auto;
+  }
+
+  #project_detail h1,
+  #project_detail h2,
+  #project_detail h3,
+  #project_detail h4,
+  #project_detail h5,
+  #project_detail h6 {
+    margin-top: 1.46rem;
+    margin-bottom: 0.83rem;
+    color: var(--Text-80, rgba(9, 9, 9, 0.8));
+  }
+
+  #project_detail h1 {
+    font-size: 1.125rem;
+    line-height: normal;
+  }
+
+  #project_detail h2 {
+    font-family: 'Open Sans';
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    /* 1.125rem */
+    letter-spacing: -0.01406rem;
+  }
+
+  #project_detail h3 {
+    font-size: 0.875rem;
+
+    /* 1.2375rem */
+  }
+
+  #project_detail h4 {
+    font-size: 0.75rem;
+  }
+
+  #project_detail h5 {
+    font-size: 0.625rem;
+  }
+
+  #project_detail h6 {
+    font-size: 0.5rem;
+  }
+
+  #project_detail {
+    color: var(--Text-80, rgba(9, 9, 9, 0.8));
+
+    /* MB/Body/14-R */
+    font-family: 'Open Sans';
+    font-size: 0.72917rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+  }
+
+  #project_detail img {
+    height: auto;
+    width: 100%;
+    margin-bottom: 0.52rem;
+  }
+
+  #project_detail span:has(> img.alignleft),
+  #project_detail p:has(> img.alignleft),
+  #project_detail div:has(> img.alignleft) {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  #project_detail img.alignleft {
+    flex: 1 1 100%;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #project_detail .wp-caption,
+  #project_detail div:has(img) {
+    border-radius: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  #project_detail .wp-caption-text,
+  #project_detail div:has(p) p {
+    font-size: 0.625rem;
+    font-style: italic;
+    letter-spacing: -0.00625rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #project_detail .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    scrollbar-width: none;
+    margin-top: 1.125rem;
+  }
+
+  #project_detail table {
+    width: 100%;
+  }
+
+  #project_detail th,
+  #project_detail td {
+    white-space: nowrap;
+    /* giữ cột không bị xuống dòng */
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #project_detail ul {
+    font-size: 0.875rem;
+    line-height: normal;
+    margin-top: 0.875rem;
+  }
+
+  #project_detail a {
+    font-size: 0.875rem;
+    margin-top: 0.875rem;
+    text-decoration-color: #d32f2f;
+  }
+}
