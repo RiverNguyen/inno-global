@@ -1,9 +1,11 @@
+'use client'
+import { useTranslations } from 'use-intl'
 import './style.css'
 import ShareSticky from '@/modules/project-detail-page/_components/share-sticky'
 
 const content = `
   <h2>1. Thông tin chung</h2>
-<span style="font-family: 'times new roman', times, serif;">Vincom Landmark Tower là công trình căn họ chung cư kết hợp với thương mại dịch vụ và khách sạn nằm trong dự án Khu phức hợp Tân Cảng Sài Gòn (Vinhomes Central Park), phường 12, quận Bình Thạnh, TP Hồ Chí Minh.</span>
+<span style="font-family: 'times new roman', times, serif;">Vincom Landmark Tower là công trình căn họ chung cư kết hợp với thương mại dịch vụ và khách sạn nằm trong dự án Khu phức hợp Tân Cảng Sài Gòn (Vinhomes Central Park), phường 12, quận Bình Thạnh, TP Hồ Chí Minh.</span>
 
 <span style="font-family: 'times new roman', times, serif;"><img class="alignleft wp-image-3583 " src="https://cms.tiemtourshagiang.com/wp-content/uploads/2025/06/general_info_image_1-scaled.webp" alt="" width="512" height="512" /><img class="wp-image-3584 alignleft" src="https://cms.tiemtourshagiang.com/wp-content/uploads/2025/06/design_idea_image_2-scaled.webp" alt="" width="513" height="513" /></span>
 
@@ -74,7 +76,8 @@ function wrapTablesInWrapper(html: string) {
     .replace(/<\/table>/gi, '</table></div>')
 }
 
-const Content = () => {
+const Content = ({ content }: { content: string }) => {
+  const t = useTranslations('DetailProjectPage')
   return (
     <section className='xsm:p-[2.4rem_0.8275rem] xsm:bg-[#F5F5F5] xsm:overflow-hidden relative p-[6.25rem_12.5rem] pr-[7.03rem]'>
       <div
@@ -90,14 +93,14 @@ const Content = () => {
         }}
       />
 
-      <h2 className='xsm:text-[1.25rem] text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-[#090909]'>
-        Tìm hiểu thêm về dự án
+      <h2 className='xsm:text-[1.25rem] relative text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+        {t('learnMore')}
       </h2>
 
-      <div className='xsm:space-x-0 flex space-x-[2.86rem]'>
+      <div className='xsm:space-x-0 relative flex space-x-[2.86rem]'>
         <article
           id='project_detail'
-          dangerouslySetInnerHTML={{ __html: wrapTablesInWrapper(content) }}
+          dangerouslySetInnerHTML={{ __html: wrapTablesInWrapper(content || '') }}
         />
         <div className='hidden sm:block'>
           <ShareSticky />

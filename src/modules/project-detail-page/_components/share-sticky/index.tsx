@@ -1,4 +1,5 @@
 'use client'
+import { toast } from 'sonner'
 
 function IconCopy(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -134,10 +135,20 @@ function ShareSticky() {
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(shareUrl)
-      // TODO: add toast "Đã copy link" nếu cần
-    } catch {
-      // ignore
+      if (navigator.share) {
+        await navigator.share({ url: encodedUrl, title })
+        return
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error && error.name === 'AbortError') {
+        return
+      }
+      try {
+        await navigator.clipboard.writeText(encodedUrl)
+        toast.success('Liên kết đã được sao chép vào bảng tạm')
+      } catch (clipboardError) {
+        console.error('Clipboard error:', clipboardError)
+      }
     }
   }
 
@@ -154,7 +165,7 @@ function ShareSticky() {
       <div className='flex flex-col space-y-[0.625rem]'>
         <button
           type='button'
-          className='size-[2.60417rem]'
+          className='size-[2.60417rem] cursor-pointer'
           onClick={handleCopyLink}
           aria-label='Copy link'
         >

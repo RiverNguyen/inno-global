@@ -50,17 +50,17 @@ export default function ProjectCard({
         />
       </div>
       <div className='pt-[0.72917rem]'>
-        <div className='mb-[0.3125rem] flex items-center justify-between'>
+        <div className='mb-[0.3125rem] flex items-center justify-between space-x-4'>
           <h3
             className={cn(
-              'font-open-sans text-[0.9375rem] leading-[150%] font-semibold text-[#090909]',
+              'font-open-sans line-clamp-2 text-[0.9375rem] leading-[150%] font-semibold text-[#090909]',
               classNameTitle,
             )}
           >
             {project?.title}
           </h3>
           <div className='font-open-sans xsm:hidden inline-flex items-center space-x-[0.20833rem] text-[0.72917rem] leading-[150%] font-normal text-[#D32F2F] transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:opacity-0 lg:group-hover:opacity-100'>
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+            <span className='whitespace-nowrap [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
               Xem chi tiết
             </span>
             <ICChevronDown className='size-[0.72917rem] shrink-0 -rotate-90' />
