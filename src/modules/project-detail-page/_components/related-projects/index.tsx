@@ -99,51 +99,23 @@ const projects = [
 
 const RelatedProjects = () => {
   return (
-    <section className="py-[5.20833rem] xsm:pt-[1.66667rem] xsm:pb-[3.33333rem]">
-      <div className="flex-y-center justify-between max-w-[75rem] mx-auto">
-        <h2 className="text-[#090909] text-[2.8125rem] font-semibold leading-[1.2] xsm:px-[0.8275rem] tracking-[-0.02813rem] xsm:text-[1.25rem] xsm:font-semibold">Dự án liên quan</h2>
+    <section className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] py-[5.20833rem]'>
+      <div className='flex-y-center mx-auto max-w-[75rem] justify-between'>
+        <h2 className='xsm:px-[0.8275rem] xsm:text-[1.25rem] xsm:font-semibold text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-[#090909]'>
+          Dự án liên quan
+        </h2>
         <Link
-          href="/"
-          className="
-            relative overflow-hidden
-            h-[2.6rem] flex-center w-fit group
-            px-[1.15rem]
-            rounded-[5.20833rem]
-            outline outline-[#090909]/60
-            text-[0.73rem] leading-[1.5] text-[#090909]/60
-            transition-all duration-300
-            hover:text-white
-            hover:outline-none
-            xsm:hidden
-          "
+          href='/'
+          className='flex-center group xsm:hidden relative h-[2.6rem] w-fit overflow-hidden rounded-[5.20833rem] px-[1.15rem] text-[0.73rem] leading-[1.5] text-[#090909]/60 outline outline-[#090909]/60 transition-all duration-300 hover:text-white hover:outline-none'
         >
-          <span
-            className="
-              absolute inset-0
-              bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)]
-              opacity-0
-              group-hover:opacity-100
-              transition-opacity duration-300 ease-in-out
-              rounded-[inherit]
-            "
-          />
-          <span className="relative z-10 flex-center">
+          <span className='absolute inset-0 rounded-[inherit] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100' />
+          <span className='flex-center relative z-10'>
             Xem tất cả
-            <ChevronRightIcon
-              className="
-                ml-1.25 size-[0.83333rem]
-                translate-y-[0.0375rem]
-                text-[#090909]/60
-                group-hover:text-white
-                group-hover:translate-x-[0.5rem]
-                transition-all duration-300
-              "
-            />
+            <ChevronRightIcon className='ml-1.25 size-[0.83333rem] translate-y-[0.0375rem] text-[#090909]/60 transition-all duration-300 group-hover:translate-x-[0.5rem] group-hover:text-white' />
           </span>
         </Link>
-
       </div>
-      <div className="relative xsm:hidden">
+      <div className='xsm:hidden relative'>
         <Swiper
           modules={[Navigation]}
           navigation={{
@@ -152,119 +124,65 @@ const RelatedProjects = () => {
             disabledClass: 'opacity-0 pointer-events-none',
           }}
           grabCursor={true}
-          className="h-[19.75rem] w-[75rem]! mt-[1.67rem]"
+          className='mt-[1.67rem] h-[19.75rem] w-[75rem]!'
           slidesPerView={3}
           speed={600}
           spaceBetween={convertRemToPx(1.5625) || 25}
-
         >
           {projects.map((project, index) => (
-            <SwiperSlide key={index} className='w-full h-full'>
-              <ProjectCard
-                project={project}
-              />
+            <SwiperSlide
+              key={index}
+              className='h-full w-full'
+            >
+              <ProjectCard project={project} />
             </SwiperSlide>
           ))}
         </Swiper>
 
-        <div className="flex w-[83.33333rem] pointer-events-none absolute-center justify-between">
+        <div className='absolute-center pointer-events-none flex w-[83.33333rem] justify-between'>
           <button
-            type="button"
-            className="
-              related-projects-prev pointer-events-auto
-              relative overflow-hidden
-              size-[2.083rem]
-              rounded-full flex-center
-              bg-[#F0F0F0]
-              group
-              cursor-pointer
-              transition-all duration-300
-            "
+            type='button'
+            className='related-projects-prev flex-center group pointer-events-auto relative size-[2.083rem] cursor-pointer overflow-hidden rounded-full bg-[#F0F0F0] transition-all duration-300'
           >
-            <span
-              className="
-                absolute inset-0
-                rounded-full
-                bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)]
-                opacity-0
-                group-hover:opacity-100
-                transition-opacity duration-300 ease-in-out
-              "
-            />
+            <span className='absolute inset-0 rounded-full bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100' />
 
-            <ChevronLeftIcon
-              className="
-                relative z-10
-                size-[1.25rem]
-                text-[#090909]/60
-                group-hover:text-white
-                transition-all duration-300
-              "
-            />
+            <ChevronLeftIcon className='relative z-10 size-[1.25rem] text-[#090909]/60 transition-all duration-300 group-hover:text-white' />
           </button>
 
           <button
-            type="button"
-            className="
-              related-projects-next pointer-events-auto
-              relative overflow-hidden
-              size-[2.083rem]
-              rounded-full flex-center
-              bg-[#F0F0F0]
-              group
-              cursor-pointer
-              transition-all duration-300
-            "
+            type='button'
+            className='related-projects-next flex-center group pointer-events-auto relative size-[2.083rem] cursor-pointer overflow-hidden rounded-full bg-[#F0F0F0] transition-all duration-300'
           >
-            <span
-              className="
-                absolute inset-0
-                rounded-full
-                bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)]
-                opacity-0
-                group-hover:opacity-100
-                transition-opacity duration-300 ease-in-out
-              "
-            />
+            <span className='absolute inset-0 rounded-full bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100' />
 
-            <ChevronRightIcon
-              className="
-                relative z-10
-                size-[1.25rem]
-                text-[#090909]/60
-                group-hover:text-white
-                transition-all duration-300
-              "
-            />
+            <ChevronRightIcon className='relative z-10 size-[1.25rem] text-[#090909]/60 transition-all duration-300 group-hover:text-white' />
           </button>
-
         </div>
       </div>
 
-      <div className="flex space-x-[0.83333rem] overflow-x-auto px-[0.8275rem] mt-[1.04167rem] sm:hidden hidden_scroll">
+      <div className='hidden_scroll mt-[1.04167rem] flex space-x-[0.83333rem] overflow-x-auto px-[0.8275rem] sm:hidden'>
         {Array.from({ length: 10 }).map((_, index) => (
           <Image
             key={index}
             width={200}
             height={300}
             src={`https://picsum.photos/id/${index}/200/300`}
-            alt="Project"
-            className="w-[16.2rem] h-[14.83rem] object-cover shrink-0"
+            alt='Project'
+            className='h-[14.83rem] w-[16.2rem] shrink-0 object-cover'
           />
         ))}
       </div>
-      <div className="px-[0.8275rem] sm:hidden">
-        <Link href="/" className='w-full flex-center mt-[1.66667rem] rounded-[5.2rem] border border-[#090909]/60 backdrop-blur-[6px] mx-auto
-      shadow-[0_0_2px_0_rgba(0,0,0,0.10),_0_1px_8px_0_rgba(0,0,0,0.10)] h-[2.5rem]'>
-          <span className="text-[0.73rem] leading-[1.5] text-[#090909]/60 flex-center">
+      <div className='px-[0.8275rem] sm:hidden'>
+        <Link
+          href='/'
+          className='flex-center mx-auto mt-[1.66667rem] h-[2.5rem] w-full rounded-[5.2rem] border border-[#090909]/60 shadow-[0_0_2px_0_rgba(0,0,0,0.10),_0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px]'
+        >
+          <span className='flex-center text-[0.73rem] leading-[1.5] text-[#090909]/60'>
             Xem tất cả
-            <ChevronRightIcon
-              className="ml-1.5 size-[0.83333rem] text-[#090909]/60"
-            />
+            <ChevronRightIcon className='ml-1.5 size-[0.83333rem] text-[#090909]/60' />
           </span>
         </Link>
       </div>
-
     </section>
   )
 }
