@@ -24,3 +24,9 @@ export interface IAcfLink {
   url: string
   target: '_self' | '_blank' | string
 }
+
+export interface ITaxonomy {
+  id: number
+  name: string
+  slug: string
+}

@@ -60,7 +60,7 @@ const eslintConfig = [
       'max-len': [
         'error',
         {
-          code: 100,
+          code: 120,
           ignoreUrls: true,
           ignoreStrings: true,
           ignoreTemplateLiterals: true,
