@@ -23,22 +23,22 @@ interface FilterPopupProps {
     label: string
     value: string
   }[]
-  onChange: () => void
+  value?: string[]
+  onChange?: (selected: string[]) => void
 }
 
-export default function FilterPopup({ label, items, onChange }: FilterPopupProps) {
-  const [selected, setSelected] = useState<string[]>([])
+export default function FilterPopup({ label, items, value, onChange }: FilterPopupProps) {
+  const [internalSelected, setInternalSelected] = useState<string[]>([])
+  const selected = value !== undefined ? value : internalSelected
 
   const t = useTranslations('ProjectListPage')
 
-  const handleChange = (value: string) => {
-    setSelected(
-      (prev) =>
-        prev.includes(value)
-          ? prev.filter((v) => v !== value) // remove
-          : [...prev, value], // add
-    )
-    onChange()
+  const handleChange = (itemValue: string) => {
+    const next = selected.includes(itemValue)
+      ? selected.filter((v) => v !== itemValue)
+      : [...selected, itemValue]
+    if (value === undefined) setInternalSelected(next)
+    onChange?.(next)
   }
 
   return (
