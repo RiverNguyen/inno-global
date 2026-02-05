@@ -2,6 +2,18 @@
   "HomePage": {
     "title": "Xin chào!"
   },
+  "ProjectListPage": {
+    "breadcrumbHome": "Trang chủ",
+    "breadcrumbProject": "Dự án",
+    "investor": "Chủ đầu tư",
+    "location": "Địa điểm",
+    "title": "Danh sách dự án",
+    "placeholderSearch": "Tìm kiếm từ khóa",
+    "sort": "Sắp xếp",
+    "reset": "Đặt lại",
+    "apply": "Áp dụng",
+    "sortPopup": "Sắp xếp theo"
+  },
   "DetailServicePage": {
     "sectionRelatedProjects": {
       "title": "Dự án liên quan"

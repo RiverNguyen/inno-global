@@ -1,4 +1,5 @@
 {
+  "files.eol": "\n",
   "tailwindCSS.experimental.classRegex": [
     ["className[A-Za-z]*\\s*[:=]\\s*[\"'`]([^\"'`]*)[\"'`]"],
     ["cn\\(([^)]*)\\)"]
