@@ -136,6 +136,7 @@ export default function ProjectListPage() {
           >
             <FilterPopup
               label='Loại hình'
+              keySp='type'
               items={[
                 {
                   label: 'Demo nội dung',
@@ -150,6 +151,7 @@ export default function ProjectListPage() {
             />
             <FilterPopup
               label='Dịch vụ tham gia'
+              keySp='service'
               items={[
                 {
                   label: 'Demo nội dung',
@@ -164,6 +166,7 @@ export default function ProjectListPage() {
             />
             <FilterPopup
               label='Địa điểm'
+              keySp='location'
               items={[
                 {
                   label: 'Demo nội dung',
@@ -178,6 +181,7 @@ export default function ProjectListPage() {
             />
             <FilterPopup
               label='Năm'
+              keySp='year'
               items={[
                 {
                   label: 'Demo nội dung',
@@ -204,6 +208,7 @@ export default function ProjectListPage() {
             </div>
             <SortPopup
               label={t('sortPopup')}
+              keySp='sort'
               items={[
                 {
                   label: 'Mới nhất đến cũ nhất',

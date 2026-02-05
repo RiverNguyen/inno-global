@@ -1,6 +1,6 @@
 'use client'
 import { useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ICChevronDown from '@/components/icons/ICChevronDown'
 import ICChevronRight from '@/components/icons/ICChevronRight'
@@ -19,6 +19,7 @@ import { slugify } from '@/utils/slugify'
 
 interface FilterPopupProps {
   label: string
+  keySp: string
   items: {
     label: string
     value: string
@@ -26,19 +27,47 @@ interface FilterPopupProps {
   onChange: () => void
 }
 
-export default function FilterPopup({ label, items, onChange }: FilterPopupProps) {
-  const [selected, setSelected] = useState<string[]>([])
+export default function FilterPopup({ label, keySp, items, onChange }: FilterPopupProps) {
+  const [selected, setSelected] = useState<string[]>(() => {
+    if (typeof window === 'undefined') return []
+    const searchParams = new URLSearchParams(window.location.search)
+    const initialSelected = searchParams.get(keySp)
+    return initialSelected ? initialSelected.split(',') : []
+  })
 
   const t = useTranslations('ProjectListPage')
 
-  const handleChange = (value: string) => {
+  const handleChange = (value: string, updateParams: boolean) => {
+    if (updateParams && typeof window !== 'undefined') {
+      const url = new URL(window.location.href)
+
+      const spValue = url.searchParams.get(keySp)
+
+      const data = spValue ? spValue.split(',') : []
+      const dataIndex = data.indexOf(value)
+
+      if (dataIndex !== -1) {
+        data.splice(dataIndex, 1)
+      } else {
+        data.push(value)
+      }
+
+      if (data.length > 0) {
+        url.searchParams.set(keySp, data.join(','))
+      } else {
+        url.searchParams.delete(keySp)
+      }
+
+      window.history.pushState({}, '', url)
+      onChange()
+    }
+
     setSelected(
       (prev) =>
         prev.includes(value)
           ? prev.filter((v) => v !== value) // remove
           : [...prev, value], // add
     )
-    onChange()
   }
 
   return (
@@ -47,7 +76,7 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
         <PopoverTrigger asChild>
           <button
             type='button'
-            className='font-open-sans text-[0.72917rem] font-normal leading-[150%] text-[#090909] h-[2.5rem] p-[0.83333rem_1.14583rem] flex items-center justify-center rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] space-x-[0.52083rem] cursor-pointer xsm:hidden'
+            className='font-open-sans text-[0.72917rem] font-normal leading-[150%] text-[#090909] h-10 p-[0.83333rem_1.14583rem] flex items-center justify-center rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] space-x-[0.52083rem] cursor-pointer xsm:hidden'
           >
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
               {label}
@@ -62,12 +91,12 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
               htmlFor={slugify(item.value)}
               className='flex items-center space-x-[0.52083rem] w-full cursor-pointer group'
             >
-              <div className='size-[1.25rem] flex items-center justify-center'>
+              <div className='size-5 flex items-center justify-center'>
                 <input
                   type='checkbox'
                   id={slugify(item.value)}
                   checked={selected.includes(item.value)}
-                  onChange={() => handleChange(item.value)}
+                  onChange={() => handleChange(item.value, true)}
                   className='size-[1.04167rem] rounded-[0.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
                 />
               </div>
@@ -106,19 +135,19 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
               </button>
             </DrawerClose>
           </DrawerHeader>
-          <div className='p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem] space-y-[0.625rem]'>
+          <div className='p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem] space-y-2.5'>
             {items.map((item, i) => (
               <label
                 htmlFor={slugify(item.value)}
                 key={i}
                 className='group flex items-center space-x-[0.52083rem]'
               >
-                <div className='size-[1.25rem] flex items-center justify-center'>
+                <div className='size-5 flex items-center justify-center'>
                   <input
                     type='checkbox'
                     id={slugify(item.value)}
                     checked={selected.includes(item.value)}
-                    onChange={() => handleChange(item.value)}
+                    onChange={() => handleChange(item.value, false)}
                     className='peer size-[1.04167rem] rounded-[0.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
                   />
                 </div>
@@ -137,7 +166,7 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
             </button>
             <button
               type='button'
-              className='inline-flex items-center justify-center space-x-[0.3125rem] p-[0.625rem_1.04167rem] font-open-sans text-[0.72917rem] leading-[150%] text-white bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] backdrop-blur-[6px] grow'
+              className='inline-flex items-center justify-center space-x-1.25 p-[0.625rem_1.04167rem] font-open-sans text-[0.72917rem] leading-[150%] text-white bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] backdrop-blur-[6px] grow'
             >
               <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
                 {t('apply')}

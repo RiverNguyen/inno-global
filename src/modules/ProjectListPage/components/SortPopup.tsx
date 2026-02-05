@@ -1,6 +1,7 @@
 'use client'
 import { useTranslations } from 'next-intl'
 import './style.css'
+import { useState } from 'react'
 
 import ICChevronRight from '@/components/icons/ICChevronRight'
 import ICClose from '@/components/icons/ICClose'
@@ -16,10 +17,10 @@ import {
 } from '@/components/ui/drawer'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { slugify } from '@/utils/slugify'
-import { useState } from 'react'
 
 interface SortPopupProps {
   label: string
+  keySp: string
   items: {
     label: string
     value: string
@@ -27,14 +28,25 @@ interface SortPopupProps {
   onChange: () => void
 }
 
-export default function SortPopup({ label, items, onChange }: SortPopupProps) {
-  const [selectedItem, setSelectedItem] = useState<string>('')
+export default function SortPopup({ label, keySp, items, onChange }: SortPopupProps) {
+  const [selectedItem, setSelectedItem] = useState<string>(() => {
+    if (typeof window === 'undefined') return ''
+    const searchParams = new URLSearchParams(window.location.search)
+    const initialSelected = searchParams.get(keySp) || ''
+    return initialSelected
+  })
 
   const t = useTranslations('ProjectListPage')
 
-  const handleChange = (value: string) => {
+  const handleChange = (value: string, updateParams: boolean) => {
+    if (updateParams) {
+      const url = new URL(window.location.href)
+      url.searchParams.set(keySp, value)
+      window.history.pushState({}, '', url)
+      onChange()
+    }
+
     setSelectedItem(value)
-    onChange()
   }
 
   return (
@@ -63,7 +75,7 @@ export default function SortPopup({ label, items, onChange }: SortPopupProps) {
                   type='radio'
                   id={slugify(item.value)}
                   checked={item.value === selectedItem}
-                  onChange={() => handleChange(item.value)}
+                  onChange={() => handleChange(item.value, true)}
                   className='size-[1.04167rem] rounded-[5.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
                 />
               </div>
@@ -113,7 +125,7 @@ export default function SortPopup({ label, items, onChange }: SortPopupProps) {
                     type='radio'
                     id={slugify(item.value)}
                     checked={item.value === selectedItem}
-                    onChange={() => handleChange(item.value)}
+                    onChange={() => handleChange(item.value, false)}
                     className='size-[1.04333rem] rounded-[5.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
                   />
                 </div>
