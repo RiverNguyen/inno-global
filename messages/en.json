@@ -29,6 +29,11 @@
     "title": "Founder",
     "ceoMessage": "CEO Message"
   },
+  "DetailProjectPage": {
+    "learnMore": "Learn more about the project",
+    "related": "Related projects",
+    "viewAll": "View all"
+  },
   "DetailServicePage": {
     "sectionRelatedProjects": {
       "title": "Related projects"
@@ -36,6 +41,9 @@
     "sectionRelatedBlogs": {
       "title": "Related blogs"
     }
+  },
+  "SubCompanyPage": {
+    "companyList": "Companys"
   },
   "Breadcrumb": {
     "homePage": "Home",

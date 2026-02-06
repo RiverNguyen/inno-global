@@ -29,6 +29,11 @@
     "title": "Người Thành Lập",
     "ceoMessage": "Thông điệp của CEO"
   },
+  "DetailProjectPage": {
+    "learnMore": "Tìm hiểu thêm về dự án",
+    "related": "Dự án liên quan",
+    "viewAll": "Xem tất cả"
+  },
   "DetailServicePage": {
     "sectionRelatedProjects": {
       "title": "Dự án liên quan"
@@ -36,6 +41,9 @@
     "sectionRelatedBlogs": {
       "title": "Bài viết liên quan"
     }
+  },
+  "SubCompanyPage": {
+    "companyList": "Danh sách công ty"
   },
   "Breadcrumb": {
     "homePage": "Trang chủ",
