@@ -23,6 +23,10 @@ const ENDPOINTS = {
     relatedBlogs: ({ slug, limit, lang, paged }: FetchRelatedBlogsProps) =>
       `api/v1/get-all/post?lang=${lang}&acf=true&tax=service&service=${slug}&limit=${limit}&paged=${paged}`,
   },
+  socialResponsibility: {
+    en: 'wp/v2/pages/340?_fields=acf&acf_format=standard',
+    vi: 'wp/v2/pages/338?_fields=acf&acf_format=standard',
+  },
 }
 
 export default ENDPOINTS
