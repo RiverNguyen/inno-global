@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default function metadataValues(res: any, domain: string) {
   if (!res) {
@@ -22,12 +21,8 @@ export default function metadataValues(res: any, domain: string) {
   if (result?.openGraph?.image?.url) {
     ogImages.push({
       url: result.openGraph.image.url,
-      width: result.openGraph.image.width
-        ? Number(result.openGraph.image.width)
-        : 1200,
-      height: result.openGraph.image.height
-        ? Number(result.openGraph.image.height)
-        : 630,
+      width: result.openGraph.image.width ? Number(result.openGraph.image.width) : 1200,
+      height: result.openGraph.image.height ? Number(result.openGraph.image.height) : 630,
       alt: result.openGraph.image.alt || result.title || 'Inno Global',
     })
   }
@@ -69,8 +64,7 @@ export default function metadataValues(res: any, domain: string) {
     schema: result?.schema || null, // <-- Truyền xuống component để render JSON-LD
     openGraph: {
       title: result?.openGraph?.title || result?.title || 'Inno Global',
-      description:
-        result?.openGraph?.description || result?.description || 'Inno Global',
+      description: result?.openGraph?.description || result?.description || 'Inno Global',
       url: './',
       siteName: result?.openGraph?.siteName || 'Inno Global',
       images: ogImages,
@@ -80,8 +74,7 @@ export default function metadataValues(res: any, domain: string) {
     twitter: {
       card: result?.twitter?.card || 'summary_large_image',
       title: result?.twitter?.title || result?.title || 'Inno Global',
-      description:
-        result?.twitter?.description || result?.description || 'Inno Global',
+      description: result?.twitter?.description || result?.description || 'Inno Global',
       creator: 'Inno Global',
       images: twitterImages,
       label1: result?.twitter?.label1,

@@ -33,8 +33,7 @@ export default function Banner() {
       <div
         className='xsm:hidden pointer-events-none absolute bottom-0 left-0 z-2 h-[35.3125rem] w-full opacity-60'
         style={{
-          background:
-            'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 38.76%, rgba(0, 0, 0, 0.74) 74.02%, #000 96.54%)',
+          background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 38.76%, rgba(0, 0, 0, 0.74) 74.02%, #000 96.54%)',
         }}
       />
       <Swiper

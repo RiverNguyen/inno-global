@@ -67,21 +67,21 @@ export default function List() {
               alt={service.title}
               width={704}
               height={363}
-              className="w-full h-[18.9rem] object-cover absolute top-0 left-0 group-hover:translate-y-[-3.125rem] transition-transform duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] xsm:h-full"
+              className='xsm:h-full absolute top-0 left-0 h-[18.9rem] w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] group-hover:translate-y-[-3.125rem]'
             />
-            <div className="absolute inset-0 opacity-[0.46] bg-[linear-gradient(180deg,#000_47.12%,rgba(29,29,29,0.72)_71.63%,rgba(102,102,102,0.00)_100%)] sm:hidden"></div>
+            <div className='absolute inset-0 bg-[linear-gradient(180deg,#000_47.12%,rgba(29,29,29,0.72)_71.63%,rgba(102,102,102,0.00)_100%)] opacity-[0.46] sm:hidden'></div>
 
-            <div className="absolute top-full left-0 translate-y-[-4.8rem] group-hover:translate-y-[-100%] transition-transform duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] w-full flex flex-col gap-[0.52083rem] p-[1.45833rem] justify-center bg-[#F0F0F0] xsm:absolute-y-center xsm:bg-transparent xsm:py-[0.20833rem] xsm:px-[0.41667rem] xsm:justify-start xsm:gap-[0.41667rem]">
-              <div className="flex justify-between items-center">
-                <h3 className="group-hover:text-primary-red-100 transition-colors duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] line-clamp-1 text-en font-open-sans text-[1.25rem] font-semibold leading-[150%] xsm:line-clamp-2 xsm:text-white xsm:text-[0.72917rem] xsm:flex-1">
+            <div className='xsm:absolute-y-center xsm:bg-transparent xsm:py-[0.20833rem] xsm:px-[0.41667rem] xsm:justify-start xsm:gap-[0.41667rem] absolute top-full left-0 flex w-full translate-y-[-4.8rem] flex-col justify-center gap-[0.52083rem] bg-[#F0F0F0] p-[1.45833rem] transition-transform duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] group-hover:translate-y-[-100%]'>
+              <div className='flex items-center justify-between'>
+                <h3 className='group-hover:text-primary-red-100 text-en font-open-sans xsm:line-clamp-2 xsm:text-white xsm:text-[0.72917rem] xsm:flex-1 line-clamp-1 text-[1.25rem] leading-[150%] font-semibold transition-colors duration-500 ease-[cubic-bezier(0.41,0.01,0,1)]'>
                   {service.title}
                 </h3>
-                <div className="flex-center p-[0.46875rem] rounded-full bg-[rgba(9,9,9,0.10)] backdrop-blur-[20px] xsm:hidden">
-                  <IconChevronRight className="size-[0.83333rem]" />
+                <div className='flex-center xsm:hidden rounded-full bg-[rgba(9,9,9,0.10)] p-[0.46875rem] backdrop-blur-[20px]'>
+                  <IconChevronRight className='size-[0.83333rem]' />
                 </div>
                 <IconArrowRight className='xsm:block hidden size-[0.72917rem]' />
               </div>
-              <p className="group-hover:opacity-90 transition-opacity duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] opacity-0 text-en-60 text-justify font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:hidden">
+              <p className='text-en-60 font-open-sans xsm:hidden text-justify text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] group-hover:opacity-90'>
                 {service.description}
               </p>
             </div>

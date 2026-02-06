@@ -6,96 +6,96 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import ProjectCard from '@/components/shared/ProjectCard'
 import { Link } from '@/i18n/navigation'
+import { Project } from '@/interfaces/project.interface'
 import { convertRemToPx } from '@/lib/utils'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
-const projects = [
+const projectMocks = [
   {
     image: '/projects/project-1.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-1.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-2.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-3.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-4.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-5.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-1.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-1.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-2.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-3.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-4.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
   {
     image: '/projects/project-5.webp',
     title: 'Tòa nhà Landmark 81',
     investor: 'FPT',
     location: 'Quảng Ninh',
-    link: '#',
   },
 ]
+
+const projects: Project[] = projectMocks.map((p, index) => ({
+  id: index + 1,
+  slug: `project-${index + 1}`,
+  title: p.title,
+  featured_image: { url: p.image, alt: p.title, title: p.title },
+  taxonomies: {
+    investor: [{ name: p.investor, slug: p.investor.toLowerCase() }],
+    location: [{ name: p.location, slug: p.location.toLowerCase() }],
+  },
+}))
 
 const RelatedProjects = () => {
   return (

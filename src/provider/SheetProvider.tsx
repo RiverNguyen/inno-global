@@ -10,13 +10,7 @@ interface SheetProviderProps {
   hideCloseButton?: boolean
 }
 
-const SheetProvider = ({
-  open,
-  setOpen,
-  children,
-  className,
-  hideCloseButton = false,
-}: SheetProviderProps) => {
+const SheetProvider = ({ open, setOpen, children, className, hideCloseButton = false }: SheetProviderProps) => {
   return (
     <Sheet
       open={open}

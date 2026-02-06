@@ -15,10 +15,10 @@ export default function Banner() {
             { label: t('Breadcrumb.aboutUsPage'), href: '/about' },
           ]}
           lastItem={{ label: t('LeadershipPage.title') }}
-          classNameContainer="xsm:hidden"
+          classNameContainer='xsm:hidden'
         />
 
-        <h1 className="text-[rgba(9,9,9,0.80)] font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] xsm:text-[#090909] xsm:text-[1.35417rem]">
+        <h1 className='font-open-sans xsm:text-[#090909] xsm:text-[1.35417rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.80)]'>
           {t('LeadershipPage.title')}
         </h1>
       </div>

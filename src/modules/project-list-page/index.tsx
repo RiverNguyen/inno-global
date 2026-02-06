@@ -177,16 +177,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     }
 
     return params.toString()
-  }, [
-    locale,
-    slugInvestor,
-    selectedTypes,
-    selectedServices,
-    selectedLocations,
-    selectedYears,
-    sortValue,
-    searchQuery,
-  ])
+  }, [locale, slugInvestor, selectedTypes, selectedServices, selectedLocations, selectedYears, sortValue, searchQuery])
 
   // Always fetch from API (even for default state).
   // Keep `initialProjects` as fallbackData for immediate paint, then revalidate on mount.
@@ -206,15 +197,19 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     return `/wp-json/api/v1/get-all/project?${params.toString()}`
   }
 
-  const { data: pages, isLoading, size, setSize } =
-    useSWRInfinite<ProjectListApiResponse>(getKey, fetcherCMS, {
-      revalidateIfStale: false,
-      revalidateOnMount: true,
-      revalidateOnReconnect: false,
-      revalidateOnFocus: false,
-      revalidateFirstPage: shouldFetchFromAPI,
-      fallbackData: [initialProjects],
-    })
+  const {
+    data: pages,
+    isLoading,
+    size,
+    setSize,
+  } = useSWRInfinite<ProjectListApiResponse>(getKey, fetcherCMS, {
+    revalidateIfStale: false,
+    revalidateOnMount: true,
+    revalidateOnReconnect: false,
+    revalidateOnFocus: false,
+    revalidateFirstPage: shouldFetchFromAPI,
+    fallbackData: [initialProjects],
+  })
 
   const displayProjects = useMemo(() => {
     const list = pages?.flatMap((p) => (Array.isArray(p?.data) ? p.data : [])) ?? []
@@ -223,13 +218,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
 
   const lastPage = pages?.[pages.length - 1]
   const hasNextPage = lastPage
-    ? lastPage.hasNextPage ??
-      lastPage.hasMore ??
-      (typeof lastPage.nextPage === 'number' ? true : true)
+    ? (lastPage.hasNextPage ?? lastPage.hasMore ?? (typeof lastPage.nextPage === 'number' ? true : true))
     : true
 
-  const isLoadingMore =
-    isLoading || (size > 0 && !!pages && typeof pages[size - 1] === 'undefined')
+  const isLoadingMore = isLoading || (size > 0 && !!pages && typeof pages[size - 1] === 'undefined')
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
   const requestingNextPageRef = useRef(false)
@@ -279,7 +271,11 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
   return (
     <>
       <div className='xsm:max-w-full mx-auto max-w-[75rem] bg-white'>
-        <Breadcrumb navItems={[{ label: t('breadcrumbHome'), href: '/' }]} lastItem={{ label: t('breadcrumbProject') }} classNameContainer='xsm:hidden pt-[2.34375rem]' />
+        <Breadcrumb
+          navItems={[{ label: t('breadcrumbHome'), href: '/' }]}
+          lastItem={{ label: t('breadcrumbProject') }}
+          classNameContainer='xsm:hidden pt-[2.34375rem]'
+        />
         <h1 className='xsm:px-[0.83333rem] font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 mb-[0.41667rem] pt-[3.125rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rbga(9,9,9,0.8)]'>
           {t('title')}
         </h1>
@@ -399,7 +395,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
           </div>
           <div
             id='project-list'
-            className='xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:gap-y-[1.04167rem] grid grid-cols-1 gap-x-[1.5625rem] gap-y-[2.08333rem] pt-[2.08333rem] tablet:grid-cols-2 lg:grid-cols-3'
+            className='xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:gap-y-[1.04167rem] tablet:grid-cols-2 grid grid-cols-1 gap-x-[1.5625rem] gap-y-[2.08333rem] pt-[2.08333rem] lg:grid-cols-3'
           >
             <ProjectListContent
               projects={displayProjects}
@@ -407,7 +403,11 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               t={t}
             />
             {isLoadingMore ? <ProjectListSkeleton /> : null}
-            <div ref={loadMoreRef} className='col-span-full h-px w-full' aria-hidden='true' />
+            <div
+              ref={loadMoreRef}
+              className='col-span-full h-px w-full'
+              aria-hidden='true'
+            />
           </div>
         </div>
       </div>

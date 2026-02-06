@@ -1,7 +1,6 @@
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
 import ProjectCard from '@/components/shared/ProjectCard'
-import ROUTES from '@/configs/routes'
 import { IRelatedProjectItemData } from '@/interfaces/detail-service.interface'
 import TitleSection from '@/modules/page-detail-service/components/TitleSection'
 
@@ -11,9 +10,6 @@ interface SectionRelatedProjectsProps {
 
 export default function SectionRelatedProjects({ relatedProjects }: SectionRelatedProjectsProps) {
   const t = useTranslations('DetailServicePage')
-  const locale = useLocale()
-
-  const projectsPageLink = locale === 'vi' ? ROUTES.projectsVi : ROUTES.projectsEn
 
   return (
     <section
@@ -31,13 +27,7 @@ export default function SectionRelatedProjects({ relatedProjects }: SectionRelat
                 className='col-span-1'
               >
                 <ProjectCard
-                  project={{
-                    image: item?.featured_image?.url,
-                    title: item?.title || '',
-                    location: item?.taxonomies?.location?.[0]?.name || '',
-                    investor: item?.taxonomies?.investor?.[0]?.name || '',
-                    link: `${projectsPageLink}/${item.slug}`,
-                  }}
+                  project={item}
                   classNameThumbnail='h-[23.07292rem] xsm:h-[11.30984rem]'
                 />
               </div>

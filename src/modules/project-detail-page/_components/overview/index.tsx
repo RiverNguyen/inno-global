@@ -20,8 +20,7 @@ const OVERVIEW_FAKE_DATA: OverviewRow[] = [
   },
   {
     label: 'ĐỊA ĐIỂM',
-    value:
-      'Lô đất 1/8B Khu đô thị mới Ngã 5 - Sân bay Cát Bi, phường Đằng Lâm, Quận Hải An, thành phố Hải Phòng.',
+    value: 'Lô đất 1/8B Khu đô thị mới Ngã 5 - Sân bay Cát Bi, phường Đằng Lâm, Quận Hải An, thành phố Hải Phòng.',
   },
   {
     label: 'ĐỐI TÁC QUỐC TẾ',

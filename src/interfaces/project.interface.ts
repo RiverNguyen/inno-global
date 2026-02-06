@@ -1,10 +1,16 @@
+import { IAcfImage } from '@/interfaces/acf-wp.interface'
 import { IMedia } from '@/interfaces/media.interface'
+
+export type ProjectFeaturedImage =
+  | (Pick<IMedia, 'url'> & Partial<Omit<IMedia, 'url'>>)
+  | (Pick<IAcfImage, 'url'> & Partial<Omit<IAcfImage, 'url'>>)
 
 export interface IProject {
   id: number
   slug: string
   title: string
-  featured_image: IMedia
+  // API responses vary by endpoint (WP media vs ACF image); UI needs at least `.url`.
+  featured_image: ProjectFeaturedImage
   taxonomies: {
     investor: {
       name: string
@@ -19,7 +25,6 @@ export interface IProject {
 
 // Backward-compat alias (some components import `Project`)
 export type Project = IProject
-
 
 export interface ITaxonomies {
   locations: {
