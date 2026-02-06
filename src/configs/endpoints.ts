@@ -9,6 +9,14 @@ const ENDPOINTS = {
     getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
   },
+  leadership: {
+    list: 'api/v1/get-all/leadership',
+    detail: (slug: string) => `api/v1/detail/${slug}?acf=true`,
+  },
+  taxonomies: {
+    list: 'api/v1/taxonomies',
+    get: (locale: string, taxonomy: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=${taxonomy}`,
+  },
   pageIds: {
     aboutUsVi: 104,
     aboutUsEn: 106,

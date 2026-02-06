@@ -22,6 +22,13 @@
     "loading": "Đang tải...",
     "noProjects": "Không tìm thấy dự án"
   },
+  "LeadershipPage": {
+    "title": "Ban Lãnh Đạo Công Ty"
+  },
+  "FounderPage": {
+    "title": "Người Thành Lập",
+    "ceoMessage": "Thông điệp của CEO"
+  },
   "DetailServicePage": {
     "sectionRelatedProjects": {
       "title": "Dự án liên quan"

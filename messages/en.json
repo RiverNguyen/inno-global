@@ -22,6 +22,13 @@
     "loading": "Loading...",
     "noProjects": "No projects found"
   },
+  "LeadershipPage": {
+    "title": "Leadership"
+  },
+  "FounderPage": {
+    "title": "Founder",
+    "ceoMessage": "CEO Message"
+  },
   "DetailServicePage": {
     "sectionRelatedProjects": {
       "title": "Related projects"
