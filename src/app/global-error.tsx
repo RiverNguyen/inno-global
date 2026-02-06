@@ -23,8 +23,7 @@ export default function GlobalError({ reset }: { reset: () => void }) {
         >
           <h1 className='text-xl font-semibold text-balance'>Something went wrong!</h1>
           <p className='text-center text-gray-600 dark:text-gray-400'>
-            We couldn&apos;t load this page. Try again or refresh; if it keeps happening, check your
-            connection.
+            We couldn&apos;t load this page. Try again or refresh; if it keeps happening, check your connection.
           </p>
           <button
             type='button'

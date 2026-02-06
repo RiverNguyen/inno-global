@@ -10,6 +10,11 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { useRef } from 'react'
 
 import BannerHome from '@/app/[locale]/_components/banner/BannerHome'
+import { NEWS } from '@/app/[locale]/_components/news/contants'
+import { PROJECTS } from '@/app/[locale]/_components/projects/constants'
+import Projects from '@/app/[locale]/_components/projects/projects'
+
+import News from './_components/news/news'
 
 // export const dynamicParams = false
 // export function generateStaticParams() {
@@ -85,14 +90,7 @@ export default function Page() {
       <section data-snap>
         <BannerHome />
       </section>
-      <section
-        data-snap
-        className='h-[50vh] bg-black'
-      ></section>
-      <section
-        data-snap
-        className='h-[80vh] bg-yellow-100'
-      ></section>
+
       <section
         data-snap
         className='h-[70vh] bg-black'
@@ -105,6 +103,12 @@ export default function Page() {
         data-snap
         className='h-[60vh] bg-yellow-500'
       ></section>
+      <section data-snap>
+        <Projects data={PROJECTS} />
+      </section>
+      <section data-snap>
+        <News data={NEWS} />
+      </section>
     </main>
   )
 }

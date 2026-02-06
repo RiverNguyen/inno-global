@@ -39,13 +39,7 @@ const boardOfDirectors = [
   },
 ]
 
-const BoardSection = ({
-  title,
-  directors,
-}: {
-  title: string
-  directors: typeof boardOfDirectors
-}) => (
+const BoardSection = ({ title, directors }: { title: string; directors: typeof boardOfDirectors }) => (
   <div className='xsm:gap-[1.25rem] flex flex-col gap-[3.33333rem]'>
     <h2 className='font-open-sans xsm:text-[1.04167rem] xsm:leading-[150%] text-center text-[1.875rem] leading-[1.35417rem] font-semibold text-[rgba(9,9,9,0.80)]'>
       {title}
