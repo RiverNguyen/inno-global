@@ -85,7 +85,7 @@ export default function List({
     [items],
   )
 
-  useFadeInOnAppend({ containerRef: gridRef, itemsKey })
+  useFadeInOnAppend({ containerRef: gridRef, itemsKey, itemSelector: '[data-service-item]' })
 
   const handleLoadMore = useCallback(() => setSize((curr) => curr + 1), [setSize])
   useInfiniteLoadMore({

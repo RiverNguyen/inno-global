@@ -49,10 +49,12 @@ export default function RelatedBlogs({ totalPages, initRelatedBlogs }: RelatedBl
     setSize,
   } = useSWRInfinite<IRelatedBlogsDataRes>(getKey, fetcherCMS, {
     revalidateIfStale: false,
-    revalidateOnMount: true,
+    // We already have page 1 from SSR (`initRelatedBlogs`).
+    // Only fetch on the client when user scrolls (page 2+).
+    revalidateOnMount: false,
     revalidateOnReconnect: false,
     revalidateOnFocus: false,
-    revalidateFirstPage: true,
+    revalidateFirstPage: false,
     fallbackData: [
       {
         data: initRelatedBlogs,
@@ -119,6 +121,8 @@ export default function RelatedBlogs({ totalPages, initRelatedBlogs }: RelatedBl
             <div
               key={item?.id ?? index}
               data-fade-item
+              // Prevent initial SSR items (page 1) from ever animating.
+              data-gsap-animated={index < initRelatedBlogs.length ? '1' : undefined}
               className='col-span-1'
             >
               <Link

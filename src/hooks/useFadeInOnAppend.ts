@@ -27,6 +27,9 @@ export function useFadeInOnAppend({
         typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches
 
       const items = Array.from(container.querySelectorAll<HTMLElement>(itemSelector))
+      // If we run before items are rendered (e.g. params/data not ready yet),
+      // don't flip the "hydrated" flag. Otherwise the first real paint would animate.
+      if (items.length === 0) return
 
       // On first client run (SSR -> hydrate), keep initial list visible (no re-animation).
       // We still want animations for items appended later (infinite scroll).
