@@ -2,7 +2,7 @@
 
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 
 import ProjectCard from '@/components/shared/ProjectCard'
 import { IProject } from '@/interfaces/project.interface'
@@ -28,6 +28,8 @@ export default function ProjectListContent({
 }: ProjectListContentProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
+  const didHydrateRef = useRef(false)
+  const projectsKey = useMemo(() => projects.map((p) => String(p.id)).join('|'), [projects])
 
   useGSAP(
     () => {
@@ -39,6 +41,17 @@ export default function ProjectListContent({
         window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches
 
       const items = Array.from(container.querySelectorAll<HTMLElement>('[data-project-item]'))
+
+      // On first client run (SSR -> hydrate), keep initial list visible (no re-animation).
+      // We still want animations for items appended later (infinite scroll).
+      if (!didHydrateRef.current) {
+        didHydrateRef.current = true
+        for (const el of items) {
+          el.dataset.gsapAnimated = '1'
+          gsap.set(el, { autoAlpha: 1, y: 0, scale: 1, clearProps: 'opacity,transform' })
+        }
+        return
+      }
 
       // Ensure stable order info for staggering
       for (let i = 0; i < items.length; i++) {
@@ -105,7 +118,7 @@ export default function ProjectListContent({
         observerRef.current.observe(el)
       }
     },
-    { dependencies: [projects.length], scope: containerRef },
+    { dependencies: [projectsKey], scope: containerRef },
   )
 
   if (isInitialLoading) {
@@ -125,7 +138,7 @@ export default function ProjectListContent({
   }
 
   return (
-    <div className='col-span-3 flex items-center justify-center py-12'>
+    <div className='col-span-full flex items-center justify-center py-12'>
       <span className='text-[#090909]'>{t('noProjects') || 'No projects found'}</span>
     </div>
   )

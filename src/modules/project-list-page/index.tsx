@@ -14,6 +14,7 @@ import ProjectListContent from '@/modules/project-list-page/components/ProjectLi
 import ProjectListSkeleton from '@/modules/project-list-page/components/ProjectListSkeleton'
 import SelectedTags from '@/modules/project-list-page/components/SelectedTags'
 import SortPopup from '@/modules/project-list-page/components/SortPopup'
+import { scrollToElementInContainer } from '@/utils/scrollToElementInContainer'
 
 type FilterItem = { label: string; value: string }
 
@@ -37,36 +38,6 @@ interface ProjectListPageProps {
 
 const TAX_QUERY = 'location,investor,service,building_type,starting_year'
 const PAGE_LIMIT = 12
-
-function hasNextPageFromResponse(
-  pageData: ProjectListApiResponse | null | undefined,
-  fallbackPage: number,
-) {
-  if (!pageData) return true
-
-  const dataCount = Array.isArray(pageData.data) ? pageData.data.length : 0
-  if (dataCount === 0) return false
-
-  const currentPage = typeof pageData.page === 'number' ? pageData.page : fallbackPage
-  const totalPages = typeof pageData.totalPages === 'number' ? pageData.totalPages : undefined
-  if (typeof totalPages === 'number') {
-    return currentPage < totalPages
-  }
-
-  if (typeof pageData.nextPage === 'number') return true
-  if (typeof pageData.hasNextPage === 'boolean') {
-    // Some APIs incorrectly set hasNextPage=false even when a full page was returned.
-    if (pageData.hasNextPage === false && dataCount >= PAGE_LIMIT) return true
-    return pageData.hasNextPage
-  }
-  if (typeof pageData.hasMore === 'boolean') {
-    if (pageData.hasMore === false && dataCount >= PAGE_LIMIT) return true
-    return pageData.hasMore
-  }
-
-  // If API doesn't provide pagination hints, default to true
-  return true
-}
 
 export default function ProjectListPage({ initialProjects, taxonomies }: ProjectListPageProps) {
   const locale = useLocale()
@@ -217,43 +188,32 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     searchQuery,
   ])
 
-  // Check if any filters are active
-  const hasActiveFilters = useMemo(() => {
-    return (
-      selectedTypes.length > 0 ||
-      selectedServices.length > 0 ||
-      selectedLocations.length > 0 ||
-      selectedYears.length > 0 ||
-      !!slugInvestor ||
-      !!searchQuery
-    )
-  }, [selectedTypes, selectedServices, selectedLocations, selectedYears, slugInvestor, searchQuery])
-
-  // Fetch from API if filters are active or sort is changed
-  const shouldFetchFromAPI = hasActiveFilters || sortValue !== 'newest'
+  // Always fetch from API (even for default state).
+  // Keep `initialProjects` as fallbackData for immediate paint, then revalidate on mount.
+  const shouldFetchFromAPI = true
 
   const getKey = (pageIndex: number, previousPageData: ProjectListApiResponse | null) => {
-    if (pageIndex > 0 && !hasNextPageFromResponse(previousPageData, pageIndex)) return null
-
-    const nextPaged =
-      pageIndex === 0
-        ? 1
-        : typeof previousPageData?.nextPage === 'number'
-          ? previousPageData.nextPage
-          : pageIndex + 1
+    if (previousPageData) {
+      const hasNext =
+        previousPageData.hasNextPage ??
+        previousPageData.hasMore ??
+        (typeof previousPageData.nextPage === 'number' ? true : undefined)
+      if (hasNext === false) return null
+    }
 
     const params = new URLSearchParams(baseQueryString)
-    params.set('paged', String(nextPaged))
+    params.set('paged', String(pageIndex + 1))
     return `/wp-json/api/v1/get-all/project?${params.toString()}`
   }
 
   const { data: pages, isLoading, size, setSize } =
     useSWRInfinite<ProjectListApiResponse>(getKey, fetcherCMS, {
       revalidateIfStale: false,
+      revalidateOnMount: true,
       revalidateOnReconnect: false,
       revalidateOnFocus: false,
       revalidateFirstPage: shouldFetchFromAPI,
-      fallbackData: shouldFetchFromAPI ? undefined : [initialProjects],
+      fallbackData: [initialProjects],
     })
 
   const displayProjects = useMemo(() => {
@@ -262,25 +222,33 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
   }, [pages])
 
   const lastPage = pages?.[pages.length - 1]
-  const hasNextPage = hasNextPageFromResponse(lastPage, pages?.length ?? 1)
+  const hasNextPage = lastPage
+    ? lastPage.hasNextPage ??
+      lastPage.hasMore ??
+      (typeof lastPage.nextPage === 'number' ? true : true)
+    : true
 
   const isLoadingMore =
     isLoading || (size > 0 && !!pages && typeof pages[size - 1] === 'undefined')
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
   const requestingNextPageRef = useRef(false)
+  const didInitRef = useRef(false)
 
   // Reset back to page 1 when filters/sort/search change
   useEffect(() => {
     requestingNextPageRef.current = false
     void setSize(1)
-  }, [baseQueryString, setSize])
 
-  useEffect(() => {
-    if (!isLoadingMore) {
-      requestingNextPageRef.current = false
+    // Avoid auto-scrolling on first mount
+    if (!didInitRef.current) {
+      didInitRef.current = true
+      return
     }
-  }, [isLoadingMore])
+
+    // Scroll up to the top of results when filters/search/sort change
+    scrollToElementInContainer('window', 'project-list', 0.6, 8)
+  }, [baseQueryString, setSize])
 
   useEffect(() => {
     const el = loadMoreRef.current
@@ -293,7 +261,9 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
         if (!entries[0]?.isIntersecting) return
         if (requestingNextPageRef.current) return
         requestingNextPageRef.current = true
-        void setSize(size + 1)
+        void setSize((curr) => curr + 1).finally(() => {
+          requestingNextPageRef.current = false
+        })
       },
       {
         root: null,
@@ -304,7 +274,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [hasNextPage, isLoadingMore, setSize, size])
+  }, [hasNextPage, isLoadingMore, setSize])
 
   return (
     <>
@@ -429,7 +399,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
           </div>
           <div
             id='project-list'
-            className='xsm:grid-cols-1 xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:gap-y-[1.04167rem] grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem] pt-[2.08333rem]'
+            className='xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:gap-y-[1.04167rem] grid grid-cols-1 gap-x-[1.5625rem] gap-y-[2.08333rem] pt-[2.08333rem] tablet:grid-cols-2 lg:grid-cols-3'
           >
             <ProjectListContent
               projects={displayProjects}
@@ -437,7 +407,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               t={t}
             />
             {isLoadingMore ? <ProjectListSkeleton /> : null}
-            <div ref={loadMoreRef} className='col-span-3 h-px w-full' aria-hidden='true' />
+            <div ref={loadMoreRef} className='col-span-full h-px w-full' aria-hidden='true' />
           </div>
         </div>
       </div>
