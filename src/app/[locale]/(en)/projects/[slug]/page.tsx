@@ -1,4 +1,4 @@
-import { IProjectDetail, IProjectsRes } from '@/interface/project.interface'
+import { IProjectDetail, IProjectsRes } from '@/interfaces/project.interface'
 import ProjectDetail from '@/modules/project-detail-page'
 import projectService from '@/services/project'
 
@@ -8,11 +8,7 @@ export function generateStaticParams() {
   return [{ locale: 'en' }]
 }
 
-const ProjectDetailPage = async ({
-  params,
-}: {
-  params: Promise<{ locale: string; slug: string }>
-}) => {
+const ProjectDetailPage = async ({ params }: { params: Promise<{ locale: string; slug: string }> }) => {
   const { locale, slug } = await params
 
   const res: IProjectDetail = await projectService.getProjectDetail(slug, locale)

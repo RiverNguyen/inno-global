@@ -174,4 +174,3 @@ function RelatedProjectsSkeleton({ count = 2 }: { count?: number }) {
     </>
   )
 }
-

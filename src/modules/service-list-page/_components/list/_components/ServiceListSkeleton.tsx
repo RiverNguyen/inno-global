@@ -32,4 +32,3 @@ export default function ServiceListSkeleton({ count = 4 }: { count?: number }) {
     </>
   )
 }
-

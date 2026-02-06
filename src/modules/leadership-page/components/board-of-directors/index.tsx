@@ -67,7 +67,7 @@ const BoardSection = ({ title, directors }: { title: string; directors: Director
 
 export default function BoardOfDirectors({ sections, locale }: { sections: BoardSectionData[]; locale: string }) {
   const t = useTranslations()
-  const getAboutUsHref = (locale: string) => locale === 'en' ? '/about-us' : '/ve-chung-toi'
+  const getAboutUsHref = (locale: string) => (locale === 'en' ? '/about-us' : '/ve-chung-toi')
 
   return (
     <>

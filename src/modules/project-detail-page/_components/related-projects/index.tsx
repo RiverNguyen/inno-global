@@ -9,11 +9,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import ProjectCard from '@/components/shared/ProjectCard'
 import ROUTES from '@/configs/routes'
 import { Link } from '@/i18n/navigation'
-import { IProjectDetail } from '@/interface/project.interface'
+import { IProjectDetail } from '@/interfaces/project.interface'
 import { convertRemToPx } from '@/lib/utils'
 import 'swiper/css'
 import 'swiper/css/navigation'
-
 
 const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
   const t = useTranslations('DetailProjectPage')

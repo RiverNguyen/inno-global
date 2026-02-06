@@ -25,4 +25,3 @@ export type ServiceLikeItem = {
 }
 
 export type ServiceListInitialPage = PagedApiResponse<ServiceLikeItem>
-

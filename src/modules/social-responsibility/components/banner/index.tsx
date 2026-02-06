@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import Breadcrumb from '@/components/shared/Breadcrumb'
-import { ISocialResponsibilityBanner } from '@/interface/social-responsibility.interface'
+import { ISocialResponsibilityBanner } from '@/interfaces/social-responsibility.interface'
 
 type BannerProps = {
   banner?: ISocialResponsibilityBanner
@@ -12,26 +12,26 @@ export default function Banner({ banner }: BannerProps) {
   const t = useTranslations()
 
   return (
-    <div className="relative h-screen overflow-hidden sm:h-[56.25rem] lg:h-screen xsm:h-auto">
+    <div className='xsm:h-auto relative h-screen overflow-hidden sm:h-[56.25rem] lg:h-screen'>
       <Image
         src={banner?.image_desktop || '/social-responsibility/banner.webp'}
-        alt="Banner"
+        alt='Banner'
         width={1600}
         height={565}
         priority
-        className="w-full h-full object-cover sm:absolute sm:inset-0 xsm:hidden"
+        className='xsm:hidden h-full w-full object-cover sm:absolute sm:inset-0'
       />
       <Image
         src={banner?.image_mobile || '/social-responsibility/banner.webp'}
-        alt="Banner"
+        alt='Banner'
         width={750}
         height={575}
         priority
-        className="w-full h-full object-cover sm:hidden xsm:h-[17.96875rem]"
+        className='xsm:h-[17.96875rem] h-full w-full object-cover sm:hidden'
       />
-      <div className='absolute left-0 top-0 w-[60rem] h-full z-1 bg-[linear-gradient(270deg,rgba(0,0,0,0.00)_11.04%,rgba(0,0,0,0.40)_100%)] xsm:hidden'></div>
+      <div className='xsm:hidden absolute top-0 left-0 z-1 h-full w-[60rem] bg-[linear-gradient(270deg,rgba(0,0,0,0.00)_11.04%,rgba(0,0,0,0.40)_100%)]'></div>
 
-      <div className="z-2 absolute bottom-0 absolute-x-center w-full max-w-[75rem] mx-auto py-[5.20833rem] xsm:static xsm:translate-0 xsm:px-[0.83333rem] xsm:pt-[3.33333rem] xsm:pb-[1.25rem]">
+      <div className='absolute-x-center xsm:static xsm:translate-0 xsm:px-[0.83333rem] xsm:pt-[3.33333rem] xsm:pb-[1.25rem] absolute bottom-0 z-2 mx-auto w-full max-w-[75rem] py-[5.20833rem]'>
         <Breadcrumb
           navItems={[
             { label: t('Breadcrumb.homePage'), href: '/' },
@@ -44,11 +44,11 @@ export default function Banner({ banner }: BannerProps) {
           classNameContainer='xsm:hidden'
         />
 
-        <h1 className='text-white font-open-sans text-[3.33333rem] font-semibold leading-[2.39583rem] tracking-[-0.06667rem] mt-[1.66667rem] mb-[1.40625rem] xsm:text-primary xsm:text-[1.35417rem] xsm:leading-[120%] xsm:tracking-normal xsm:mt-0 xsm:mb-[1.04167rem]'>
+        <h1 className='font-open-sans xsm:text-primary xsm:text-[1.35417rem] xsm:leading-[120%] xsm:tracking-normal xsm:mt-0 xsm:mb-[1.04167rem] mt-[1.66667rem] mb-[1.40625rem] text-[3.33333rem] leading-[2.39583rem] font-semibold tracking-[-0.06667rem] text-white'>
           {banner?.title}
         </h1>
 
-        <p className='w-[44.32292rem] text-[rgba(255,255,255,0.80)] font-open-sans text-[0.9375rem] leading-[150%] xsm:w-full xsm:pb-[0.625rem] xsm:text-[rgba(9,9,9,0.60)] xsm:text-justify xsm:text-[0.72917rem] xsm:leading-[150%] xsm:[text-box-trim:trim-both] xsm:[text-box-edge:cap_alphabetic]'>
+        <p className='font-open-sans xsm:w-full xsm:pb-[0.625rem] xsm:text-[rgba(9,9,9,0.60)] xsm:text-justify xsm:text-[0.72917rem] xsm:leading-[150%] xsm:[text-box-trim:trim-both] xsm:[text-box-edge:cap_alphabetic] w-[44.32292rem] text-[0.9375rem] leading-[150%] text-[rgba(255,255,255,0.80)]'>
           {banner?.description}
         </p>
       </div>

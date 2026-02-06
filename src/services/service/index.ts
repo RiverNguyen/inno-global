@@ -40,7 +40,6 @@ const serviceApi = {
     return await fetchData({
       api: ENDPOINTS.service.getPage[locale],
     })
-
   },
 }
 

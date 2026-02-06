@@ -18,4 +18,3 @@ const ServiceGrid = forwardRef<HTMLDivElement, ServiceGridProps>(function Servic
 })
 
 export default ServiceGrid
-

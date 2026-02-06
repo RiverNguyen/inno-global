@@ -40,4 +40,3 @@ export function useInfiniteLoadMore({
     return () => observer.disconnect()
   }, [hasNextPage, isLoadingMore, onLoadMore, sentinelRef])
 }
-

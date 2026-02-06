@@ -1,23 +1,16 @@
 'use client'
 
-import { IMedia } from '@/interface/media.interface'
 import Image from 'next/image'
 import { useState } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
-import 'swiper/css'
-import 'swiper/css/parallax'
 import { Autoplay, Parallax } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-export default function Banner({
-  title,
-  location,
-  gallery,
-}: {
-  title: string
-  location: string
-  gallery: IMedia[]
-}) {
+import 'swiper/css'
+import 'swiper/css/parallax'
+import { IMedia } from '@/interfaces/media.interface'
+
+export default function Banner({ title, location, gallery }: { title: string; location: string; gallery: IMedia[] }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
   const totalSlides = Array.isArray(gallery) ? gallery.length : 0
@@ -26,9 +19,7 @@ export default function Banner({
 
   return (
     <section className='tablet:h-[70vh] xsm:pt-[1.67rem] xsm:px-[0.8275rem] xsm:h-auto relative h-screen w-full overflow-hidden'>
-      <p className='mb-[0.3125rem] text-[1.35rem] leading-[1.2] font-semibold text-[#090909] sm:hidden'>
-        {title}
-      </p>
+      <p className='mb-[0.3125rem] text-[1.35rem] leading-[1.2] font-semibold text-[#090909] sm:hidden'>{title}</p>
       <div className='flex-y-center mb-[1.04rem] space-x-[0.21rem] sm:hidden'>
         <LocationIcon className='size-[0.72917rem] text-[#D32F2F]' />
         <p className='text-[0.625rem] leading-[1.2] font-semibold text-[#090909]/60'>{location}</p>
@@ -78,9 +69,7 @@ export default function Banner({
       {/* Custom pagination & navigation */}
       <div className='xsm:w-[17.86458rem] xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1.02rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[5.2125rem] left-[12.5rem] z-10 flex items-end justify-between'>
         <div className='xsm:hidden space-y-4'>
-          <h1 className='text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-white'>
-            {title}
-          </h1>
+          <h1 className='text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-white'>{title}</h1>
           <p className='flex-y-center text-[0.9375rem] leading-[1.5] text-white'>
             <LocationIcon className='mr-[0.375rem] size-[1.125rem]' />
             {location}

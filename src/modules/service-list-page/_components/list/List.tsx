@@ -80,10 +80,7 @@ export default function List({
   const gridRef = useRef<HTMLDivElement | null>(null)
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
 
-  const itemsKey = useMemo(
-    () => items.map((it) => String(it?.id ?? it?.slug ?? '')).join('|'),
-    [items],
-  )
+  const itemsKey = useMemo(() => items.map((it) => String(it?.id ?? it?.slug ?? '')).join('|'), [items])
 
   useFadeInOnAppend({ containerRef: gridRef, itemsKey, itemSelector: '[data-service-item]' })
 
@@ -110,10 +107,7 @@ export default function List({
               const description = getItemDescription(item)
               const imageSrc = getItemImageSrc(item)
 
-              const href =
-                dataSource === 'service' && item?.slug
-                  ? `${listHrefBase}/${item.slug}`
-                  : projectListHref
+              const href = dataSource === 'service' && item?.slug ? `${listHrefBase}/${item.slug}` : projectListHref
 
               return (
                 <ServiceCard
@@ -139,4 +133,3 @@ export default function List({
     </section>
   )
 }
-

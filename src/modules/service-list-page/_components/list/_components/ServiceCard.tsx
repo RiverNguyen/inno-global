@@ -44,7 +44,7 @@ export default function ServiceCard({ href, title, description, imageSrc }: Serv
             <IconArrowRight className='xsm:block hidden size-[0.72917rem]' />
           </div>
 
-          <p className='text-en-60 font-open-sans xsm:hidden text-justify text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] opacity-0 transition-opacity duration-500 line-clamp-5 ease-[cubic-bezier(0.41,0.01,0,1)] group-hover:opacity-90'>
+          <p className='text-en-60 font-open-sans xsm:hidden line-clamp-5 text-justify text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] group-hover:opacity-90'>
             {description}
           </p>
         </div>
@@ -89,4 +89,3 @@ const IconArrowRight = (props: SVGProps<SVGSVGElement>) => {
     </svg>
   )
 }
-

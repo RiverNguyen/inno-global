@@ -5,10 +5,7 @@ export const PAGE_LIMIT = 12
 export function getHasNextPage<T>(page: PagedApiResponse<T> | undefined, limit: number) {
   if (!page) return true
 
-  const explicit =
-    page.hasNextPage ??
-    page.hasMore ??
-    (typeof page.nextPage === 'number' ? true : undefined)
+  const explicit = page.hasNextPage ?? page.hasMore ?? (typeof page.nextPage === 'number' ? true : undefined)
   if (explicit === false) return false
   if (explicit === true) return true
 
@@ -33,4 +30,3 @@ export function getItemDescription(item: ServiceLikeItem) {
 export function getItemImageSrc(item: ServiceLikeItem) {
   return item?.featured_image?.url ?? item?.featured_image?.source_url ?? item?.acf?.thumbnail ?? ''
 }
-

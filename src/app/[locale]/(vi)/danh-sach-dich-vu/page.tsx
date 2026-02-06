@@ -15,7 +15,6 @@ const ServicesPage = async ({ params }: PageProps) => {
     serviceApi.getPage(locale as 'vi' | 'en'),
   ])
 
-
   return (
     <main>
       <ServiceList
