@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl'
 
 import Breadcrumb from '@/components/shared/Breadcrumb'
 
-export default function Banner() {
+export default function Banner({ banner }: { banner: string }) {
   const t = useTranslations()
 
   return (
@@ -11,8 +11,8 @@ export default function Banner() {
       <div className='relative hidden h-[29.42708rem] sm:block'>
         <div className='absolute inset-0 z-1 bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_49.89%,rgba(0,0,0,0.74)_79.8%,#000_96.54%)] opacity-40'></div>
         <Image
-          src='/services/d-banner.webp'
-          alt=''
+          src={banner}
+          alt='banner'
           fill
           priority
           className='object-cover'

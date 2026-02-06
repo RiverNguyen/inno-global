@@ -16,6 +16,11 @@ export interface FetchRelatedBlogsProps {
 }
 
 const serviceApi = {
+  getAll: async (locale: string) => {
+    return await fetchData({
+      api: ENDPOINTS.service.getAll(locale),
+    })
+  },
   getDetail: async (slug: string) => {
     return await fetchData({
       api: ENDPOINTS.service.detail(slug),
@@ -30,6 +35,12 @@ const serviceApi = {
     return await fetchData({
       api: ENDPOINTS.service.relatedBlogs({ slug, limit, lang, paged }),
     })
+  },
+  getPage: async (locale: 'vi' | 'en') => {
+    return await fetchData({
+      api: ENDPOINTS.service.getPage[locale],
+    })
+
   },
 }
 

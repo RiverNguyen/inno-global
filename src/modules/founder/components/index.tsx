@@ -2,7 +2,7 @@
 import Image from 'next/image'
 
 import SectionPagination from '@/components/shared/SectionPagination'
-import { ILeadership } from '@/interface/leadership.interface'
+import { ILeadership } from '@/interfaces/leadership.interface'
 
 import Banner from './banner'
 import Info from './info'

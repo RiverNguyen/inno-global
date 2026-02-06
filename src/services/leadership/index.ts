@@ -1,7 +1,7 @@
 import ENDPOINTS from '@/configs/endpoints'
 import fetchData from '@/fetches/fetchData'
-import { ILeadership, ILeadershipRes } from '@/interface/leadership.interface'
-import { ITaxonomyRes } from '@/interface/taxonomy.interface'
+import { ILeadership, ILeadershipRes } from '@/interfaces/leadership.interface'
+import { ITaxonomyRes } from '@/interfaces/taxonomy.interface'
 
 const leadershipService = {
   getLeadershipList: async (locale: string): Promise<ILeadershipRes> => {

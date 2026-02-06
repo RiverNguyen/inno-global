@@ -7,8 +7,11 @@ interface ProjectListPageViProps {
 
 export default async function ProjectListPageVi({ params }: ProjectListPageViProps) {
   const { locale } = await params
-  const initialProjects = await projectService.getProjects(locale)
-  const taxonomies = await projectService.getTaxonomies(locale)
+
+  const [initialProjects, taxonomies] = await Promise.all([
+    projectService.getProjects(locale),
+    projectService.getTaxonomies(locale),
+  ])
 
   return (
     <ProjectListPage

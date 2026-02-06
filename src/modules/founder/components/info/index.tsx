@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-import { ILeadership } from '@/interface/leadership.interface'
+import { ILeadership } from '@/interfaces/leadership.interface'
 
 const FounderImage = ({ wrapperClassName, imageUrl }: { wrapperClassName?: string; imageUrl?: string }) => (
   <div className={wrapperClassName ?? ''}>
