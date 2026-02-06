@@ -6,16 +6,14 @@ import type { Swiper as SwiperType } from 'swiper'
 import { Autoplay, Parallax } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { ISlideItemAcfData } from '@/interfaces/detail-service.interface'
 import { cn } from '@/lib/utils'
 
 import 'swiper/css'
 import 'swiper/css/parallax'
 
 interface BannerSlidesProps {
-  slideItems: {
-    image_pc: { alt?: string; url: string }
-    image_mobile: { alt?: string; url: string }
-  }[]
+  slideItems: ISlideItemAcfData[]
 }
 
 const AUTOPLAY_DELAY = 3000
@@ -76,22 +74,22 @@ export default function BannerSlides({ slideItems }: BannerSlidesProps) {
             className='absolute top-0 left-0 size-full overflow-hidden will-change-transform'
             data-swiper-parallax='70%'
           >
-            {item?.image_pc && item?.image_pc?.url && (
+            {item?.background_pc && (
               <Image
                 width={1920}
                 height={1080}
-                src={item?.image_pc?.url}
-                alt={item?.image_pc?.alt || ''}
+                src={item?.background_pc?.url}
+                alt={item?.background_pc?.alt || ''}
                 loading={index === 0 ? 'eager' : 'lazy'}
                 className='xsm:hidden absolute top-0 left-0 block size-full object-cover will-change-transform'
               />
             )}
-            {item?.image_mobile && item?.image_mobile?.url && (
+            {item?.background_mobile && (
               <Image
                 width={375}
                 height={405}
-                src={item?.image_mobile?.url}
-                alt={item?.image_mobile?.alt || ''}
+                src={item?.background_mobile?.url}
+                alt={item?.background_mobile?.alt || ''}
                 loading={index === 0 ? 'eager' : 'lazy'}
                 className='xsm:block absolute top-0 left-0 hidden size-full object-cover will-change-transform'
               />

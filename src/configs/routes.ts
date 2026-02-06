@@ -5,6 +5,8 @@ const ROUTES = {
   aboutUsEn: '/about-us',
   servicesVi: '/dich-vu',
   servicesEn: '/services',
+  projectsVi: '/danh-sach-du-an',
+  projectsEn: '/projects',
 }
 
 export default ROUTES
