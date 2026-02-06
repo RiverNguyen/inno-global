@@ -38,6 +38,15 @@ const config: Config = {
         'gr-2-reverse': 'radial-gradient(298.39% 130.99% at 6.62% 16.15%, #FF6E6E 0%, #D32F2F 46.23%, #CA2A2A 84.81%)',
       },
       boxShadow: {},
+      keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-in': 'fade-in 0.5s ease-out forwards',
+      },
     },
   },
   plugins: [
@@ -70,6 +79,15 @@ const config: Config = {
         '.pc-h1-64-s': {
           '@apply text-[4rem] font-normal font-semibold leading-normal tracking-[-0.08rem]': {},
         },
+        '.pc-h2-54-s': {
+          '@apply text-[2.8125rem] font-normal font-semibold leading-[1.2] tracking-[-0.02813rem]': {},
+        },
+        '.pc-h3-40-s': {
+          '@apply text-[2.08333rem] font-normal font-semibold leading-[1.2] tracking-[-0.03125rem]': {},
+        },
+        '.pc-34-34-m': {
+          '@apply text-[1.77083rem] font-normal font-semibold leading-[1.2] tracking-[-0.01771rem] capitalize': {},
+        },
         '.pc-body-20-r': {
           '@apply text-[1.25rem] font-normal leading-normal tracking-[-0.00625rem]': {},
         },
@@ -91,6 +109,9 @@ const config: Config = {
         '.pc-button-14-r': {
           '@apply text-[0.72917rem] font-normal leading-normal': {},
         },
+        '.pc-button-16-r': {
+          '@apply text-[0.83333rem] font-normal leading-normal': {},
+        },
         '.container': {
           '@apply w-[75rem] sm:mx-auto xsm:w-full max-w-[75rem] xsm:max-w-full': {},
         },
@@ -99,6 +120,9 @@ const config: Config = {
         },
         '.mb-body-14-r': {
           '@apply text-[0.72917rem] font-normal leading-normal': {},
+        },
+        '.mb-caption-12-12-r': {
+          '@apply text-[0.625rem] font-normal leading-normal': {},
         },
       })
     }),
