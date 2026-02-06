@@ -10,6 +10,10 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { useRef } from 'react'
 
 import BannerHome from '@/app/[locale]/_components/banner/BannerHome'
+import AwardHome from '@/app/[locale]/_components/award/AwardHome'
+import AwardHomeMobile from '@/app/[locale]/_components/award/AwardHomeMobile'
+import ServiceHome from '@/app/[locale]/_components/service/ServiceHome'
+import ServiceHomeMobile from '@/app/[locale]/_components/service/ServiceHomeMobile'
 
 // export const dynamicParams = false
 // export function generateStaticParams() {
@@ -85,14 +89,14 @@ export default function Page() {
       <section data-snap>
         <BannerHome />
       </section>
-      <section
-        data-snap
-        className='h-[50vh] bg-black'
-      ></section>
-      <section
-        data-snap
-        className='h-[80vh] bg-yellow-100'
-      ></section>
+      <section data-snap>
+        <AwardHome />
+        <AwardHomeMobile />
+      </section>
+      <section data-snap>
+        <ServiceHome />
+        <ServiceHomeMobile />
+      </section>
       <section
         data-snap
         className='h-[70vh] bg-black'
