@@ -15,14 +15,24 @@
     "sortPopup": "Sắp xếp theo"
   },
   "LeadershipPage": {
-    "title": "Ban Lãnh Đạo Công Ty",
-    "home": "Trang chủ",
-    "about": "Về chúng tôi"
+    "title": "Ban Lãnh Đạo Công Ty"
   },
   "FounderPage": {
     "title": "Người Thành Lập",
-    "home": "Trang chủ",
-    "about": "Về chúng tôi",
-    "ceoMessage": "Tin Nhắn Từ Giám Đốc Điều Hành"
+    "ceoMessage": "Thông điệp của CEO"
+  },
+  "DetailServicePage": {
+    "sectionRelatedProjects": {
+      "title": "Dự án liên quan"
+    },
+    "sectionRelatedBlogs": {
+      "title": "Bài viết liên quan"
+    }
+  },
+  "Breadcrumb": {
+    "homePage": "Trang chủ",
+    "servicePage": "Dịch vụ",
+    "aboutUsPage": "Về chúng tôi",
+    "detailServicePage": "Chi tiết dịch vụ"
   }
 }

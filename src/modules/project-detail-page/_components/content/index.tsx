@@ -67,27 +67,39 @@ const content = `
 <h5><span style="font-family: 'times new roman', times, serif;">Heading 5</span></h5>
 <h6><span style="font-family: 'times new roman', times, serif;">Heading 6</span></h6>`
 
-
 /** Bọc mọi table trong div.table-wrapper để scroll ngang hoạt động */
 function wrapTablesInWrapper(html: string) {
-  return html.replace(/<table(?=\s|>)/gi, '<div class="table-wrapper"><table').replace(/<\/table>/gi, '</table></div>')
+  return html
+    .replace(/<table(?=\s|>)/gi, '<div class="table-wrapper"><table')
+    .replace(/<\/table>/gi, '</table></div>')
 }
 
 const Content = () => {
   return (
-    <section className='relative p-[6.25rem_12.5rem] pr-[7.03rem] xsm:p-[2.4rem_0.8275rem] xsm:bg-[#F5F5F5] xsm:overflow-hidden'>
-      <div className='absolute top-0 left-0 w-full h-[10.36458rem] opacity-15 xsm:hidden' style={{
-        background: 'linear-gradient(180deg, #D9D9D9 0%, rgba(255, 255, 255, 0.00) 71.88%)',
-      }} />
-      <div className='absolute bottom-0 left-0 w-full h-[10.36458rem] opacity-15 xsm:hidden' style={{
-        background: 'linear-gradient(0deg, #D9D9D9 0%, rgba(255, 255, 255, 0.00) 71.88%)',
-      }} />
+    <section className='xsm:p-[2.4rem_0.8275rem] xsm:bg-[#F5F5F5] xsm:overflow-hidden relative p-[6.25rem_12.5rem] pr-[7.03rem]'>
+      <div
+        className='xsm:hidden absolute top-0 left-0 h-[10.36458rem] w-full opacity-15'
+        style={{
+          background: 'linear-gradient(180deg, #D9D9D9 0%, rgba(255, 255, 255, 0.00) 71.88%)',
+        }}
+      />
+      <div
+        className='xsm:hidden absolute bottom-0 left-0 h-[10.36458rem] w-full opacity-15'
+        style={{
+          background: 'linear-gradient(0deg, #D9D9D9 0%, rgba(255, 255, 255, 0.00) 71.88%)',
+        }}
+      />
 
-      <h2 className='text-[#090909] text-[2.083rem] font-semibold leading-[1.2] tracking-[-0.03125rem] xsm:text-[1.25rem] '>Tìm hiểu thêm về dự án</h2>
+      <h2 className='xsm:text-[1.25rem] text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+        Tìm hiểu thêm về dự án
+      </h2>
 
-      <div className="flex space-x-[2.86rem] xsm:space-x-0">
-        <article id="project_detail" dangerouslySetInnerHTML={{ __html: wrapTablesInWrapper(content) }} />
-        <div className="hidden sm:block">
+      <div className='xsm:space-x-0 flex space-x-[2.86rem]'>
+        <article
+          id='project_detail'
+          dangerouslySetInnerHTML={{ __html: wrapTablesInWrapper(content) }}
+        />
+        <div className='hidden sm:block'>
           <ShareSticky />
         </div>
       </div>

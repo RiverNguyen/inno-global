@@ -15,14 +15,24 @@
     "sortPopup": "Sort"
   },
   "LeadershipPage": {
-    "title": "Leadership",
-    "home": "Home",
-    "about": "About us"
+    "title": "Leadership"
   },
   "FounderPage": {
     "title": "Founder",
-    "home": "Home",
-    "about": "About us",
     "ceoMessage": "CEO Message"
+  },
+  "DetailServicePage": {
+    "sectionRelatedProjects": {
+      "title": "Related projects"
+    },
+    "sectionRelatedBlogs": {
+      "title": "Related blogs"
+    }
+  },
+  "Breadcrumb": {
+    "homePage": "Home",
+    "servicePage": "Services",
+    "aboutUsPage": "About us",
+    "detailServicePage": "Detail service"
   }
 }

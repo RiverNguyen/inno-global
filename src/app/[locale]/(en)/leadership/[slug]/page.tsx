@@ -5,7 +5,7 @@ export default async function FounderPage({
 }: {
   params: Promise<{ locale: string; slug: string }>
 }) {
-  const [{ locale, slug }] = await Promise.all([params])
+  const { locale, slug } = await params
 
   return (
     <Founder locale={locale} slug={slug} />

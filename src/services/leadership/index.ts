@@ -12,7 +12,7 @@ const leadershipService = {
 
   getLeadershipDetail: async (slug: string): Promise<ILeadership> => {
     return await fetchData({
-      api: `${ENDPOINTS.leadership.detail(slug)}?acf=true`,
+      api: ENDPOINTS.leadership.detail(slug),
     })
   },
 
