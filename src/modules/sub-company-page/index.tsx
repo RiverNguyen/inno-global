@@ -5,17 +5,11 @@ import { useTranslations } from 'next-intl'
 import ICChevronDown from '@/components/icons/ICChevronDown'
 import Breadcrumb from '@/components/shared/Breadcrumb'
 import { Link } from '@/i18n/navigation'
-import { ICompany, ISubCompanyRes } from '@/interface/subcompany.interface'
+import { ICompany, ISubCompanyRes } from '@/interfaces/subcompany.interface'
 
 import CompanyCard from './components/CompanyCard'
 
-export default function SubCompanyDetail({
-  res,
-  companys,
-}: {
-  res: ISubCompanyRes
-  companys: ICompany[]
-}) {
+export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRes; companys: ICompany[] }) {
   const t = useTranslations()
   const title = res?.acf?.company_banner?.title
 
@@ -128,9 +122,7 @@ export default function SubCompanyDetail({
             className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 rotate-90' />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              Trang B
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang B</span>
           </Link>
           <Link
             href='/about-us'
@@ -142,9 +134,7 @@ export default function SubCompanyDetail({
             href='#'
             className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              Trang A
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang A</span>
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 -rotate-90' />
           </Link>
         </div>

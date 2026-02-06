@@ -1,4 +1,4 @@
-import { IProjectDetailAcf } from '@/interface/project.interface'
+import { IProjectDetailAcf } from '@/interfaces/project.interface'
 
 function renderCellValue(value: string) {
   return (
@@ -9,11 +9,7 @@ function renderCellValue(value: string) {
   )
 }
 
-export default function Overview({
-  overview,
-}: {
-  overview?: IProjectDetailAcf['project_overview']
-}) {
+export default function Overview({ overview }: { overview?: IProjectDetailAcf['project_overview'] }) {
   return (
     <section className='xsm:pt-[1.46rem] xsm:px-[0.8275rem] xsm:pb-[1.04rem] p-[6.25rem_12.5rem]'>
       <table className='w-full border border-[#090909]/8'>

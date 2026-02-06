@@ -1,6 +1,6 @@
 'use client'
 import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import ICChevronDown from '@/components/icons/ICChevronDown'
 import ICChevronRight from '@/components/icons/ICChevronRight'

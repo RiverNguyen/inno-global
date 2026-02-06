@@ -13,13 +13,7 @@ interface DrawerProviderProps {
   showDrawerDrag?: boolean
 }
 
-const DrawerProvider: FC<DrawerProviderProps> = ({
-  children,
-  className,
-  open,
-  setOpen,
-  showDrawerDrag = false,
-}) => {
+const DrawerProvider: FC<DrawerProviderProps> = ({ children, className, open, setOpen, showDrawerDrag = false }) => {
   useEffect(() => {
     if (open) {
       // Lưu lại scroll position và chặn scroll

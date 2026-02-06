@@ -7,7 +7,7 @@ function ProjectCardSkeleton() {
       <div className='pt-[0.72917rem]'>
         <div className='mb-[0.3125rem] flex items-center justify-between'>
           <Skeleton className='h-[1.40625rem] w-[12rem] bg-[#F0F0F0]' />
-          <Skeleton className='h-[1.09375rem] w-[4rem] bg-[#F0F0F0] xsm:hidden' />
+          <Skeleton className='xsm:hidden h-[1.09375rem] w-[4rem] bg-[#F0F0F0]' />
         </div>
         <div className='flex flex-col space-y-[0.46875rem]'>
           <div className='flex items-center space-x-[0.3125rem]'>

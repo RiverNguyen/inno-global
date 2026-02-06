@@ -1,14 +1,11 @@
-import { ISocialResponsibilityRes } from '@/interface/social-responsibility.interface'
+import { ISocialResponsibilityRes } from '@/interfaces/social-responsibility.interface'
 import socialResponsibilityService from '@/services/social-responsibility'
 
 import Banner from './components/banner'
 import Content from './components/content'
 
-
 export default async function SocialResponsibility({ locale }: { locale: string }) {
-  const socialResponsibilityData = (await socialResponsibilityService.getAcfData(
-    locale,
-  )) as ISocialResponsibilityRes
+  const socialResponsibilityData = (await socialResponsibilityService.getAcfData(locale)) as ISocialResponsibilityRes
 
   const banner = socialResponsibilityData?.acf?.banner
   const contents = socialResponsibilityData?.acf?.content ?? []
@@ -16,7 +13,10 @@ export default async function SocialResponsibility({ locale }: { locale: string 
   return (
     <main>
       <Banner banner={banner} />
-      <Content contents={contents} locale={locale} />
+      <Content
+        contents={contents}
+        locale={locale}
+      />
     </main>
   )
 }

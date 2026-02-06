@@ -57,7 +57,7 @@ function SelectedTagItem({ value, label, onRemove }: SelectedTagItemProps) {
       </span>
       <button
         type='button'
-        className='shrink-0 cursor-pointer hover:opacity-70 transition-opacity'
+        className='shrink-0 cursor-pointer transition-opacity hover:opacity-70'
         onClick={handleRemove}
         aria-label={`Remove ${label}`}
       >
@@ -74,12 +74,7 @@ interface SelectedTagsProps {
   onRemove: (value: string) => void
 }
 
-export default function SelectedTags({
-  label,
-  items,
-  selectedValues,
-  onRemove,
-}: SelectedTagsProps) {
+export default function SelectedTags({ label, items, selectedValues, onRemove }: SelectedTagsProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const prevLengthRef = useRef(0)
 
@@ -105,7 +100,10 @@ export default function SelectedTags({
   const getLabel = (value: string) => items.find((i) => i.value === value)?.label ?? value
 
   return (
-    <div ref={containerRef} className='flex items-center space-x-[0.41667rem]'>
+    <div
+      ref={containerRef}
+      className='flex items-center space-x-[0.41667rem]'
+    >
       <span className='font-open-sans xsm:text-[0.72917rem] xsm:leading-[150%] text-[0.83333rem] leading-normal font-semibold whitespace-nowrap text-[#090909] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
         {label}:
       </span>

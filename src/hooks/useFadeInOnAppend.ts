@@ -4,28 +4,19 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { useMemo, useRef } from 'react'
 
-import ProjectCard from '@/components/shared/ProjectCard'
-import { IProject } from '@/interfaces/project.interface'
-
-import ProjectListSkeleton from './ProjectListSkeleton'
-
-const FADE_Y = 24
-const FADE_DURATION = 0.45
-const FADE_DELAY = 0.08
-const FADE_STAGGER = 0.09
-const FADE_SCALE_FROM = 0.98
-
-interface ProjectListContentProps {
-  projects: IProject[]
-  isInitialLoading: boolean
-  t: (key: string) => string
-}
-
-export default function ProjectListContent({ projects, isInitialLoading, t }: ProjectListContentProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const observerRef = useRef<IntersectionObserver | null>(null)
+export function useFadeInOnAppend({
+  containerRef,
+  itemsKey,
+  itemSelector = '[data-fade-item]',
+}: {
+  containerRef: React.RefObject<HTMLElement | null>
+  itemsKey: string
+  itemSelector?: string
+}) {
+  const animateObserverRef = useRef<IntersectionObserver | null>(null)
   const didHydrateRef = useRef(false)
-  const projectsKey = useMemo(() => projects.map((p) => String(p.id)).join('|'), [projects])
+
+  const deps = useMemo(() => [itemsKey, itemSelector], [itemsKey, itemSelector])
 
   useGSAP(
     () => {
@@ -35,7 +26,10 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
       const prefersReducedMotion =
         typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches
 
-      const items = Array.from(container.querySelectorAll<HTMLElement>('[data-project-item]'))
+      const items = Array.from(container.querySelectorAll<HTMLElement>(itemSelector))
+      // If we run before items are rendered (e.g. params/data not ready yet),
+      // don't flip the "hydrated" flag. Otherwise the first real paint would animate.
+      if (items.length === 0) return
 
       // On first client run (SSR -> hydrate), keep initial list visible (no re-animation).
       // We still want animations for items appended later (infinite scroll).
@@ -54,7 +48,7 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
       }
 
       // Cleanup previous observer (re-create when list changes)
-      observerRef.current?.disconnect()
+      animateObserverRef.current?.disconnect()
 
       // Initialize hidden state for items that haven't animated yet
       for (const el of items) {
@@ -64,12 +58,12 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
           gsap.set(el, { autoAlpha: 1, y: 0, clearProps: 'opacity,transform' })
           continue
         }
-        gsap.set(el, { autoAlpha: 0, y: FADE_Y, scale: FADE_SCALE_FROM })
+        gsap.set(el, { autoAlpha: 0, y: 24, scale: 0.98 })
       }
 
       if (prefersReducedMotion) return
 
-      observerRef.current = new IntersectionObserver(
+      animateObserverRef.current = new IntersectionObserver(
         (entries) => {
           const newlyVisible = entries
             .filter((e) => e.isIntersecting)
@@ -86,17 +80,17 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
 
           newlyVisible.forEach((el) => {
             el.dataset.gsapAnimated = '1'
-            observerRef.current?.unobserve(el)
+            animateObserverRef.current?.unobserve(el)
           })
 
           gsap.to(newlyVisible, {
             autoAlpha: 1,
             y: 0,
             scale: 1,
-            duration: FADE_DURATION,
-            delay: FADE_DELAY,
+            duration: 0.45,
+            delay: 0.08,
             ease: 'power2.out',
-            stagger: FADE_STAGGER,
+            stagger: 0.09,
             clearProps: 'opacity,transform',
             overwrite: 'auto',
           })
@@ -110,37 +104,9 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
 
       for (const el of items) {
         if (el.dataset.gsapAnimated === '1') continue
-        observerRef.current.observe(el)
+        animateObserverRef.current.observe(el)
       }
     },
-    { dependencies: [projectsKey], scope: containerRef },
-  )
-
-  if (isInitialLoading) {
-    return <ProjectListSkeleton />
-  }
-
-  if (Array.isArray(projects) && projects.length > 0) {
-    return (
-      <div
-        ref={containerRef}
-        className='contents'
-      >
-        {projects.map((project: IProject, i: number) => (
-          <div
-            key={project.id || i}
-            data-project-item
-          >
-            <ProjectCard project={project} />
-          </div>
-        ))}
-      </div>
-    )
-  }
-
-  return (
-    <div className='col-span-full flex items-center justify-center py-12'>
-      <span className='text-[#090909]'>{t('noProjects') || 'No projects found'}</span>
-    </div>
+    { dependencies: deps, scope: containerRef },
   )
 }
