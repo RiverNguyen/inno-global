@@ -4,6 +4,7 @@ const ENDPOINTS = {
   project: {
     getAll: (locale: string) =>
       `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&orderby=date&order=DESC&limit=12&paged=1`,
+    relatedProjects: 'api/v1/get-all/project',
     getTypes: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=building_type`,
     getServices: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=service`,
     getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
@@ -20,6 +21,8 @@ const ENDPOINTS = {
   pageIds: {
     aboutUsVi: 104,
     aboutUsEn: 106,
+    subCompanyVi: 275,
+    subCompanyEn: 277,
   },
   service: {
     getAll: (locale: string) => `api/v1/get-all-taxonomy/service?lang=${locale}&fields=thumbnail&orderby=date&order=DESC&limit=12&paged=1`,
@@ -32,6 +35,14 @@ const ENDPOINTS = {
       vi: 'wp/v2/pages/326?_fields=acf&acf_format=standard',
       en: 'wp/v2/pages/328?_fields=acf&acf_format=standard',
     },
+  },
+  socialResponsibility: {
+    en: 'wp/v2/pages/340?_fields=acf&acf_format=standard',
+    vi: 'wp/v2/pages/338?_fields=acf&acf_format=standard',
+  },
+  detail: (slug: string, locale: string) => `api/v1/detail/${slug}?locale=${locale}&acf=true`,
+  company: {
+    list: 'api/v1/get-all/company',
   },
 }
 

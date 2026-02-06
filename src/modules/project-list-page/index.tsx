@@ -328,6 +328,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
             </div>
             <SortPopup
               label={t('sortPopup')}
+              keySp='sort'
               items={[
                 {
                   label: t('newestToOldest'),

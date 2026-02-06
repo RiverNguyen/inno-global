@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import SectionPagination from '@/components/shared/SectionPagination'
 
@@ -65,7 +66,8 @@ const BoardSection = ({ title, directors }: { title: string; directors: Director
 )
 
 export default function BoardOfDirectors({ sections, locale }: { sections: BoardSectionData[]; locale: string }) {
-  const getAboutUsHref = (locale: string) => (locale === 'en' ? '/about-us' : '/ve-chung-toi')
+  const t = useTranslations()
+  const getAboutUsHref = (locale: string) => locale === 'en' ? '/about-us' : '/ve-chung-toi'
 
   return (
     <>
@@ -81,9 +83,9 @@ export default function BoardOfDirectors({ sections, locale }: { sections: Board
 
       {/* Pagination */}
       <SectionPagination
-        prev={{ href: '', label: 'Trang B' }}
-        center={{ href: getAboutUsHref(locale), label: 'Về chúng tôi' }}
-        next={{ href: '', label: 'Trang A' }}
+        prev={{ href: '', label: t('Breadcrumb.companyPage') }}
+        center={{ href: getAboutUsHref(locale), label: t('Breadcrumb.aboutUsPage') }}
+        next={{ href: '', label: t('Breadcrumb.businessCulturePage') }}
       />
     </>
   )

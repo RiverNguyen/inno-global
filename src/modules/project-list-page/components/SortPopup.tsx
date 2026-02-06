@@ -22,6 +22,7 @@ import './style.css'
 
 interface SortPopupProps {
   label: string
+  keySp: string
   items: {
     label: string
     value: string

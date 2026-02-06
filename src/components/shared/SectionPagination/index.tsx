@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import type { ReactNode, SVGProps } from 'react'
 
+import { cn } from '@/lib/utils'
+
 type PaginationLink = {
   href?: string
   label: ReactNode
@@ -12,63 +14,41 @@ export default function SectionPagination({
   prev,
   center,
   next,
+  className,
 }: {
   prev?: PaginationLink
-  center: PaginationLink
+  center?: PaginationLink
   next?: PaginationLink
+  className?: string
 }) {
   return (
-    <div className='xsm:py-[3.33333rem] xsm:px-[0.83333rem] bg-white py-[2.96875rem]'>
-      <div className='mx-auto flex max-w-[75.1rem] items-center justify-between'>
-        {prev && prev.href !== undefined ? (
-          <Link
-            href={prev.href}
-            className='flex cursor-pointer items-center gap-[0.3125rem]'
-          >
-            <ICArrowLeft className='xsm:size-[0.625rem] size-[0.83333rem]' />
-            <span className='font-open-sans xsm:text-[0.625rem] text-[0.83333rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+    <div className={cn('bg-white py-[2.96875rem] xsm:py-[3.33333rem] xsm:px-[0.83333rem]', className)}>
+      <div className="flex max-w-[75.1rem] mx-auto justify-between items-center">
+        {prev && prev.href !== undefined && (
+          <Link href={prev.href} className="flex items-center gap-[0.3125rem] cursor-pointer">
+            <ICArrowLeft className="size-[0.83333rem] xsm:size-[0.625rem]" />
+            <span className="text-[#D32F2F] font-open-sans text-[0.83333rem] leading-[150%] [text-box-trim:trim-both] [text-box-edge:cap_alphabetic] xsm:text-[0.625rem]">
               {prev.label}
             </span>
           </Link>
-        ) : (
-          <div className='flex items-center gap-[0.3125rem]'>
-            <ICArrowLeft className='xsm:size-[0.625rem] size-[0.83333rem]' />
-            <span className='font-open-sans xsm:text-[0.625rem] text-[0.83333rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {prev?.label}
-            </span>
-          </div>
         )}
 
-        {center.href !== undefined ? (
+        {center && center.href !== undefined && (
           <Link
             href={center.href}
             className='flex-center font-open-sans xsm:text-[0.625rem] xsm:leading-[150%] xsm:tracking-normal border-b border-[#D32F2F] py-[0.41667rem] text-[0.83333rem] leading-[130%] font-semibold tracking-[-0.00833rem] text-[#D32F2F]'
           >
             {center.label}
           </Link>
-        ) : (
-          <div className='flex-center font-open-sans xsm:text-[0.625rem] xsm:leading-[150%] xsm:tracking-normal border-b border-[#D32F2F] py-[0.41667rem] text-[0.83333rem] leading-[130%] font-semibold tracking-[-0.00833rem] text-[#D32F2F]'>
-            {center.label}
-          </div>
         )}
 
-        {next && next.href !== undefined ? (
-          <Link
-            href={next.href}
-            className='flex cursor-pointer items-center gap-[0.375rem]'
-          >
-            <span className='font-open-sans xsm:text-[0.625rem] text-[0.83333rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+        {next && next.href !== undefined && (
+          <Link href={next.href} className="flex items-center gap-[0.375rem] cursor-pointer">
+            <span className="text-[#D32F2F] font-open-sans text-[0.83333rem] leading-[150%] [text-box-trim:trim-both] [text-box-edge:cap_alphabetic] xsm:text-[0.625rem]">
               {next.label}
             </span>
             <ICArrowLeft className='h-[1rem] w-[1rem] rotate-180' />
           </Link>
-        ) : (
-          <div className='flex items-center gap-[0.375rem]'>
-            <span className='font-open-sans xsm:text-[0.625rem] text-[0.83333rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {next?.label}
-            </span>
-            <ICArrowLeft className='h-[1rem] w-[1rem] rotate-180' />
-          </div>
         )}
       </div>
     </div>

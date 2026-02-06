@@ -43,7 +43,7 @@ export default function ProjectCard({
         />
       </div>
       <div className='pt-[0.72917rem]'>
-        <div className='mb-[0.3125rem] flex items-center justify-between'>
+        <div className='mb-[0.3125rem] flex items-center justify-between space-x-4'>
           <h3
             className={cn(
               'font-open-sans line-clamp-1 max-w-[16rem] text-[0.9375rem] leading-[150%] font-semibold text-[#090909]',

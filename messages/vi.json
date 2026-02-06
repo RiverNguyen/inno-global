@@ -29,6 +29,11 @@
     "title": "Người Thành Lập",
     "ceoMessage": "Thông điệp của CEO"
   },
+  "DetailProjectPage": {
+    "learnMore": "Tìm hiểu thêm về dự án",
+    "related": "Dự án liên quan",
+    "viewAll": "Xem tất cả"
+  },
   "DetailServicePage": {
     "sectionRelatedProjects": {
       "title": "Dự án liên quan"
@@ -37,10 +42,18 @@
       "title": "Bài viết liên quan"
     }
   },
+  "SubCompanyPage": {
+    "companyList": "Danh sách công ty"
+  },
   "Breadcrumb": {
     "homePage": "Trang chủ",
     "servicePage": "Dịch vụ",
     "aboutUsPage": "Về chúng tôi",
-    "detailServicePage": "Chi tiết dịch vụ"
+    "detailServicePage": "Chi tiết dịch vụ",
+    "socialResponsibilityPage": "Trách nhiệm xã hội",
+    "historyPage": "Lịch sử hình thành & phát triển",
+    "companyPage": "Công ty con/liên kết",
+    "businessCulturePage": "Văn hóa doanh nghiệp",
+    "organizationChartPage": "Sơ đồ tổ chức"
   }
 }
