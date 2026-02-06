@@ -31,7 +31,8 @@
   },
   "DetailProjectPage": {
     "learnMore": "Learn more about the project",
-    "related": "Related projects"
+    "related": "Related projects",
+    "viewAll": "View all"
   },
   "DetailServicePage": {
     "sectionRelatedProjects": {

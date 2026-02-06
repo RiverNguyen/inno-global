@@ -31,7 +31,8 @@
   },
   "DetailProjectPage": {
     "learnMore": "Tìm hiểu thêm về dự án",
-    "related": "Dự án liên quan"
+    "related": "Dự án liên quan",
+    "viewAll": "Xem tất cả"
   },
   "DetailServicePage": {
     "sectionRelatedProjects": {

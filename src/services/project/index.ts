@@ -7,18 +7,10 @@ const projectService = {
       api: ENDPOINTS.detail(slug, locale),
     })
   },
-  getProjects: async ({
-    locale,
-    location,
-    investor,
-  }: {
-    locale: string
-    location?: string
-    investor?: string
-  }) => {
+  getProjects: async ({ locale, location, investor }: { locale: string; location?: string; investor?: string }) => {
     const params = new URLSearchParams()
 
-    params.append('locale', locale)
+    params.append('lang', locale)
     if (location) {
       params.append('tax', 'location')
       params.append('location', location)
@@ -29,7 +21,7 @@ const projectService = {
     }
 
     return await fetchData({
-      api: `${ENDPOINTS.project.list}?${params.toString()}`,
+      api: `${ENDPOINTS.project.relatedProjects}?${params.toString()}`,
     })
   },
 }

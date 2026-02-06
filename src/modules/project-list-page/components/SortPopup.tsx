@@ -68,7 +68,7 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
                   type='radio'
                   id={slugify(item.value)}
                   checked={item.value === selectedItem}
-                  onChange={() => handleChange(item.value, true)}
+                  onChange={() => handleChange(item.value)}
                   className='size-[1.04167rem] rounded-[5.20833rem] border-[#AEAEB2] text-[#D32F2F] ring-0 ring-offset-0 outline-none checked:border-[#0000]'
                 />
               </div>
@@ -118,7 +118,7 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
                     type='radio'
                     id={slugify(item.value)}
                     checked={item.value === selectedItem}
-                    onChange={() => handleChange(item.value, false)}
+                    onChange={() => handleChange(item.value)}
                     className='size-[1.04333rem] rounded-[5.20833rem] border-[#AEAEB2] text-[#D32F2F] ring-0 ring-offset-0 outline-none checked:border-[#0000]'
                   />
                 </div>

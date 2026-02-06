@@ -33,7 +33,7 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
         >
           <span className='absolute inset-0 rounded-[inherit] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100' />
           <span className='flex-center relative z-10'>
-            Xem tất cả
+            {t('viewAll')}
             <ChevronRightIcon className='ml-1.25 size-[0.83333rem] translate-y-[0.0375rem] text-[#090909]/60 transition-all duration-300 group-hover:translate-x-[0.5rem] group-hover:text-white' />
           </span>
         </Link>
@@ -60,18 +60,7 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
                   key={index}
                   className='h-full w-full'
                 >
-                  <ProjectCard
-                    project={{
-                      title: project?.title,
-                      image: project?.featured_image?.url,
-                      investor: project?.taxonomies?.investor[0]?.name || '',
-                      location: project?.taxonomies?.location[0]?.name || '',
-                      link:
-                        locale === 'vi'
-                          ? `/${ROUTES.projectsVi}/${project?.slug}`
-                          : `${ROUTES.projectsEn}/${project?.slug}`,
-                    }}
-                  />
+                  <ProjectCard project={project} />
                 </SwiperSlide>
               ))}
         </Swiper>
@@ -115,7 +104,7 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
           className='flex-center mx-auto mt-[1.66667rem] h-[2.5rem] w-full rounded-[5.2rem] border border-[#090909]/60 shadow-[0_0_2px_0_rgba(0,0,0,0.10),_0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px]'
         >
           <span className='flex-center text-[0.73rem] leading-[1.5] text-[#090909]/60'>
-            Xem tất cả
+            {t('viewAll')}
             <ChevronRightIcon className='ml-1.5 size-[0.83333rem] text-[#090909]/60' />
           </span>
         </Link>

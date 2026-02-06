@@ -88,7 +88,7 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
                   type='checkbox'
                   id={slugify(item.value)}
                   checked={selected.includes(item.value)}
-                  onChange={() => handleChange(item.value, true)}
+                  onChange={() => handleChange(item.value)}
                   className='size-[1.04167rem] rounded-[0.20833rem] border-[#AEAEB2] text-[#D32F2F] ring-0 ring-offset-0 outline-none checked:border-[#0000]'
                 />
               </div>

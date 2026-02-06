@@ -1,5 +1,5 @@
 import { IMedia } from './media.interface'
-import { ITaxonomy } from './taxonomy.interface'
+import { ITerm } from './taxonomy.interface'
 
 export interface IProjectDetailAcf {
   project_gallery: IMedia[]
@@ -20,11 +20,11 @@ export interface IProjectDetail {
   featured_image: IMedia
   acf?: IProjectDetailAcf
   taxonomies: {
-    investor: ITaxonomy[]
-    location: ITaxonomy[]
-    service: ITaxonomy[]
-    starting_year: ITaxonomy[]
-    building_type: ITaxonomy[]
+    investor: ITerm[]
+    location: ITerm[]
+    service: ITerm[]
+    starting_year: ITerm[]
+    building_type: ITerm[]
   }
 }
 
