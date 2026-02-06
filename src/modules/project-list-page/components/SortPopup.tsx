@@ -26,17 +26,26 @@ interface SortPopupProps {
     label: string
     value: string
   }[]
-  onChange: () => void
+  value?: string
+  onChange?: (value: string) => void
 }
 
-export default function SortPopup({ label, items, onChange }: SortPopupProps) {
-  const [selectedItem, setSelectedItem] = useState<string>('')
+export default function SortPopup({
+  label,
+  items,
+  value,
+  onChange,
+}: SortPopupProps) {
+  const [internalSelected, setInternalSelected] = useState<string>('')
+  const selectedItem = value !== undefined ? value : internalSelected
 
   const t = useTranslations('ProjectListPage')
 
-  const handleChange = (value: string) => {
-    setSelectedItem(value)
-    onChange()
+  const handleChange = (newValue: string) => {
+    if (value === undefined) {
+      setInternalSelected(newValue)
+    }
+    onChange?.(newValue)
   }
 
   return (

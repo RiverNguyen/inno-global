@@ -1,9 +1,9 @@
-import ENV from '@/config-global.env'
+import ENV from '@/configs/env'
 import parseRankMathHead from '@/utils/parseRankMathHead'
 
 export default async function getMetaDataRankMath(slug: string) {
   try {
-    const res = await fetch(`${ENV.CMS}${ENV.API!}rankmath/v1/getHead?url=${ENV.CMS!}${slug}`, {
+    const res = await fetch(`${ENV.CMS ?? ''}${ENV.API ?? ''}rankmath/v1/getHead?url=${ENV.CMS ?? ''}${slug}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

@@ -5,34 +5,27 @@ import { useTranslations } from 'next-intl'
 
 import ICChevronDown from '@/components/icons/ICChevronDown'
 import { Link } from '@/i18n/navigation'
+import { Project } from '@/interfaces/project.interface'
 import { cn } from '@/lib/utils'
 
-interface IProject {
-  image: string
-  title: string
-  investor: string
-  location: string
-  link: string
-}
-
-interface IProjectCard {
-  project: IProject
+interface ProjectCardProps {
+  project: Project,
   wrapperClassname?: string
-  classNameTitle?: string
   classNameThumbnail?: string
+  classNameTitle?: string
 }
 
 export default function ProjectCard({
   project,
   wrapperClassname,
-  classNameTitle,
   classNameThumbnail,
-}: IProjectCard) {
+  classNameTitle,
+}: ProjectCardProps) {
   const t = useTranslations('ProjectListPage')
 
   return (
     <Link
-      href={project.link}
+      href={`/danh-sach-du-an/${project.slug}`}
       className={cn('group relative overflow-hidden', wrapperClassname)}
     >
       <div
@@ -42,7 +35,7 @@ export default function ProjectCard({
         )}
       >
         <Image
-          src={project.image}
+          src={project.featured_image.url}
           alt={project.title}
           width={460}
           height={291}
@@ -53,7 +46,7 @@ export default function ProjectCard({
         <div className='mb-[0.3125rem] flex items-center justify-between'>
           <h3
             className={cn(
-              'font-open-sans text-[0.9375rem] leading-[150%] font-semibold text-[#090909]',
+              'font-open-sans text-[0.9375rem] max-w-[16rem] line-clamp-1 leading-[150%] font-semibold text-[#090909]',
               classNameTitle,
             )}
           >
@@ -61,7 +54,7 @@ export default function ProjectCard({
           </h3>
           <div className='font-open-sans xsm:hidden inline-flex items-center space-x-[0.20833rem] text-[0.72917rem] leading-[150%] font-normal text-[#D32F2F] transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:opacity-0 lg:group-hover:opacity-100'>
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              Xem chi tiết
+              {t('seeDetail')}
             </span>
             <ICChevronDown className='size-[0.72917rem] shrink-0 -rotate-90' />
           </div>
@@ -75,11 +68,11 @@ export default function ProjectCard({
               height={16}
               className='size-[0.83333rem] shrink-0 object-cover'
             />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] whitespace-nowrap'>
               {t('investor')}:
             </span>
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {project?.investor}
+            <span className='line-clamp-1 max-w-full'>
+              {project?.taxonomies?.investor?.[0]?.name || '-'}
             </span>
           </div>
           <div className='font-open-sans flex items-center space-x-[0.3125rem] text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
@@ -94,7 +87,7 @@ export default function ProjectCard({
               {t('location')}:
             </span>
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {project?.location}
+              {project?.taxonomies?.location?.[0]?.name || '-'}
             </span>
           </div>
         </div>
