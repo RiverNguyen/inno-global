@@ -10,11 +10,7 @@ gsap.registerPlugin(ScrollToPlugin)
  * @param duration - Optional duration of the scroll animation in seconds (default: 1s).
  * @param offsetRem - Optional offset from the top in rem (default: 0rem).
  */
-export function scrollToSection(
-  elementId: string,
-  duration: number = 1,
-  offsetRem: number = 0,
-): void {
+export function scrollToSection(elementId: string, duration: number = 1, offsetRem: number = 0): void {
   const targetElement = document.getElementById(elementId)
 
   if (!targetElement) {

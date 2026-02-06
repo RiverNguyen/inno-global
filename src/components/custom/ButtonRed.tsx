@@ -1,10 +1,6 @@
 import { cn } from '@/lib/utils'
 
-export default function ButtonRed({
-  className,
-  children,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+export default function ButtonRed({ className, children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       className={cn(
@@ -15,9 +11,7 @@ export default function ButtonRed({
     >
       <div className='transition-all duration-300 bg-gr-2-reverse size-full absolute top-0 left-0 lg:group-hover:opacity-100 opacity-0'></div>
       <div className='transition-all duration-300 bg-gr-2 size-full absolute top-0 left-0 lg:group-hover:opacity-0 opacity-100'></div>
-      <div className='size-full relative z-[2] flex-center space-x-[0.36rem] pc-button-14-r text-white'>
-        {children}
-      </div>
+      <div className='size-full relative z-[2] flex-center space-x-[0.36rem] pc-button-14-r text-white'>{children}</div>
     </button>
   )
 }

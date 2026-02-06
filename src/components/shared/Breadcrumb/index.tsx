@@ -27,12 +27,7 @@ export default function Breadcrumb({
 
   return (
     <nav className={cn('relative', classNameContainer)}>
-      <ul
-        className={cn(
-          'font-open-sans flex items-center space-x-[0.52083rem]',
-          classNameItemsContainer,
-        )}
-      >
+      <ul className={cn('font-open-sans flex items-center space-x-[0.52083rem]', classNameItemsContainer)}>
         {navItems?.map((item, index) => (
           <li
             key={index}
@@ -41,10 +36,7 @@ export default function Breadcrumb({
             <Link
               locale={locale}
               href={item?.href || '#'}
-              className={cn(
-                'text-primary/40 pc-body-14-r shrink-0 cursor-pointer',
-                classNameNavItems,
-              )}
+              className={cn('text-primary/40 pc-body-14-r shrink-0 cursor-pointer', classNameNavItems)}
             >
               <p className='text-edge-[cap_alphabetic] text-trim-both'>{item?.label}</p>
             </Link>
