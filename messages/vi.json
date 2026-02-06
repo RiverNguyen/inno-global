@@ -26,6 +26,9 @@
       "title": "Bài viết liên quan"
     }
   },
+  "SubCompanyPage": {
+    "companyList": "Danh sách công ty"
+  },
   "Breadcrumb": {
     "homePage": "Trang chủ",
     "servicePage": "Dịch vụ",

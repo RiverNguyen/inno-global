@@ -7,6 +7,9 @@ const ENDPOINTS = {
   project: {
     list: 'api/v1/get-all/project',
   },
+  company: {
+    list: 'api/v1/get-all/company',
+  },
 }
 
 export default ENDPOINTS

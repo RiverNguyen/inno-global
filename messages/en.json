@@ -26,6 +26,9 @@
       "title": "Related blogs"
     }
   },
+  "SubCompanyPage": {
+    "companyList": "Companys"
+  },
   "Breadcrumb": {
     "homePage": "Home",
     "servicePage": "Services",

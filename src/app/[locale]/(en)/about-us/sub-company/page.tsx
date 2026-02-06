@@ -4,7 +4,7 @@ import companyService from '@/services/company'
 export const dynamic = 'force-dynamic'
 
 export function generateStaticParams() {
-  return [{ locale: 'vi' }]
+  return [{ locale: 'en' }]
 }
 
 export default async function SubComapanyPage({ params }: { params: Promise<{ locale: string }> }) {
