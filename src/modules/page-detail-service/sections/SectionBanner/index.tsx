@@ -2,33 +2,16 @@ import { useLocale, useTranslations } from 'next-intl'
 
 import Breadcrumb from '@/components/shared/Breadcrumb'
 import ROUTES from '@/configs/routes'
+import { ISlideItemAcfData } from '@/interfaces/detail-service.interface'
 import BannerSlides from '@/modules/page-detail-service/sections/SectionBanner/BannerSlides'
 
-const MOCK_DATA = {
-  title: 'Kiến trúc (Architecture)',
-  description:
-    'INNO cung cấp giải pháp kiến trúc toàn diện, kết hợp hài hòa giữa công năng, thẩm mỹ và sự phù hợp với bối cảnh. Mỗi dự án được nghiên cứu kỹ lưỡng',
-  slideItems: [
-    {
-      image_pc: { alt: '', url: '/images/detail-service/d-banner-pc.jpg' },
-      image_mobile: { alt: '', url: '/images/detail-service/d-banner-mb.jpg' },
-    },
-    {
-      image_pc: { alt: '', url: '/images/detail-service/d-banner-pc.jpg' },
-      image_mobile: { alt: '', url: '/images/detail-service/d-banner-mb.jpg' },
-    },
-    {
-      image_pc: { alt: '', url: '/images/detail-service/d-banner-pc.jpg' },
-      image_mobile: { alt: '', url: '/images/detail-service/d-banner-mb.jpg' },
-    },
-    {
-      image_pc: { alt: '', url: '/images/detail-service/d-banner-pc.jpg' },
-      image_mobile: { alt: '', url: '/images/detail-service/d-banner-mb.jpg' },
-    },
-  ],
+interface SectionBannerProps {
+  title: string
+  description: string
+  slideItems: ISlideItemAcfData[]
 }
 
-export default function SectionBanner() {
+export default function SectionBanner({ title, description, slideItems }: SectionBannerProps) {
   const t = useTranslations('Breadcrumb')
   const locale = useLocale()
   const navBreadcrumbItems = [
@@ -40,7 +23,7 @@ export default function SectionBanner() {
   return (
     <section className='xsm:h-[21.09375rem] relative h-[29.42708rem]'>
       <div className='absolute top-0 left-0 z-0 h-full w-full'>
-        <BannerSlides slideItems={MOCK_DATA?.slideItems} />
+        <BannerSlides slideItems={slideItems || []} />
       </div>
       <div className='xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_35%,rgba(0,0,0,0.74)_50%,#000_70%)] xsm:top-[unset] xsm:bottom-0 xsm:h-[18.17708rem] pointer-events-none absolute top-0 left-0 z-1 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_49.89%,rgba(0,0,0,0.74)_79.8%,#000_96.54%)] opacity-40'></div>
       <div className='xsm:opacity-60 xsm:h-[16.92708rem] xsm:top-[unset] xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_49.89%,rgba(0,0,0,0.74)_75.85%,#000_96.54%)] pointer-events-none absolute top-0 left-0 z-1 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_49.89%,rgba(0,0,0,0.74)_79.8%,#000_96.54%)] opacity-40'></div>
@@ -56,10 +39,10 @@ export default function SectionBanner() {
             classNameContainer='xsm:hidden'
           />
           <h1 className='xsm:text-[1.35417rem] xsm:tracking-normal text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-white'>
-            {MOCK_DATA?.title}
+            {title || ''}
           </h1>
           <p className='xsm:text-[0.72917rem] xsm:text-trim-both xsm:text-edge-[cap_alphabetic] max-w-[37.5rem] text-[0.9375rem] leading-[1.5] text-white/90'>
-            {MOCK_DATA?.description}
+            {description || ''}
           </p>
         </div>
       </div>

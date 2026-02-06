@@ -1,62 +1,28 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const boardOfDirectors = [
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-1.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-2.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-3.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-4.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-1.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-2.webp',
-  },
-  {
-    name: 'Lê Thanh Sơn',
-    position: 'Chủ Tịch Hội Đồng',
-    image: '/leadership/d-leadership-3.webp',
-  },
-]
+import SectionPagination from '@/components/shared/SectionPagination'
 
-const BoardSection = ({
-  title,
-  directors,
-}: {
+type DirectorCard = {
+  name: string
+  position: string
+  image: string
+  href: string
+}
+
+type BoardSectionData = {
   title: string
-  directors: typeof boardOfDirectors
-}) => (
-  <div className='xsm:gap-[1.25rem] flex flex-col gap-[3.33333rem]'>
-    <h2 className='font-open-sans xsm:text-[1.04167rem] xsm:leading-[150%] text-center text-[1.875rem] leading-[1.35417rem] font-semibold text-[rgba(9,9,9,0.80)]'>
+  directors: DirectorCard[]
+}
+
+const BoardSection = ({ title, directors }: { title: string; directors: DirectorCard[] }) => (
+  <div className="flex flex-col gap-[3.33333rem] xsm:gap-[1.25rem]">
+    <h2 className="text-[rgba(9,9,9,0.80)] font-open-sans text-[1.875rem] font-semibold text-center leading-[1.35417rem] xsm:text-[1.04167rem] xsm:leading-[150%]">
       {title}
     </h2>
     <div className='xsm:gap-y-[0.625rem] xsm:gap-x-[0.83333rem] flex flex-wrap justify-center gap-x-[1.77rem] gap-y-[3.33333rem]'>
       {directors.map((director, index) => (
-        <Link
-          href=''
-          key={index}
-          className='xsm:w-[8.5112rem] relative w-[17.34375rem]'
-        >
+        <Link href={director.href} key={index} className="relative w-[17.34375rem] xsm:w-[8.5112rem]">
           <Image
             src='/leadership/overlay.webp'
             alt='overlay'
@@ -94,78 +60,23 @@ const BoardSection = ({
   </div>
 )
 
-export default function BoardOfDirectors() {
+export default function BoardOfDirectors({ sections, locale }: { sections: BoardSectionData[]; locale: string }) {
+  const getAboutUsHref = (locale: string) => locale === 'en' ? '/about-us' : '/ve-chung-toi'
+
   return (
     <>
-      <div className='xsm:gap-[1.66667rem] xsm:px-[0.83333rem] xsm:pb-0 xsm:pt-[1.66667rem] mx-auto flex w-full max-w-[74.6875rem] flex-col gap-[5rem] py-[4.16667rem]'>
-        {/* Hội đồng quản trị */}
-        <BoardSection
-          title='Hội đồng Quản trị'
-          directors={boardOfDirectors}
-        />
-
-        {/* Ban giám đốc */}
-        <BoardSection
-          title='Ban Giám đốc'
-          directors={boardOfDirectors}
-        />
+      <div className="max-w-[74.6875rem] mx-auto flex flex-col gap-[5rem] py-[4.16667rem] xsm:gap-[1.66667rem] xsm:px-[0.83333rem] xsm:pb-0 xsm:pt-[1.66667rem]">
+        {sections.map((section) => (
+          <BoardSection key={section.title} title={section.title} directors={section.directors} />
+        ))}
       </div>
 
       {/* Pagination */}
-      <div className='xsm:py-[3.33333rem] xsm:px-[0.83333rem] bg-white py-[2.96875rem]'>
-        <div className='mx-auto flex w-full max-w-[75.1rem] items-center justify-between'>
-          <Link
-            href=''
-            type='button'
-            className='flex cursor-pointer items-center gap-[0.3125rem]'
-          >
-            <ICArrowLeft className='xsm:size-[0.625rem] size-[0.83333rem]' />
-            <span className='font-open-sans xsm:text-[0.625rem] text-[0.83333rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              Trang B
-            </span>
-          </Link>
-
-          <Link
-            href=''
-            className='font-open-sans xsm:text-[0.625rem] xsm:leading-[150%] xsm:tracking-normal flex items-center justify-center border-b border-[#D32F2F] py-[0.41667rem] text-[0.83333rem] leading-[130%] font-semibold tracking-[-0.00833rem] text-[#D32F2F]'
-          >
-            Về chúng tôi
-          </Link>
-
-          <Link
-            href=''
-            type='button'
-            className='flex cursor-pointer items-center gap-[0.375rem]'
-          >
-            <span className='font-open-sans xsm:text-[0.625rem] text-[0.83333rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              Trang A
-            </span>
-            <ICArrowLeft className='h-[1rem] w-[1rem] rotate-180' />
-          </Link>
-        </div>
-      </div>
-    </>
-  )
-}
-
-const ICArrowLeft = (props: React.SVGProps<SVGSVGElement>) => {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      width='16'
-      height='16'
-      viewBox='0 0 16 16'
-      fill='none'
-      {...props}
-    >
-      <path
-        d='M6.38016 3.95312L2.3335 7.99979L6.38016 12.0465'
-        stroke='#D32F2F'
-        strokeWidth='1.5'
-        strokeMiterlimit='10'
-        strokeLinecap='round'
-        strokeLinejoin='round'
+      <SectionPagination
+        prev={{ href: '', label: 'Trang B' }}
+        center={{ href: getAboutUsHref(locale), label: 'Về chúng tôi' }}
+        next={{ href: '', label: 'Trang A' }}
       />
-    </svg>
+    </>
   )
 }

@@ -1,19 +1,28 @@
-export interface ITaxonomy {
+// taxonomy.types.ts
+
+/* ---------- Term ---------- */
+export interface ITerm {
   id: number
   name: string
   slug: string
-  description: string
-}
-
-export interface ITerm {
-  term_id: number
-  name: string
-  slug: string
-  term_group: number
-  term_taxonomy_id: number
   taxonomy: string
   description: string
-  parent: number
   count: number
-  filter: string
+  parent: number | null
+  link: string
+  translations: unknown[]
+}
+
+/* ---------- Meta ---------- */
+export interface ITaxonomyMeta {
+  taxonomy: string
+  total: number | null
+  count: number
+}
+
+/* ---------- Response ---------- */
+export interface ITaxonomyRes {
+  success: boolean
+  data: ITerm[]
+  meta: ITaxonomyMeta
 }

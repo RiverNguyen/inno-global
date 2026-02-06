@@ -1,12 +1,34 @@
+import { FetchRelatedBlogsProps, FetchRelatedProjectsProps } from '@/services/service'
+
 const ENDPOINTS = {
-  page: (pageId: number) => `wp/v2/pages/${pageId}?_fields=acf&acf_format=standard`,
-  tour: {
-    list: '/tour/list',
+  project: {
+    getAll: (locale: string) =>
+      `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&orderby=date&order=DESC&limit=12&paged=1`,
+    getTypes: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=building_type`,
+    getServices: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=service`,
+    getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
+    getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+  },
+  leadership: {
+    list: 'api/v1/get-all/leadership',
+    detail: (slug: string) => `api/v1/detail/${slug}?acf=true`,
+  },
+  taxonomies: {
+    list: 'api/v1/taxonomies',
+    get: (locale: string, taxonomy: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=${taxonomy}`,
+  },
+  pageIds: {
+    aboutUsVi: 104,
+    aboutUsEn: 106,
+  },
+  service: {
+    detail: (slug: string) => `api/v1/taxonomy/${slug}?acf=true`,
+    relatedProjects: ({ slug, limit, lang, paged }: FetchRelatedProjectsProps) =>
+      `api/v1/get-all/project?lang=${lang}&acf=true&tax=service&service=${slug}&limit=${limit}&paged=${paged}`,
+    relatedBlogs: ({ slug, limit, lang, paged }: FetchRelatedBlogsProps) =>
+      `api/v1/get-all/post?lang=${lang}&acf=true&tax=service&service=${slug}&limit=${limit}&paged=${paged}`,
   },
   detail: (slug: string, locale: string) => `api/v1/detail/${slug}?locale=${locale}&acf=true`,
-  project: {
-    list: 'api/v1/get-all/project',
-  },
   company: {
     list: 'api/v1/get-all/company',
   },

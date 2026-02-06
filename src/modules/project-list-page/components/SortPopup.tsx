@@ -27,28 +27,21 @@ interface SortPopupProps {
     label: string
     value: string
   }[]
-  onChange: () => void
+  value?: string
+  onChange?: (value: string) => void
 }
 
-export default function SortPopup({ label, keySp, items, onChange }: SortPopupProps) {
-  const [selectedItem, setSelectedItem] = useState<string>(() => {
-    if (typeof window === 'undefined') return ''
-    const searchParams = new URLSearchParams(window.location.search)
-    const initialSelected = searchParams.get(keySp) || ''
-    return initialSelected
-  })
+export default function SortPopup({ label, items, value, onChange }: SortPopupProps) {
+  const [internalSelected, setInternalSelected] = useState<string>('')
+  const selectedItem = value !== undefined ? value : internalSelected
 
   const t = useTranslations('ProjectListPage')
 
-  const handleChange = (value: string, updateParams: boolean) => {
-    if (updateParams) {
-      const url = new URL(window.location.href)
-      url.searchParams.set(keySp, value)
-      window.history.pushState({}, '', url)
-      onChange()
+  const handleChange = (newValue: string) => {
+    if (value === undefined) {
+      setInternalSelected(newValue)
     }
-
-    setSelectedItem(value)
+    onChange?.(newValue)
   }
 
   return (
@@ -59,9 +52,7 @@ export default function SortPopup({ label, keySp, items, onChange }: SortPopupPr
             type='button'
             className='font-open-sans xsm:size-[2.08333rem] xsm:bg-[#F0F0F0] xsm:border-none xsm:space-x-0 xsm:rounded-full xsm:hidden relative flex h-[2.5rem] shrink-0 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] px-[1.14583rem] py-[0.83333rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
           >
-            <span className='xsm:hidden [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {t('sort')}
-            </span>
+            <span className='xsm:hidden [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('sort')}</span>
             <ICSort className='size-[0.83333rem] shrink-0' />
           </button>
         </PopoverTrigger>
@@ -78,7 +69,7 @@ export default function SortPopup({ label, keySp, items, onChange }: SortPopupPr
                   id={slugify(item.value)}
                   checked={item.value === selectedItem}
                   onChange={() => handleChange(item.value, true)}
-                  className='size-[1.04167rem] rounded-[5.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
+                  className='size-[1.04167rem] rounded-[5.20833rem] border-[#AEAEB2] text-[#D32F2F] ring-0 ring-offset-0 outline-none checked:border-[#0000]'
                 />
               </div>
               <span className='font-open-sans text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.60)] select-none [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] group-has-checked:text-[#D32F2F]'>
@@ -128,7 +119,7 @@ export default function SortPopup({ label, keySp, items, onChange }: SortPopupPr
                     id={slugify(item.value)}
                     checked={item.value === selectedItem}
                     onChange={() => handleChange(item.value, false)}
-                    className='size-[1.04333rem] rounded-[5.20833rem] text-[#D32F2F] ring-0 border-[#AEAEB2] ring-offset-0 outline-none checked:border-[#0000]'
+                    className='size-[1.04333rem] rounded-[5.20833rem] border-[#AEAEB2] text-[#D32F2F] ring-0 ring-offset-0 outline-none checked:border-[#0000]'
                   />
                 </div>
                 <span className='font-open-sans text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.60)] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] group-has-checked:text-[#D32F2F]'>
@@ -142,9 +133,7 @@ export default function SortPopup({ label, keySp, items, onChange }: SortPopupPr
               type='button'
               className='font-open-sans inline-flex grow items-center justify-center space-x-[0.3125rem] rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] p-[0.625rem_1.04167rem] text-[0.72917rem] leading-[150%] text-white backdrop-blur-[6px]'
             >
-              <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-                {t('apply')}
-              </span>
+              <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('apply')}</span>
               <ICChevronRight className='size-[0.83333rem] shrink-0 [&>path]:stroke-white [&>path]:[stroke-opacity:1]' />
             </button>
           </DrawerFooter>

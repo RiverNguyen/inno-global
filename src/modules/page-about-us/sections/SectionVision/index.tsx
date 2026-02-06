@@ -1,20 +1,18 @@
+import { ISectionVisionAcf } from '@/interfaces/about-us.interface'
 import CardVisionMission from '@/modules/page-about-us/components/CardVisionMission'
 
-const VISION_DATA = {
-  title: 'Tầm nhìn',
-  content:
-    "<p>Trở thành công ty tư vấn thiết kế <strong>hàng đầu Việt Nam</strong>. Quy mô nhân sự<strong style='color: #D32F2F;'> Top 10 khu vực Đông Nam Á</strong></p>",
-  thumbnail: { url: '/images/about-us/d-image-1.jpg' },
+interface SectionVisionProps {
+  visionAcfData: ISectionVisionAcf
 }
 
-export default function SectionVision() {
+export default function SectionVision({ visionAcfData }: SectionVisionProps) {
   return (
     <section>
       <CardVisionMission
         alignContent='left'
-        title={VISION_DATA?.title}
-        content={VISION_DATA?.content}
-        thumbnail={VISION_DATA?.thumbnail}
+        title={visionAcfData?.title}
+        content={visionAcfData?.description}
+        thumbnail={visionAcfData?.image}
       />
     </section>
   )
