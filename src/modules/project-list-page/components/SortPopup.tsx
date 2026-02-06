@@ -22,6 +22,7 @@ import './style.css'
 
 interface SortPopupProps {
   label: string
+  keySp: string
   items: {
     label: string
     value: string
@@ -30,12 +31,7 @@ interface SortPopupProps {
   onChange?: (value: string) => void
 }
 
-export default function SortPopup({
-  label,
-  items,
-  value,
-  onChange,
-}: SortPopupProps) {
+export default function SortPopup({ label, items, value, onChange }: SortPopupProps) {
   const [internalSelected, setInternalSelected] = useState<string>('')
   const selectedItem = value !== undefined ? value : internalSelected
 
@@ -56,9 +52,7 @@ export default function SortPopup({
             type='button'
             className='font-open-sans xsm:size-[2.08333rem] xsm:bg-[#F0F0F0] xsm:border-none xsm:space-x-0 xsm:rounded-full xsm:hidden relative flex h-[2.5rem] shrink-0 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] px-[1.14583rem] py-[0.83333rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
           >
-            <span className='xsm:hidden [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {t('sort')}
-            </span>
+            <span className='xsm:hidden [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('sort')}</span>
             <ICSort className='size-[0.83333rem] shrink-0' />
           </button>
         </PopoverTrigger>
@@ -139,9 +133,7 @@ export default function SortPopup({
               type='button'
               className='font-open-sans inline-flex grow items-center justify-center space-x-[0.3125rem] rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] p-[0.625rem_1.04167rem] text-[0.72917rem] leading-[150%] text-white backdrop-blur-[6px]'
             >
-              <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-                {t('apply')}
-              </span>
+              <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('apply')}</span>
               <ICChevronRight className='size-[0.83333rem] shrink-0 [&>path]:stroke-white [&>path]:[stroke-opacity:1]' />
             </button>
           </DrawerFooter>

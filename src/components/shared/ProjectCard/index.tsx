@@ -9,7 +9,7 @@ import { Project } from '@/interfaces/project.interface'
 import { cn } from '@/lib/utils'
 
 interface ProjectCardProps {
-  project: Project,
+  project: Project
   wrapperClassname?: string
   classNameThumbnail?: string
   classNameTitle?: string
@@ -43,19 +43,17 @@ export default function ProjectCard({
         />
       </div>
       <div className='pt-[0.72917rem]'>
-        <div className='mb-[0.3125rem] flex items-center justify-between'>
+        <div className='mb-[0.3125rem] flex items-center justify-between space-x-4'>
           <h3
             className={cn(
-              'font-open-sans text-[0.9375rem] max-w-[16rem] line-clamp-1 leading-[150%] font-semibold text-[#090909]',
+              'font-open-sans line-clamp-1 max-w-[16rem] text-[0.9375rem] leading-[150%] font-semibold text-[#090909]',
               classNameTitle,
             )}
           >
             {project?.title}
           </h3>
           <div className='font-open-sans xsm:hidden inline-flex items-center space-x-[0.20833rem] text-[0.72917rem] leading-[150%] font-normal text-[#D32F2F] transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:opacity-0 lg:group-hover:opacity-100'>
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {t('seeDetail')}
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('seeDetail')}</span>
             <ICChevronDown className='size-[0.72917rem] shrink-0 -rotate-90' />
           </div>
         </div>
@@ -68,12 +66,10 @@ export default function ProjectCard({
               height={16}
               className='size-[0.83333rem] shrink-0 object-cover'
             />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] whitespace-nowrap'>
+            <span className='whitespace-nowrap [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
               {t('investor')}:
             </span>
-            <span className='line-clamp-1 max-w-full'>
-              {project?.taxonomies?.investor?.[0]?.name || '-'}
-            </span>
+            <span className='line-clamp-1 max-w-full'>{project?.taxonomies?.investor?.[0]?.name || '-'}</span>
           </div>
           <div className='font-open-sans flex items-center space-x-[0.3125rem] text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
             <Image
@@ -83,9 +79,7 @@ export default function ProjectCard({
               height={16}
               className='size-[0.83333rem] shrink-0 object-cover'
             />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {t('location')}:
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('location')}:</span>
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
               {project?.taxonomies?.location?.[0]?.name || '-'}
             </span>

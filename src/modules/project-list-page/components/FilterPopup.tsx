@@ -1,6 +1,6 @@
 'use client'
 import { useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ICChevronDown from '@/components/icons/ICChevronDown'
 import ICChevronRight from '@/components/icons/ICChevronRight'
@@ -36,9 +36,7 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
   const t = useTranslations('ProjectListPage')
 
   const handleChange = (itemValue: string) => {
-    const next = selected.includes(itemValue)
-      ? selected.filter((v) => v !== itemValue)
-      : [...selected, itemValue]
+    const next = selected.includes(itemValue) ? selected.filter((v) => v !== itemValue) : [...selected, itemValue]
     if (value === undefined) setInternalSelected(next)
     onChange?.(next)
   }
@@ -53,9 +51,7 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
   }
 
   const handleDraftChange = (itemValue: string) => {
-    setDraftSelected((curr) =>
-      curr.includes(itemValue) ? curr.filter((v) => v !== itemValue) : [...curr, itemValue],
-    )
+    setDraftSelected((curr) => (curr.includes(itemValue) ? curr.filter((v) => v !== itemValue) : [...curr, itemValue]))
   }
 
   const handleResetDraft = () => {
@@ -74,11 +70,9 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
         <PopoverTrigger asChild>
           <button
             type='button'
-            className='font-open-sans xsm:hidden flex h-[2.5rem] cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.83333rem_1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
+            className='font-open-sans xsm:hidden flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.83333rem_1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
           >
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {label}
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{label}</span>
             <ICChevronDown className='size-[0.83333rem] shrink-0' />
           </button>
         </PopoverTrigger>
@@ -106,7 +100,10 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
         </PopoverContent>
       </Popover>
 
-      <Drawer open={drawerOpen} onOpenChange={handleDrawerOpenChange}>
+      <Drawer
+        open={drawerOpen}
+        onOpenChange={handleDrawerOpenChange}
+      >
         <DrawerTrigger asChild>
           <button
             type='button'
@@ -168,9 +165,7 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
               onClick={handleApplyDraft}
               className='font-open-sans inline-flex grow items-center justify-center space-x-[0.3125rem] rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] p-[0.625rem_1.04167rem] text-[0.72917rem] leading-[150%] text-white backdrop-blur-[6px]'
             >
-              <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-                {t('apply')}
-              </span>
+              <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('apply')}</span>
               <ICChevronRight className='size-[0.83333rem] shrink-0 [&>path]:stroke-white [&>path]:[stroke-opacity:1]' />
             </button>
           </DrawerFooter>
