@@ -4,7 +4,7 @@
   },
   "ProjectListPage": {
     "breadcrumbHome": "Home",
-    "breadcrumbProject": "Project",
+    "breadcrumbProject": "Projects",
     "investor": "Investor",
     "location": "Location",
     "title": "Projects",
@@ -12,7 +12,15 @@
     "sort": "Sort",
     "reset": "Reset",
     "apply": "Apply",
-    "sortPopup": "Sort"
+    "sortPopup": "Sort",
+    "type": "Type",
+    "service": "Service",
+    "year": "Year",
+    "newestToOldest": "Newest to oldest",
+    "oldestToNewest": "Oldest to newest",
+    "seeDetail": "See detail",
+    "loading": "Loading...",
+    "noProjects": "No projects found"
   },
   "DetailServicePage": {
     "sectionRelatedProjects": {
