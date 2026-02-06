@@ -50,6 +50,7 @@ export interface ILeadershipGroupTerm {
 export interface ILeadershipACF {
   position: string
   order: string
+  show: 'true' | 'false'
 }
 
 /* ----------------------------------

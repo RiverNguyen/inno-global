@@ -4,6 +4,7 @@ const ENDPOINTS = {
   },
   leadership: {
     list: 'api/v1/get-all/leadership',
+    detail: (slug: string) => `api/v1/detail/${slug}`,
   },
   taxonomies: {
     list: 'api/v1/taxonomies',

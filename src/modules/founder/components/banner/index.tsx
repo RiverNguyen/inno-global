@@ -26,7 +26,7 @@ export default function Banner() {
         </Breadcrumb>
 
         <h1 className="text-[rgba(9,9,9,0.80)] font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] xsm:text-[#090909] xsm:text-[1.35417rem]">
-          {t('FounderPage.title')}
+          {t('FounderPage.ceoMessage')}
         </h1>
       </div>
     </div>

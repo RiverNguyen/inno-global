@@ -1,9 +1,13 @@
-import Founder from '@/modules/founder/components'
+import Founder from '@/modules/founder'
 
-export default async function FounderPage({ params }: { params: Promise<{ locale: string }> }) {
-  const [{ locale }] = await Promise.all([params])
+export default async function FounderPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}) {
+  const [{ locale, slug }] = await Promise.all([params])
 
   return (
-    <Founder locale={locale} />
+    <Founder locale={locale} slug={slug} />
   )
 }

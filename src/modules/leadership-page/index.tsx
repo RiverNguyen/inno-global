@@ -3,7 +3,7 @@ import BoardOfDirectors from '@/modules/leadership-page/components/board-of-dire
 import leadershipService from '@/services/leadership'
 
 const getLeaderHref = (locale: string, slug?: string) => {
-  const basePath = locale === 'en' ? '/founder' : '/nguoi-thanh-lap'
+  const basePath = locale === 'en' ? '/leadership' : '/ban-lanh-dao-cong-ty'
   return slug ? `${basePath}/${slug}` : basePath
 }
 
@@ -13,18 +13,18 @@ const Leadership = async ({ locale: _locale }: { locale: string }) => {
 
   const sections = await Promise.all(
     groups.map(async (group) => {
+      if (!group.slug) {
+        return {
+          title: group.name,
+          directors: [],
+        }
+      }
+
       const leadersRes = await leadershipService.getLeadershipByGroup(_locale, group.slug)
-      const leaders = (leadersRes?.data ?? [])
-        .filter((leader) => leader.taxonomies?.leadership_group?.some((t) => t.slug === group.slug))
-        .sort((a, b) => {
-          const aOrder = Number(a.acf?.order ?? 0)
-          const bOrder = Number(b.acf?.order ?? 0)
-          return aOrder - bOrder
-        })
 
       return {
         title: group.name,
-        directors: leaders.map((leader) => ({
+        directors: (leadersRes?.data ?? []).map((leader) => ({
           name: leader.title,
           position: leader.acf?.position ?? '',
           image: leader.featured_image?.url ?? '',

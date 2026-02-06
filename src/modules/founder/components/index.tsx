@@ -2,11 +2,12 @@
 import Image from 'next/image'
 
 import SectionPagination from '@/components/shared/SectionPagination'
+import { ILeadership } from '@/interface/leadership.interface'
 
 import Banner from './banner'
 import Info from './info'
 
-export default function Founder({ locale }: { locale: string }) {
+export default function Founder({ locale, leader }: { locale: string; leader: ILeadership }) {
   return (
     <main className="sm:bg-[linear-gradient(112deg,#F8F8F8_11.8%,#F8F8F8_54.52%,#F8F8F8_84.75%)] xsm:bg-white">
       <div className='relative'>
@@ -18,7 +19,7 @@ export default function Founder({ locale }: { locale: string }) {
           className="absolute bottom-0 left-0 w-full h-full object-cover pointer-events-none xsm:hidden"
         />
         <Banner />
-        <Info />
+        <Info leader={leader} />
       </div>
 
       <SectionPagination

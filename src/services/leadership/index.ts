@@ -1,12 +1,18 @@
 import ENDPOINTS from '@/configs/endpoints'
 import fetchData from '@/fetches/fetchData'
-import { ILeadershipRes } from '@/interface/leadership.interface'
+import { ILeadership, ILeadershipRes } from '@/interface/leadership.interface'
 import { ITaxonomyRes } from '@/interface/taxonomy.interface'
 
 const leadershipService = {
   getLeadershipList: async (locale: string): Promise<ILeadershipRes> => {
     return await fetchData({
       api: `${ENDPOINTS.leadership.list}?lang=${locale}`,
+    })
+  },
+
+  getLeadershipDetail: async (slug: string): Promise<ILeadership> => {
+    return await fetchData({
+      api: `${ENDPOINTS.leadership.detail(slug)}?acf=true`,
     })
   },
 
@@ -18,7 +24,9 @@ const leadershipService = {
 
   getLeadershipByGroup: async (locale: string, groupSlug: string): Promise<ILeadershipRes> => {
     return await fetchData({
-      api: `${ENDPOINTS.leadership.list}?lang=${locale}&acf=true&tax=leadership_group&category=${groupSlug}`,
+      api: `${ENDPOINTS.leadership.list}?lang=${locale}&acf=true&tax=leadership_group&leadership_group=${encodeURIComponent(
+        groupSlug,
+      )}`,
     })
   },
 }
