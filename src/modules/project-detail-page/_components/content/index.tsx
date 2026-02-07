@@ -69,9 +69,7 @@ const content = `
 
 /** Bọc mọi table trong div.table-wrapper để scroll ngang hoạt động */
 function wrapTablesInWrapper(html: string) {
-  return html
-    .replace(/<table(?=\s|>)/gi, '<div class="table-wrapper"><table')
-    .replace(/<\/table>/gi, '</table></div>')
+  return html.replace(/<table(?=\s|>)/gi, '<div class="table-wrapper"><table').replace(/<\/table>/gi, '</table></div>')
 }
 
 const Content = () => {

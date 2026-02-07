@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
 import { useState } from 'react'
 
 import ButtonOutline from '@/components/custom/ButtonOutline'
@@ -46,6 +47,8 @@ const links = [
 export default function Header() {
   const [openSearch, setOpenSearch] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
+  const params = useParams()
+  const locale = params.locale as 'vi' | 'en'
 
   const handleOpenSearch = () => {
     setOpenSearch(true)
@@ -104,50 +107,84 @@ export default function Header() {
             </div>
           </nav>
           {/* search */}
-          <div className='flex-y-center xsm:hidden space-x-5'>
-            <button
-              onClick={handleOpenSearch}
+          <div className='flex-y-center xsm:hidden space-x-5 xsm:hidden'>
+            <div
+              onClick={!openSearch ? handleOpenSearch : undefined}
               className={cn(
                 'flex-y-center relative size-[1.875rem] rounded-full bg-white/80 transition-all duration-500',
-                openSearch && 'w-[51.04167rem] shrink-0 overflow-hidden',
+                openSearch && 'w-[51.04167rem] shrink-0',
               )}
             >
               {openSearch && (
                 <input
                   type='text'
-                  className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none'
+                  className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none bg-transparent'
                   placeholder='Nhập từ khoá tìm kiếm'
                 />
               )}
-              <div className='flex-center absolute top-0 right-0 size-[1.875rem]'>
+              <button
+                type='button'
+                aria-label={openSearch ? 'Close search' : 'Open search'}
+                onClick={handleOpenSearch}
+                className='flex-center absolute top-0 right-0 size-[1.875rem]'
+              >
                 <ICSearchHead className='text-text-100 size-[0.72917rem] rounded-full' />
+              </button>
+              <div
+                className={cn(
+                  'absolute bottom-[-0.88rem] left-0 translate-y-full w-full h-fit bg-white p-[1.25rem_0.83rem] cursor-default',
+                  openSearch
+                    ? 'opacity-100 pointer-events-auto delay-300 transition-all duration-300'
+                    : 'opacity-0 pointer-events-none ',
+                )}
+                style={{
+                  boxShadow:
+                    '0 563px 158px 0 rgba(92, 92, 92, 0.00), 0 361px 144px 0 rgba(92, 92, 92, 0.01), 0 203px 122px 0 rgba(92, 92, 92, 0.05), 0 90px 90px 0 rgba(92, 92, 92, 0.09), 0 23px 50px 0 rgba(92, 92, 92, 0.10)',
+                }}
+              >
+                <div className='flex-y-center justify-between pb-[0.83rem] border-b border-solid border-[rgba(9,9,9,0.08)]'>
+                  <span className='pc-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
+                  <Image
+                    src='/header/ic-trash.svg'
+                    alt='trash'
+                    width={28}
+                    height={28}
+                    className='size-[1.25rem] shrink-0 object-contain cursor-pointer'
+                    unoptimized
+                  />
+                </div>
+                {Array.from({ length: 10 }).map((_, index) => (
+                  <button
+                    key={index}
+                    className='pc-body-16-r text-text-100 flex-y-center h-[2.29rem] w-full justify-between'
+                  >
+                    <span>Demo {index + 1}</span>
+                    <ICClose className='text-text-100 size-[0.83333rem] shrink-0 stroke-[1.5px]' />
+                  </button>
+                ))}
               </div>
-            </button>
+            </div>
             <Link
               href='/line-he'
-              className='pc-body-16-r text-en inline-block'
+              className='pc-body-16-r text-en inline-block xsm:hidden'
             >
               Liên hệ
             </Link>
-            <ButtonRed>
+            <ButtonRed className='xsm:hidden'>
               <span>Đăng nhập</span>
               <ICUser className='size-[0.83333rem] text-white' />
             </ButtonRed>
-            <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.4rem]'>
-              <Link
-                href='/'
-                locale='vi'
-                className='text-primary-red-100'
-              >
-                VI
-              </Link>
-              <div className='border-text-60 h-[0.625rem] border-l border-solid'></div>
-              <Link
-                href='/'
-                locale='en'
-              >
-                EN
-              </Link>
+            <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.4rem] uppercase xsm:hidden'>
+              {['vi', 'en'].map((lang) => (
+                <Link
+                  key={lang}
+                  href='/'
+                  locale={lang}
+                  className={cn(lang === locale ? 'text-primary-red-100' : '')}
+                >
+                  {lang}
+                </Link>
+              ))}
             </div>
           </div>
           {/* mobile menu */}
@@ -198,7 +235,7 @@ export default function Header() {
         )}
       >
         <div className='flex-y-center h-[1.87rem] justify-between'>
-          <span className='mb-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
+          <span className='mb-body-14-r text-text-40 '>Lịch sử tìm kiếm</span>
           <Image
             src='/header/ic-trash.svg'
             alt='trash'

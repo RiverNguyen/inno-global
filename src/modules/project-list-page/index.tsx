@@ -5,12 +5,7 @@ import ICChevronRight from '@/components/icons/ICChevronRight'
 import ICClose from '@/components/icons/ICClose'
 import ICSearch from '@/components/icons/ICSearch'
 import ProjectCard from '@/components/shared/ProjectCard'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-} from '@/components/ui/breadcrumb'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage } from '@/components/ui/breadcrumb'
 
 import FilterPopup from './components/FilterPopup'
 import SortPopup from './components/SortPopup'

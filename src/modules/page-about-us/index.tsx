@@ -16,9 +16,7 @@ interface PageAboutUsProps {
 export default function PageAboutUs({ acfData }: PageAboutUsProps) {
   const t = useTranslations('Breadcrumb')
   const locale = useLocale()
-  const navBreadcrumbItems = [
-    { label: t('homePage'), href: locale === 'vi' ? ROUTES.homeVi : ROUTES.homeEn },
-  ]
+  const navBreadcrumbItems = [{ label: t('homePage'), href: locale === 'vi' ? ROUTES.homeVi : ROUTES.homeEn }]
   const lastBreadcrumbItem = { label: t('aboutUsPage') }
   return (
     <main className='font-open-sans relative overflow-hidden bg-white'>
