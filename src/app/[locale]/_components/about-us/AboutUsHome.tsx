@@ -5,40 +5,42 @@ import gsap from 'gsap'
 import Image from 'next/image'
 import { useRef } from 'react'
 
-const stats = [
-  {
-    value: 500,
-    suffix: '+',
-    label: 'Dự án đã thực hiện',
-  },
-  {
-    value: 300,
-    suffix: '+',
-    label: 'Nhân sự đang làm việc',
-  },
-  {
-    value: 100,
-    suffix: '+',
-    label: 'Khách hàng và đối tác',
-  },
-  {
-    value: 39,
-    suffix: '+',
-    label: 'Công trình đạt giải thưởng',
-  },
-  {
-    value: 10,
-    suffix: '+',
-    label: 'Công ty trong hệ thống',
-  },
-]
+import { ISectionAboutUsAcf } from '@/interfaces/home.interface'
 
-function StatCard({ stat }: { stat: (typeof stats)[number] }) {
+// const stats = [
+//   {
+//     value: 500,
+//     suffix: '+',
+//     label: 'Dự án đã thực hiện',
+//   },
+//   {
+//     value: 300,
+//     suffix: '+',
+//     label: 'Nhân sự đang làm việc',
+//   },
+//   {
+//     value: 100,
+//     suffix: '+',
+//     label: 'Khách hàng và đối tác',
+//   },
+//   {
+//     value: 39,
+//     suffix: '+',
+//     label: 'Công trình đạt giải thưởng',
+//   },
+//   {
+//     value: 10,
+//     suffix: '+',
+//     label: 'Công ty trong hệ thống',
+//   },
+// ]
+
+function StatCard({ number, subtitle }: { number: string; subtitle: string }) {
   return (
     <>
       <div className='pc-h1-64-s text-primary-red tabular-nums leading-none xsm:mb-28-number'>
         <div className='inline-flex items-end'>
-          {String(stat.value)
+          {String(number)
             .split('')
             .map((char, charIndex) => {
               if (!/^\d$/.test(char)) {
@@ -83,19 +85,18 @@ function StatCard({ stat }: { stat: (typeof stats)[number] }) {
                 </span>
               )
             })}
-          {stat.suffix ? (
-            <span className='ml-[0.1em] inline-block text-[2rem] translate-y-[-1rem] xsm:translate-y-[0.25rem] font-bold xsm:mb-28-number'>
-              {stat.suffix}
-            </span>
-          ) : null}
+          <span className='ml-[0.1em] inline-block text-[2rem] translate-y-[-1rem] xsm:translate-y-[0.25rem] font-bold xsm:mb-28-number'>
+            +
+          </span>
         </div>
       </div>
-      <p className='pc-body-18-r-primary text-text-60 xsm:pc-sub-12-r'>{stat.label}</p>
+      <p className='pc-body-18-r-primary text-text-60 xsm:pc-sub-12-r'>{subtitle}</p>
     </>
   )
 }
 
-export default function AboutUsHome() {
+export default function AboutUsHome({ data }: { data: ISectionAboutUsAcf }) {
+  const { background_pc, background_mb, title, description, number } = data
   const rootRef = useRef<HTMLDivElement | null>(null)
   const hasAnimatedRef = useRef(false)
 
@@ -148,14 +149,14 @@ export default function AboutUsHome() {
       className='relative h-screen w-full xsm:h-fit'
     >
       <Image
-        src='/home/d-bg-about-us.jpg'
+        src={background_pc.url}
         alt=''
         fill
         sizes='100vw'
         className='object-cover size-full xsm:hidden'
       />
       <Image
-        src='/home/d-bg-about-us-mb.png'
+        src={background_mb.url}
         alt=''
         fill
         sizes='100vw'
@@ -163,38 +164,42 @@ export default function AboutUsHome() {
       />
       <div className='sm:absolute-center z-10 h-screen xsm:h-fit container flex justify-end xsm:pt-[3.33rem] xsm:px-[0.83rem]'>
         <div className='sm:w-[36.4rem] h-fit sm:my-auto'>
-          <h2 className='pc-h1-64-s text-text-100 xsm:mb-h2-24-sm'>
-            Về chúng tôi <br />
-            chất lượng – niềm tin
-          </h2>
-          <p className='pc-body-20-r text-text-80 mt-[02.08rem] xsm:mt-[0.94rem] xsm:mb-body-14-r'>
-            INNO là đơn vị thi công – kiến trúc tiên phong, ứng dụng giải pháp sáng tạo để đảm bảo chất lượng và độ bền
-            công trình. Chúng tôi theo đuổi thiết kế tối ưu, thẩm mỹ và linh hoạt, tạo nên không gian sống hiện đại.
-          </p>
+          <h2
+            className='pc-h1-64-s text-text-100 xsm:mb-h2-24-sm'
+            dangerouslySetInnerHTML={{ __html: title }}
+          ></h2>
+          <p className='pc-body-20-r text-text-80 mt-[02.08rem] xsm:mt-[0.94rem] xsm:mb-body-14-r'>{description}</p>
           <div className='mt-[1.67rem] xsm:mt-[1.46rem]'>
             <div className='xsm:hidden grid grid-cols-3 gap-x-[2.6rem] gap-y-[1.88rem]'>
-              {stats.map((stat) => (
-                <div key={`pc-${stat.label}`}>
-                  <StatCard stat={stat} />
-                </div>
-              ))}
+              {Array.isArray(number) &&
+                number.map((stat) => (
+                  <div key={`pc-${stat.number}`}>
+                    <StatCard
+                      number={stat.number}
+                      subtitle={stat.subtitle}
+                    />
+                  </div>
+                ))}
             </div>
 
             <div className='sm:hidden xsm:pb-[7.34rem]'>
               {[0, 2, 4].map((startIndex) => {
-                const rowStats = stats.slice(startIndex, startIndex + 2)
+                const rowStats = number.slice(startIndex, startIndex + 2)
 
                 return (
                   <div
                     key={`mb-${startIndex}`}
                     className='grid grid-cols-2 border-t border-[rgba(9,9,9,0.12)]'
                   >
-                    {rowStats.map((stat, colIndex) => (
+                    {rowStats.map(({ number, subtitle }, colIndex) => (
                       <div
-                        key={stat.label}
+                        key={colIndex}
                         className={`pt-[0.83rem] pb-[0.73rem] ${colIndex === 0 ? (rowStats.length > 1 ? 'pr-[0.52rem]' : '') : 'pl-[0.52rem]'}`}
                       >
-                        <StatCard stat={stat} />
+                        <StatCard
+                          number={number}
+                          subtitle={subtitle}
+                        />
                       </div>
                     ))}
                   </div>

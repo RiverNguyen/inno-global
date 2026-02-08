@@ -3,12 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 
-import { bannerImages, bannerLogos } from './banner.constants'
+import { ISectionBannerAcf } from '@/interfaces/home.interface'
+
 import BannerCarousel from './BannerCarousel'
 import BannerControls from './BannerControls'
 import LogoMarquee from './LogoMarquee'
 
-export default function BannerHome() {
+export default function BannerHome({ data }: { data: ISectionBannerAcf }) {
+  const { image_slide, partner_slide } = data
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
 
@@ -55,17 +57,18 @@ export default function BannerHome() {
       <BannerCarousel
         onSwiper={handleSwiper}
         onActiveIndexChange={setActiveIndex}
+        images={image_slide}
       />
       <BannerControls
         activeIndex={activeIndex}
-        total={bannerImages.length}
+        total={image_slide.length}
         isPlaying={isPlaying}
         onTogglePlay={handleTogglePlay}
         onPrev={handlePrev}
         onNext={handleNext}
         onSelect={handleSelect}
       />
-      <LogoMarquee logos={bannerLogos} />
+      <LogoMarquee logos={partner_slide} />
     </section>
   )
 }

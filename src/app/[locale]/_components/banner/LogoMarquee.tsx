@@ -3,13 +3,15 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Image from 'next/image'
-import { memo, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+import { IAcfImage } from '@/interfaces/acf-wp.interface'
 
 type LogoMarqueeProps = {
-  logos: { src: string; alt: string }[]
+  logos: IAcfImage[]
 }
 
-const LogoMarquee = memo(function LogoMarquee({ logos }: LogoMarqueeProps) {
+export default function LogoMarquee({ logos }: LogoMarqueeProps) {
   const [logoRepeat, setLogoRepeat] = useState(2)
   const marqueeTrackRef = useRef<HTMLDivElement | null>(null)
   const marqueeGroupRef = useRef<HTMLDivElement | null>(null)
@@ -116,9 +118,9 @@ const LogoMarquee = memo(function LogoMarquee({ logos }: LogoMarqueeProps) {
               >
                 {logos.map((logo, index) => (
                   <Image
-                    key={`${logo.src}-${repeatIndex}-${index}`}
-                    src={logo.src}
-                    alt={repeatIndex === 0 ? logo.alt : ''}
+                    key={`${logo.id}-${repeatIndex}-${index}`}
+                    src={logo.url}
+                    alt=''
                     aria-hidden={repeatIndex !== 0}
                     width={100}
                     height={100}
@@ -133,8 +135,4 @@ const LogoMarquee = memo(function LogoMarquee({ logos }: LogoMarqueeProps) {
       </div>
     </div>
   )
-})
-
-LogoMarquee.displayName = 'LogoMarquee'
-
-export default LogoMarquee
+}

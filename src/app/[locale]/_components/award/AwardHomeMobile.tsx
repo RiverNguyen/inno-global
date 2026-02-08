@@ -1,39 +1,17 @@
+/* eslint-disable import/order */
 'use client'
 import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-const AWARDS = [
-  {
-    year: '2021',
-    image: '/home/d-cup1.webp',
-    description:
-      'Giải thưởng Digie Award là vinh danh quốc tế, ghi nhận năng lực ứng dụng công nghệ thông minh, quản trị vận hành hiện đại và phát triển hạ tầng đô thị số, đáp ứng đổi mới và tối ưu trải nghiệm sống.',
-  },
-  {
-    year: '2023',
-    image: '/home/d-cup2.webp',
-    description: 'Một giải thưởng khác minh chứng cho sự nỗ lực không ngừng nghỉ của tập đoàn.',
-  },
-  {
-    year: '2024',
-    image: '/home/d-cup3.webp',
-    description:
-      'PropertyGuru Vietnam Property Awards 2024 vinh danh các nhà phát triển bất động sản tốt nhất tại Việt Nam.',
-  },
-  {
-    year: '2025',
-    image: '/home/d-cup1.webp',
-    description:
-      'Dot Property Awards 2025 ghi nhận những đóng góp to lớn trong việc phát triển hệ sinh thái bất động sản bền vững.',
-  },
-]
+import { ISectionAwardAcf } from '@/interfaces/home.interface'
 
-export default function AwardHomeMobile() {
+export default function AwardHomeMobile({ data }: { data: ISectionAwardAcf }) {
+  const { title, list_awards } = data
   const [activeIndex, setActiveIndex] = useState(0)
   return (
     <div className='sm:hidden overflow-hidden pt-[8.65rem] pb-[2.08rem] relative min-h-[19.9rem] px-[0.83rem]'>
@@ -55,11 +33,12 @@ export default function AwardHomeMobile() {
             }}
             className='text-[2.70833rem] leading-[1.2] font-semibold capitalize text-shadow-[0_0_37.912px_rgba(255,255,255,0.25)]'
           >
-            12
+            {list_awards?.length}
           </p>
-          <p className='text-white text-center text-[1.04167rem] font-semibold leading-[1.2] tracking-[-0.06667rem] capitalize text-shadow-[0_4px_4px_rgba(0,0,0,0.25)]'>
-            Giải thưởng nổi bật <br /> từ năng lực vững bền
-          </p>
+          <div
+            className='text-white text-center text-[1.04167rem] font-semibold leading-[1.2] tracking-[-0.06667rem] capitalize text-shadow-[0_4px_4px_rgba(0,0,0,0.25)]'
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
         </div>
       </div>
 
@@ -79,14 +58,14 @@ export default function AwardHomeMobile() {
           }}
           className='!overflow-visible'
         >
-          {AWARDS.map((award, index) => (
+          {list_awards?.map((item, index) => (
             <SwiperSlide key={index}>
               {({ isActive }) => (
-                <div className={`flex flex-col items-center transition-all duration-300`}>
+                <div className={'flex flex-col items-center transition-all duration-300'}>
                   <div className='relative flex items-center justify-center'>
                     <Image
-                      src={award.image}
-                      alt={award.year}
+                      src={item.image.url}
+                      alt={item.image.alt}
                       width={300}
                       height={300}
                       className='object-contain size-[8.95rem] z-1'
@@ -97,11 +76,11 @@ export default function AwardHomeMobile() {
                       isActive ? 'bg-gr-2' : 'bg-en-60 '
                     }`}
                   >
-                    {award.year}
+                    {item.year}
                   </div>
                   <div className='absolute w-[8.5625rem] h-[8.59375rem] rounded-[50%] bg-white opacity-60 blur-[30px] top-[1rem] left-[25%]'></div>
                   <p className='mt-[0.94rem] text-[0.72917rem] leading-[1.5] text-text-80 self-stretch'>
-                    {award.description}
+                    {item.description}
                   </p>
                 </div>
               )}
@@ -109,10 +88,10 @@ export default function AwardHomeMobile() {
           ))}
           <div className='flex justify-center mt-[0.83rem] items-center space-x-[0.42rem] z-20'>
             <span className='mb-caption-12-12-r text-text-60'>
-              {String(activeIndex + 1).padStart(2, '0')}/{String(AWARDS.length).padStart(2, '0')}
+              {String(activeIndex + 1).padStart(2, '0')}/{String(list_awards?.length).padStart(2, '0')}
             </span>
             <div className='flex items-center space-x-[0.16rem]'>
-              {AWARDS.map((_, index) => (
+              {list_awards?.map((_, index) => (
                 <div
                   key={index}
                   className={`h-[0.10417rem] rounded-full transition-all duration-300 bg-text-60 ${
