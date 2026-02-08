@@ -6,13 +6,33 @@
     "breadcrumbHome": "Trang chủ",
     "breadcrumbProject": "Dự án",
     "investor": "Chủ đầu tư",
-    "location": "Địa điểm",
     "title": "Danh sách dự án",
     "placeholderSearch": "Tìm kiếm từ khóa",
     "sort": "Sắp xếp",
     "reset": "Đặt lại",
     "apply": "Áp dụng",
-    "sortPopup": "Sắp xếp theo"
+    "sortPopup": "Sắp xếp theo",
+    "type": "Loại hình",
+    "service": "Dịch vụ tham gia",
+    "location": "Địa điểm",
+    "year": "Năm",
+    "newestToOldest": "Mới nhất đến cũ nhất",
+    "oldestToNewest": "Cũ nhất đến mới nhất",
+    "seeDetail": "Xem chi tiết",
+    "loading": "Đang tải...",
+    "noProjects": "Không tìm thấy dự án"
+  },
+  "LeadershipPage": {
+    "title": "Ban Lãnh Đạo Công Ty"
+  },
+  "FounderPage": {
+    "title": "Người Thành Lập",
+    "ceoMessage": "Thông điệp của CEO"
+  },
+  "DetailProjectPage": {
+    "learnMore": "Tìm hiểu thêm về dự án",
+    "related": "Dự án liên quan",
+    "viewAll": "Xem tất cả"
   },
   "DetailServicePage": {
     "sectionRelatedProjects": {
@@ -22,10 +42,18 @@
       "title": "Bài viết liên quan"
     }
   },
+  "SubCompanyPage": {
+    "companyList": "Danh sách công ty"
+  },
   "Breadcrumb": {
     "homePage": "Trang chủ",
     "servicePage": "Dịch vụ",
     "aboutUsPage": "Về chúng tôi",
-    "detailServicePage": "Chi tiết dịch vụ"
+    "detailServicePage": "Chi tiết dịch vụ",
+    "socialResponsibilityPage": "Trách nhiệm xã hội",
+    "historyPage": "Lịch sử hình thành & phát triển",
+    "companyPage": "Công ty con/liên kết",
+    "businessCulturePage": "Văn hóa doanh nghiệp",
+    "organizationChartPage": "Sơ đồ tổ chức"
   }
 }

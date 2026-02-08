@@ -23,22 +23,45 @@ interface FilterPopupProps {
     label: string
     value: string
   }[]
-  onChange: () => void
+  value?: string[]
+  onChange?: (selected: string[]) => void
 }
 
-export default function FilterPopup({ label, items, onChange }: FilterPopupProps) {
-  const [selected, setSelected] = useState<string[]>([])
+export default function FilterPopup({ label, items, value, onChange }: FilterPopupProps) {
+  const [internalSelected, setInternalSelected] = useState<string[]>([])
+  const selected = value !== undefined ? value : internalSelected
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [draftSelected, setDraftSelected] = useState<string[]>([])
 
   const t = useTranslations('ProjectListPage')
 
-  const handleChange = (value: string) => {
-    setSelected(
-      (prev) =>
-        prev.includes(value)
-          ? prev.filter((v) => v !== value) // remove
-          : [...prev, value], // add
-    )
-    onChange()
+  const handleChange = (itemValue: string) => {
+    const next = selected.includes(itemValue) ? selected.filter((v) => v !== itemValue) : [...selected, itemValue]
+    if (value === undefined) setInternalSelected(next)
+    onChange?.(next)
+  }
+
+  // Sync draft selection when opening the mobile drawer.
+  // Closing without Apply will discard drafts; re-opening will reset from `selected`.
+  const handleDrawerOpenChange = (nextOpen: boolean) => {
+    setDrawerOpen(nextOpen)
+    if (nextOpen) {
+      setDraftSelected(selected)
+    }
+  }
+
+  const handleDraftChange = (itemValue: string) => {
+    setDraftSelected((curr) => (curr.includes(itemValue) ? curr.filter((v) => v !== itemValue) : [...curr, itemValue]))
+  }
+
+  const handleResetDraft = () => {
+    setDraftSelected([])
+  }
+
+  const handleApplyDraft = () => {
+    if (value === undefined) setInternalSelected(draftSelected)
+    onChange?.(draftSelected)
+    setDrawerOpen(false)
   }
 
   return (
@@ -47,7 +70,7 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
         <PopoverTrigger asChild>
           <button
             type='button'
-            className='font-open-sans xsm:hidden flex h-[2.5rem] cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.83333rem_1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
+            className='font-open-sans xsm:hidden flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.83333rem_1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
           >
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{label}</span>
             <ICChevronDown className='size-[0.83333rem] shrink-0' />
@@ -77,7 +100,10 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
         </PopoverContent>
       </Popover>
 
-      <Drawer>
+      <Drawer
+        open={drawerOpen}
+        onOpenChange={handleDrawerOpenChange}
+      >
         <DrawerTrigger asChild>
           <button
             type='button'
@@ -115,8 +141,8 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
                   <input
                     type='checkbox'
                     id={slugify(item.value)}
-                    checked={selected.includes(item.value)}
-                    onChange={() => handleChange(item.value)}
+                    checked={draftSelected.includes(item.value)}
+                    onChange={() => handleDraftChange(item.value)}
                     className='peer size-[1.04167rem] rounded-[0.20833rem] border-[#AEAEB2] text-[#D32F2F] ring-0 ring-offset-0 outline-none checked:border-[#0000]'
                   />
                 </div>
@@ -129,12 +155,14 @@ export default function FilterPopup({ label, items, onChange }: FilterPopupProps
           <DrawerFooter className='flex flex-row items-center p-[1.04167rem_0.83333rem] shadow-[0_-5px_4px_0_rgba(0,0,0,0.04)]'>
             <button
               type='button'
+              onClick={handleResetDraft}
               className='font-open-sans inline-flex h-[2.08333rem] cursor-pointer items-center justify-center rounded-[5.20833rem] border border-[rgba(9,9,9,0.60)] p-[0.67708rem_1.25rem] text-[0.67708rem] leading-[150%] font-normal text-[#090909]'
             >
               {t('reset')}
             </button>
             <button
               type='button'
+              onClick={handleApplyDraft}
               className='font-open-sans inline-flex grow items-center justify-center space-x-[0.3125rem] rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] p-[0.625rem_1.04167rem] text-[0.72917rem] leading-[150%] text-white backdrop-blur-[6px]'
             >
               <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('apply')}</span>

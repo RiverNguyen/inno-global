@@ -17,13 +17,8 @@ export function scrollToElementInContainer(
   duration: number = 1,
   offsetRem: number = 0,
 ): void {
-  const container = document.getElementById(containerId)
   const targetElement = document.getElementById(elementId)
 
-  if (!container) {
-    console.warn(`Container with ID '${containerId}' not found.`)
-    return
-  }
   if (!targetElement) {
     console.warn(`Element with ID '${elementId}' not found.`)
     return
@@ -31,6 +26,23 @@ export function scrollToElementInContainer(
 
   // Chuyển đổi offset từ rem sang pixel
   const offsetPx = offsetRem * parseFloat(getComputedStyle(document.documentElement).fontSize)
+
+  // Special case: scroll the window (page-level scroll)
+  if (containerId === 'window') {
+    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offsetPx
+    gsap.to(window, {
+      duration: duration,
+      scrollTo: { y: targetPosition, autoKill: true },
+      ease: 'power2.out',
+    })
+    return
+  }
+
+  const container = document.getElementById(containerId)
+  if (!container) {
+    console.warn(`Container with ID '${containerId}' not found.`)
+    return
+  }
 
   // Vị trí của phần tử trong container
   const containerRect = container.getBoundingClientRect()

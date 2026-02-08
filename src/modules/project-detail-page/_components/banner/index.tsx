@@ -3,32 +3,26 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
-import 'swiper/css'
-import 'swiper/css/parallax'
 import { Autoplay, Parallax } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-const images = [
-  { src: '/blog-detail/image/d-banner.webp', alt: 'Slide 1' },
-  { src: 'https://picsum.photos/id/1016/1920/1080', alt: 'Slide 2' },
-  { src: 'https://picsum.photos/id/1018/1920/1080', alt: 'Slide 3' },
-]
+import 'swiper/css'
+import 'swiper/css/parallax'
+import { IMedia } from '@/interfaces/media.interface'
 
-export default function Banner() {
+export default function Banner({ title, location, gallery }: { title: string; location: string; gallery: IMedia[] }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
-  const totalSlides = images.length
+  const totalSlides = Array.isArray(gallery) ? gallery.length : 0
 
   const formatSlideNumber = (num: number) => String(num).padStart(2, '0')
 
   return (
     <section className='tablet:h-[70vh] xsm:pt-[1.67rem] xsm:px-[0.8275rem] xsm:h-auto relative h-screen w-full overflow-hidden'>
-      <p className='mb-[0.3125rem] text-[1.35rem] leading-[1.2] font-semibold text-[#090909] sm:hidden'>
-        Nikko Kanaya Hotel ANNEX ROYAL HOUSE
-      </p>
+      <p className='mb-[0.3125rem] text-[1.35rem] leading-[1.2] font-semibold text-[#090909] sm:hidden'>{title}</p>
       <div className='flex-y-center mb-[1.04rem] space-x-[0.21rem] sm:hidden'>
         <LocationIcon className='size-[0.72917rem] text-[#D32F2F]' />
-        <p className='text-[0.625rem] leading-[1.2] font-semibold text-[#090909]/60'>Quảng Ninh</p>
+        <p className='text-[0.625rem] leading-[1.2] font-semibold text-[#090909]/60'>{location}</p>
       </div>
       <div
         className='xsm:hidden pointer-events-none absolute bottom-0 left-0 z-2 h-[35.3125rem] w-full opacity-60'
@@ -51,35 +45,34 @@ export default function Banner() {
         onSwiper={setSwiperInstance}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
       >
-        {images.map((image, index) => (
-          <SwiperSlide
-            key={index}
-            className='relative overflow-hidden'
-          >
-            <div
-              className='absolute top-0 left-0 size-full overflow-hidden will-change-transform'
-              data-swiper-parallax='70%'
+        {Array.isArray(gallery) &&
+          gallery.map((image, index) => (
+            <SwiperSlide
+              key={index}
+              className='relative overflow-hidden'
             >
-              <Image
-                width={1920}
-                height={1080}
-                src={image.src}
-                alt={image.alt}
-                className='h-full w-full object-cover will-change-transform'
-              />
-            </div>
-          </SwiperSlide>
-        ))}
+              <div
+                className='absolute top-0 left-0 size-full overflow-hidden will-change-transform'
+                data-swiper-parallax='70%'
+              >
+                <Image
+                  width={1920}
+                  height={1080}
+                  src={image.url}
+                  alt={image.alt}
+                  className='h-full w-full object-cover will-change-transform'
+                />
+              </div>
+            </SwiperSlide>
+          ))}
       </Swiper>
       {/* Custom pagination & navigation */}
       <div className='xsm:w-[17.86458rem] xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1.02rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[5.2125rem] left-[12.5rem] z-10 flex items-end justify-between'>
         <div className='xsm:hidden space-y-4'>
-          <h1 className='text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-white'>
-            Nikko Kanaya Hotel ANNEX ROYAL HOUSE
-          </h1>
+          <h1 className='text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-white'>{title}</h1>
           <p className='flex-y-center text-[0.9375rem] leading-[1.5] text-white'>
             <LocationIcon className='mr-[0.375rem] size-[1.125rem]' />
-            Quảng Ninh
+            {location}
           </p>
         </div>
         {/* Slide counter */}
@@ -87,7 +80,7 @@ export default function Banner() {
           <button
             type='button'
             aria-label='Previous slide'
-            className='group relative size-[1.25rem] -scale-x-100 transition-opacity sm:hidden'
+            className='group relative size-[1.25rem] -scale-x-100 cursor-pointer transition-opacity sm:hidden'
             onClick={() => swiperInstance?.slidePrev()}
           >
             <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
@@ -101,15 +94,16 @@ export default function Banner() {
 
             {/* Progress bar segments */}
             <div className='flex items-center space-x-[0.1875rem]'>
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  type='button'
-                  aria-label={`Go to slide ${index + 1}`}
-                  className={`h-[0.15625rem] min-w-0 shrink-0 cursor-pointer transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] bg-white' : 'xsm:w-[0.67rem] w-[1.19792rem] bg-white/30'}`}
-                  onClick={() => swiperInstance?.slideToLoop(index)}
-                />
-              ))}
+              {Array.isArray(gallery) &&
+                gallery.map((_, index) => (
+                  <button
+                    key={index}
+                    type='button'
+                    aria-label={`Go to slide ${index + 1}`}
+                    className={`h-[0.15625rem] min-w-0 shrink-0 cursor-pointer transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] bg-white' : 'xsm:w-[0.67rem] w-[1.19792rem] bg-white/30'}`}
+                    onClick={() => swiperInstance?.slideToLoop(index)}
+                  />
+                ))}
             </div>
           </div>
 
@@ -118,7 +112,7 @@ export default function Banner() {
             <button
               type='button'
               aria-label='Previous slide'
-              className='group xsm:hidden relative size-[1.25rem] -scale-x-100 transition-opacity'
+              className='group xsm:hidden relative size-[1.25rem] -scale-x-100 cursor-pointer transition-opacity'
               onClick={() => swiperInstance?.slidePrev()}
             >
               <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
@@ -127,7 +121,7 @@ export default function Banner() {
             <button
               type='button'
               aria-label='Next slide'
-              className='group relative size-[1.25rem] transition-opacity'
+              className='group relative size-[1.25rem] cursor-pointer transition-opacity'
               onClick={() => swiperInstance?.slideNext()}
             >
               <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />

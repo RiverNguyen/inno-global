@@ -1,4 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 import Footer, { IFooter } from '@/layouts/footer/footer'
 import Header from '@/layouts/header/Header'
@@ -15,9 +16,11 @@ export default async function layout({
   const [footerData] = await Promise.all([footerService.getFooterData<{ data: { footer_fields: IFooter } }>(locale)])
   return (
     <NextIntlClientProvider>
-      <Header />
-      {children}
-      <Footer data={footerData.data.footer_fields} />
+      <NuqsAdapter>
+        <Header />
+        {children}
+        <Footer data={footerData.data.footer_fields} />
+      </NuqsAdapter>
     </NextIntlClientProvider>
   )
 }

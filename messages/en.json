@@ -4,7 +4,7 @@
   },
   "ProjectListPage": {
     "breadcrumbHome": "Home",
-    "breadcrumbProject": "Project",
+    "breadcrumbProject": "Projects",
     "investor": "Investor",
     "location": "Location",
     "title": "Projects",
@@ -12,7 +12,27 @@
     "sort": "Sort",
     "reset": "Reset",
     "apply": "Apply",
-    "sortPopup": "Sort"
+    "sortPopup": "Sort",
+    "type": "Type",
+    "service": "Service",
+    "year": "Year",
+    "newestToOldest": "Newest to oldest",
+    "oldestToNewest": "Oldest to newest",
+    "seeDetail": "See detail",
+    "loading": "Loading...",
+    "noProjects": "No projects found"
+  },
+  "LeadershipPage": {
+    "title": "Leadership"
+  },
+  "FounderPage": {
+    "title": "Founder",
+    "ceoMessage": "CEO Message"
+  },
+  "DetailProjectPage": {
+    "learnMore": "Learn more about the project",
+    "related": "Related projects",
+    "viewAll": "View all"
   },
   "DetailServicePage": {
     "sectionRelatedProjects": {
@@ -22,10 +42,18 @@
       "title": "Related blogs"
     }
   },
+  "SubCompanyPage": {
+    "companyList": "Companys"
+  },
   "Breadcrumb": {
     "homePage": "Home",
     "servicePage": "Services",
     "aboutUsPage": "About us",
-    "detailServicePage": "Detail service"
+    "detailServicePage": "Detail service",
+    "socialResponsibilityPage": "Social responsibility",
+    "historyPage": "History of establishment & development",
+    "companyPage": "Subsidiary/affiliate company",
+    "businessCulturePage": "Business culture",
+    "organizationChartPage": "Organization chart"
   }
 }
