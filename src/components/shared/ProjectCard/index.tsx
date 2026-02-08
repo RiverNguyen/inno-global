@@ -22,12 +22,7 @@ interface IProjectCard {
   classNameThumbnail?: string
 }
 
-export default function ProjectCard({
-  project,
-  wrapperClassname,
-  classNameTitle,
-  classNameThumbnail,
-}: IProjectCard) {
+export default function ProjectCard({ project, wrapperClassname, classNameTitle, classNameThumbnail }: IProjectCard) {
   const t = useTranslations('ProjectListPage')
 
   return (
@@ -60,9 +55,7 @@ export default function ProjectCard({
             {project?.title}
           </h3>
           <div className='font-open-sans xsm:hidden inline-flex items-center space-x-[0.20833rem] text-[0.72917rem] leading-[150%] font-normal text-[#D32F2F] transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:opacity-0 lg:group-hover:opacity-100'>
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              Xem chi tiết
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Xem chi tiết</span>
             <ICChevronDown className='size-[0.72917rem] shrink-0 -rotate-90' />
           </div>
         </div>
@@ -75,12 +68,8 @@ export default function ProjectCard({
               height={16}
               className='size-[0.83333rem] shrink-0 object-cover'
             />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {t('investor')}:
-            </span>
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {project?.investor}
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('investor')}:</span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{project?.investor}</span>
           </div>
           <div className='font-open-sans flex items-center space-x-[0.3125rem] text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
             <Image
@@ -90,12 +79,8 @@ export default function ProjectCard({
               height={16}
               className='size-[0.83333rem] shrink-0 object-cover'
             />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {t('location')}:
-            </span>
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              {project?.location}
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('location')}:</span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{project?.location}</span>
           </div>
         </div>
       </div>

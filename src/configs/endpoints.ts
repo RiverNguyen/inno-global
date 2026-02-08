@@ -7,6 +7,10 @@ const ENDPOINTS = {
   pageIds: {
     aboutUsVi: 104,
     aboutUsEn: 106,
+    home: {
+      vi: 471,
+      en: 473,
+    },
   },
   service: {
     detail: (slug: string) => `api/v1/taxonomy/${slug}?acf=true`,

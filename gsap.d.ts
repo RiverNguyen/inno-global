@@ -2,3 +2,7 @@
 declare module 'gsap/Observer' {
   export { Observer } from 'gsap/observer'
 }
+
+declare module 'gsap/ScrollToPlugin' {
+  export { ScrollToPlugin } from 'gsap/scrollToPlugin'
+}
