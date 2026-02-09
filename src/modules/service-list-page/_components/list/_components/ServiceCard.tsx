@@ -45,7 +45,7 @@ export default function ServiceCard({ href, title, description, imageSrc }: Serv
           </div>
 
           <p className='text-en-60 font-open-sans xsm:hidden line-clamp-5 text-justify text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.41,0.01,0,1)] group-hover:opacity-90'>
-            {description}
+            {description || 'INNO cung cấp giải pháp kiến trúc toàn diện, kết hợp hài hòa giữa công năng, thẩm mỹ và sự phù hợp với bối cảnh. Mỗi dự án được nghiên cứu kỹ lưỡng từ ý tưởng, không gian, vật liệu đến trải nghiệm sử dụng. Chúng tôi hướng tới những thiết kế bền vững, tinh gọn và mang dấu ấn riêng của chủ đầu tư. Mục tiêu cuối cùng là tạo nên không gian sống và làm việc thực sự hiệu quả và truyền cảm hứng.'}
           </p>
         </div>
       </Link>
