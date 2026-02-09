@@ -50,14 +50,10 @@ export default function CardBlog({
       </div>
       <div className='xsm:space-y-[0.5rem] space-y-[0.3125rem]'>
         <div className='flex items-center space-x-[0.625rem] uppercase'>
-          <p
-            className={cn('text-primary-red/90 pc-sub-12-r xsm:tracking-normal', classNameCategory)}
-          >
+          <p className={cn('text-primary-red/90 pc-sub-12-r xsm:tracking-normal', classNameCategory)}>
             {category || ''}
           </p>
-          <p className={cn('text-primary/90 pc-sub-12-r xsm:tracking-normal', classNameDate)}>
-            {date || ''}
-          </p>
+          <p className={cn('text-primary/90 pc-sub-12-r xsm:tracking-normal', classNameDate)}>{date || ''}</p>
         </div>
         <h3
           className={cn(

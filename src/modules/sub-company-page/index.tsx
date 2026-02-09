@@ -6,7 +6,7 @@ import ICChevronDown from '@/components/icons/ICChevronDown'
 import Breadcrumb from '@/components/shared/Breadcrumb'
 import ROUTES from '@/configs/routes'
 import { Link } from '@/i18n/navigation'
-import { ICompany, ISubCompanyRes } from '@/interface/subcompany.interface'
+import { ICompany, ISubCompanyRes } from '@/interfaces/subcompany.interface'
 
 import CompanyCard from './components/CompanyCard'
 

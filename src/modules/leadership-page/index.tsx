@@ -35,9 +35,12 @@ const Leadership = async ({ locale: _locale }: { locale: string }) => {
   )
 
   return (
-    <main className="bg-[#F8F8F8] xsm:bg-white">
+    <main className='xsm:bg-white bg-[#F8F8F8]'>
       <Banner />
-      <BoardOfDirectors sections={sections} locale={_locale} />
+      <BoardOfDirectors
+        sections={sections}
+        locale={_locale}
+      />
     </main>
   )
 }

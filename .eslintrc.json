@@ -11,12 +11,12 @@
     "no-multiple-empty-lines": "error",
     "space-before-blocks": ["error", "always"],
     "semi": [1, "never"],
-    "linebreak-style": "error",
     "quotes": ["error", "single"],
     "array-bracket-spacing": "error",
     "no-unexpected-multiline": "error",
     "keyword-spacing": "error",
     "comma-spacing": "error",
-    "@typescript-eslint/no-explicit-any": "error"
+    "@typescript-eslint/no-explicit-any": "error",
+    "linebreak-style": ["error", "windows"]
   }
 }

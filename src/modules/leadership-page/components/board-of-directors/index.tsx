@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import SectionPagination from '@/components/shared/SectionPagination'
 
@@ -16,13 +17,17 @@ type BoardSectionData = {
 }
 
 const BoardSection = ({ title, directors }: { title: string; directors: DirectorCard[] }) => (
-  <div className="flex flex-col gap-[3.33333rem] xsm:gap-[1.25rem]">
-    <h2 className="text-[rgba(9,9,9,0.80)] font-open-sans text-[1.875rem] font-semibold text-center leading-[1.35417rem] xsm:text-[1.04167rem] xsm:leading-[150%]">
+  <div className='xsm:gap-[1.25rem] flex flex-col gap-[3.33333rem]'>
+    <h2 className='font-open-sans xsm:text-[1.04167rem] xsm:leading-[150%] text-center text-[1.875rem] leading-[1.35417rem] font-semibold text-[rgba(9,9,9,0.80)]'>
       {title}
     </h2>
     <div className='xsm:gap-y-[0.625rem] xsm:gap-x-[0.83333rem] flex flex-wrap justify-center gap-x-[1.77rem] gap-y-[3.33333rem]'>
       {directors.map((director, index) => (
-        <Link href={director.href} key={index} className="relative w-[17.34375rem] xsm:w-[8.5112rem]">
+        <Link
+          href={director.href}
+          key={index}
+          className='xsm:w-[8.5112rem] relative w-[17.34375rem]'
+        >
           <Image
             src='/leadership/overlay.webp'
             alt='overlay'
@@ -61,21 +66,26 @@ const BoardSection = ({ title, directors }: { title: string; directors: Director
 )
 
 export default function BoardOfDirectors({ sections, locale }: { sections: BoardSectionData[]; locale: string }) {
-  const getAboutUsHref = (locale: string) => locale === 'en' ? '/about-us' : '/ve-chung-toi'
+  const t = useTranslations()
+  const getAboutUsHref = (locale: string) => (locale === 'en' ? '/about-us' : '/ve-chung-toi')
 
   return (
     <>
-      <div className="max-w-[74.6875rem] mx-auto flex flex-col gap-[5rem] py-[4.16667rem] xsm:gap-[1.66667rem] xsm:px-[0.83333rem] xsm:pb-0 xsm:pt-[1.66667rem]">
+      <div className='xsm:gap-[1.66667rem] xsm:px-[0.83333rem] xsm:pb-0 xsm:pt-[1.66667rem] mx-auto flex max-w-[74.6875rem] flex-col gap-[5rem] py-[4.16667rem]'>
         {sections.map((section) => (
-          <BoardSection key={section.title} title={section.title} directors={section.directors} />
+          <BoardSection
+            key={section.title}
+            title={section.title}
+            directors={section.directors}
+          />
         ))}
       </div>
 
       {/* Pagination */}
       <SectionPagination
-        prev={{ href: '', label: 'Trang B' }}
-        center={{ href: getAboutUsHref(locale), label: 'Về chúng tôi' }}
-        next={{ href: '', label: 'Trang A' }}
+        prev={{ href: '', label: t('Breadcrumb.companyPage') }}
+        center={{ href: getAboutUsHref(locale), label: t('Breadcrumb.aboutUsPage') }}
+        next={{ href: '', label: t('Breadcrumb.businessCulturePage') }}
       />
     </>
   )

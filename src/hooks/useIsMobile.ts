@@ -20,22 +20,12 @@ export const useIsMobile = (): UseIsMobileReturn => {
 
       // Check using user agent (additional detection)
       const userAgent = navigator.userAgent.toLowerCase()
-      const mobileKeywords = [
-        'android',
-        'webos',
-        'iphone',
-        'ipad',
-        'ipod',
-        'blackberry',
-        'windows phone',
-        'mobile',
-      ]
+      const mobileKeywords = ['android', 'webos', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone', 'mobile']
 
       const isMobileUA = mobileKeywords.some((keyword) => userAgent.includes(keyword))
 
       // Combine both checks - prioritize media query but consider user agent
-      const isMobileDevice =
-        mediaQuery.matches || (isMobileUA && window.innerWidth <= mobileBreakpoint)
+      const isMobileDevice = mediaQuery.matches || (isMobileUA && window.innerWidth <= mobileBreakpoint)
 
       setIsMobile(isMobileDevice)
       setIsLoading(false)

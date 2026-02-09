@@ -27,7 +27,7 @@ export default function PageDetailService({
         slideItems={detailServiceData?.data?.acf?.banner?.slide_items}
       />
       <CtaFixed />
-      <SectionRelatedProjects relatedProjects={relatedProjectsData?.data} />
+      <SectionRelatedProjects relatedProjectsData={relatedProjectsData} />
       <SectionRelatedBlogs
         totalPages={relatedBlogsData?.totalPages}
         initRelatedBlogs={relatedBlogsData?.data}

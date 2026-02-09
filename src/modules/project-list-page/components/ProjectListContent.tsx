@@ -21,11 +21,7 @@ interface ProjectListContentProps {
   t: (key: string) => string
 }
 
-export default function ProjectListContent({
-  projects,
-  isInitialLoading,
-  t,
-}: ProjectListContentProps) {
+export default function ProjectListContent({ projects, isInitialLoading, t }: ProjectListContentProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
   const didHydrateRef = useRef(false)
@@ -37,8 +33,7 @@ export default function ProjectListContent({
       if (!container) return
 
       const prefersReducedMotion =
-        typeof window !== 'undefined' &&
-        window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches
+        typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches
 
       const items = Array.from(container.querySelectorAll<HTMLElement>('[data-project-item]'))
 
@@ -127,9 +122,15 @@ export default function ProjectListContent({
 
   if (Array.isArray(projects) && projects.length > 0) {
     return (
-      <div ref={containerRef} className='contents'>
+      <div
+        ref={containerRef}
+        className='contents'
+      >
         {projects.map((project: IProject, i: number) => (
-          <div key={project.id || i} data-project-item>
+          <div
+            key={project.id || i}
+            data-project-item
+          >
             <ProjectCard project={project} />
           </div>
         ))}

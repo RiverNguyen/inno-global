@@ -1,18 +1,18 @@
 'use client'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import ProjectCard from '@/components/shared/ProjectCard'
+import ROUTES from '@/configs/routes'
 import { Link } from '@/i18n/navigation'
+import { IProjectDetail } from '@/interfaces/project.interface'
 import { convertRemToPx } from '@/lib/utils'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { IProjectDetail } from '@/interface/project.interface'
-import { useLocale, useTranslations } from 'next-intl'
-import ROUTES from '@/configs/routes'
-import { useParams } from 'next/navigation'
 
 const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
   const t = useTranslations('DetailProjectPage')

@@ -31,8 +31,7 @@ const config: Config = {
         'sub-hightlight': '#D32F2F',
       },
       backgroundImage: {
-        'gr-2':
-          'radial-gradient(298.39% 130.99% at 6.62% 16.15%, #CA2A2A 15.19%, #D32F2F 53.77%, #FF6E6E 100%)',
+        'gr-2': 'radial-gradient(298.39% 130.99% at 6.62% 16.15%, #CA2A2A 15.19%, #D32F2F 53.77%, #FF6E6E 100%)',
       },
       boxShadow: {},
     },

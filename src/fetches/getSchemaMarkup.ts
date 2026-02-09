@@ -1,7 +1,6 @@
+import ENDPOINTS from '@/configs/endpoints'
+import ENV from '@/configs/env'
 import fetchData from '@/fetches/fetchData'
-
-import ENV from '@/config-global.env'
-import ENDPOINTS from '@/constants/endpoints'
 import parseRankMathHead from '@/utils/parseRankMathHead'
 
 // NOTE: phần này cần thay nếu tên page trong CMS khác với tên page trên site web thì cần dùng replaceAll để thay thế
@@ -30,7 +29,7 @@ function applyUrlReplacements(schemaString: string): string {
 export default async function getSchemaMarkup(slug: string) {
   try {
     const res = await fetchData({
-      api: ENDPOINTS.seo.rankMath(slug),
+      api: ENDPOINTS.project.getAll(slug),
     })
 
     if (!res.ok) return null

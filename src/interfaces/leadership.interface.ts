@@ -1,5 +1,5 @@
 // leadership.interface.ts
-import { IMedia } from '@/interface/media.interface'
+import { IMedia } from '@/interfaces/media.interface'
 
 /* ----------------------------------
  * Leadership item

@@ -53,6 +53,11 @@
     "homePage": "Home",
     "servicePage": "Services",
     "aboutUsPage": "About us",
-    "detailServicePage": "Detail service"
+    "detailServicePage": "Detail service",
+    "socialResponsibilityPage": "Social responsibility",
+    "historyPage": "History of establishment & development",
+    "companyPage": "Subsidiary/affiliate company",
+    "businessCulturePage": "Business culture",
+    "organizationChartPage": "Organization chart"
   }
 }
