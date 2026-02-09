@@ -49,6 +49,10 @@ const ENDPOINTS = {
     en: 'wp/v2/pages/340?_fields=acf&acf_format=standard',
     vi: 'wp/v2/pages/338?_fields=acf&acf_format=standard',
   },
+  leadershipPage: {
+    vi: 'wp/v2/pages/594?_fields=acf&acf_format=standard',
+    en: 'wp/v2/pages/596?_fields=acf&acf_format=standard',
+  },
   detail: (slug: string, locale: string) => `api/v1/detail/${slug}?locale=${locale}&acf=true`,
   company: {
     list: 'api/v1/get-all/company',

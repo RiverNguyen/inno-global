@@ -7,7 +7,7 @@ export default function Banner({ banner }: { banner: string }) {
   const t = useTranslations()
 
   return (
-    <div className='xsm:px-[0.83333rem] xsm:pt-[1.66667rem] relative'>
+    <div className='xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:mt-[2.92rem] relative'>
       <div className='relative hidden h-[29.42708rem] sm:block'>
         <div className='absolute inset-0 z-1 bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_49.89%,rgba(0,0,0,0.74)_79.8%,#000_96.54%)] opacity-40'></div>
         <Image

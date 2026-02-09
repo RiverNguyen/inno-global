@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation'
 import { useLocale } from 'next-intl'
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import useSWRInfinite from 'swr/infinite'
 
 import CardBlog from '@/components/shared/CardBlog'
@@ -11,6 +11,7 @@ import { useFadeInOnAppend } from '@/hooks/useFadeInOnAppend'
 import { Link } from '@/i18n/navigation'
 import { IRelatedBlogItemData, IRelatedBlogsDataRes } from '@/interfaces/detail-service.interface'
 import { fetcherCMS } from '@/lib/swr'
+import { getInfiniteScrollLockState, subscribeInfiniteScrollLock } from '@/utils/infiniteScrollLock'
 
 interface RelatedBlogsProps {
   totalPages: number
@@ -22,6 +23,13 @@ const PAGE_LIMIT = 6
 export default function RelatedBlogs({ totalPages, initRelatedBlogs }: RelatedBlogsProps) {
   const locale = useLocale()
   const { slug } = useParams<{ slug: string }>()
+
+  const [lockedSectionId, setLockedSectionId] = useState(() => getInfiniteScrollLockState().lockedSectionId)
+  useEffect(() => {
+    return subscribeInfiniteScrollLock(() => {
+      setLockedSectionId(getInfiniteScrollLockState().lockedSectionId)
+    })
+  }, [])
 
   const getKey = (pageIndex: number, previousPageData: IRelatedBlogsDataRes | null) => {
     if (!slug) return null
@@ -90,6 +98,9 @@ export default function RelatedBlogs({ totalPages, initRelatedBlogs }: RelatedBl
     if (!el) return
     if (!hasNextPage || isLoadingMore) return
 
+    // If this section is locked, do not attach observer (prevents auto load-more)
+    if (lockedSectionId === 'related-blogs') return
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries[0]?.isIntersecting) return
@@ -108,7 +119,7 @@ export default function RelatedBlogs({ totalPages, initRelatedBlogs }: RelatedBl
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [hasNextPage, isLoadingMore, setSize])
+  }, [hasNextPage, isLoadingMore, lockedSectionId, setSize])
 
   return (
     <>
