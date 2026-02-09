@@ -27,6 +27,10 @@ const ENDPOINTS = {
     },
     subCompanyVi: 275,
     subCompanyEn: 277,
+    organizationChartVi: 318,
+    organizationChartEn: 323,
+    cultureVi: 368,
+    cultureEn: 371,
   },
   service: {
     getAll: (locale: string) =>

@@ -45,6 +45,10 @@
   "SubCompanyPage": {
     "companyList": "Danh sách công ty"
   },
+  "CorporateCulturePage": {
+    "coreValue": "giá trị cốt lõi",
+    "coreValues": "giá trị cốt lõi"
+  },
   "Breadcrumb": {
     "homePage": "Trang chủ",
     "servicePage": "Dịch vụ",

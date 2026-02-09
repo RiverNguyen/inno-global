@@ -45,6 +45,10 @@
   "SubCompanyPage": {
     "companyList": "Companys"
   },
+  "CorporateCulturePage": {
+    "coreValue": "core value",
+    "coreValues": "core values"
+  },
   "Breadcrumb": {
     "homePage": "Home",
     "servicePage": "Services",
