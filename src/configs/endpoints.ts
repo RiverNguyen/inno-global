@@ -21,6 +21,10 @@ const ENDPOINTS = {
   pageIds: {
     aboutUsVi: 104,
     aboutUsEn: 106,
+    home: {
+      vi: 471,
+      en: 473,
+    },
     subCompanyVi: 275,
     subCompanyEn: 277,
     organizationChartVi: 318,

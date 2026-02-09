@@ -20,9 +20,9 @@ export interface IAcfImage {
 }
 
 export interface IAcfLink {
-  title: string
-  url: string
-  target: '_self' | '_blank' | string
+  title?: string
+  url?: string
+  target?: '_self' | '_blank' | string
 }
 
 export interface ITaxonomy {
