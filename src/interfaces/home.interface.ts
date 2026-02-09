@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { IProject } from '@/app/[locale]/_components/projects/projects'
 import { IAcfImage } from '@/interfaces/acf-wp.interface'
 
 export interface IHomeAcfDataRes {
@@ -7,6 +8,7 @@ export interface IHomeAcfDataRes {
     about_us: ISectionAboutUsAcf
     outstanding_award: ISectionAwardAcf
     capacity_service: ISectionCapacityServiceAcf
+    home_projects: IProject[]
   }
 }
 

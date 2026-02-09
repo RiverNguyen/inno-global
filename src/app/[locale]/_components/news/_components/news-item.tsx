@@ -20,7 +20,7 @@ export default function NewsItem({ data }: INewsItemProps) {
   return (
     <div className='flex items-center space-x-[1.04083rem] group xsm:space-x-[0.52083rem]'>
       <Link
-        className='w-[9.01042rem] h-[6.35417rem] overflow-hidden xsm:w-[5.10417rem] xsm:h-[3.59375rem]'
+        className='rounded-[0.20833rem] w-[9.01042rem] h-[6.35417rem] overflow-hidden xsm:w-[5.10417rem] xsm:h-[3.59375rem]'
         href={data.slug}
       >
         <Image
@@ -28,7 +28,7 @@ export default function NewsItem({ data }: INewsItemProps) {
           alt={data.title}
           width={789}
           height={607}
-          className='size-full object-cover rounded-[0.20833rem] group-hover:scale-105 transition-all duration-300 ease-in-out'
+          className='size-full object-cover group-hover:scale-105 transition-all duration-300 ease-in-out'
         />
       </Link>
       <Link

@@ -11,7 +11,7 @@ interface NewsProps {
 
 export default function News({ data }: NewsProps) {
   return (
-    <div className='w-full sm:h-[56.25rem] lg:h-screen p-[6.22rem_0_4.24rem] xsm:p-[2.5rem_0.83rem]'>
+    <div className='w-full sm:h-[56.25rem] lg:h-screen p-[6.22rem_0_4.24rem] xsm:p-[2.5rem_0.83rem] lg:mb-[10vh] 2xl:mb-[20vh]'>
       <div className='max-w-[85.42rem] mx-auto flex h-full xsm:flex-col xsm:max-w-full'>
         <h2 className='sm:hidden text-[1.25rem] font-semibold leading-[120%] tracking-[-0.03125rem] text-[#090909] mb-[1.25rem]'>
           Tin tức
