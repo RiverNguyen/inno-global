@@ -2,7 +2,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/parallax'
 import type { Swiper as SwiperType } from 'swiper'

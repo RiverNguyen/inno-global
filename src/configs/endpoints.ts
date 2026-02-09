@@ -1,6 +1,12 @@
 import { FetchRelatedBlogsProps, FetchRelatedProjectsProps } from '@/services/service'
 
 const ENDPOINTS = {
+  home: {
+    rank_math: {
+      en: '/en/homepage',
+      vi: '/trang-chu',
+    },
+  },
   project: {
     getAll: (locale: string) =>
       `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&orderby=date&order=DESC&limit=12&paged=1`,

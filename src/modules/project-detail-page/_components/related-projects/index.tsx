@@ -1,8 +1,8 @@
 'use client'
+
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import { useParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
-import { useEffect } from 'react'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -44,31 +44,33 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
         </Link>
       </div>
       <div className='xsm:hidden relative'>
-        <Swiper
-          modules={[Navigation]}
-          navigation={{
-            nextEl: '.related-projects-next',
-            prevEl: '.related-projects-prev',
-            disabledClass: 'opacity-0 pointer-events-none',
-          }}
-          grabCursor={true}
-          className='mt-[1.67rem] w-[75rem]!'
-          slidesPerView={3}
-          speed={600}
-          spaceBetween={convertRemToPx(1.5625) || 25}
-        >
-          {Array.isArray(data) &&
-            data
-              .filter((project) => project.slug !== params.slug)
-              .map((project, index) => (
-                <SwiperSlide
-                  key={index}
-                  className='h-full w-full'
-                >
-                  <ProjectCard project={project} />
-                </SwiperSlide>
-              ))}
-        </Swiper>
+        {!isMobile && !isLoading && (
+          <Swiper
+            modules={[Navigation]}
+            navigation={{
+              nextEl: '.related-projects-next',
+              prevEl: '.related-projects-prev',
+              disabledClass: 'opacity-0 pointer-events-none',
+            }}
+            grabCursor={true}
+            className='mt-[1.67rem] w-[75rem]!'
+            slidesPerView={3}
+            speed={600}
+            spaceBetween={convertRemToPx(1.5625) || 25}
+          >
+            {Array.isArray(data) &&
+              data
+                .filter((project) => project.slug !== params.slug)
+                .map((project, index) => (
+                  <SwiperSlide
+                    key={index}
+                    className='h-full w-full'
+                  >
+                    <ProjectCard project={project} />
+                  </SwiperSlide>
+                ))}
+          </Swiper>
+        )}
 
         <div className='absolute-center pointer-events-none flex w-[83.33333rem] justify-between'>
           <button
@@ -91,18 +93,21 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
         </div>
       </div>
 
-      <div className='hidden_scroll mt-[1.04167rem] flex space-x-[0.83333rem] overflow-x-auto px-[0.8275rem] sm:hidden'>
-        {Array.isArray(data) &&
-          data
-            .filter((project) => project.slug !== params.slug)
-            .map((project, index) => (
-              <ProjectCard
-                project={project}
-                key={index}
-                wrapperClassname='shrink-0 w-[16.19792rem]'
-              />
-            ))}
-      </div>
+      {isMobile && !isLoading && (
+        <div className='hidden_scroll mt-[1.04167rem] flex space-x-[0.83333rem] overflow-x-auto px-[0.8275rem] sm:hidden'>
+          {Array.isArray(data) &&
+            data
+              .filter((project) => project.slug !== params.slug)
+              .map((project, index) => (
+                <ProjectCard
+                  project={project}
+                  key={index}
+                  wrapperClassname='shrink-0 w-[16.19792rem]'
+                />
+              ))}
+        </div>
+      )}
+
       <div className='px-[0.8275rem] sm:hidden'>
         <Link
           href={viewAllUrl}
