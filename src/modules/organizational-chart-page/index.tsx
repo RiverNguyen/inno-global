@@ -6,7 +6,7 @@ import ICChevronDown from '@/components/icons/ICChevronDown'
 import Breadcrumb from '@/components/shared/Breadcrumb'
 import ROUTES from '@/configs/routes'
 import { Link } from '@/i18n/navigation'
-import { IOrganizationalChartRes } from '@/interface/organizational-chart'
+import { IOrganizationalChartRes } from '@/interfaces/organizational-chart'
 
 export default function OrganizationalChartDetail({ res }: { res: IOrganizationalChartRes }) {
   const t = useTranslations()
