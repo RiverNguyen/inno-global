@@ -191,6 +191,10 @@ input[type='number'] {
   }
 }
 
+button {
+  cursor: pointer;
+}
+
 @utility text-trim-* {
   text-box-trim: --value(--text-trim-*, 'none');
 }
