@@ -42,12 +42,20 @@
       "title": "Bài viết liên quan"
     }
   },
+  "OrganizationChartPage": {
+    "founder": "Ban lãnh đạo công ty",
+    "subCompany": "Công ty con/liên kết"
+  },
   "SubCompanyPage": {
-    "companyList": "Danh sách công ty"
+    "companyList": "Danh sách công ty",
+    "organizationChart": "Sơ đồ tổ chức",
+    "leadership": "Ban lãnh đạo công ty"
   },
   "CorporateCulturePage": {
     "coreValue": "giá trị cốt lõi",
-    "coreValues": "giá trị cốt lõi"
+    "coreValues": "giá trị cốt lõi",
+    "leadership": "Ban lãnh đạo công ty",
+    "formationHistory": "Lịch sử hình thành"
   },
   "Breadcrumb": {
     "homePage": "Trang chủ",
