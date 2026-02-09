@@ -72,6 +72,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                     key={i}
                     item={item}
                     number={i + 1}
+                    pageTitle={title}
                   />
                 ))}
             </div>
@@ -88,6 +89,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                           key={index}
                           item={item}
                           number={index + 1}
+                          pageTitle={title}
                         />
                       )
                     })}
@@ -102,6 +104,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                         key={index}
                         item={item}
                         number={index + 1}
+                        pageTitle={title}
                       />
                     ))}
               </div>

@@ -15,9 +15,10 @@ const formatNumber = (n: number) => n.toString().padStart(2, '0')
 interface CoreValueCardProps {
   item: ICultureCoreValue
   number: number
+  pageTitle: string
 }
 
-export default function CoreValueCard({ item, number }: CoreValueCardProps) {
+export default function CoreValueCard({ item, number, pageTitle }: CoreValueCardProps) {
   const [isOpen, setIsOpen] = useState(false)
   const { isMobile, isLoading } = useIsMobile()
 
@@ -89,9 +90,7 @@ export default function CoreValueCard({ item, number }: CoreValueCardProps) {
           setOpen={setIsOpen}
         >
           <div className='flex items-center justify-between space-x-[0.52083rem] p-[0.83333rem]'>
-            <p className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>
-              Văn hóa doanh nghiệp
-            </p>
+            <p className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>{pageTitle}</p>
             <button
               type='button'
               onClick={() => setIsOpen(false)}
