@@ -30,6 +30,7 @@
     "ceoMessage": "CEO Message"
   },
   "DetailProjectPage": {
+    "info": "Project information",
     "learnMore": "Learn more about the project",
     "related": "Related projects",
     "viewAll": "View all"

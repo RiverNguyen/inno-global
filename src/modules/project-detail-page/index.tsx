@@ -1,4 +1,9 @@
+'use client'
+import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
+
 import { IProjectDetail } from '@/interfaces/project.interface'
+import { cn, convertRemToPx } from '@/lib/utils'
 import Banner from '@/modules/project-detail-page/_components/banner'
 import Content from '@/modules/project-detail-page/_components/content'
 import Overview from '@/modules/project-detail-page/_components/overview'
@@ -7,9 +12,91 @@ import RelatedProjects from '@/modules/project-detail-page/_components/related-p
 const ProjectDetail = ({ res, relatedProjects }: { res: IProjectDetail; relatedProjects: IProjectDetail[] }) => {
   const location = res?.taxonomies?.location[0]?.name || ''
   const gallery = res?.acf?.project_gallery || []
+  const [currentTab, setCurrentTab] = useState<'info' | 'related'>('info')
+
+  const t = useTranslations('DetailProjectPage')
+
+  const handleScrollTo = (id: 'info' | 'related') => {
+    const el = document.getElementById(id)
+    if (!el) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+      return
+    }
+
+    setCurrentTab(id)
+
+    const headerHeight = document.querySelector('header')?.clientHeight || 0
+
+    const offset = headerHeight + (convertRemToPx(2.25) || 36)
+
+    const y = el.getBoundingClientRect().top + window.scrollY - offset
+
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth',
+    })
+  }
+
+  useEffect(() => {
+    const relatedSection = document.querySelector('#related') as HTMLElement
+
+    const headerHeight = document.querySelector('header')?.clientHeight || 0
+
+    const offset = headerHeight + (convertRemToPx(2.25) || 36)
+
+    if (!relatedSection) return
+
+    const handleScroll = () => {
+      const relatedTop = Math.floor(relatedSection.getBoundingClientRect().top + window.scrollY - offset)
+
+      if (window.scrollY >= relatedTop) {
+        setCurrentTab('related')
+      } else {
+        setCurrentTab('info')
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <>
+      <div
+        id='tab-bar'
+        className='sticky top-[calc(2.92rem-1.875rem)] sm:hidden w-full p-[1.875rem_0.83333rem_0_0.83333rem] bg-white shadow-[0_4px_30px_0_rgba(0,0,0,0.08)] z-10'
+      >
+        <div
+          className='flex items-center overflow-x-auto space-x-[0.20833rem]'
+          style={{
+            scrollbarWidth: 'none',
+          }}
+        >
+          <button
+            type='button'
+            onClick={() => handleScrollTo('info')}
+            className={cn(
+              'p-[0.72917rem_0.52083rem_0.625rem_0.52083rem] flex items-center justify-center border-b-2 border-b-transparent cursor-pointer transition ease-out duration-300',
+              currentTab === 'info' && 'border-b-[#D32F2F]',
+            )}
+          >
+            {t('info')}
+          </button>
+          <button
+            type='button'
+            onClick={() => handleScrollTo('related')}
+            className={cn(
+              'p-[0.72917rem_0.52083rem_0.625rem_0.52083rem] flex items-center justify-center border-b-2 border-b-transparent cursor-pointer transition ease-out duration-300',
+              currentTab === 'related' && 'border-b-[#D32F2F]',
+            )}
+          >
+            {t('related')}
+          </button>
+        </div>
+      </div>
       <Banner
         title={res?.title}
         location={location}

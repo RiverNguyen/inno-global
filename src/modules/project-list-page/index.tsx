@@ -280,7 +280,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
           {t('title')}
         </h1>
       </div>
-      <div className='xsm:pt-[1.25rem] xsm:pb-[0.83rem] sticky top-0 z-5 w-full bg-white py-5'>
+      <div className='xsm:pt-[1.25rem] xsm:pb-[0.83rem] sticky top-0 z-100 w-full bg-white py-5'>
         <div className='xsm:max-w-full xsm:flex-col mx-auto flex max-w-[75rem] items-center justify-between'>
           <div
             className='xsm:w-full xsm:order-2 xsm:px-[0.83333rem] xsm:overflow-x-auto xsm:space-x-[0.3125rem] flex items-center space-x-[0.72917rem]'
@@ -348,7 +348,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       <div className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] bg-[#F8F8F8] pt-[2.29rem] pb-[7.29167rem]'>
         <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
           <div
-            className='xsm:px-[0.83333rem] xsm:w-full xsm:space-x-[1.5625rem] flex flex-wrap items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto'
+            className='xsm:px-[0.83333rem] xsm:w-full xsm:gap-x-[1.5625rem] flex sm:flex-wrap items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto'
             style={{
               scrollbarWidth: 'none',
             }}

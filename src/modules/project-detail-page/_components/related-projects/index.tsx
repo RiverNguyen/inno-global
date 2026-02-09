@@ -1,13 +1,14 @@
 'use client'
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
-import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
+import { useEffect } from 'react'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import ProjectCard from '@/components/shared/ProjectCard'
 import ROUTES from '@/configs/routes'
+import useIsMobile from '@/hooks/useIsMobile'
 import { Link } from '@/i18n/navigation'
 import { IProjectDetail } from '@/interfaces/project.interface'
 import { convertRemToPx } from '@/lib/utils'
@@ -18,11 +19,15 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
   const t = useTranslations('DetailProjectPage')
   const params = useParams<{ slug: string }>()
   const locale = useLocale()
+  const { isMobile, isLoading } = useIsMobile()
 
   const viewAllUrl = locale === 'vi' ? ROUTES.projectsVi : ROUTES.projectsEn
 
   return (
-    <section className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] py-[5.20833rem]'>
+    <section
+      id='related'
+      className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] py-[5.20833rem]'
+    >
       <div className='flex-y-center mx-auto max-w-[75rem] justify-between'>
         <h2 className='xsm:px-[0.8275rem] xsm:text-[1.25rem] xsm:font-semibold text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-[#090909]'>
           {t('related')}
@@ -87,16 +92,16 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
       </div>
 
       <div className='hidden_scroll mt-[1.04167rem] flex space-x-[0.83333rem] overflow-x-auto px-[0.8275rem] sm:hidden'>
-        {Array.from({ length: 10 }).map((_, index) => (
-          <Image
-            key={index}
-            width={200}
-            height={300}
-            src={`https://picsum.photos/id/${index}/200/300`}
-            alt='Project'
-            className='h-[14.83rem] w-[16.2rem] shrink-0 object-cover'
-          />
-        ))}
+        {Array.isArray(data) &&
+          data
+            .filter((project) => project.slug !== params.slug)
+            .map((project, index) => (
+              <ProjectCard
+                project={project}
+                key={index}
+                wrapperClassname='shrink-0 w-[16.19792rem]'
+              />
+            ))}
       </div>
       <div className='px-[0.8275rem] sm:hidden'>
         <Link

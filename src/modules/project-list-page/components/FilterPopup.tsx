@@ -107,7 +107,7 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
         <DrawerTrigger asChild>
           <button
             type='button'
-            className='font-open-sans flex cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.52083rem_0.83333rem] text-[0.625rem] leading-[140%] font-normal tracking-[-0.00625rem] text-[#090909] sm:hidden'
+            className='font-open-sans flex cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.52083rem_0.83333rem] text-[0.625rem] leading-[140%] font-semibold tracking-[-0.00625rem] text-[#090909] sm:hidden'
           >
             <span className='whitespace-nowrap'>{label}</span>
             <ICChevronDown className='size-[0.72917rem] shrink-0' />
@@ -115,7 +115,7 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
         </DrawerTrigger>
         <DrawerContent
           hiddenDrag
-          className='rounded-[1.25rem_1.25rem_0_0] bg-white'
+          className='rounded-[1.25rem_1.25rem_0_0] bg-white z-101'
         >
           <DrawerHeader className='flex items-center justify-between border-b border-b-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
             <DrawerTitle className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>

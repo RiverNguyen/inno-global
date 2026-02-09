@@ -1,10 +1,22 @@
+import { Metadata } from 'next'
+
+import ENDPOINTS from '@/configs/endpoints'
+import ENV from '@/configs/env'
+import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
 import SubCompanyDetail from '@/modules/sub-company-page'
 import companyService from '@/services/company'
+import metadataValues from '@/utils/metadataValues'
 
 export const dynamic = 'force-dynamic'
 
 export function generateStaticParams() {
   return [{ locale: 'vi' }]
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const res = await getMetaDataRankMath(ENDPOINTS.company.rank_math[locale as keyof typeof ENDPOINTS.company.rank_math])
+  return metadataValues(res, ENV.DOMAIN || '')
 }
 
 export default async function SubComapanyPage({ params }: { params: Promise<{ locale: string }> }) {

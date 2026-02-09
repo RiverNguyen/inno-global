@@ -9,6 +9,14 @@ const ENDPOINTS = {
     getServices: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=service`,
     getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    rank_math: {
+      en: '/en/projects',
+      vi: '/danh-sach-du-an',
+    },
+    rank_math_detail: {
+      en: (slug: string) => `/en/project/${slug}`,
+      vi: (slug: string) => `/project/${slug}`,
+    },
   },
   leadership: {
     list: 'api/v1/get-all/leadership',
@@ -51,7 +59,23 @@ const ENDPOINTS = {
   },
   detail: (slug: string, locale: string) => `api/v1/detail/${slug}?locale=${locale}&acf=true`,
   company: {
+    rank_math: {
+      en: '/en/sub-company',
+      vi: '/cong-ty-con',
+    },
     list: 'api/v1/get-all/company',
+  },
+  organizationalChart: {
+    rank_math: {
+      en: '/en/organizational-chart',
+      vi: '/so-do-to-chuc',
+    },
+  },
+  corporateCulture: {
+    rank_math: {
+      en: '/en/corporate-culture',
+      vi: '/van-hoa-doanh-nghiep',
+    },
   },
 }
 
