@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 import SectionPagination from '@/components/shared/SectionPagination'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import useIsMobile from '@/hooks/useIsMobile'
 import { cn } from '@/lib/utils'
 
 type ContentProps = {
@@ -19,7 +18,6 @@ type ContentProps = {
 
 export default function Content({ contents, locale }: ContentProps) {
   const t = useTranslations()
-  const isMobile = useIsMobile()
   const [activeIndex, setActiveIndex] = useState(0)
   const fallbackImage = '/social-responsibility/responsibility-1.webp'
   const leftImage = contents?.[activeIndex]?.image || contents?.[0]?.image || fallbackImage
@@ -33,15 +31,15 @@ export default function Content({ contents, locale }: ContentProps) {
           alt='Content'
           width={714}
           height={690}
-          className='xsm:hidden animate-in fade-in h-[35.9375rem] w-[37.1875rem] object-cover duration-300 ease-out'
+          className='xsm:hidden h-[35.9375rem] w-[37.1875rem] object-cover animate-in fade-in zoom-in-95 slide-in-from-left-2 duration-500 ease-out motion-reduce:animate-none'
         />
 
         <Accordion
-          type={isMobile ? 'multiple' : 'single'}
+          type='single'
           collapsible
-          onValueChange={(value: string | string[]) => {
-            const last = Array.isArray(value) ? value[value.length - 1] : value
-            const match = last?.match(/item-(\d+)/)
+          defaultValue='item-0'
+          onValueChange={(value: string) => {
+            const match = value?.match(/item-(\d+)/)
             if (match) setActiveIndex(Number(match[1]))
           }}
           className='flex flex-1 flex-col'
@@ -58,7 +56,7 @@ export default function Content({ contents, locale }: ContentProps) {
                 index === contents.length - 1 && 'border-b-0',
               )}
             >
-              <AccordionTrigger className='text-primary font-open-sans xsm:text-[0.9375rem] xsm:leading-[120%] xsm:tracking-[-0.01406rem] xsm:[&>svg]:size-[1.04167rem] xsm:hover:no-underline xsm:[&[data-state=open]]:text-[0.9375rem] xsm:[&[data-state=open]]:leading-[120%] xsm:[&[data-state=open]]:tracking-[-0.01406rem] p-0 text-[1.25rem] leading-[140%] font-semibold tracking-[-0.0125rem] capitalize transition-all duration-300 ease-out hover:no-underline [&>svg]:size-[1.45833rem] [&>svg]:text-[#090909] [&[data-state=open]]:text-[1.77083rem] [&[data-state=open]]:leading-[120%] [&[data-state=open]]:tracking-[-0.01771rem] [&[data-state=open]]:text-[#D32F2F] [&[data-state=open]>svg]:scale-y-[-1] [&[data-state=open]>svg]:rotate-0 [&[data-state=open]>svg]:text-[#D32F2F]'>
+              <AccordionTrigger className='cursor-pointer text-primary font-open-sans xsm:text-[0.9375rem] xsm:leading-[120%] xsm:tracking-[-0.01406rem] xsm:[&>svg]:size-[1.04167rem] xsm:hover:no-underline xsm:[&[data-state=open]]:text-[0.9375rem] xsm:[&[data-state=open]]:leading-[120%] xsm:[&[data-state=open]]:tracking-[-0.01406rem] p-0 text-[1.25rem] leading-[140%] font-semibold tracking-[-0.0125rem] capitalize transition-all duration-300 ease-out hover:no-underline [&>svg]:size-[1.45833rem] [&>svg]:text-[#090909] [&[data-state=open]]:text-[1.77083rem] [&[data-state=open]]:leading-[120%] [&[data-state=open]]:tracking-[-0.01771rem] [&[data-state=open]]:text-[#D32F2F] [&[data-state=open]>svg]:scale-y-[-1] [&[data-state=open]>svg]:rotate-0 [&[data-state=open]>svg]:text-[#D32F2F]'>
                 <span className='xsm:w-[14.32292rem] whitespace-pre-line'>{responsibility.title}</span>
               </AccordionTrigger>
               <AccordionContent className='font-open-sans xsm:text-[0.72917rem] xsm:[text-box-trim:trim-both] xsm:[text-box-edge:cap_alphabetic] pt-[0.83333rem] pb-0 text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
