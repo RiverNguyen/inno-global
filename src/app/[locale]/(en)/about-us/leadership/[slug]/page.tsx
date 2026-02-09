@@ -4,7 +4,6 @@ import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
 import Founder from '@/modules/founder'
 import metadataValues from '@/utils/metadataValues'
 
-
 export function generateStaticParams() {
   return [{ locale: 'en' }]
 }
