@@ -13,6 +13,14 @@ const ENDPOINTS = {
   leadership: {
     list: 'api/v1/get-all/leadership',
     detail: (slug: string) => `api/v1/detail/${slug}?acf=true`,
+    rank_math: {
+      en: '/leadership',
+      vi: '/ban-lanh-dao-cong-ty',
+    },
+    rank_math_detail: {
+      en: (slug: string) => `/en/leadership/${slug}`,
+      vi: (slug: string) => `/leadership/${slug}`,
+    },
   },
   taxonomies: {
     list: 'api/v1/taxonomies',
@@ -32,6 +40,12 @@ const ENDPOINTS = {
     cultureVi: 368,
     cultureEn: 371,
   },
+  aboutUs: {
+    rank_math: {
+      en: '/about-us',
+      vi: '/ve-chung-toi',
+    },
+  },
   service: {
     getAll: (locale: string) =>
       `api/v1/get-all-taxonomy/service?lang=${locale}&fields=thumbnail&orderby=date&order=DESC&limit=12&paged=1`,
@@ -44,10 +58,22 @@ const ENDPOINTS = {
       vi: 'wp/v2/pages/326?_fields=acf&acf_format=standard',
       en: 'wp/v2/pages/328?_fields=acf&acf_format=standard',
     },
+    rank_math: {
+      en: '/services',
+      vi: '/danh-sach-dich-vu',
+    },
+    rank_math_detail: {
+      en: (slug: string) => `/en/service/${slug}`,
+      vi: (slug: string) => `/service/${slug}`,
+    },
   },
   socialResponsibility: {
     en: 'wp/v2/pages/340?_fields=acf&acf_format=standard',
     vi: 'wp/v2/pages/338?_fields=acf&acf_format=standard',
+    rank_math: {
+      en: '/social-responsibility',
+      vi: '/trach-nhiem-xa-hoi',
+    },
   },
   leadershipPage: {
     vi: 'wp/v2/pages/594?_fields=acf&acf_format=standard',
