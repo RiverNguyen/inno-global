@@ -88,6 +88,7 @@ export default function CoreValueCard({ item, number, pageTitle }: CoreValueCard
         <DrawerProvider
           open={isOpen}
           setOpen={setIsOpen}
+          className='z-101'
         >
           <div className='flex items-center justify-between space-x-[0.52083rem] p-[0.83333rem]'>
             <p className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>{pageTitle}</p>

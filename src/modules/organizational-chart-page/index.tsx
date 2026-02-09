@@ -61,7 +61,7 @@ export default function OrganizationalChartDetail({ res }: { res: IOrganizationa
         <div className='xsm:max-w-full xsm:h-auto xsm:p-[3.33333rem_0.83333rem] mx-auto flex h-[8.59375rem] max-w-[75rem] items-center justify-between'>
           <Link
             href={locale === 'vi' ? '/ve-chung-toi/ban-lanh-dao-cong-ty' : '/about-us/leadership'}
-            className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
+            className='xsm:max-w-[5.5rem] font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 rotate-90' />
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
@@ -76,7 +76,7 @@ export default function OrganizationalChartDetail({ res }: { res: IOrganizationa
           </Link>
           <Link
             href={locale === 'vi' ? '/ve-chung-toi/cong-ty-con' : '/about-us/sub-company'}
-            className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
+            className='xsm:max-w-[5.5rem] xsm:text-right font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
               {t('OrganizationChartPage.subCompany')}
