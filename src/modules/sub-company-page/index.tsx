@@ -1,22 +1,18 @@
 'use client'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import ICChevronDown from '@/components/icons/ICChevronDown'
 import Breadcrumb from '@/components/shared/Breadcrumb'
+import ROUTES from '@/configs/routes'
 import { Link } from '@/i18n/navigation'
 import { ICompany, ISubCompanyRes } from '@/interface/subcompany.interface'
 
 import CompanyCard from './components/CompanyCard'
 
-export default function SubCompanyDetail({
-  res,
-  companys,
-}: {
-  res: ISubCompanyRes
-  companys: ICompany[]
-}) {
+export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRes; companys: ICompany[] }) {
   const t = useTranslations()
+  const locale = useLocale()
   const title = res?.acf?.company_banner?.title
 
   const companyName = res?.acf?.company_detail?.name
@@ -128,12 +124,10 @@ export default function SubCompanyDetail({
             className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 rotate-90' />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              Trang B
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang B</span>
           </Link>
           <Link
-            href='/about-us'
+            href={locale === 'vi' ? ROUTES.aboutUsVi : ROUTES.aboutUsEn}
             className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] border-b border-b-[#D32F2F] py-[0.41667rem] text-[0.83333rem] leading-[150%] font-semibold text-[#D32F2F]'
           >
             {t('Breadcrumb.aboutUsPage')}
@@ -142,9 +136,7 @@ export default function SubCompanyDetail({
             href='#'
             className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
-              Trang A
-            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang A</span>
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 -rotate-90' />
           </Link>
         </div>

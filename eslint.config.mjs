@@ -30,7 +30,7 @@ const eslintConfig = [
       'no-multi-spaces': 'error',
       'no-multiple-empty-lines': 'error',
       'space-before-blocks': ['error', 'always'],
-      'linebreak-style': 'error',
+      'linebreak-style': ['error'],
       'no-unexpected-multiline': 'error',
       'keyword-spacing': 'error',
       'comma-spacing': 'error',

@@ -4,7 +4,7 @@ const ENDPOINTS = {
   project: {
     getAll: (locale: string) =>
       `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&orderby=date&order=DESC&limit=12&paged=1`,
-    relatedProjects: `api/v1/get-all/project`,
+    relatedProjects: 'api/v1/get-all/project',
     getTypes: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=building_type`,
     getServices: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=service`,
     getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
@@ -23,6 +23,10 @@ const ENDPOINTS = {
     aboutUsEn: 106,
     subCompanyVi: 275,
     subCompanyEn: 277,
+    organizationChartVi: 318,
+    organizationChartEn: 323,
+    cultureVi: 368,
+    cultureEn: 371,
   },
   service: {
     detail: (slug: string) => `api/v1/taxonomy/${slug}?acf=true`,
