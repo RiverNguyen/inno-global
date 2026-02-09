@@ -3,12 +3,22 @@ import BoardOfDirectors from '@/modules/leadership-page/components/board-of-dire
 import leadershipService from '@/services/leadership'
 
 const getLeaderHref = (locale: string, slug?: string) => {
-  const basePath = locale === 'en' ? '/leadership' : '/ban-lanh-dao-cong-ty'
+  const aboutUsBasePath = locale === 'en' ? '/about-us' : '/ve-chung-toi'
+  const leaderBasePath = locale === 'en' ? '/leadership' : '/ban-lanh-dao-cong-ty'
+  const basePath = `${aboutUsBasePath}${leaderBasePath}`
   return slug ? `${basePath}/${slug}` : basePath
 }
 
 const Leadership = async ({ locale: _locale }: { locale: string }) => {
-  const groupsRes = await leadershipService.getLeadershipGroups(_locale)
+  const aboutUsBasePath = _locale === 'en' ? '/about-us' : '/ve-chung-toi'
+
+  const [leadershipPageAcf, groupsRes] = await Promise.all([
+    leadershipService.getLeadershipPageAcf(_locale),
+    leadershipService.getLeadershipGroups(_locale),
+  ])
+
+  const bannerTitle = leadershipPageAcf?.acf?.title
+
   const groups = groupsRes?.data ?? []
 
   const sections = await Promise.all(
@@ -35,8 +45,11 @@ const Leadership = async ({ locale: _locale }: { locale: string }) => {
   )
 
   return (
-    <main className='xsm:bg-white bg-[#F8F8F8]'>
-      <Banner />
+    <main className='xsm:bg-white bg-[#F8F8F8] pt-[3.65rem] xsm:pt-[2.92rem]'>
+      <Banner
+        aboutUsBasePath={aboutUsBasePath}
+        title={bannerTitle}
+      />
       <BoardOfDirectors
         sections={sections}
         locale={_locale}

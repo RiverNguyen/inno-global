@@ -2,6 +2,16 @@ import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
 
+const formatDateDDMMYYYY = (value?: string) => {
+  if (!value) return ''
+
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  if (!match) return value
+
+  const [, y, m, d] = match
+  return `${d}.${m}.${y}`
+}
+
 interface CardBlogProps {
   title: string
   category: string
@@ -25,6 +35,8 @@ export default function CardBlog({
   classNameThumbnail,
   classNameCard,
 }: CardBlogProps) {
+  const formattedDate = formatDateDDMMYYYY(date)
+
   return (
     <article
       className={cn(
@@ -53,7 +65,7 @@ export default function CardBlog({
           <p className={cn('text-primary-red/90 pc-sub-12-r xsm:tracking-normal', classNameCategory)}>
             {category || ''}
           </p>
-          <p className={cn('text-primary/90 pc-sub-12-r xsm:tracking-normal', classNameDate)}>{date || ''}</p>
+          <p className={cn('text-en-60 opacity-[0.9] pc-sub-12-r xsm:tracking-normal', classNameDate)}>{formattedDate}</p>
         </div>
         <h3
           className={cn(

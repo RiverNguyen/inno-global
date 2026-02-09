@@ -99,7 +99,7 @@ export default function BannerSlides({ slideItems }: BannerSlidesProps) {
       ))}
 
       {/* PROGRESS BAR */}
-      <div className='xsm:flex absolute top-[2.9167rem] left-0 z-10 hidden w-full gap-[0.15625rem] px-[0.83333rem]'>
+      <div className='xsm:flex absolute top-[3.5417rem] left-0 z-10 hidden w-full gap-[0.15625rem] px-[0.83333rem]'>
         {slideItems.map((_, index) => (
           <div
             key={index}

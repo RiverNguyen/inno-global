@@ -13,10 +13,10 @@ type ContentProps = {
     description?: string
     image?: string
   }>
-  locale: string
+  aboutUsHref: string
 }
 
-export default function Content({ contents, locale }: ContentProps) {
+export default function Content({ contents, aboutUsHref }: ContentProps) {
   const t = useTranslations()
   const [activeIndex, setActiveIndex] = useState(0)
   const fallbackImage = '/social-responsibility/responsibility-1.webp'
@@ -77,7 +77,7 @@ export default function Content({ contents, locale }: ContentProps) {
       <SectionPagination
         className='bg-[#F0F0F0] py-[6.25rem]'
         prev={{ label: t('Breadcrumb.historyPage'), href: '/history' }}
-        center={{ label: t('Breadcrumb.aboutUsPage'), href: locale === 'en' ? '/about-us' : '/ve-chung-toi' }}
+        center={{ label: t('Breadcrumb.aboutUsPage'), href: aboutUsHref }}
       />
     </>
   )

@@ -2,7 +2,13 @@ import { useTranslations } from 'next-intl'
 
 import Breadcrumb from '@/components/shared/Breadcrumb'
 
-export default function Banner() {
+export default function Banner({
+  aboutUsBasePath,
+  title,
+}: {
+  aboutUsBasePath: string
+  title?: string
+}) {
   const t = useTranslations()
 
   return (
@@ -12,14 +18,14 @@ export default function Banner() {
         <Breadcrumb
           navItems={[
             { label: t('Breadcrumb.homePage'), href: '/' },
-            { label: t('Breadcrumb.aboutUsPage'), href: '/about' },
+            { label: t('Breadcrumb.aboutUsPage'), href: aboutUsBasePath },
           ]}
           lastItem={{ label: t('LeadershipPage.title') }}
           classNameContainer='xsm:hidden'
         />
 
         <h1 className='font-open-sans xsm:text-[#090909] xsm:text-[1.35417rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.80)]'>
-          {t('LeadershipPage.title')}
+          {title || t('LeadershipPage.title')}
         </h1>
       </div>
     </div>
