@@ -1,3 +1,7 @@
+import { Metadata } from 'next'
+
+import News from './_components/news/news'
+
 import AboutUsHome from '@/app/[locale]/_components/about-us/AboutUsHome'
 import AwardHome from '@/app/[locale]/_components/award/AwardHome'
 import AwardHomeMobile from '@/app/[locale]/_components/award/AwardHomeMobile'
@@ -9,13 +13,20 @@ import ScrollSnapWrapper from '@/app/[locale]/_components/scroll/ScrollSnapWrapp
 import ServiceHome from '@/app/[locale]/_components/service/ServiceHome'
 import ServiceHomeMobile from '@/app/[locale]/_components/service/ServiceHomeMobile'
 import ENDPOINTS from '@/configs/endpoints'
+import ENV from '@/configs/env'
+import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
 import { IHomeAcfDataRes } from '@/interfaces/home.interface'
 import homeService from '@/services/home/home.service'
-
-import News from './_components/news/news'
+import metadataValues from '@/utils/metadataValues'
 
 export function generateStaticParams() {
   return [{ locale: 'vi' }, { locale: 'en' }]
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const res = await getMetaDataRankMath(ENDPOINTS.home.rank_math[locale as keyof typeof ENDPOINTS.home.rank_math])
+  return metadataValues(res, ENV.DOMAIN || '')
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: 'vi' | 'en' }> }) {

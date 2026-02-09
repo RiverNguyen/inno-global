@@ -61,7 +61,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
       <div className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] pt-[2.5rem] pb-[6.25rem]'>
         <div className='xsm:max-w-full xsm:px-[0.83333rem] mx-auto max-w-[75rem]'>
           <h2 className='font-open-sans xsm:text-[1.25rem] xsm:mb-[1.25rem] mb-[1.67rem] text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#090909]'>
-            {items.length}{' '}
+            {formatNumber(items.length)}{' '}
             {items.length === 1 ? t('CorporateCulturePage.coreValue') : t('CorporateCulturePage.coreValues')}
           </h2>
           {isMobile && !isLoading ? (
@@ -72,6 +72,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                     key={i}
                     item={item}
                     number={i + 1}
+                    pageTitle={title}
                   />
                 ))}
             </div>
@@ -88,6 +89,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                           key={index}
                           item={item}
                           number={index + 1}
+                          pageTitle={title}
                         />
                       )
                     })}
@@ -102,6 +104,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                         key={index}
                         item={item}
                         number={index + 1}
+                        pageTitle={title}
                       />
                     ))}
               </div>
@@ -192,11 +195,14 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
       <div className='bg-white'>
         <div className='xsm:max-w-full xsm:h-auto xsm:p-[3.33333rem_0.83333rem] mx-auto flex h-[8.59375rem] max-w-[75rem] items-center justify-between'>
           <Link
-            href='#'
-            className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
+            href={locale === 'vi' ? '/ve-chung-toi/ban-lanh-dao-cong-ty' : '/about-us/leadership'}
+            className='font-open-sans xsm:text-[0.625rem] xsm:max-w-[5.5rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 rotate-90' />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang B</span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+              {' '}
+              {t('CorporateCulturePage.leadership')}
+            </span>
           </Link>
           <Link
             href={locale === 'vi' ? ROUTES.aboutUsVi : ROUTES.aboutUsEn}
@@ -205,10 +211,12 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
             {t('Breadcrumb.aboutUsPage')}
           </Link>
           <Link
-            href='#'
-            className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
+            href={locale === 'vi' ? '/ve-chung-toi/lich-su-hinh-thanh' : '/about-us/formation-history'}
+            className='font-open-sans xsm:max-w-[5.5rem] xsm:text-right xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang A</span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+              {t('CorporateCulturePage.formationHistory')}
+            </span>
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 -rotate-90' />
           </Link>
         </div>

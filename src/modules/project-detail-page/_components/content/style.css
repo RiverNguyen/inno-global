@@ -43,9 +43,18 @@
 #project_detail h4,
 #project_detail h5,
 #project_detail h6 {
-  font-weight: 500;
+  font-weight: 600;
   color: #2e2e2e;
-  margin-top: 2.5rem;
+  margin-top: 2.86458rem;
+}
+
+#project_detail h1:first-child,
+#project_detail h2:first-child,
+#project_detail h3:first-child,
+#project_detail h4:first-child,
+#project_detail h5:first-child,
+#project_detail h6:first-child {
+  margin-top: 0;
 }
 
 #project_detail h1 {
@@ -74,9 +83,9 @@
   font-size: 0.75rem;
 }
 
-#project_detail p {
-  color: var(--Text-80, rgba(9, 9, 9, 0.8));
-
+#project_detail p,
+#project_detail span {
+  color: rgba(9, 9, 9, 0.8);
   font-size: 0.9375rem;
   font-style: normal;
   font-weight: 400;
@@ -89,7 +98,6 @@
   height: 36.875rem;
   object-fit: cover;
   margin-top: 1.46rem;
-  margin-bottom: 1.3rem;
 }
 
 /* Wrapper cho table để scroll ngang khi nội dung rộng */
@@ -123,10 +131,11 @@
 }
 
 #project_detail ul {
-  font-size: 1rem;
-  line-height: 1.5rem;
-  margin-top: 1rem;
+  font-size: 0.9375rem;
+  line-height: 1.40625rem;
+  margin-top: 0.83333rem;
   list-style: disc inside;
+  color: rgba(9, 9, 9, 0.8);
 }
 
 #project_detail a {

@@ -64,7 +64,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
             className='xsm:h-[15.41667rem] xsm:w-[15.81932rem] xsm:mb-[1.66667rem] mx-auto h-[27.35146rem] w-[38.12854rem] object-cover'
           />
           <div className='xsm:gap-x-[0.78125rem] xsm:px-[0.83333rem] xsm:gap-y-[1.04167rem] z-1 grid grid-cols-2 sm:absolute sm:top-0 sm:left-0 sm:size-full'>
-            <div className='col-span-2 h-[0.05208rem] w-full bg-[rgba(9,9,9,0.08)]'></div>
+            <div className='col-span-2 h-[0.05208rem] w-full bg-[rgba(9,9,9,0.08)] sm:hidden'></div>
             <div className='xsm:relative xsm:inset-auto xsm:translate-none absolute top-[3.44rem] left-1/2 -translate-x-1/2 space-y-[0.52083rem]'>
               <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#D98345]'>
                 {companyItems[0]?.label}
@@ -81,7 +81,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
                 {companyItems[1]?.value}
               </p>
             </div>
-            <div className='col-span-2 h-[0.05208rem] w-full bg-[rgba(9,9,9,0.08)]'></div>
+            <div className='col-span-2 h-[0.05208rem] w-full bg-[rgba(9,9,9,0.08)] sm:hidden'></div>
             <div className='xsm:relative xsm:inset-auto xsm:translate-none absolute bottom-[3.28rem] left-1/2 -translate-x-1/2 space-y-[0.52083rem]'>
               <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#D32F2F]'>
                 {companyItems[2]?.label}
@@ -112,7 +112,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
               key={company?.id}
               description={company?.content}
               image={company?.featured_image?.url}
-              link={'#'}
+              link={locale === 'vi' ? `/cong-ty/${company?.slug}` : `/company/${company?.slug}`}
             />
           ))}
         </div>
@@ -120,11 +120,13 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
       <div className='bg-white'>
         <div className='xsm:max-w-full xsm:h-auto xsm:p-[3.33333rem_0.83333rem] mx-auto flex h-[8.59375rem] max-w-[75rem] items-center justify-between'>
           <Link
-            href='#'
-            className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
+            href={locale === 'vi' ? '/ve-chung-toi/so-do-to-chuc' : '/about-us/organization-chart'}
+            className='xsm:max-w-[5.5rem] font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 rotate-90' />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang B</span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+              {t('SubCompanyPage.organizationChart')}
+            </span>
           </Link>
           <Link
             href={locale === 'vi' ? ROUTES.aboutUsVi : ROUTES.aboutUsEn}
@@ -133,10 +135,13 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
             {t('Breadcrumb.aboutUsPage')}
           </Link>
           <Link
-            href='#'
-            className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
+            href={locale === 'vi' ? '/ve-chung-toi/ban-lanh-dao-cong-ty' : '/about-us/leadership'}
+            className='xsm:max-w-[5.5rem] font-open-sans xsm:text-right xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang A</span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+              {' '}
+              {t('SubCompanyPage.leadership')}
+            </span>
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 -rotate-90' />
           </Link>
         </div>

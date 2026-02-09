@@ -1,8 +1,13 @@
 'use client'
+import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 
 import './style.css'
-import ShareSticky from '@/modules/project-detail-page/_components/share-sticky'
+
+// sửa lỗi ssr
+const ShareSticky = dynamic(() => import('@/modules/project-detail-page/_components/share-sticky/index'), {
+  ssr: false,
+})
 
 function wrapTablesInWrapper(html: string) {
   return html.replace(/<table(?=\s|>)/gi, '<div class="table-wrapper"><table').replace(/<\/table>/gi, '</table></div>')
@@ -25,7 +30,7 @@ const Content = ({ content }: { content: string }) => {
         }}
       />
 
-      <h2 className='xsm:text-[1.25rem] relative text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+      <h2 className='xsm:text-[1.25rem] mb-[2.08rem] relative text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-[#090909]'>
         {t('learnMore')}
       </h2>
 
