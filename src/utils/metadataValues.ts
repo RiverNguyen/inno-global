@@ -40,7 +40,7 @@ export default function metadataValues(res: any, domain: string) {
   // Fallback ảnh mặc định nếu không có
   if (ogImages.length === 0) {
     ogImages.push({
-      url: '/card-default.webp',
+      url: '/default.webp',
       width: 1200,
       height: 630,
       alt: 'Inno Global',
@@ -48,7 +48,7 @@ export default function metadataValues(res: any, domain: string) {
   }
   if (twitterImages.length === 0) {
     twitterImages.push({
-      url: '/card-default.webp',
+      url: '/default.webp',
     })
   }
 
