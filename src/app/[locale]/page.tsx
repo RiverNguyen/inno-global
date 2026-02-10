@@ -1,6 +1,5 @@
 import { Metadata } from 'next'
 
-import News from './_components/news/news'
 
 import AboutUsHome from '@/app/[locale]/_components/about-us/AboutUsHome'
 import AwardHome from '@/app/[locale]/_components/award/AwardHome'
@@ -17,6 +16,8 @@ import { IBlogRes } from '@/interfaces/blog.interface'
 import { IHomeAcfDataRes } from '@/interfaces/home.interface'
 import homeService from '@/services/home/home.service'
 import metadataValues from '@/utils/metadataValues'
+
+import News from './_components/news/news'
 
 export function generateStaticParams() {
   return [{ locale: 'vi' }, { locale: 'en' }]

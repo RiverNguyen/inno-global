@@ -48,6 +48,7 @@ export default function BackgroundSwiper({ data, thumbsSwiper, setActiveIndex }:
                 height={1080}
                 src={item.image}
                 className='h-full w-full object-cover'
+                unoptimized
               />
             </SwiperSlide>
           ))}
