@@ -14,13 +14,17 @@ type ContentProps = {
     image?: string
   }>
   aboutUsHref: string
+  locale: string
 }
 
-export default function Content({ contents, aboutUsHref }: ContentProps) {
+export default function Content({ contents, aboutUsHref, locale }: ContentProps) {
   const t = useTranslations()
   const [activeIndex, setActiveIndex] = useState(0)
   const fallbackImage = '/social-responsibility/responsibility-1.webp'
   const leftImage = contents?.[activeIndex]?.image || contents?.[0]?.image || fallbackImage
+
+  const leadershipPath = locale === 'en' ? '/leadership' : '/ban-lanh-dao-cong-ty'
+  const leadershipHref = `${aboutUsHref}${leadershipPath}`
 
   return (
     <>
@@ -78,6 +82,7 @@ export default function Content({ contents, aboutUsHref }: ContentProps) {
         className='bg-[#F0F0F0] py-[6.25rem]'
         prev={{ label: t('Breadcrumb.historyPage'), href: '/history' }}
         center={{ label: t('Breadcrumb.aboutUsPage'), href: aboutUsHref }}
+        next={{ label: t('FounderPage.ceoMessage'), href: leadershipHref }}
       />
     </>
   )

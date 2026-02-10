@@ -18,7 +18,7 @@ export default function SectionBanner({ title, description, slideItems }: Sectio
     { label: t('homePage'), href: locale === 'vi' ? ROUTES.homeVi : ROUTES.homeEn },
     { label: t('servicePage'), href: locale === 'vi' ? ROUTES.servicesVi : ROUTES.servicesEn },
   ]
-  const lastBreadcrumbItem = { label: t('detailServicePage') }
+  const lastBreadcrumbItem = { label: title }
 
   return (
     <section className='xsm:h-[21.09375rem] relative h-[29.42708rem]'>
