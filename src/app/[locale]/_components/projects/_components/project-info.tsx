@@ -1,8 +1,9 @@
 import { ChevronRightIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { IProject } from '@/app/[locale]/_components/projects/projects'
+import ROUTES from '@/configs/routes'
 import { cn } from '@/lib/utils'
 
 interface IProjectInfoProps {
@@ -12,6 +13,7 @@ interface IProjectInfoProps {
 
 export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
   const t = useTranslations('ProjectListPage')
+  const locale = useLocale()
 
   return (
     <div className='absolute bottom-0 left-0 w-[41.51042rem] p-[0.52083rem_5.20833rem_0_7.29167rem] z-10 xsm:w-auto xsm:left-[0.52rem] xsm:right-[0.52rem]  xsm:p-0'>
@@ -29,18 +31,18 @@ export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
                 className='text-[1.25rem] font-semibold leading-normal tracking-[-0.02813rem] xsm:text-[0.72917rem] line-clamp-1'
                 href={`/projects/${item.link}`}
               >
-                {item.title}
+                {item.title || '-'}
               </Link>
               <Link
                 className='shrink-0 flex items-center space-x-[0.20833rem] text-[0.83rem] leading-normal tracking-[-0.01667rem] opacity-80 xsm:text-[0.625rem] xsm:text-[#D32F2F]'
-                href={`/projects/${item.link}`}
+                href={locale === 'vi' ? `${ROUTES.projectsVi}/${item.link}` : `${ROUTES.projectsEn}/${item.link}`}
               >
                 {t('viewDetail')}{' '}
                 <ChevronRightIcon className='xsm:size-[0.625rem] size-[0.83rem] group-hover:translate-x-[0.5rem] transition-all duration-300 ease-in-out' />
               </Link>
             </h3>
             <p className='text-[0.9375rem] text-white/80 mt-0.5 line-clamp-3 xsm:text-[0.72917rem] xsm:leading-[1.5] xsm:text-[#090909]/80 xsm:line-clamp-4 xsm:mt-[0.73rem]'>
-              {item.content}
+              {item.content || '-'}
             </p>
             <div className='grid grid-cols-2 mt-[1.46rem] gap-x-[1rem] xsm:mt-auto'>
               <div className='flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem] xsm:pb-[0.52rem] xsm:border-[#090909]/10'>
@@ -48,7 +50,7 @@ export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
                   {t('labelInvestor')}
                 </p>
                 <p className='text-[0.83333rem] font-semibold text-white tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:text-[#090909]/90'>
-                  {item.investor}
+                  {item.investor || '-'}
                 </p>
               </div>
               <div className='flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem] xsm:pt-[0.52rem] xsm:pb-[0.73rem] xsm:border-[#090909]/10'>
@@ -56,7 +58,7 @@ export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
                   {t('labelLocation')}
                 </p>
                 <p className='text-[0.83333rem] font-semibold text-white tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:text-[#090909]/90'>
-                  {item.location}
+                  {item.location || '-'}
                 </p>
               </div>
               <div className='flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem] xsm:pb-[0.52rem] xsm:border-[#090909]/10'>
@@ -64,7 +66,7 @@ export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
                   {t('labelArea')}
                 </p>
                 <p className='text-[0.83333rem] font-semibold text-white tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:text-[#090909]/90'>
-                  {item.area}
+                  {item.area || '-'}
                 </p>
               </div>
               <div className='flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem] xsm:pb-[0.52rem] xsm:border-[#090909]/10'>
@@ -72,7 +74,7 @@ export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
                   {t('labelYear')}
                 </p>
                 <p className='text-[0.83333rem] font-semibold text-white tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:text-[#090909]/90'>
-                  {item.year}
+                  {item.year || '-'}
                 </p>
               </div>
             </div>

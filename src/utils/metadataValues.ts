@@ -16,6 +16,23 @@ export default function metadataValues(res: any, domain: string) {
 
   const result = res
 
+  const allowedOgTypes = new Set([
+    'article',
+    'book',
+    'music.song',
+    'music.album',
+    'music.playlist',
+    'music.radio_station',
+    'profile',
+    'website',
+    'video.movie',
+    'video.episode',
+    'video.tv_show',
+    'video.other',
+  ])
+  const ogTypeRaw = result?.openGraph?.type
+  const ogType = typeof ogTypeRaw === 'string' && allowedOgTypes.has(ogTypeRaw) ? ogTypeRaw : undefined
+
   // Chuẩn hóa Open Graph Images
   const ogImages: any[] = []
   if (result?.openGraph?.image?.url) {
@@ -40,7 +57,7 @@ export default function metadataValues(res: any, domain: string) {
   // Fallback ảnh mặc định nếu không có
   if (ogImages.length === 0) {
     ogImages.push({
-      url: '/card-default.webp',
+      url: '/default.webp',
       width: 1200,
       height: 630,
       alt: 'Inno Global',
@@ -48,7 +65,7 @@ export default function metadataValues(res: any, domain: string) {
   }
   if (twitterImages.length === 0) {
     twitterImages.push({
-      url: '/card-default.webp',
+      url: '/default.webp',
     })
   }
 
@@ -61,7 +78,7 @@ export default function metadataValues(res: any, domain: string) {
     },
     author: 'Inno Global',
     robots: 'index, follow',
-    schema: result?.schema || null, // <-- Truyền xuống component để render JSON-LD
+    schema: result?.schema || result?.schemaMarkup || null, // <-- Truyền xuống component để render JSON-LD
     openGraph: {
       title: result?.openGraph?.title || result?.title || 'Inno Global',
       description: result?.openGraph?.description || result?.description || 'Inno Global',
@@ -69,7 +86,7 @@ export default function metadataValues(res: any, domain: string) {
       siteName: result?.openGraph?.siteName || 'Inno Global',
       images: ogImages,
       locale: result?.openGraph?.locale,
-      type: result?.openGraph?.type,
+      ...(ogType ? { type: ogType } : {}),
     },
     twitter: {
       card: result?.twitter?.card || 'summary_large_image',

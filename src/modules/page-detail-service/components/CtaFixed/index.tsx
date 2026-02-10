@@ -134,7 +134,7 @@ export default function CtaFixed() {
   }, [activeSectionId])
 
   return (
-    <div className='xsm:block sticky top-[1.875rem] z-10 hidden bg-white px-[0.83333rem] pt-[1.875rem] shadow-[0_4px_30px_0_rgba(0,0,0,0.08)]'>
+    <div className='xsm:block sticky top-0 z-[100] hidden bg-white px-[0.83333rem] pt-[1.875rem] shadow-[0_4px_30px_0_rgba(0,0,0,0.08)]'>
       <ul className='flex items-center space-x-[0.20833rem]'>
         {ctaItems.map((item, index) => (
           <li

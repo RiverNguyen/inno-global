@@ -6,7 +6,7 @@ import { HTMLAttributes } from 'react'
 
 import ROUTES from '@/configs/routes'
 import { IBlog } from '@/interfaces/blog.interface'
-import { cn } from '@/lib/utils'
+import { cn, formatDateDDMMYYYY } from '@/lib/utils'
 
 interface NewsFeaturedProps extends HTMLAttributes<HTMLDivElement> {
   data: IBlog
@@ -40,14 +40,14 @@ export default function NewsFeatured({ data, ...props }: NewsFeaturedProps) {
         className='text-white flex-1 flex flex-col space-y-[0.25rem] p-[2.08333rem_3.125rem_1rem_3.125rem] bg-[rgba(28,28,28,0.80)] group xsm:p-[1.25rem_0.83333rem] xsm:space-y-[0.62rem]'
       >
         <p className='text-[0.625rem] opacity-90 xsm:text-[0.52083rem]'>
-          <span className='uppercase mr-[0.62rem]'>{category}</span>
-          <span>{data.date}</span>
+          <span className='uppercase mr-[0.62rem]'>{category || '-'}</span>
+          <span>{formatDateDDMMYYYY(data.date)}</span>
         </p>
-        <h3 className='text-[1.25rem] font-semibold leading-normal tracking-[-0.05rem] line-clamp-1 xsm:text-[0.83333rem]'>
+        <h3 className='text-[1.25rem] font-semibold leading-normal tracking-[-0.05rem] line-clamp-2 xsm:text-[0.83333rem]'>
           {data.title}
         </h3>
         <p className='text-[0.9375rem] font-normal leading-[150%] tracking-[-0.025rem] line-clamp-3 opacity-80 xsm:hidden'>
-          {data?.acf?.short_desc}
+          {data?.acf?.short_desc || '-'}
         </p>
         <span className='sm:self-end flex items-center space-x-[0.20833rem] text-[0.833rem] xsm:text-[0.67708rem] xsm:mt-auto'>
           {t('viewDetail')}{' '}
