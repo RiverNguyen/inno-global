@@ -107,7 +107,7 @@ export default function Header() {
             </div>
           </nav>
           {/* search */}
-          <div className='flex-y-center xsm:hidden space-x-5 xsm:hidden'>
+          <div className='flex-y-center xsm:hidden space-x-5'>
             <div
               onClick={!openSearch ? handleOpenSearch : undefined}
               className={cn(
@@ -189,20 +189,32 @@ export default function Header() {
           </div>
           {/* mobile menu */}
           <div className='flex w-fit items-center rounded-[5.20833rem] bg-[rgba(9,_9,_9,_0.10)] sm:hidden'>
+            <input
+              type='text'
+              className='outline-none focus:border-none focus:ring-0 focus:outline-none bg-transparent border-none'
+            />
             <button
               onClick={handleOpenSearch}
               className='h-[1.875rem] w-fit px-[0.62rem]'
             >
               <ICSearchHead className='text-text-80 size-[0.9375rem]' />
             </button>
-            <div className='h-[0.9375rem] border-l border-solid border-[rgba(9,_9,_9,_0.60)]/[0.28]'></div>
-            <button
-              className='h-[1.875rem] w-fit px-[0.62rem]'
-              onClick={handleToggleMenu}
-            >
-              <ICMenu className='text-text-80 size-[0.9375rem]' />
-            </button>
+            {!openSearch && (
+              <>
+                <div className='h-[0.9375rem] border-l border-solid border-[rgba(9,_9,_9,_0.60)]/[0.28]'></div>
+                <button
+                  className='h-[1.875rem] w-fit px-[0.62rem]'
+                  onClick={handleToggleMenu}
+                >
+                  <ICMenu className='text-text-80 size-[0.9375rem]' />
+                </button>
+              </>
+            )}
           </div>
+          {/* close mobile */}
+          <button className='size-[1.35417rem]'>
+            <ICClose className='size-full' />
+          </button>
         </div>
       </header>
       {/* mobile menu */}

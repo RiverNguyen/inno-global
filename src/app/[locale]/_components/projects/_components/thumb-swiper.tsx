@@ -48,6 +48,7 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
           loop={true}
           spaceBetween={remToPx(0.63)}
           slidesPerView='auto'
+          grabCursor={true}
           watchSlidesProgress={true}
           modules={[Navigation, Thumbs]}
           navigation={{

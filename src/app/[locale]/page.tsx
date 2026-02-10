@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
   const acfData = (await homeService.getHomeData(ENDPOINTS.pageIds.home[locale])) as IHomeAcfDataRes
   if (!acfData) return null
   return (
-    <ScrollSnapWrapper>
+    <ScrollSnapWrapper includeFooterSnap>
       <section data-snap>
         <BannerHome data={acfData.acf.banner} />
       </section>
