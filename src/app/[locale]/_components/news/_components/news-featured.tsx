@@ -16,7 +16,7 @@ export default function NewsFeatured({ data, ...props }: NewsFeaturedProps) {
   const t = useTranslations('HomePage')
   const locale = useLocale()
 
-  const category = data?.taxonomies?.category[0]?.taxonomy || ''
+  const category = data?.taxonomies?.category[0]?.name || ''
 
   return (
     <div
@@ -47,7 +47,7 @@ export default function NewsFeatured({ data, ...props }: NewsFeaturedProps) {
           {data.title}
         </h3>
         <p className='text-[0.9375rem] font-normal leading-[150%] tracking-[-0.025rem] line-clamp-3 opacity-80 xsm:hidden'>
-          {data?.content}
+          {data?.acf?.short_desc}
         </p>
         <span className='sm:self-end flex items-center space-x-[0.20833rem] text-[0.833rem] xsm:text-[0.67708rem] xsm:mt-auto'>
           {t('viewDetail')}{' '}

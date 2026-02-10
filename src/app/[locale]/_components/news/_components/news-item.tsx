@@ -10,7 +10,7 @@ import { IBlog } from '@/interfaces/blog.interface'
 export default function NewsItem({ data }: { data: IBlog }) {
   const t = useTranslations('HomePage')
   const locale = useLocale()
-  const category = data?.taxonomies?.category[0]?.taxonomy || ''
+  const category = data?.taxonomies?.category[0]?.name || ''
 
   return (
     <div className='flex items-center space-x-[1.04083rem] group xsm:space-x-[0.52083rem]'>
