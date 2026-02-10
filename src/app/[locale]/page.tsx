@@ -40,29 +40,29 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
   return (
     <ScrollSnapWrapper includeFooterSnap>
       <section data-snap>
-        <BannerHome data={acfData?.acf?.banner} />
+        <BannerHome data={acfData?.acf?.banner || []} />
       </section>
       <section data-snap>
-        <AboutUsHome data={acfData?.acf?.about_us} />
+        <AboutUsHome data={acfData?.acf?.about_us || []} />
       </section>
       <section data-snap>
-        <AwardHome data={acfData?.acf?.outstanding_award} />
-        <AwardHomeMobile data={acfData?.acf?.outstanding_award} />
+        <AwardHome data={acfData?.acf?.outstanding_award || []} />
+        <AwardHomeMobile data={acfData?.acf?.outstanding_award || []} />
       </section>
       <section data-snap>
         <ServiceSection
           locale={locale}
-          title={acfData.acf.capacity_service.title}
+          title={acfData?.acf?.capacity_service?.title || ''}
         />
       </section>
       <section data-snap>
         <ProjectsSection
           locale={locale}
-          acfProjects={acfData.acf.home_projects}
+          acfProjects={acfData?.acf?.home_projects || []}
         />
       </section>
       <section data-snap>
-        <News data={blogRes?.data} />
+        <News data={blogRes?.data || []} />
       </section>
     </ScrollSnapWrapper>
   )
