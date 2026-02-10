@@ -4,13 +4,13 @@ import AboutUsHome from '@/app/[locale]/_components/about-us/AboutUsHome'
 import AwardHome from '@/app/[locale]/_components/award/AwardHome'
 import AwardHomeMobile from '@/app/[locale]/_components/award/AwardHomeMobile'
 import BannerHome from '@/app/[locale]/_components/banner/BannerHome'
-import { NEWS } from '@/app/[locale]/_components/news/contants'
 import ProjectsSection from '@/app/[locale]/_components/projects'
 import ScrollSnapWrapper from '@/app/[locale]/_components/scroll/ScrollSnapWrapper'
 import ServiceSection from '@/app/[locale]/_components/service'
 import ENDPOINTS from '@/configs/endpoints'
 import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
+import { IBlogRes } from '@/interfaces/blog.interface'
 import { IHomeAcfDataRes } from '@/interfaces/home.interface'
 import homeService from '@/services/home/home.service'
 import metadataValues from '@/utils/metadataValues'
@@ -29,10 +29,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Page({ params }: { params: Promise<{ locale: 'vi' | 'en' }> }) {
   const { locale } = await params
-  console.log('🚀 ~ Page ~ locale:', locale)
   // The following is an example of how to properly handle ENDPOINTS and types,
   // Fetch and assert the acfData type explicitly
-  const acfData = (await homeService.getHomeData(ENDPOINTS.pageIds.home[locale])) as IHomeAcfDataRes
+  const [acfData, blogRes] = await Promise.all([
+    homeService.getHomeData<IHomeAcfDataRes>(ENDPOINTS.pageIds.home[locale]),
+    homeService.getBlogs<IBlogRes>({ locale, limit: 5 }),
+  ])
+
   if (!acfData) return null
   return (
     <ScrollSnapWrapper includeFooterSnap>
@@ -59,7 +62,7 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
         />
       </section>
       <section data-snap>
-        <News data={NEWS} />
+        <News data={blogRes?.data} />
       </section>
     </ScrollSnapWrapper>
   )

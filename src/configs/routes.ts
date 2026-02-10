@@ -5,8 +5,10 @@ const ROUTES = {
   aboutUsEn: '/about-us',
   servicesVi: '/danh-sach-dich-vu',
   servicesEn: '/services',
-  projectsVi: '/danh-sach-du-an',
+  projectsVi: '/du-an',
   projectsEn: '/projects',
+  blogsEn: '/blogs',
+  blogsVi: '/tin-tuc',
 }
 
 export default ROUTES

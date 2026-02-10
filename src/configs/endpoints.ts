@@ -7,6 +7,10 @@ const ENDPOINTS = {
       vi: '/trang-chu',
     },
   },
+  blog: {
+    getAll: ({ locale, limit }: { locale: string; limit: number }) =>
+      `api/v1/get-all/post?lang=${locale}&orderby=date&order=DESC&limit=${limit}&paged=1`,
+  },
   project: {
     getAll: (locale: string) =>
       `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&orderby=date&order=DESC&limit=12&paged=1`,
