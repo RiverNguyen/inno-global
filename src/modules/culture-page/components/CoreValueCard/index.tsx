@@ -34,7 +34,7 @@ export default function CoreValueCard({ item, number, pageTitle }: CoreValueCard
         )}
       >
         <Image
-          src={item?.image?.url}
+          src={item?.image?.url || '/default.webp'}
           alt={item?.image?.alt}
           width={714}
           height={464}

@@ -35,8 +35,8 @@ export default function ProjectCard({
         )}
       >
         <Image
-          src={project.featured_image.url}
-          alt={project.title}
+          src={project?.featured_image?.url || '/default.webp'}
+          alt={project?.title}
           width={460}
           height={291}
           className='z-1 size-full object-cover transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:group-hover:scale-120'
