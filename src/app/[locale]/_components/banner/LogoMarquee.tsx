@@ -116,18 +116,19 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
                 ref={repeatIndex === 0 ? marqueeGroupRef : undefined}
                 className='flex h-full items-center gap-[2.18rem] pr-[2.18rem] shrink-0'
               >
-                {logos?.map((logo, index) => (
-                  <Image
-                    key={`${logo.id}-${repeatIndex}-${index}`}
-                    src={logo.url}
-                    alt=''
-                    aria-hidden={repeatIndex !== 0}
-                    width={100}
-                    height={100}
-                    unoptimized
-                    className='h-auto w-auto sm:min-h-[1.63474rem] sm:max-h-[3.5rem] object-contain shrink-0 max-h-[1rem] min-h-[0.72rem]'
-                  />
-                ))}
+                {Array.isArray(logos) &&
+                  logos.map((logo, index) => (
+                    <Image
+                      key={`${logo.id}-${repeatIndex}-${index}`}
+                      src={logo.url}
+                      alt=''
+                      aria-hidden={repeatIndex !== 0}
+                      width={100}
+                      height={100}
+                      unoptimized
+                      className='h-auto w-auto sm:min-h-[1.63474rem] sm:max-h-[3.5rem] object-contain shrink-0 max-h-[1rem] min-h-[0.72rem]'
+                    />
+                  ))}
               </div>
             ))}
           </div>

@@ -1,10 +1,11 @@
 import { Metadata } from 'next'
 
+import News from './_components/news/news'
+
 import AboutUsHome from '@/app/[locale]/_components/about-us/AboutUsHome'
 import AwardHome from '@/app/[locale]/_components/award/AwardHome'
 import AwardHomeMobile from '@/app/[locale]/_components/award/AwardHomeMobile'
 import BannerHome from '@/app/[locale]/_components/banner/BannerHome'
-import { NEWS } from '@/app/[locale]/_components/news/contants'
 import Projects from '@/app/[locale]/_components/projects/projects'
 import ScrollSnapWrapper from '@/app/[locale]/_components/scroll/ScrollSnapWrapper'
 import ServiceHome from '@/app/[locale]/_components/service/ServiceHome'
@@ -12,11 +13,10 @@ import ServiceHomeMobile from '@/app/[locale]/_components/service/ServiceHomeMob
 import ENDPOINTS from '@/configs/endpoints'
 import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
+import { IBlogRes } from '@/interfaces/blog.interface'
 import { IHomeAcfDataRes } from '@/interfaces/home.interface'
 import homeService from '@/services/home/home.service'
 import metadataValues from '@/utils/metadataValues'
-
-import News from './_components/news/news'
 
 export function generateStaticParams() {
   return [{ locale: 'vi' }, { locale: 'en' }]
@@ -30,8 +30,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Page({ params }: { params: Promise<{ locale: 'vi' | 'en' }> }) {
   const { locale } = await params
+  // The following is an example of how to properly handle ENDPOINTS and types,
+  // Fetch and assert the acfData type explicitly
+  const [acfData, blogRes] = await Promise.all([
+    homeService.getHomeData<IHomeAcfDataRes>(ENDPOINTS.pageIds.home[locale]),
+    homeService.getBlogs<IBlogRes>({ locale, limit: 5 }),
+  ])
 
-  const acfData = (await homeService.getHomeData(ENDPOINTS.pageIds.home[locale])) as IHomeAcfDataRes
   if (!acfData) return null
   return (
     <ScrollSnapWrapper includeFooterSnap>
@@ -56,7 +61,7 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
         <Projects data={acfData.acf.home_projects} />
       </section>
       <section data-snap>
-        <News data={NEWS} />
+        <News data={blogRes?.data} />
       </section>
     </ScrollSnapWrapper>
   )
