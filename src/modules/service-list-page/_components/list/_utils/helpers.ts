@@ -28,5 +28,5 @@ export function getItemDescription(item: ServiceLikeItem) {
 }
 
 export function getItemImageSrc(item: ServiceLikeItem) {
-  return item?.featured_image?.url ?? item?.featured_image?.source_url ?? item?.acf?.thumbnail ?? ''
+  return item?.featured_image?.url ?? item?.featured_image?.source_url ?? item?.acf?.thumbnail ?? '/default.webp'
 }

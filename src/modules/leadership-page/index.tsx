@@ -37,7 +37,7 @@ const Leadership = async ({ locale: _locale }: { locale: string }) => {
         directors: (leadersRes?.data ?? []).map((leader) => ({
           name: leader.title,
           position: leader.acf?.position ?? '',
-          image: leader.featured_image?.url ?? '',
+          image: leader.featured_image?.url ?? '/default.webp',
           href: getLeaderHref(_locale, leader.slug),
         })),
       }

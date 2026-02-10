@@ -36,6 +36,12 @@ const leadershipService = {
       )}`,
     })
   },
+
+  getFounderPageAcf: async (locale: string) => {
+    return await fetchData({
+      api: locale === 'en' ? ENDPOINTS.leadership.founder.en : ENDPOINTS.leadership.founder.vi,
+    })
+  },
 }
 
 export default leadershipService

@@ -35,6 +35,10 @@ const ENDPOINTS = {
       en: (slug: string) => `/en/leadership/${slug}`,
       vi: (slug: string) => `/leadership/${slug}`,
     },
+    founder: {
+      vi: 'wp/v2/pages/632?_fields=acf&acf_format=standard',
+      en: 'wp/v2/pages/634?_fields=acf&acf_format=standard',
+    },
   },
   taxonomies: {
     list: 'api/v1/taxonomies',
