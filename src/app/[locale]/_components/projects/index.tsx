@@ -35,25 +35,15 @@ function mapApiProjectsToHomeProjects(items: ProjectListApiResponse['data']): IP
       const image =
         typeof featuredImage === 'string'
           ? featuredImage
-          : (featuredImage as { url?: string } | undefined)?.url ??
+          : ((featuredImage as { url?: string } | undefined)?.url ??
             (featuredImage as { source_url?: string } | undefined)?.source_url ??
-            ''
+            '')
 
-      const investor =
-        item?.acf?.investor ??
-        item?.taxonomies?.investor?.[0]?.name ??
-        ''
+      const investor = item?.acf?.investor ?? item?.taxonomies?.investor?.[0]?.name ?? ''
 
-      const location =
-        item?.acf?.location ??
-        item?.taxonomies?.location?.[0]?.name ??
-        ''
+      const location = item?.acf?.location ?? item?.taxonomies?.location?.[0]?.name ?? ''
 
-      const year =
-        item?.acf?.starting_year ??
-        item?.acf?.year ??
-        item?.taxonomies?.starting_year?.[0]?.name ??
-        ''
+      const year = item?.acf?.starting_year ?? item?.acf?.year ?? item?.taxonomies?.starting_year?.[0]?.name ?? ''
 
       return {
         id: item?.id ?? idx,

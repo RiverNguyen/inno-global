@@ -1,6 +1,9 @@
-
 import ROUTES from '@/configs/routes'
-import { getItemDescription, getItemImageSrc, getItemTitle } from '@/modules/service-list-page/_components/list/_utils/helpers'
+import {
+  getItemDescription,
+  getItemImageSrc,
+  getItemTitle,
+} from '@/modules/service-list-page/_components/list/_utils/helpers'
 import type { ServiceLikeItem } from '@/modules/service-list-page/_components/list/_utils/types'
 import serviceApi from '@/services/service'
 
@@ -21,8 +24,14 @@ export default async function ServiceSection({ locale, title }: { locale: 'vi' |
 
   return (
     <>
-      <ServiceHome services={services} title={title} />
-      <ServiceHomeMobile services={services} title={title} />
+      <ServiceHome
+        services={services}
+        title={title}
+      />
+      <ServiceHomeMobile
+        services={services}
+        title={title}
+      />
     </>
   )
 }

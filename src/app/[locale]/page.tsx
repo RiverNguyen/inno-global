@@ -47,10 +47,16 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
         <AwardHomeMobile data={acfData.acf.outstanding_award} />
       </section>
       <section data-snap>
-        <ServiceSection locale={locale} title={acfData.acf.capacity_service.title} />
+        <ServiceSection
+          locale={locale}
+          title={acfData.acf.capacity_service.title}
+        />
       </section>
       <section data-snap>
-        <ProjectsSection locale={locale} acfProjects={acfData.acf.home_projects} />
+        <ProjectsSection
+          locale={locale}
+          acfProjects={acfData.acf.home_projects}
+        />
       </section>
       <section data-snap>
         <News data={NEWS} />

@@ -35,7 +35,9 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
       />
       <div className='relative z-10'>
         <div className='flex-y-center justify-between  mb-[0.9375rem]'>
-          <p className='text-white text-[1.25rem] font-semibold leading-[100%] tracking-[-0.0125rem]'>{t('otherProjects')}</p>
+          <p className='text-white text-[1.25rem] font-semibold leading-[100%] tracking-[-0.0125rem]'>
+            {t('otherProjects')}
+          </p>
           <div className='flex space-x-[0.3125rem] mr-[0.94rem]'>
             <button className='project-thumb-swiper-prev relative size-[1.5625rem] rounded-full flex-center overflow-hidden bg-[rgba(255,255,255,0.14)]'>
               <ChevronLeftIcon className='size-[0.83rem] text-white' />
