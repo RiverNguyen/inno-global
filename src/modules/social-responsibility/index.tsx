@@ -20,6 +20,7 @@ export default async function SocialResponsibility({ locale }: { locale: string 
       <Content
         contents={contents}
         aboutUsHref={aboutUsHref}
+        locale={locale}
       />
     </main>
   )
