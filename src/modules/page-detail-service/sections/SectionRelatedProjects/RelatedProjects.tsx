@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation'
 import { useLocale } from 'next-intl'
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import useSWRInfinite from 'swr/infinite'
 
 import ProjectCard from '@/components/shared/ProjectCard'
@@ -10,6 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useFadeInOnAppend } from '@/hooks/useFadeInOnAppend'
 import { IRelatedProjectItemData, IRelatedProjectsDataRes } from '@/interfaces/detail-service.interface'
 import { fetcherCMS } from '@/lib/swr'
+import { getInfiniteScrollLockState, subscribeInfiniteScrollLock } from '@/utils/infiniteScrollLock'
 
 interface RelatedProjectsProps {
   totalPages: number
@@ -20,6 +21,13 @@ interface RelatedProjectsProps {
 export default function RelatedProjects({ totalPages, initRelatedProjects, limit = 4 }: RelatedProjectsProps) {
   const locale = useLocale()
   const { slug } = useParams<{ slug: string }>()
+
+  const [lockedSectionId, setLockedSectionId] = useState(() => getInfiniteScrollLockState().lockedSectionId)
+  useEffect(() => {
+    return subscribeInfiniteScrollLock(() => {
+      setLockedSectionId(getInfiniteScrollLockState().lockedSectionId)
+    })
+  }, [])
 
   const getKey = (pageIndex: number, previousPageData: IRelatedProjectsDataRes | null) => {
     if (!slug) return null
@@ -88,6 +96,9 @@ export default function RelatedProjects({ totalPages, initRelatedProjects, limit
     if (!el) return
     if (!hasNextPage || isLoadingMore) return
 
+    // If this section is locked, do not attach observer (prevents auto load-more)
+    if (lockedSectionId === 'related-projects') return
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (!entries[0]?.isIntersecting) return
@@ -106,7 +117,7 @@ export default function RelatedProjects({ totalPages, initRelatedProjects, limit
 
     observer.observe(el)
     return () => observer.disconnect()
-  }, [hasNextPage, isLoadingMore, setSize])
+  }, [hasNextPage, isLoadingMore, lockedSectionId, setSize])
 
   return (
     <div

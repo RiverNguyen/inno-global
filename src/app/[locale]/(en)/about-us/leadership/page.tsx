@@ -1,9 +1,8 @@
+
 import ENDPOINTS from '@/configs/endpoints'
 import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
-import { IAboutUsAcfDataRes } from '@/interfaces/about-us.interface'
-import PageAboutUs from '@/modules/page-about-us'
-import aboutUsService from '@/services/about-us'
+import Leadership from '@/modules/leadership-page'
 import metadataValues from '@/utils/metadataValues'
 
 export function generateStaticParams() {
@@ -13,17 +12,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const res = await getMetaDataRankMath(
-    ENDPOINTS.aboutUs.rank_math[locale as keyof typeof ENDPOINTS.aboutUs.rank_math],
+    ENDPOINTS.leadership.rank_math[locale as keyof typeof ENDPOINTS.leadership.rank_math],
   )
   return metadataValues(res, ENV.DOMAIN || '')
 }
 
-export default async function page() {
-  const [acfData]: [IAboutUsAcfDataRes] = await Promise.all([aboutUsService.getAcfData(ENDPOINTS.pageIds.aboutUsEn)])
+export default async function LeadershipPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params
 
-  return (
-    <>
-      <PageAboutUs acfData={acfData} />
-    </>
-  )
+  return <Leadership locale={locale} />
 }

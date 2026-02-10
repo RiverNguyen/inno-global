@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
 
 import { cn } from '@/lib/utils'
+import { lockInfiniteScroll, shouldUnlockInfiniteScroll, unlockInfiniteScroll } from '@/utils/infiniteScrollLock'
 import { scrollToSection } from '@/utils/scrollToSection'
 
 export default function CtaFixed() {
@@ -13,6 +14,15 @@ export default function CtaFixed() {
     { label: t('sectionRelatedProjects.title'), targetId: 'related-projects' },
     { label: t('sectionRelatedBlogs.title'), targetId: 'related-blogs' },
   ]
+
+  useEffect(() => {
+    if (activeSectionId) return
+    const firstSectionId = ctaItems[0]?.targetId
+    if (!firstSectionId) return
+    setActiveSectionId(firstSectionId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSectionId])
+
   /**
    * Flag để phân biệt:
    * - scroll do user kéo tay
@@ -34,11 +44,16 @@ export default function CtaFixed() {
     // Khóa observer trong lúc scroll bằng code
     isProgrammaticScrollRef.current = true
 
+    // Khóa infinite scroll của section đang active (nếu có) khi chuyển sang section khác
+    if (activeSectionId && activeSectionId !== targetSectionId) {
+      lockInfiniteScroll(activeSectionId)
+    }
+
     // Active CTA ngay khi click
     setActiveSectionId(targetSectionId)
 
     // Scroll mượt tới section
-    scrollToSection(targetSectionId, 1, 2.5)
+    scrollToSection(targetSectionId, 1, 5)
 
     // Mở lại observer sau khi animation scroll kết thúc
     window.setTimeout(() => {
@@ -83,6 +98,10 @@ export default function CtaFixed() {
 
       if (currentActiveSection && currentActiveSection.id !== activeSectionId) {
         setActiveSectionId(currentActiveSection.id)
+
+        if (shouldUnlockInfiniteScroll(currentActiveSection.id)) {
+          unlockInfiniteScroll()
+        }
       }
     }
 
@@ -115,7 +134,7 @@ export default function CtaFixed() {
   }, [activeSectionId])
 
   return (
-    <div className='xsm:block sticky top-0 z-10 hidden bg-white px-[0.83333rem] pt-[1.875rem] shadow-[0_4px_30px_0_rgba(0,0,0,0.08)]'>
+    <div className='xsm:block sticky top-[1.875rem] z-10 hidden bg-white px-[0.83333rem] pt-[1.875rem] shadow-[0_4px_30px_0_rgba(0,0,0,0.08)]'>
       <ul className='flex items-center space-x-[0.20833rem]'>
         {ctaItems.map((item, index) => (
           <li

@@ -10,8 +10,13 @@ import Info from './info'
 
 export default function Founder({ locale, leader }: { locale: string; leader: ILeadership }) {
   const t = useTranslations()
+  const aboutUsBasePath = locale === 'en' ? '/about-us' : '/ve-chung-toi'
+  const leadershipPath = locale === 'en' ? '/leadership' : '/ban-lanh-dao-cong-ty'
+  const leadershipHref = `${aboutUsBasePath}${leadershipPath}`
+  const organizationChartPath = locale === 'en' ? '/organization-chart' : '/so-do-to-chuc'
+  const organizationChartHref = `${aboutUsBasePath}${organizationChartPath}`
   return (
-    <main className='xsm:bg-white sm:bg-[linear-gradient(112deg,#F8F8F8_11.8%,#F8F8F8_54.52%,#F8F8F8_84.75%)]'>
+    <main className='xsm:bg-white sm:bg-[linear-gradient(112deg,#F8F8F8_11.8%,#F8F8F8_54.52%,#F8F8F8_84.75%)] pt-[3.65rem] xsm:pt-[2.92rem]'>
       <div className='relative'>
         <Image
           src='/leadership/maskgroup.webp'
@@ -20,13 +25,16 @@ export default function Founder({ locale, leader }: { locale: string; leader: IL
           height={694}
           className='xsm:hidden pointer-events-none absolute bottom-0 left-0 h-full w-full object-cover'
         />
-        <Banner />
+        <Banner
+          aboutUsBasePath={aboutUsBasePath}
+          leadershipHref={leadershipHref}
+        />
         <Info leader={leader} />
       </div>
 
       <SectionPagination
-        center={{ href: locale === 'en' ? '/about-us' : '/ve-chung-toi', label: t('Breadcrumb.aboutUsPage') }}
-        next={{ href: '', label: t('Breadcrumb.organizationChartPage') }}
+        center={{ href: aboutUsBasePath, label: t('Breadcrumb.aboutUsPage') }}
+        next={{ href: organizationChartHref, label: t('Breadcrumb.organizationChartPage') }}
       />
     </main>
   )
