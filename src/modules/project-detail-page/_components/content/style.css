@@ -84,7 +84,7 @@
 #project_detail img {
   display: inline-block;
   width: calc(50% - 1rem);
-  height: calc(36.875rem - 1rem);
+  height: 36.875rem;
   object-fit: cover;
   margin-top: 1.46rem;
 }
