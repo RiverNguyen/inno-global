@@ -4,7 +4,6 @@ import ENDPOINTS from '@/configs/endpoints'
 import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
 import ServiceList from '@/modules/service-list-page'
-import projectService from '@/services/projects'
 import serviceApi from '@/services/service'
 import metadataValues from '@/utils/metadataValues'
 
@@ -32,8 +31,7 @@ export default async function Services({ params }: PageProps) {
   const { locale } = await params
 
   const [services, page] = await Promise.all([
-    // serviceApi.getAll(locale),
-    projectService.getProjects(locale),
+    serviceApi.getAll(locale),
     serviceApi.getPage(locale as 'vi' | 'en'),
   ])
 
@@ -42,7 +40,7 @@ export default async function Services({ params }: PageProps) {
       <ServiceList
         initialPage={services}
         page={page?.acf}
-        dataSource='project'
+        dataSource='service'
       />
     </main>
   )
