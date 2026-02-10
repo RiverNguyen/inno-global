@@ -12,9 +12,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const res = await getMetaDataRankMath(
-    ENDPOINTS.service.rank_math[locale as keyof typeof ENDPOINTS.service.rank_math],
-  )
+  const res = await getMetaDataRankMath(ENDPOINTS.service.rank_math[locale as keyof typeof ENDPOINTS.service.rank_math])
   return metadataValues(res, ENV.DOMAIN || '')
 }
 
