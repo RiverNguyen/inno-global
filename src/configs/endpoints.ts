@@ -9,7 +9,7 @@ const ENDPOINTS = {
   },
   blog: {
     getAll: ({ locale, limit }: { locale: string; limit: number }) =>
-      `api/v1/get-all/post?lang=${locale}&orderby=date&order=DESC&limit=${limit}&paged=1`,
+      `api/v1/get-all/post?lang=${locale}&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
   },
   project: {
     getAll: (locale: string) =>

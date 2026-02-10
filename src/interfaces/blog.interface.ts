@@ -24,6 +24,9 @@ export interface IBlog {
   excerpt: string
   date: string
   featured_image: IMedia
+  acf: {
+    short_desc: string
+  }
   taxonomies: {
     category: ITerm[]
     language: ITerm[]
