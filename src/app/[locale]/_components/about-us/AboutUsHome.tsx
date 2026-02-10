@@ -7,34 +7,6 @@ import { useRef } from 'react'
 
 import { ISectionAboutUsAcf } from '@/interfaces/home.interface'
 
-// const stats = [
-//   {
-//     value: 500,
-//     suffix: '+',
-//     label: 'Dự án đã thực hiện',
-//   },
-//   {
-//     value: 300,
-//     suffix: '+',
-//     label: 'Nhân sự đang làm việc',
-//   },
-//   {
-//     value: 100,
-//     suffix: '+',
-//     label: 'Khách hàng và đối tác',
-//   },
-//   {
-//     value: 39,
-//     suffix: '+',
-//     label: 'Công trình đạt giải thưởng',
-//   },
-//   {
-//     value: 10,
-//     suffix: '+',
-//     label: 'Công ty trong hệ thống',
-//   },
-// ]
-
 function StatCard({ number, subtitle }: { number: string; subtitle: string }) {
   return (
     <>
@@ -90,7 +62,7 @@ function StatCard({ number, subtitle }: { number: string; subtitle: string }) {
           </span>
         </div>
       </div>
-      <p className='pc-body-18-r-primary text-text-60 xsm:pc-sub-12-r'>{subtitle}</p>
+      <p className='pc-body-18-r-primary text-text-60 xsm:pc-sub-12-r whitespace-nowrap'>{subtitle}</p>
     </>
   )
 }
@@ -153,15 +125,22 @@ export default function AboutUsHome({ data }: { data: ISectionAboutUsAcf }) {
         alt=''
         fill
         sizes='100vw'
-        className='object-cover size-full xsm:hidden'
+        className='object-cover size-full xsm:hidden pointer-events-none'
       />
       <Image
         src={background_mb.url}
         alt=''
-        fill
-        sizes='100vw'
-        className='object-cover w-full h-auto sm:hidden absolute bottom-0 left-0'
+        width={375}
+        height={385}
+        className='object-cover w-full !h-auto sm:hidden absolute bottom-0 left-0 pointer-events-none'
       />
+      <div
+        className='absolute sm:hidden bottom-[-3px] left-0 w-full pointer-events-none h-[3.13rem]'
+        style={{
+          background:
+            'linear-gradient(180deg, rgba(248, 248, 248, 0.00) 29.34%, rgba(248, 248, 248, 0.60) 44.75%, rgba(248, 248, 248, 0.90) 64.91%, #FFF 97.1%)',
+        }}
+      ></div>
       <div className='sm:absolute-center z-10 h-screen xsm:h-fit container flex justify-end xsm:pt-[3.33rem] xsm:px-[0.83rem]'>
         <div className='sm:w-[36.4rem] h-fit sm:my-auto'>
           <h2

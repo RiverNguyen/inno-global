@@ -43,6 +43,7 @@ export default function Footer({ data }: IFooterProps) {
   const [isMobile, setIsMobile] = useState(false)
   const menuColumn1Ref = useRef<HTMLDivElement | null>(null)
   const menuColumn2Ref = useRef<HTMLDivElement | null>(null)
+  const menuColumn1SvgRef = useRef<SVGSVGElement | null>(null)
   const pathname = usePathname()
   const { logo, contact, menu_column_1, menu_column_2, socials, copyright, menu_column_3 } = data || {}
 
@@ -61,13 +62,16 @@ export default function Footer({ data }: IFooterProps) {
     const index = 0
     const item1 = menuColumn1Ref.current
     const item2 = menuColumn2Ref.current
-    if (index === 0 && item1 && item2) {
+    const svg = menuColumn1SvgRef.current
+
+    if (index === 0 && item1 && item2 && svg) {
       const height = item1.querySelector('.client-height')?.clientHeight
       if (height) {
         if (item1.style.maxHeight) {
           item1.style.maxHeight = ''
         } else {
           item1.style.maxHeight = `${height}px`
+          svg.style.transform = 'rotate(180deg)'
         }
       }
       item2.style.maxHeight = ''
@@ -175,7 +179,11 @@ export default function Footer({ data }: IFooterProps) {
                 onClick={(e: React.MouseEvent<HTMLParagraphElement>) => handleAccordionClick(e, 0)}
                 className='text-[#090909] text-[0.83333rem] font-semibold leading-[1.4] tracking-[-0.00625rem] mb-[0.71rem] xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem]'
               >
-                {menu_column_1?.title} <ChevronDown className='size-[0.83333rem] sm:hidden' />
+                {menu_column_1?.title}{' '}
+                <ChevronDown
+                  ref={menuColumn1SvgRef}
+                  className='size-[0.83333rem] sm:hidden shrink-0 pointer-events-none'
+                />
               </p>
               <div
                 ref={menuColumn1Ref}
@@ -205,7 +213,8 @@ export default function Footer({ data }: IFooterProps) {
                 onClick={(e: React.MouseEvent<HTMLParagraphElement>) => handleAccordionClick(e, 1)}
                 className='text-[#090909] text-[0.83333rem] font-semibold leading-[1.4] tracking-[-0.00625rem] mb-[0.71rem] xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem]'
               >
-                {menu_column_2?.title} <ChevronDown className='size-[0.83333rem] sm:hidden' />
+                {menu_column_2?.title}{' '}
+                <ChevronDown className='size-[0.83333rem] sm:hidden shrink-0 pointer-events-none' />
               </p>
               <div
                 ref={menuColumn2Ref}

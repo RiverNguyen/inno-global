@@ -5,11 +5,15 @@ import Breadcrumb from '@/components/shared/Breadcrumb'
 export default function Banner({
   aboutUsBasePath,
   leadershipHref,
+  bannerTitle,
 }: {
   aboutUsBasePath: string
   leadershipHref: string
+  bannerTitle?: string
 }) {
   const t = useTranslations()
+
+  const title = bannerTitle || t('FounderPage.ceoMessage')
 
   return (
     <div className='bg-white'>
@@ -20,12 +24,12 @@ export default function Banner({
             { label: t('Breadcrumb.aboutUsPage'), href: aboutUsBasePath },
             { label: t('LeadershipPage.title'), href: leadershipHref },
           ]}
-          lastItem={{ label: t('FounderPage.title') }}
+          lastItem={{ label: title }}
           classNameContainer='xsm:hidden'
         />
 
         <h1 className='font-open-sans xsm:text-[#090909] xsm:text-[1.35417rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.80)]'>
-          {t('FounderPage.ceoMessage')}
+          {title}
         </h1>
       </div>
     </div>
