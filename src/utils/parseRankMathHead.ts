@@ -1,14 +1,43 @@
 export default function parseRankMathHead(headHtml: string) {
+  function decodeHtmlEntities(input: string) {
+    // Decode common HTML entities and numeric entities (e.g. &#8211; or &#x2013;)
+    const named: Record<string, string> = {
+      amp: '&',
+      lt: '<',
+      gt: '>',
+      quot: '"',
+      apos: "'",
+      nbsp: '\u00A0',
+    }
+
+    return input.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (full, entity: string) => {
+      if (entity[0] === '#') {
+        const isHex = entity[1]?.toLowerCase() === 'x'
+        const num = isHex ? parseInt(entity.slice(2), 16) : parseInt(entity.slice(1), 10)
+        if (Number.isFinite(num)) {
+          try {
+            return String.fromCodePoint(num)
+          } catch {
+            return full
+          }
+        }
+        return full
+      }
+
+      return named[entity] ?? full
+    })
+  }
+
   function getMetaContent(property: string) {
     const regex = new RegExp(`<meta[^>]+${property}[^>]+content="([^"]+)"`, 'i')
     const match = headHtml.match(regex)
-    return match ? match[1] : null
+    return match ? decodeHtmlEntities(match[1]) : null
   }
 
   function getLinkHref(rel: string) {
     const regex = new RegExp(`<link[^>]+rel="${rel}"[^>]+href="([^"]+)"`, 'i')
     const match = headHtml.match(regex)
-    return match ? match[1] : null
+    return match ? decodeHtmlEntities(match[1]) : null
   }
 
   function getSchemaMarkup() {
@@ -18,7 +47,7 @@ export default function parseRankMathHead(headHtml: string) {
   }
 
   return {
-    title: headHtml.match(/<title>(.*?)<\/title>/)?.[1] || null,
+    title: decodeHtmlEntities(headHtml.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || '') || null,
     description: getMetaContent('name="description"'),
     canonical: getLinkHref('canonical'),
     openGraph: {
