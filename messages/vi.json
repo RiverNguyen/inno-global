@@ -20,7 +20,18 @@
     "oldestToNewest": "Cũ nhất đến mới nhất",
     "seeDetail": "Xem chi tiết",
     "loading": "Đang tải...",
-    "noProjects": "Không tìm thấy dự án"
+    "noProjects": "Không tìm thấy dự án",
+    "featuredProjects": "Dự án nổi bật",
+    "otherProjects": "Dự án khác",
+    "viewDetail": "Chi tiết",
+    "labelInvestor": "Đầu tư",
+    "labelLocation": "Địa điểm",
+    "labelArea": "Quy mô",
+    "labelYear": "Năm"
+  },
+  "ServiceSection": {
+    "viewDetail": "Xem chi tiết",
+    "bottomSheetTitle": "Năng lực - Dịch vụ"
   },
   "LeadershipPage": {
     "title": "Ban Lãnh Đạo Công Ty"

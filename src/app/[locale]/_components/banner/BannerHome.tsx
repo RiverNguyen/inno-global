@@ -11,6 +11,8 @@ import LogoMarquee from './LogoMarquee'
 
 export default function BannerHome({ data }: { data: ISectionBannerAcf }) {
   const { image_slide, partner_slide } = data
+  const images = Array.isArray(image_slide) ? image_slide : []
+  const partners = Array.isArray(partner_slide) ? partner_slide : []
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
 
@@ -57,18 +59,18 @@ export default function BannerHome({ data }: { data: ISectionBannerAcf }) {
       <BannerCarousel
         onSwiper={handleSwiper}
         onActiveIndexChange={setActiveIndex}
-        images={image_slide}
+        images={images}
       />
       <BannerControls
         activeIndex={activeIndex}
-        total={image_slide.length}
+        total={images.length}
         isPlaying={isPlaying}
         onTogglePlay={handleTogglePlay}
         onPrev={handlePrev}
         onNext={handleNext}
         onSelect={handleSelect}
       />
-      <LogoMarquee logos={partner_slide} />
+      <LogoMarquee logos={partners} />
     </section>
   )
 }

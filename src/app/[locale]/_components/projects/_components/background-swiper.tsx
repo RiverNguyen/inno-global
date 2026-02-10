@@ -45,7 +45,7 @@ export default function BackgroundSwiper({ data, thumbsSwiper, setActiveIndex }:
               alt={item.title}
               width={1920}
               height={1080}
-              src={item.image}
+              src={item.image || '/default.webp'}
               className='h-full w-full object-cover'
             />
           </SwiperSlide>
