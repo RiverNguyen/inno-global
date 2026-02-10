@@ -23,7 +23,18 @@
     "oldestToNewest": "Oldest to newest",
     "seeDetail": "See detail",
     "loading": "Loading...",
-    "noProjects": "No projects found"
+    "noProjects": "No projects found",
+    "featuredProjects": "Featured projects",
+    "otherProjects": "Other projects",
+    "viewDetail": "Detail",
+    "labelInvestor": "Investor",
+    "labelLocation": "Location",
+    "labelArea": "Scale",
+    "labelYear": "Year"
+  },
+  "ServiceSection": {
+    "viewDetail": "View detail",
+    "bottomSheetTitle": "Capabilities - Services"
   },
   "LeadershipPage": {
     "title": "Leadership"
