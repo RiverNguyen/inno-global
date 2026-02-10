@@ -15,7 +15,7 @@ const FounderImage = ({ wrapperClassName, imageUrl }: { wrapperClassName?: strin
         className='absolute inset-0 h-full w-full object-cover'
       />
       <Image
-        src={imageUrl || '/leadership/d-leadership-1.webp'}
+        src={imageUrl || '/default.webp'}
         alt='Founder'
         width={397}
         height={567}

@@ -2,13 +2,7 @@ import { useTranslations } from 'next-intl'
 
 import Breadcrumb from '@/components/shared/Breadcrumb'
 
-export default function Banner({
-  aboutUsBasePath,
-  title,
-}: {
-  aboutUsBasePath: string
-  title?: string
-}) {
+export default function Banner({ aboutUsBasePath, title }: { aboutUsBasePath: string; title?: string }) {
   const t = useTranslations()
 
   return (

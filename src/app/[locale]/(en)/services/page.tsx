@@ -8,7 +8,6 @@ import projectService from '@/services/projects'
 import serviceApi from '@/services/service'
 import metadataValues from '@/utils/metadataValues'
 
-
 export function generateStaticParams() {
   return [{ locale: 'en' }]
 }

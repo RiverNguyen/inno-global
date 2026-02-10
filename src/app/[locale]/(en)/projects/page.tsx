@@ -1,3 +1,5 @@
+import { Metadata } from 'next'
+
 import ENDPOINTS from '@/configs/endpoints'
 import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'

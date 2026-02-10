@@ -14,13 +14,17 @@ type ContentProps = {
     image?: string
   }>
   aboutUsHref: string
+  locale: string
 }
 
-export default function Content({ contents, aboutUsHref }: ContentProps) {
+export default function Content({ contents, aboutUsHref, locale }: ContentProps) {
   const t = useTranslations()
   const [activeIndex, setActiveIndex] = useState(0)
-  const fallbackImage = '/social-responsibility/responsibility-1.webp'
+  const fallbackImage = '/default.webp'
   const leftImage = contents?.[activeIndex]?.image || contents?.[0]?.image || fallbackImage
+
+  const leadershipPath = locale === 'en' ? '/leadership' : '/ban-lanh-dao-cong-ty'
+  const leadershipHref = `${aboutUsHref}${leadershipPath}`
 
   return (
     <>
@@ -62,7 +66,7 @@ export default function Content({ contents, aboutUsHref }: ContentProps) {
               <AccordionContent className='font-open-sans xsm:text-[0.72917rem] xsm:[text-box-trim:trim-both] xsm:[text-box-edge:cap_alphabetic] pt-[0.83333rem] pb-0 text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
                 {responsibility.description}
                 <Image
-                  src={responsibility.image || leftImage}
+                  src={responsibility.image || leftImage || fallbackImage}
                   alt={responsibility.title || 'Content'}
                   width={343}
                   height={331}
@@ -78,6 +82,7 @@ export default function Content({ contents, aboutUsHref }: ContentProps) {
         className='bg-[#F0F0F0] py-[6.25rem]'
         prev={{ label: t('Breadcrumb.historyPage'), href: '/history' }}
         center={{ label: t('Breadcrumb.aboutUsPage'), href: aboutUsHref }}
+        next={{ label: t('FounderPage.ceoMessage'), href: leadershipHref }}
       />
     </>
   )

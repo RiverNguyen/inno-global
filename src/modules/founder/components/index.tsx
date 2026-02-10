@@ -8,10 +8,20 @@ import { ILeadership } from '@/interfaces/leadership.interface'
 import Banner from './banner'
 import Info from './info'
 
-export default function Founder({ locale, leader }: { locale: string; leader: ILeadership }) {
+export default function Founder({
+  locale,
+  leader,
+  bannerTitle,
+}: {
+  locale: string
+  leader: ILeadership
+  bannerTitle?: string
+}) {
   const t = useTranslations()
   const aboutUsBasePath = locale === 'en' ? '/about-us' : '/ve-chung-toi'
   const leadershipPath = locale === 'en' ? '/leadership' : '/ban-lanh-dao-cong-ty'
+  const socialResponsibility = locale === 'en' ? '/social-responsibility' : '/trach-nhiem-xa-hoi'
+  const socialResponsibilityHref = `${aboutUsBasePath}${socialResponsibility}`
   const leadershipHref = `${aboutUsBasePath}${leadershipPath}`
   const organizationChartPath = locale === 'en' ? '/organization-chart' : '/so-do-to-chuc'
   const organizationChartHref = `${aboutUsBasePath}${organizationChartPath}`
@@ -28,11 +38,13 @@ export default function Founder({ locale, leader }: { locale: string; leader: IL
         <Banner
           aboutUsBasePath={aboutUsBasePath}
           leadershipHref={leadershipHref}
+          bannerTitle={bannerTitle}
         />
         <Info leader={leader} />
       </div>
 
       <SectionPagination
+        prev={{ href: socialResponsibilityHref, label: t('Breadcrumb.socialResponsibilityPage') }}
         center={{ href: aboutUsBasePath, label: t('Breadcrumb.aboutUsPage') }}
         next={{ href: organizationChartHref, label: t('Breadcrumb.organizationChartPage') }}
       />

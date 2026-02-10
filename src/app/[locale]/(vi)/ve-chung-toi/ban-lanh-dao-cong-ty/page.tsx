@@ -4,7 +4,6 @@ import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
 import Leadership from '@/modules/leadership-page'
 import metadataValues from '@/utils/metadataValues'
 
-
 export function generateStaticParams() {
   return [{ locale: 'vi' }]
 }
