@@ -1,6 +1,9 @@
 {
   "HomePage": {
-    "title": "Xin chào!"
+    "title": "Xin chào!",
+    "blogs": "Tin tức",
+    "viewAll": "Xem tất cả",
+    "viewDetail": "Xem chi tiết"
   },
   "ProjectListPage": {
     "breadcrumbHome": "Trang chủ",

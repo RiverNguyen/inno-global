@@ -57,20 +57,21 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
           }}
           className='relative max-h-[9.94792rem] cursor-grab'
         >
-          {data.map((item) => (
-            <SwiperSlide
-              key={item.id + 'thumb_item'}
-              className='w-full max-w-[17.08333rem] !h-[9.94792rem] mr-[0.63rem] rounded-[0.20833rem] overflow-hidden'
-            >
-              <Image
-                width={683}
-                height={410}
-                src={item.image}
-                alt={item.title}
-                className='h-full w-full object-cover'
-              />
-            </SwiperSlide>
-          ))}
+          {Array.isArray(data) &&
+            data.map((item) => (
+              <SwiperSlide
+                key={item.id + 'thumb_item'}
+                className='w-full max-w-[17.08333rem] !h-[9.94792rem] mr-[0.63rem] rounded-[0.20833rem] overflow-hidden'
+              >
+                <Image
+                  width={683}
+                  height={410}
+                  src={item.image}
+                  alt={item.title}
+                  className='h-full w-full object-cover'
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </div>

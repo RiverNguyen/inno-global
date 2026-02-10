@@ -1,9 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import ICChevronDown from '@/components/icons/ICChevronDown'
+import ROUTES from '@/configs/routes'
 import { Link } from '@/i18n/navigation'
 import { Project } from '@/interfaces/project.interface'
 import { cn } from '@/lib/utils'
@@ -22,10 +23,11 @@ export default function ProjectCard({
   classNameTitle,
 }: ProjectCardProps) {
   const t = useTranslations('ProjectListPage')
+  const locale = useLocale()
 
   return (
     <Link
-      href={`/danh-sach-du-an/${project.slug}`}
+      href={locale === 'vi' ? `${ROUTES.projectsVi}/${project?.slug}` : `${ROUTES.projectsEn}/${project?.slug}`}
       className={cn('group relative overflow-hidden', wrapperClassname)}
     >
       <div
