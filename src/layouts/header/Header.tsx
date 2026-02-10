@@ -82,7 +82,10 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           openSearch && 'pointer-events-auto opacity-100',
         )}
       ></div>
-      <header ref={headerRef} className='transition-transform duration-500 ease-out xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]'>
+      <header
+        ref={headerRef}
+        className='transition-transform duration-500 ease-out xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]'
+      >
         <div
           className={cn(
             'xsm:px-[0.83333rem] container flex items-center justify-between',
@@ -91,7 +94,10 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
         >
           {/* navigation */}
           <nav className={cn('flex-y-center w-fit', openSearch && 'xsm:hidden')}>
-            <Link href='/' onClick={handleCloseAll}>
+            <Link
+              href='/'
+              onClick={handleCloseAll}
+            >
               {logo?.url && (
                 <Image
                   src={logo.url}
