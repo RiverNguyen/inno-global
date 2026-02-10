@@ -65,7 +65,9 @@ export default function CardBlog({
           <p className={cn('text-primary-red/90 pc-sub-12-r xsm:tracking-normal', classNameCategory)}>
             {category || ''}
           </p>
-          <p className={cn('text-en-60 opacity-[0.9] pc-sub-12-r xsm:tracking-normal', classNameDate)}>{formattedDate}</p>
+          <p className={cn('text-en-60 opacity-[0.9] pc-sub-12-r xsm:tracking-normal', classNameDate)}>
+            {formattedDate}
+          </p>
         </div>
         <h3
           className={cn(

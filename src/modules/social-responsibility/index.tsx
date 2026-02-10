@@ -13,7 +13,10 @@ export default async function SocialResponsibility({ locale }: { locale: string 
 
   return (
     <main>
-      <Banner banner={banner} aboutUsHref={aboutUsHref} />
+      <Banner
+        banner={banner}
+        aboutUsHref={aboutUsHref}
+      />
       <Content
         contents={contents}
         aboutUsHref={aboutUsHref}
