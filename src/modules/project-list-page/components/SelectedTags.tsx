@@ -1,7 +1,7 @@
 'use client'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { useRef } from 'react'
+import { Fragment, useRef } from 'react'
 
 import ICClose from '@/components/icons/ICClose'
 
@@ -109,15 +109,10 @@ export default function SelectedTags({ label, items, selectedValues, onRemove }:
       </span>
       <div className='flex sm:flex-wrap items-center gap-x-[1.04167rem] gap-y-[0.36458rem] bg-[#F0F0F0] p-[0.46875rem_0.52083rem]'>
         {selectedValues.map((value, i) => (
-          <>
-            {i > 0 && <div className='w-[0.0625rem] h-[1rem] bg-[rgba(9,9,9,0.08)] shrink-0'></div>}
-            <SelectedTagItem
-              key={value}
-              value={value}
-              label={getLabel(value)}
-              onRemove={onRemove}
-            />
-          </>
+          <Fragment key={value}>
+            {i > 0 ? <div className='w-[0.0625rem] h-[1rem] bg-[rgba(9,9,9,0.08)] shrink-0' /> : null}
+            <SelectedTagItem value={value} label={getLabel(value)} onRemove={onRemove} />
+          </Fragment>
         ))}
       </div>
     </div>

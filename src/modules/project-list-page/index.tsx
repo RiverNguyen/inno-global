@@ -145,20 +145,25 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     // Add limit (page is controlled by SWR Infinite via `paged`)
     params.append('limit', PAGE_LIMIT.toString())
 
-    // Add filters from state
-    selectedLocations.forEach((loc) => {
+    // Add filters from state (normalize order so SWR keys stay stable)
+    const normalizedLocations = [...selectedLocations].sort()
+    const normalizedServices = [...selectedServices].sort()
+    const normalizedTypes = [...selectedTypes].sort()
+    const normalizedYears = [...selectedYears].sort()
+
+    normalizedLocations.forEach((loc) => {
       params.append('location', loc)
     })
 
-    selectedServices.forEach((service) => {
+    normalizedServices.forEach((service) => {
       params.append('service', service)
     })
 
-    selectedTypes.forEach((type) => {
+    normalizedTypes.forEach((type) => {
       params.append('building_type', type)
     })
 
-    selectedYears.forEach((year) => {
+    normalizedYears.forEach((year) => {
       params.append('starting_year', year)
     })
 
@@ -179,9 +184,26 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     return params.toString()
   }, [locale, slugInvestor, selectedTypes, selectedServices, selectedLocations, selectedYears, sortValue, searchQuery])
 
-  // Always fetch from API (even for default state).
-  // Keep `initialProjects` as fallbackData for immediate paint, then revalidate on mount.
-  const shouldFetchFromAPI = true
+  const [useInitialFallbackData, setUseInitialFallbackData] = useState(true)
+
+  // Only use server-provided `initialProjects` for the very first paint.
+  // When filters change, we don't want to "flash" back to the default list (initialProjects).
+  useEffect(() => {
+    setUseInitialFallbackData(false)
+  }, [])
+
+  // Track filter changes to show skeleton only for filtering (not for initial mount).
+  const prevBaseQueryStringRef = useRef<string | null>(null)
+  const [isFiltering, setIsFiltering] = useState(false)
+
+  useEffect(() => {
+    const prev = prevBaseQueryStringRef.current
+    prevBaseQueryStringRef.current = baseQueryString
+    if (prev === null) return
+    if (prev !== baseQueryString) {
+      setIsFiltering(true)
+    }
+  }, [baseQueryString])
 
   const getKey = (pageIndex: number, previousPageData: ProjectListApiResponse | null) => {
     if (previousPageData) {
@@ -200,15 +222,20 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
   const {
     data: pages,
     isLoading,
+    isValidating,
     size,
     setSize,
   } = useSWRInfinite<ProjectListApiResponse>(getKey, fetcherCMS, {
     revalidateIfStale: false,
-    revalidateOnMount: true,
+    // We already fetched on the server; don't revalidate on client mount.
+    // Only fetch when key changes (filters) or when infinite-loading next pages.
+    revalidateOnMount: false,
     revalidateOnReconnect: false,
     revalidateOnFocus: false,
-    revalidateFirstPage: shouldFetchFromAPI,
-    fallbackData: [initialProjects],
+    revalidateFirstPage: false,
+    // Keep the current list while fetching a new filtered list (prevents UI "jump").
+    keepPreviousData: true,
+    fallbackData: useInitialFallbackData ? [initialProjects] : undefined,
   })
 
   const displayProjects = useMemo(() => {
@@ -222,6 +249,13 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     : true
 
   const isLoadingMore = isLoading || (size > 0 && !!pages && typeof pages[size - 1] === 'undefined')
+  const shouldShowFilteringSkeleton = isFiltering && isValidating && size === 1
+
+  useEffect(() => {
+    if (!isValidating && isFiltering) {
+      setIsFiltering(false)
+    }
+  }, [isValidating, isFiltering])
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
   const requestingNextPageRef = useRef(false)
@@ -401,6 +435,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
             <ProjectListContent
               projects={displayProjects}
               isInitialLoading={isLoading && displayProjects.length === 0}
+              isFiltering={shouldShowFilteringSkeleton}
               t={t}
             />
             {isLoadingMore ? <ProjectListSkeleton /> : null}

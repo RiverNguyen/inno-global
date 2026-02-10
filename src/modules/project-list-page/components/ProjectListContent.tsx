@@ -18,13 +18,15 @@ const FADE_SCALE_FROM = 0.98
 interface ProjectListContentProps {
   projects: IProject[]
   isInitialLoading: boolean
+  isFiltering?: boolean
   t: (key: string) => string
 }
 
-export default function ProjectListContent({ projects, isInitialLoading, t }: ProjectListContentProps) {
+export default function ProjectListContent({ projects, isInitialLoading, isFiltering = false, t }: ProjectListContentProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
   const didHydrateRef = useRef(false)
+  const prevIdsRef = useRef<string[]>([])
   const projectsKey = useMemo(() => projects.map((p) => String(p.id)).join('|'), [projects])
 
   useGSAP(
@@ -36,6 +38,15 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
         typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches
 
       const items = Array.from(container.querySelectorAll<HTMLElement>('[data-project-item]'))
+      const currIds = projects.map((p) => String(p.id))
+      const prevIds = prevIdsRef.current
+
+      // Only animate when items are appended (infinite load).
+      // For filtering (list replace/reset), keep items visible (no animation).
+      const isAppend =
+        prevIds.length > 0 &&
+        currIds.length > prevIds.length &&
+        prevIds.every((id, idx) => currIds[idx] === id)
 
       // On first client run (SSR -> hydrate), keep initial list visible (no re-animation).
       // We still want animations for items appended later (infinite scroll).
@@ -45,6 +56,18 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
           el.dataset.gsapAnimated = '1'
           gsap.set(el, { autoAlpha: 1, y: 0, scale: 1, clearProps: 'opacity,transform' })
         }
+        prevIdsRef.current = currIds
+        return
+      }
+
+      // If we're filtering or list is replaced (not appended), skip animations entirely.
+      if (isFiltering || !isAppend) {
+        observerRef.current?.disconnect()
+        for (const el of items) {
+          el.dataset.gsapAnimated = '1'
+          gsap.set(el, { autoAlpha: 1, y: 0, scale: 1, clearProps: 'opacity,transform' })
+        }
+        prevIdsRef.current = currIds
         return
       }
 
@@ -112,11 +135,13 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
         if (el.dataset.gsapAnimated === '1') continue
         observerRef.current.observe(el)
       }
+
+      prevIdsRef.current = currIds
     },
     { dependencies: [projectsKey], scope: containerRef },
   )
 
-  if (isInitialLoading) {
+  if (isInitialLoading || isFiltering) {
     return <ProjectListSkeleton />
   }
 
