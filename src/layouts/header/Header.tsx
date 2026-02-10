@@ -76,9 +76,15 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
         className={cn(
           'xsm:hidden pointer-events-none fixed top-0 left-0 z-[98] size-full bg-black/60 opacity-0 transition-opacity duration-200',
           openSearch && 'pointer-events-auto opacity-100',
+          (openMenu || openSearch) && 'z-[200]',
         )}
       ></div>
-      <header className='xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]'>
+      <header
+        className={cn(
+          'xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]',
+          (openMenu || openSearch) && 'z-[201]',
+        )}
+      >
         <div
           className={cn(
             'xsm:px-[0.83333rem] container flex items-center justify-between',
@@ -259,6 +265,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
         className={cn(
           'fixed top-0 left-0 z-[98] h-screen w-full overflow-y-auto bg-white px-[0.83333rem] pt-[calc(2.92rem+0.31rem)] transition-[transform,opacity] duration-200 ease-out will-change-transform sm:hidden pb-[20vh]',
           openMenu ? 'translate-x-0 opacity-100 pointer-events-auto' : 'translate-x-full opacity-0 pointer-events-none',
+          openMenu && 'z-[200]',
         )}
       >
         {Array.isArray(menus) &&
@@ -327,6 +334,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           openSearch
             ? 'translate-x-0 opacity-100 pointer-events-auto'
             : 'translate-x-full opacity-0 pointer-events-none',
+          openSearch && 'z-[200]',
         )}
       >
         <div className='flex-y-center h-[1.87rem] justify-between'>
