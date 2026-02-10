@@ -6,11 +6,12 @@ import { useLocale, useTranslations } from 'next-intl'
 
 import ROUTES from '@/configs/routes'
 import { IBlog } from '@/interfaces/blog.interface'
+import { formatDateDDMMYYYY } from '@/lib/utils'
 
 export default function NewsItem({ data }: { data: IBlog }) {
   const t = useTranslations('HomePage')
   const locale = useLocale()
-  const category = data?.taxonomies?.category[0]?.taxonomy || ''
+  const category = data?.taxonomies?.category[0]?.name || ''
 
   return (
     <div className='flex items-center space-x-[1.04083rem] group xsm:space-x-[0.52083rem]'>
@@ -32,7 +33,7 @@ export default function NewsItem({ data }: { data: IBlog }) {
       >
         <p className='text-[0.625rem] opacity-90 mb-[0.25rem] text-[rgba(9,9,9,0.60)] xsm:text-[0.52083rem]'>
           <span className='uppercase mr-[0.62rem] text-[#D32F2F]'>{category}</span>
-          <span>{data.date}</span>
+          <span>{formatDateDDMMYYYY(data.date)}</span>
         </p>
         <h3 className='text-[0.9375rem] leading-[1.5] line-clamp-2 text-[#090909] xsm:text-[0.72917rem]'>
           {data?.title}

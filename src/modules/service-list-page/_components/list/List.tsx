@@ -92,8 +92,8 @@ export default function List({
     onLoadMore: handleLoadMore,
   })
 
-  const listHrefBase = locale === 'vi' ? '/danh-sach-dich-vu' : '/services'
-  const projectListHref = locale === 'vi' ? '/danh-sach-du-an' : '/projects'
+  const listHrefBase = locale === 'vi' ? '/dich-vu' : '/services'
+  const projectListHref = locale === 'vi' ? '/du-an' : '/projects'
 
   return (
     <section className='xsm:pt-[1.45833rem] xsm:pb-[3.33333rem] xsm:px-[0.83333rem] mx-auto w-full max-w-[75rem] py-[6.25rem]'>

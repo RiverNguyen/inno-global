@@ -32,4 +32,7 @@ export interface IBlog {
     post_translation: ITerm[]
     service: ITerm[]
   }
+  acf: {
+    short_desc: string
+  }
 }
