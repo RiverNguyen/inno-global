@@ -111,7 +111,11 @@ export default function SelectedTags({ label, items, selectedValues, onRemove }:
         {selectedValues.map((value, i) => (
           <Fragment key={value}>
             {i > 0 ? <div className='w-[0.0625rem] h-[1rem] bg-[rgba(9,9,9,0.08)] shrink-0' /> : null}
-            <SelectedTagItem value={value} label={getLabel(value)} onRemove={onRemove} />
+            <SelectedTagItem
+              value={value}
+              label={getLabel(value)}
+              onRemove={onRemove}
+            />
           </Fragment>
         ))}
       </div>

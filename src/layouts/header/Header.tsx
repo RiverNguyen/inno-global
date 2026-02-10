@@ -11,6 +11,7 @@ import ICClose from '@/components/icons/ICClose'
 import ICMenu from '@/components/icons/ICMenu'
 import ICSearchHead from '@/components/icons/ICSearchHead'
 import ICUser from '@/components/icons/ICUser'
+import { useScrollHeader } from '@/hooks/useScrollHeader'
 import { Link } from '@/i18n/navigation'
 import { IAcfImage } from '@/interfaces/acf-wp.interface'
 import { IMenu } from '@/interfaces/header.interface'
@@ -29,6 +30,9 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
   const mobileSearchInputRef = useRef<HTMLInputElement>(null)
   const params = useParams()
   const locale = params.locale as 'vi' | 'en'
+
+  const headerRef = useRef<HTMLElement>(null)
+  useScrollHeader(headerRef as React.RefObject<HTMLElement>)
 
   useEffect(() => {
     if (!openSearch) return
@@ -78,7 +82,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           openSearch && 'pointer-events-auto opacity-100',
         )}
       ></div>
-      <header className='xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]'>
+      <header ref={headerRef} className='transition-transform duration-500 ease-out xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]'>
         <div
           className={cn(
             'xsm:px-[0.83333rem] container flex items-center justify-between',
@@ -87,7 +91,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
         >
           {/* navigation */}
           <nav className={cn('flex-y-center w-fit', openSearch && 'xsm:hidden')}>
-            <Link href='/'>
+            <Link href='/' onClick={handleCloseAll}>
               {logo?.url && (
                 <Image
                   src={logo.url}
@@ -268,6 +272,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               href={menu.link.url || ''}
               target={menu.link.target || '_self'}
               className='mb-header-16-m text-en block border-b border-solid border-[rgba(9,9,9,0.08)] py-[0.94rem] whitespace-nowrap'
+              onClick={handleCloseAll}
             >
               {menu.link.title}
             </Link>
@@ -301,6 +306,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                   'mb-header-16-m block py-[0.52rem]',
                   lang.key === locale ? 'text-primary-red-100' : 'text-en-60',
                 )}
+                onClick={handleCloseAll}
               >
                 {lang.label}
               </Link>
@@ -316,6 +322,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           href={menus[menus.length - 1].link.url || ''}
           target={menus[menus.length - 1].link.target || '_self'}
           className='w-full block'
+          onClick={handleCloseAll}
         >
           <ButtonOutline className='w-full'>{menus[menus.length - 1].link.title}</ButtonOutline>
         </Link>

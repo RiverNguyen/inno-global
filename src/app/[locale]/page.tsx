@@ -30,22 +30,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function Page({ params }: { params: Promise<{ locale: 'vi' | 'en' }> }) {
   const { locale } = await params
-  console.log('🚀 ~ Page ~ locale:', locale)
-  // The following is an example of how to properly handle ENDPOINTS and types,
-  // Fetch and assert the acfData type explicitly
+
   const acfData = (await homeService.getHomeData(ENDPOINTS.pageIds.home[locale])) as IHomeAcfDataRes
   if (!acfData) return null
   return (
     <ScrollSnapWrapper includeFooterSnap>
       <section data-snap>
-        <BannerHome data={acfData.acf.banner} />
+        <BannerHome data={acfData?.acf?.banner} />
       </section>
       <section data-snap>
-        <AboutUsHome data={acfData.acf.about_us} />
+        <AboutUsHome data={acfData?.acf?.about_us} />
       </section>
       <section data-snap>
-        <AwardHome data={acfData.acf.outstanding_award} />
-        <AwardHomeMobile data={acfData.acf.outstanding_award} />
+        <AwardHome data={acfData?.acf?.outstanding_award} />
+        <AwardHomeMobile data={acfData?.acf?.outstanding_award} />
       </section>
       <section data-snap>
         <ServiceHome />

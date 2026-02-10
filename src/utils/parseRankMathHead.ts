@@ -43,7 +43,13 @@ export default function parseRankMathHead(headHtml: string) {
   function getSchemaMarkup() {
     const regex = /<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i
     const match = headHtml.match(regex)
-    return match ? JSON.parse(match[1]?.trim() || '') : null
+    const raw = match?.[1]?.trim()
+    if (!raw) return null
+    try {
+      return JSON.parse(raw)
+    } catch {
+      return null
+    }
   }
 
   return {

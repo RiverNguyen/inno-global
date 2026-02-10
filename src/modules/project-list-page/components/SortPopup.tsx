@@ -35,6 +35,16 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
   const [internalSelected, setInternalSelected] = useState<string>('')
   const selectedItem = value !== undefined ? value : internalSelected
 
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [pendingSort, setPendingSort] = useState(selectedItem)
+
+  const handleDrawerOpenChange = (open: boolean) => {
+    setDrawerOpen(open)
+    if (open) {
+      setPendingSort(selectedItem)
+    }
+  }
+
   const t = useTranslations('ProjectListPage')
 
   const handleChange = (newValue: string) => {
@@ -42,6 +52,14 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
       setInternalSelected(newValue)
     }
     onChange?.(newValue)
+  }
+
+  const handleApplyDrawer = () => {
+    if (value === undefined) {
+      setInternalSelected(pendingSort)
+    }
+    onChange?.(pendingSort)
+    setDrawerOpen(false)
   }
 
   return (
@@ -80,7 +98,10 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
         </PopoverContent>
       </Popover>
 
-      <Drawer>
+      <Drawer
+        open={drawerOpen}
+        onOpenChange={handleDrawerOpenChange}
+      >
         <DrawerTrigger asChild>
           <button
             type='button'
@@ -91,7 +112,7 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
         </DrawerTrigger>
         <DrawerContent
           hiddenDrag
-          className='rounded-[1.25rem_1.25rem_0_0] bg-white'
+          className='rounded-[1.25rem_1.25rem_0_0] bg-white z-[102]'
         >
           <DrawerHeader className='flex items-center justify-between border-b border-b-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
             <DrawerTitle className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>
@@ -117,8 +138,8 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
                   <input
                     type='radio'
                     id={slugify(item.value)}
-                    checked={item.value === selectedItem}
-                    onChange={() => handleChange(item.value)}
+                    checked={item.value === pendingSort}
+                    onChange={() => setPendingSort(item.value)}
                     className='size-[1.04333rem] rounded-[5.20833rem] border-[#AEAEB2] text-[#D32F2F] ring-0 ring-offset-0 outline-none checked:border-[#0000]'
                   />
                 </div>
@@ -131,6 +152,7 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
           <DrawerFooter className='flex flex-row items-center p-[1.04167rem_0.83333rem] shadow-[0_-5px_4px_0_rgba(0,0,0,0.04)]'>
             <button
               type='button'
+              onClick={handleApplyDrawer}
               className='font-open-sans inline-flex grow items-center justify-center space-x-[0.3125rem] rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] p-[0.625rem_1.04167rem] text-[0.72917rem] leading-[150%] text-white backdrop-blur-[6px]'
             >
               <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('apply')}</span>

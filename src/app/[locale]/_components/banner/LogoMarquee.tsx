@@ -110,13 +110,13 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
             ref={marqueeTrackRef}
             className='flex h-full w-max items-center whitespace-nowrap will-change-transform transform-gpu'
           >
-            {Array.from({ length: logoRepeat }).map((_, repeatIndex) => (
+            {Array.from({ length: logoRepeat ?? 0 }).map((_, repeatIndex) => (
               <div
                 key={repeatIndex}
                 ref={repeatIndex === 0 ? marqueeGroupRef : undefined}
                 className='flex h-full items-center gap-[2.18rem] pr-[2.18rem] shrink-0'
               >
-                {logos.map((logo, index) => (
+                {logos?.map((logo, index) => (
                   <Image
                     key={`${logo.id}-${repeatIndex}-${index}`}
                     src={logo.url}

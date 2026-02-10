@@ -22,7 +22,12 @@ interface ProjectListContentProps {
   t: (key: string) => string
 }
 
-export default function ProjectListContent({ projects, isInitialLoading, isFiltering = false, t }: ProjectListContentProps) {
+export default function ProjectListContent({
+  projects,
+  isInitialLoading,
+  isFiltering = false,
+  t,
+}: ProjectListContentProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
   const didHydrateRef = useRef(false)
@@ -44,9 +49,7 @@ export default function ProjectListContent({ projects, isInitialLoading, isFilte
       // Only animate when items are appended (infinite load).
       // For filtering (list replace/reset), keep items visible (no animation).
       const isAppend =
-        prevIds.length > 0 &&
-        currIds.length > prevIds.length &&
-        prevIds.every((id, idx) => currIds[idx] === id)
+        prevIds.length > 0 && currIds.length > prevIds.length && prevIds.every((id, idx) => currIds[idx] === id)
 
       // On first client run (SSR -> hydrate), keep initial list visible (no re-animation).
       // We still want animations for items appended later (infinite scroll).

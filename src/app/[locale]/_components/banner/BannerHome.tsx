@@ -61,7 +61,7 @@ export default function BannerHome({ data }: { data: ISectionBannerAcf }) {
       />
       <BannerControls
         activeIndex={activeIndex}
-        total={image_slide.length}
+        total={image_slide?.length}
         isPlaying={isPlaying}
         onTogglePlay={handleTogglePlay}
         onPrev={handlePrev}
