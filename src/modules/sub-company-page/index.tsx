@@ -32,7 +32,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
               },
               {
                 label: t('Breadcrumb.aboutUsPage'),
-                href: '/about-us',
+                href: locale === 'vi' ? ROUTES.aboutUsVi : ROUTES.aboutUsEn,
               },
             ]}
             lastItem={{
@@ -111,7 +111,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
               title={company?.title}
               key={company?.id}
               description={company?.content}
-              image={company?.featured_image?.url}
+              image={company?.featured_image?.url || '/default.webp'}
               link={locale === 'vi' ? `/cong-ty/${company?.slug}` : `/company/${company?.slug}`}
             />
           ))}
@@ -120,7 +120,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
       <div className='bg-white'>
         <div className='xsm:max-w-full xsm:h-auto xsm:p-[3.33333rem_0.83333rem] mx-auto flex h-[8.59375rem] max-w-[75rem] items-center justify-between'>
           <Link
-            href={locale === 'vi' ? '/ve-chung-toi/so-do-to-chuc' : '/about-us/organization-chart'}
+            href={locale === 'vi' ? '/ve-chung-toi/so-do-to-chuc' : '/about-us/organizational-chart'}
             className='xsm:max-w-[5.5rem] font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 rotate-90' />

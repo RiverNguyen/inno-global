@@ -239,7 +239,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     }
 
     // Scroll up to the top of results when filters/search/sort change
-    scrollToElementInContainer('window', 'project-list', 0.6, 8)
+    scrollToElementInContainer('window', 'project-list', 0.6, 7.5)
   }, [baseQueryString, setSize])
 
   useEffect(() => {

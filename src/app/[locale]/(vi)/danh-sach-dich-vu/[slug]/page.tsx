@@ -8,6 +8,8 @@ import PageDetailService from '@/modules/page-detail-service'
 import serviceApi from '@/services/service'
 import metadataValues from '@/utils/metadataValues'
 
+export const dynamic = 'force-dynamic'
+
 export function generateStaticParams() {
   return [{ locale: 'vi' }]
 }

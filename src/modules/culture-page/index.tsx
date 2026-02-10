@@ -152,23 +152,43 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                 <button
                   type='button'
                   aria-label='Previous slide'
-                  className='size-[1.45833rem] cursor-pointer'
+                  className='size-[1.45833rem] cursor-pointer shrink-0'
                   onClick={() => swiperInstance?.slidePrev()}
                 >
                   <ChevronLeft className='xsm:text-white size-[1.45833rem] text-[#090909]' />
                 </button>
+                <div className=' xsm:text-white sm:hidden xsm:h-[2.29167rem] flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)]'>
+                  <div className='flex-y-center xsm:space-x-[0.41667rem] space-x-[0.4275rem]'>
+                    <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
+                      {formatNumber(activeIndex + 1)}/{formatNumber(totalSlides)}
+                    </span>
+
+                    {/* Progress bar segments */}
+                    <div className='xsm:space-x-[0.15625rem] flex items-center space-x-[0.1875rem]'>
+                      {Array.isArray(activity?.gallery) &&
+                        activity.gallery.map((_, index) => (
+                          <button
+                            key={index}
+                            type='button'
+                            aria-label={`Go to slide ${index + 1}`}
+                            className={`xsm:bg-white xsm:h-[0.10417rem] h-[0.15625rem] min-w-0 shrink-0 cursor-pointer bg-[rgba(9,9,9,0.60)] transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] opacity-100' : 'xsm:w-[0.67rem] w-[1.19792rem] opacity-32'}`}
+                            onClick={() => swiperInstance?.slideToLoop(index)}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                </div>
                 <button
                   type='button'
                   aria-label='Next slide'
-                  className='size-[1.45833rem] cursor-pointer'
+                  className='size-[1.45833rem] cursor-pointer shrink-0'
                   onClick={() => swiperInstance?.slideNext()}
                 >
                   <ChevronRight className='xsm:text-white size-[1.45833rem] text-[#090909]' />
                 </button>
               </div>
             </div>
-
-            <div className='xsm:absolute xsm:bottom-0 xsm:left-0 xsm:p-[0.41667rem_0.83333rem] xsm:text-white xsm:h-[2.29167rem] z-10 flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)] sm:mt-[1.25rem]'>
+            <div className='xsm:hidden flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)] mt-[1.25rem]'>
               <div className='flex-y-center xsm:space-x-[0.41667rem] space-x-[0.4275rem]'>
                 <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
                   {formatNumber(activeIndex + 1)}/{formatNumber(totalSlides)}
