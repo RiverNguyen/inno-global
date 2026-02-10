@@ -1,14 +1,12 @@
 import { Metadata } from 'next'
 
-
 import AboutUsHome from '@/app/[locale]/_components/about-us/AboutUsHome'
 import AwardHome from '@/app/[locale]/_components/award/AwardHome'
 import AwardHomeMobile from '@/app/[locale]/_components/award/AwardHomeMobile'
 import BannerHome from '@/app/[locale]/_components/banner/BannerHome'
-import Projects from '@/app/[locale]/_components/projects/projects'
+import ProjectsSection from '@/app/[locale]/_components/projects'
 import ScrollSnapWrapper from '@/app/[locale]/_components/scroll/ScrollSnapWrapper'
-import ServiceHome from '@/app/[locale]/_components/service/ServiceHome'
-import ServiceHomeMobile from '@/app/[locale]/_components/service/ServiceHomeMobile'
+import ServiceSection from '@/app/[locale]/_components/service'
 import ENDPOINTS from '@/configs/endpoints'
 import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
@@ -52,14 +50,16 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
         <AwardHomeMobile data={acfData?.acf?.outstanding_award} />
       </section>
       <section data-snap>
-        <ServiceHome />
-        <ServiceHomeMobile />
+        <ServiceSection
+          locale={locale}
+          title={acfData.acf.capacity_service.title}
+        />
       </section>
       <section data-snap>
-        <h2 className='text-center text-[1.25rem] font-semibold text-[#090909] mb-[1.67rem] sm:hidden'>
-          Dự án nổi bật
-        </h2>
-        <Projects data={acfData.acf.home_projects} />
+        <ProjectsSection
+          locale={locale}
+          acfProjects={acfData.acf.home_projects}
+        />
       </section>
       <section data-snap>
         <News data={blogRes?.data} />

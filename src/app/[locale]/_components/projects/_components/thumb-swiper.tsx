@@ -2,6 +2,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import Image from 'next/image'
 // Import Swiper React components
+import { useTranslations } from 'next-intl'
 import type { Swiper as SwiperType } from 'swiper'
 import { Navigation, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -18,6 +19,7 @@ interface IThumbSwiperProps {
 }
 
 export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps) {
+  const t = useTranslations('ProjectListPage')
   const remToPx = (rem: number) => {
     if (typeof window === 'undefined') return 0
     return rem * parseFloat(getComputedStyle(document.documentElement).fontSize)
@@ -33,7 +35,9 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
       />
       <div className='relative z-10'>
         <div className='flex-y-center justify-between  mb-[0.9375rem]'>
-          <p className='text-white text-[1.25rem] font-semibold leading-[100%] tracking-[-0.0125rem]'>Dự án khác</p>
+          <p className='text-white text-[1.25rem] font-semibold leading-[100%] tracking-[-0.0125rem]'>
+            {t('otherProjects')}
+          </p>
           <div className='flex space-x-[0.3125rem] mr-[0.94rem]'>
             <button className='project-thumb-swiper-prev relative size-[1.5625rem] rounded-full flex-center overflow-hidden bg-[rgba(255,255,255,0.14)]'>
               <ChevronLeftIcon className='size-[0.83rem] text-white' />
@@ -57,21 +61,20 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
           }}
           className='relative max-h-[9.94792rem] cursor-grab'
         >
-          {Array.isArray(data) &&
-            data.map((item) => (
-              <SwiperSlide
-                key={item.id + 'thumb_item'}
-                className='w-full max-w-[17.08333rem] !h-[9.94792rem] mr-[0.63rem] rounded-[0.20833rem] overflow-hidden'
-              >
-                <Image
-                  width={683}
-                  height={410}
-                  src={item.image}
-                  alt={item.title}
-                  className='h-full w-full object-cover'
-                />
-              </SwiperSlide>
-            ))}
+          {data.map((item) => (
+            <SwiperSlide
+              key={item.id + 'thumb_item'}
+              className='w-full max-w-[17.08333rem] !h-[9.94792rem] mr-[0.63rem] rounded-[0.20833rem] overflow-hidden'
+            >
+              <Image
+                width={683}
+                height={410}
+                src={item.image || '/default.webp'}
+                alt={item.title}
+                className='h-full w-full object-cover'
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>

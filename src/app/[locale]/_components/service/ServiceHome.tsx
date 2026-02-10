@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { useRef, useState, type WheelEvent } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
@@ -18,70 +19,15 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-const SERVICES = [
-  {
-    title: 'Kiến trúc (Architecture)',
-    description:
-      'INNO cung cấp giải pháp kiến trúc toàn diện, kết hợp hài hòa giữa công năng, thẩm mỹ và sự phù hợp với bối cảnh. Mỗi dự án được nghiên cứu kỹ lưỡng từ ý tưởng, không gian, vật liệu đến trải nghiệm sử dụng. Chúng tôi hướng tới những thiết kế bền vững, tinh gọn và mang dấu ấn riêng của chủ đầu tư. Mục tiêu cuối cùng là tạo nên không gian sống và làm việc thực sự hiệu quả và truyền cảm hứng.',
-    image: '/home/d-service1.webp',
-  },
-  {
-    title: 'Kết cấu (Structural Engineering)',
-    description:
-      'Dịch vụ thiết kế kết cấu của INNO đảm bảo độ an toàn, ổn định và bền vững cho mọi loại công trình, từ nhà ở đến dự án quy mô lớn. Chúng tôi sử dụng các phương pháp tính toán hiện đại, tối ưu vật liệu và tuân thủ nghiêm ngặt tiêu chuẩn kỹ thuật. Mọi giải pháp đều được kiểm tra đa chiều nhằm hạn chế rủi ro trong thi công. Kết cấu được thiết kế chuẩn mực góp phần nâng cao chất lượng tổng thể của công trình.',
-    image: '/home/d-service2.webp',
-  },
-  {
-    title: 'MEP – Cơ điện',
-    description:
-      'Hệ thống cơ điện (MEP) đóng vai trò quan trọng trong việc vận hành hiệu quả và tiết kiệm năng lượng cho công trình. INNO cung cấp các giải pháp thiết kế hệ thống điện, nước, điều hòa không khí và thông gió tối ưu. Chúng tôi chú trọng đến việc tích hợp các công nghệ thông minh, thân thiện với môi trường, đảm bảo sự tiện nghi và an toàn tối đa cho người sử dụng.',
-    image: '/home/d-service1.webp',
-  },
-  {
-    title: 'Kết cấu (Structural Engineering)',
-    description:
-      'Dịch vụ thiết kế kết cấu của INNO đảm bảo độ an toàn, ổn định và bền vững cho mọi loại công trình, từ nhà ở đến dự án quy mô lớn. Chúng tôi sử dụng các phương pháp tính toán hiện đại, tối ưu vật liệu và tuân thủ nghiêm ngặt tiêu chuẩn kỹ thuật. Mọi giải pháp đều được kiểm tra đa chiều nhằm hạn chế rủi ro trong thi công. Kết cấu được thiết kế chuẩn mực góp phần nâng cao chất lượng tổng thể của công trình.',
-    image: '/home/d-service2.webp',
-  },
-  {
-    title: 'Kiến trúc (Architecture)',
-    description:
-      'INNO cung cấp giải pháp kiến trúc toàn diện, kết hợp hài hòa giữa công năng, thẩm mỹ và sự phù hợp với bối cảnh. Mỗi dự án được nghiên cứu kỹ lưỡng từ ý tưởng, không gian, vật liệu đến trải nghiệm sử dụng. Chúng tôi hướng tới những thiết kế bền vững, tinh gọn và mang dấu ấn riêng của chủ đầu tư. Mục tiêu cuối cùng là tạo nên không gian sống và làm việc thực sự hiệu quả và truyền cảm hứng.',
-    image: '/home/d-service1.webp',
-  },
-  {
-    title: 'Giải pháp Kiến tạo toàn phần',
-    description:
-      'Giải pháp Kiến tạo toàn phần của INNO mang đến sự đồng bộ từ khâu thiết kế kiến trúc, kết cấu đến cơ điện và nội thất. Chúng tôi đảm nhận vai trò tổng thầu thiết kế, giúp chủ đầu tư kiểm soát tốt tiến độ, chi phí và chất lượng dự án. Sự phối hợp chặt chẽ giữa các bộ môn giúp giảm thiểu xung đột kỹ thuật và tối ưu hóa hiệu quả thi công.',
-    image: '/home/d-service2.webp',
-  },
-  {
-    title: 'Giải pháp Kiến trúc',
-    description:
-      'INNO cung cấp giải pháp kiến trúc toàn diện, kết hợp hài hòa giữa công năng, thẩm mỹ và sự phù hợp với bối cảnh. Mỗi dự án được nghiên cứu kỹ lưỡng từ ý tưởng, không gian, vật liệu đến trải nghiệm sử dụng. Chúng tôi hướng tới những thiết kế bền vững, tinh gọn và mang dấu ấn riêng của chủ đầu tư. Mục tiêu cuối cùng là tạo nên không gian sống và làm việc thực sự hiệu quả và truyền cảm hứng.',
-    image: '/home/d-service1.webp',
-  },
-  {
-    title: 'Kết cấu (Structural Engineering)',
-    description:
-      'Dịch vụ thiết kế kết cấu của INNO đảm bảo độ an toàn, ổn định và bền vững cho mọi loại công trình, từ nhà ở đến dự án quy mô lớn. Chúng tôi sử dụng các phương pháp tính toán hiện đại, tối ưu vật liệu và tuân thủ nghiêm ngặt tiêu chuẩn kỹ thuật. Mọi giải pháp đều được kiểm tra đa chiều nhằm hạn chế rủi ro trong thi công. Kết cấu được thiết kế chuẩn mực góp phần nâng cao chất lượng tổng thể của công trình.',
-    image: '/home/d-service2.webp',
-  },
-  {
-    title: 'MEP – Cơ điện',
-    description:
-      'Hệ thống cơ điện (MEP) đóng vai trò quan trọng trong việc vận hành hiệu quả và tiết kiệm năng lượng cho công trình. INNO cung cấp các giải pháp thiết kế hệ thống điện, nước, điều hòa không khí và thông gió tối ưu. Chúng tôi chú trọng đến việc tích hợp các công nghệ thông minh, thân thiện với môi trường, đảm bảo sự tiện nghi và an toàn tối đa cho người sử dụng.',
-    image: '/home/d-service1.webp',
-  },
-  {
-    title: 'Kết cấu (Structural Engineering)',
-    description:
-      'Dịch vụ thiết kế kết cấu của INNO đảm bảo độ an toàn, ổn định và bền vững cho mọi loại công trình, từ nhà ở đến dự án quy mô lớn. Chúng tôi sử dụng các phương pháp tính toán hiện đại, tối ưu vật liệu và tuân thủ nghiêm ngặt tiêu chuẩn kỹ thuật. Mọi giải pháp đều được kiểm tra đa chiều nhằm hạn chế rủi ro trong thi công. Kết cấu được thiết kế chuẩn mực góp phần nâng cao chất lượng tổng thể của công trình.',
-    image: '/home/d-service2.webp',
-  },
-]
+type ServiceHomeItem = {
+  title: string
+  description: string
+  image: string
+  href: string
+}
 
-export default function ServiceHome() {
+export default function ServiceHome({ services, title }: { services: ServiceHomeItem[]; title: string }) {
+  const t = useTranslations('ServiceSection')
   const [activeService, setActiveService] = useState(0)
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -116,10 +62,10 @@ export default function ServiceHome() {
     () => {
       // Parallax effect: Image moves up, Text moves down
       // We apply this to the WRAPPERS so it doesn't conflict with Swiper Parallax
-      const images = gsap.utils.toArray('.service-parallax-image-wrapper')
-      const texts = gsap.utils.toArray('.service-parallax-text-wrapper')
+      const images = gsap.utils.toArray<HTMLElement>('.service-parallax-image-wrapper')
+      const texts = gsap.utils.toArray<HTMLElement>('.service-parallax-text-wrapper')
 
-      images.forEach((img: any) => {
+      images.forEach((img) => {
         gsap.fromTo(
           img,
           { y: '0%' },
@@ -136,7 +82,7 @@ export default function ServiceHome() {
         )
       })
 
-      texts.forEach((txt: any) => {
+      texts.forEach((txt) => {
         gsap.fromTo(
           txt,
           { y: '0%' },
@@ -163,13 +109,13 @@ export default function ServiceHome() {
     >
       {/* Left Menu */}
       <div className='w-[35.3125rem] pt-[5.7rem] pr-[2.92rem] pl-[7.29rem] pb-[5.18rem] space-y-[2.24rem] z-20 relative bg-white'>
-        <h3 className='pc-h3-40-s text-text-100'>Năng Lực - Dịch Vụ</h3>
+        <h3 className='pc-h3-40-s text-text-100'>{title}</h3>
         <div
           data-snap-ignore
           onWheelCapture={handleServiceListWheelCapture}
           className='grid grid-cols-1 sm:max-h-[80vh] sm:overflow-y-auto sm:overscroll-contain sm:pb-[10vh] sm:pr-[0.25rem] sm:[scrollbar-width:thin] sm:[scrollbar-color:rgba(211,47,47,0.45)_transparent] sm:[&::-webkit-scrollbar]:w-[0.35rem] sm:[&::-webkit-scrollbar-track]:bg-transparent sm:[&::-webkit-scrollbar-thumb]:rounded-full sm:[&::-webkit-scrollbar-thumb]:bg-primary-red-100/40 sm:[&::-webkit-scrollbar-thumb:hover]:bg-primary-red-100/65'
         >
-          {SERVICES.map((service, index) => (
+          {services.map((service, index) => (
             <p
               key={index}
               onClick={() => handleServiceClick(index)}
@@ -200,7 +146,7 @@ export default function ServiceHome() {
           className='w-full h-full'
           allowTouchMove={true}
         >
-          {SERVICES.map((service, index) => (
+          {services.map((service, index) => (
             <SwiperSlide
               key={index}
               className='relative w-full h-full overflow-hidden'
@@ -211,7 +157,7 @@ export default function ServiceHome() {
                   data-swiper-parallax-y='-1%'
                 >
                   <Image
-                    src={service.image}
+                    src={service.image || '/default.webp'}
                     alt={service.title}
                     fill
                     className='object-cover w-full h-full'
@@ -237,10 +183,10 @@ export default function ServiceHome() {
                   </p>
                   <div className='flex items-center cursor-pointer group w-fit space-x-[0.28rem] ml-auto'>
                     <Link
-                      href='#'
+                      href={service.href}
                       className='pc-button-16-r'
                     >
-                      Xem chi tiết
+                      {t('viewDetail')}
                     </Link>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
