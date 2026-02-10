@@ -27,7 +27,7 @@ export default function OrganizationalChartDetail({ res }: { res: IOrganizationa
               },
               {
                 label: t('Breadcrumb.aboutUsPage'),
-                href: '/about-us',
+                href: locale === 'vi' ? ROUTES.aboutUsVi : ROUTES.aboutUsEn,
               },
             ]}
             lastItem={{
