@@ -23,9 +23,9 @@ export default async function layout({
   return (
     <NextIntlClientProvider>
       <NuqsAdapter>
-        <Header data={headerData.data} />
+        <Header data={headerData?.data} />
         {children}
-        <Footer data={footerData.data.footer_fields} />
+        <Footer data={footerData?.data.footer_fields} />
       </NuqsAdapter>
     </NextIntlClientProvider>
   )
