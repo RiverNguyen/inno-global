@@ -3,11 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 
-import { ISectionBannerAcf } from '@/interfaces/home.interface'
-
 import BannerCarousel from './BannerCarousel'
 import BannerControls from './BannerControls'
 import LogoMarquee from './LogoMarquee'
+
+import { ISectionBannerAcf } from '@/interfaces/home.interface'
 
 export default function BannerHome({ data }: { data: ISectionBannerAcf }) {
   const { image_slide, partner_slide } = data

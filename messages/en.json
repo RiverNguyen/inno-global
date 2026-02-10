@@ -1,6 +1,9 @@
 {
   "HomePage": {
-    "title": "Hello world!"
+    "title": "Hello world!",
+    "blogs": "Blogs",
+    "viewAll": "View all",
+    "viewDetail": "View detail"
   },
   "ProjectListPage": {
     "breadcrumbHome": "Home",
