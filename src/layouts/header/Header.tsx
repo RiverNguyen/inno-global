@@ -85,7 +85,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
       ></div>
       <header
         className={cn(
-          'xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]',
+          'xsm:h-[2.92rem] transition-all duration-300 xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center xsm:bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-[#DADADA] shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]',
           (openMenu || openSearch) && 'z-[201]',
         )}
         ref={headerRef}
