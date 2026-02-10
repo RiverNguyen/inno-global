@@ -76,10 +76,7 @@ const ENDPOINTS = {
       en: '/services',
       vi: '/danh-sach-dich-vu',
     },
-    rank_math_detail: {
-      en: (slug: string) => `/en/service/${slug}`,
-      vi: (slug: string) => `/service/${slug}`,
-    },
+    rank_math_detail: (slug: string) => `api/v1/seo/head-term/${slug}`,
   },
   socialResponsibility: {
     en: 'wp/v2/pages/340?_fields=acf&acf_format=standard',

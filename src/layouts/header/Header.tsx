@@ -107,7 +107,7 @@ export default function Header() {
             </div>
           </nav>
           {/* search */}
-          <div className='flex-y-center xsm:hidden space-x-5 xsm:hidden'>
+          <div className='flex-y-center space-x-5 xsm:hidden'>
             <div
               onClick={!openSearch ? handleOpenSearch : undefined}
               className={cn(

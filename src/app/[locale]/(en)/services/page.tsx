@@ -30,10 +30,7 @@ interface PageProps {
 export default async function Services({ params }: PageProps) {
   const { locale } = await params
 
-  const [services, page] = await Promise.all([
-    serviceApi.getAll(locale),
-    serviceApi.getPage(locale as 'vi' | 'en'),
-  ])
+  const [services, page] = await Promise.all([serviceApi.getAll(locale), serviceApi.getPage(locale as 'vi' | 'en')])
 
   return (
     <main>

@@ -3,10 +3,11 @@ import { getLocale } from 'next-intl/server'
 
 import ENDPOINTS from '@/configs/endpoints'
 import ENV from '@/configs/env'
-import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
+import fetchData from '@/fetches/fetchData'
 import PageDetailService from '@/modules/page-detail-service'
 import serviceApi from '@/services/service'
 import metadataValues from '@/utils/metadataValues'
+import parseRankMathHead from '@/utils/parseRankMathHead'
 
 export const dynamic = 'force-dynamic'
 
@@ -14,16 +15,11 @@ export function generateStaticParams() {
   return [{ locale: 'vi' }]
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string; locale: string }>
-}): Promise<Metadata> {
-  const { slug, locale } = await params
-  const res = await getMetaDataRankMath(
-    ENDPOINTS.service.rank_math_detail[locale as keyof typeof ENDPOINTS.service.rank_math_detail](slug),
-  )
-  return metadataValues(res, ENV.DOMAIN || '')
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const res = await fetchData({ api: ENDPOINTS.service.rank_math_detail(slug) })
+  const parsed = res?.head && typeof res.head === 'string' ? parseRankMathHead(res.head) : res
+  return metadataValues(parsed, ENV.DOMAIN || '')
 }
 
 interface PageProps {
