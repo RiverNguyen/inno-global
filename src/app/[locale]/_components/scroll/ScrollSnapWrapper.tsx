@@ -63,8 +63,7 @@ export default function ScrollSnapWrapper({
 
       const canTriggerSnap = () => Date.now() >= actionLockedUntil && !isAnimating
       const isIndexAtFooter = () => includeFooterSnap && index === sections.length
-      const isAtDocumentEnd = () =>
-        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2
+      const isAtDocumentEnd = () => window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2
       const shouldSnapUpFromFooter = () => {
         if (!includeFooterSnap) return false
         if (isIndexAtFooter()) return true
