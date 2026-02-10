@@ -16,10 +16,8 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string; locale: string }>
 }): Promise<Metadata> {
-  const { slug, locale } = await params
-  const res = await getMetaDataRankMath(
-    ENDPOINTS.service.rank_math_detail[locale as keyof typeof ENDPOINTS.service.rank_math_detail](slug),
-  )
+  const { locale } = await params
+  const res = await getMetaDataRankMath(ENDPOINTS.service.rank_math[locale as keyof typeof ENDPOINTS.service.rank_math])
   return metadataValues(res, ENV.DOMAIN || '')
 }
 
