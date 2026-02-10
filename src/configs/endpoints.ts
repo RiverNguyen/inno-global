@@ -1,6 +1,12 @@
 import { FetchRelatedBlogsProps, FetchRelatedProjectsProps } from '@/services/service'
 
 const ENDPOINTS = {
+  home: {
+    rank_math: {
+      en: '/en/homepage',
+      vi: '/trang-chu',
+    },
+  },
   project: {
     getAll: (locale: string) =>
       `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&orderby=date&order=DESC&limit=12&paged=1`,
@@ -9,10 +15,30 @@ const ENDPOINTS = {
     getServices: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=service`,
     getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    rank_math: {
+      en: '/en/projects',
+      vi: '/danh-sach-du-an',
+    },
+    rank_math_detail: {
+      en: (slug: string) => `/en/project/${slug}`,
+      vi: (slug: string) => `/project/${slug}`,
+    },
   },
   leadership: {
     list: 'api/v1/get-all/leadership',
     detail: (slug: string) => `api/v1/detail/${slug}?acf=true`,
+    rank_math: {
+      en: '/leadership',
+      vi: '/ban-lanh-dao-cong-ty',
+    },
+    rank_math_detail: {
+      en: (slug: string) => `/en/leadership/${slug}`,
+      vi: (slug: string) => `/leadership/${slug}`,
+    },
+    founder: {
+      vi: 'wp/v2/pages/632?_fields=acf&acf_format=standard',
+      en: 'wp/v2/pages/634?_fields=acf&acf_format=standard',
+    },
   },
   taxonomies: {
     list: 'api/v1/taxonomies',
@@ -32,6 +58,12 @@ const ENDPOINTS = {
     cultureVi: 368,
     cultureEn: 371,
   },
+  aboutUs: {
+    rank_math: {
+      en: '/about-us',
+      vi: '/ve-chung-toi',
+    },
+  },
   service: {
     getAll: (locale: string) =>
       `api/v1/get-all-taxonomy/service?lang=${locale}&fields=thumbnail&orderby=date&order=DESC&limit=12&paged=1`,
@@ -44,14 +76,46 @@ const ENDPOINTS = {
       vi: 'wp/v2/pages/326?_fields=acf&acf_format=standard',
       en: 'wp/v2/pages/328?_fields=acf&acf_format=standard',
     },
+    rank_math: {
+      en: '/services',
+      vi: '/danh-sach-dich-vu',
+    },
+    rank_math_detail: {
+      en: (slug: string) => `/en/service/${slug}`,
+      vi: (slug: string) => `/service/${slug}`,
+    },
   },
   socialResponsibility: {
     en: 'wp/v2/pages/340?_fields=acf&acf_format=standard',
     vi: 'wp/v2/pages/338?_fields=acf&acf_format=standard',
+    rank_math: {
+      en: '/social-responsibility',
+      vi: '/trach-nhiem-xa-hoi',
+    },
+  },
+  leadershipPage: {
+    vi: 'wp/v2/pages/594?_fields=acf&acf_format=standard',
+    en: 'wp/v2/pages/596?_fields=acf&acf_format=standard',
   },
   detail: (slug: string, locale: string) => `api/v1/detail/${slug}?locale=${locale}&acf=true`,
   company: {
+    rank_math: {
+      en: '/en/sub-company',
+      vi: '/cong-ty-con',
+    },
     list: 'api/v1/get-all/company',
+  },
+  organizationalChart: {
+    rank_math: {
+      en: '/en/organizational-chart',
+      vi: '/so-do-to-chuc',
+    },
+  },
+  corporateCulture: {
+    rank_math: {
+      en: '/en/corporate-culture',
+      vi: '/van-hoa-doanh-nghiep',
+    },
   },
 }
 

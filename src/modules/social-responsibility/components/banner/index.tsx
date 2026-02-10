@@ -6,13 +6,14 @@ import { ISocialResponsibilityBanner } from '@/interfaces/social-responsibility.
 
 type BannerProps = {
   banner?: ISocialResponsibilityBanner
+  aboutUsHref: string
 }
 
-export default function Banner({ banner }: BannerProps) {
+export default function Banner({ banner, aboutUsHref }: BannerProps) {
   const t = useTranslations()
 
   return (
-    <div className='xsm:h-auto relative h-screen overflow-hidden sm:h-[56.25rem] lg:h-screen'>
+    <div className='xsm:h-auto relative h-screen overflow-hidden sm:h-[56.25rem] lg:h-screen xsm:pt-[2.92rem]'>
       <Image
         src={banner?.image_desktop || '/social-responsibility/banner.webp'}
         alt='Banner'
@@ -35,7 +36,7 @@ export default function Banner({ banner }: BannerProps) {
         <Breadcrumb
           navItems={[
             { label: t('Breadcrumb.homePage'), href: '/' },
-            { label: t('Breadcrumb.aboutUsPage'), href: '/about' },
+            { label: t('Breadcrumb.aboutUsPage'), href: aboutUsHref },
           ]}
           lastItem={{ label: t('Breadcrumb.socialResponsibilityPage') }}
           classNameNavItems='font-open-sans text-[0.72917rem] leading-[150%] font-normal text-[rgba(255,255,255,0.50)] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'

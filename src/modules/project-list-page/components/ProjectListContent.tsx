@@ -139,7 +139,7 @@ export default function ProjectListContent({ projects, isInitialLoading, t }: Pr
   }
 
   return (
-    <div className='col-span-full flex items-center justify-center py-12'>
+    <div className='col-span-full flex items-center justify-center py-20'>
       <span className='text-[#090909]'>{t('noProjects') || 'No projects found'}</span>
     </div>
   )

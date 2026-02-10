@@ -61,7 +61,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
       <div className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] pt-[2.5rem] pb-[6.25rem]'>
         <div className='xsm:max-w-full xsm:px-[0.83333rem] mx-auto max-w-[75rem]'>
           <h2 className='font-open-sans xsm:text-[1.25rem] xsm:mb-[1.25rem] mb-[1.67rem] text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#090909]'>
-            {items.length}{' '}
+            {formatNumber(items.length)}{' '}
             {items.length === 1 ? t('CorporateCulturePage.coreValue') : t('CorporateCulturePage.coreValues')}
           </h2>
           {isMobile && !isLoading ? (
@@ -72,6 +72,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                     key={i}
                     item={item}
                     number={i + 1}
+                    pageTitle={title}
                   />
                 ))}
             </div>
@@ -88,6 +89,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                           key={index}
                           item={item}
                           number={index + 1}
+                          pageTitle={title}
                         />
                       )
                     })}
@@ -102,6 +104,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                         key={index}
                         item={item}
                         number={index + 1}
+                        pageTitle={title}
                       />
                     ))}
               </div>
@@ -149,23 +152,43 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                 <button
                   type='button'
                   aria-label='Previous slide'
-                  className='size-[1.45833rem] cursor-pointer'
+                  className='size-[1.45833rem] cursor-pointer shrink-0'
                   onClick={() => swiperInstance?.slidePrev()}
                 >
                   <ChevronLeft className='xsm:text-white size-[1.45833rem] text-[#090909]' />
                 </button>
+                <div className=' xsm:text-white sm:hidden xsm:h-[2.29167rem] flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)]'>
+                  <div className='flex-y-center xsm:space-x-[0.41667rem] space-x-[0.4275rem]'>
+                    <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
+                      {formatNumber(activeIndex + 1)}/{formatNumber(totalSlides)}
+                    </span>
+
+                    {/* Progress bar segments */}
+                    <div className='xsm:space-x-[0.15625rem] flex items-center space-x-[0.1875rem]'>
+                      {Array.isArray(activity?.gallery) &&
+                        activity.gallery.map((_, index) => (
+                          <button
+                            key={index}
+                            type='button'
+                            aria-label={`Go to slide ${index + 1}`}
+                            className={`xsm:bg-white xsm:h-[0.10417rem] h-[0.15625rem] min-w-0 shrink-0 cursor-pointer bg-[rgba(9,9,9,0.60)] transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] opacity-100' : 'xsm:w-[0.67rem] w-[1.19792rem] opacity-32'}`}
+                            onClick={() => swiperInstance?.slideToLoop(index)}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                </div>
                 <button
                   type='button'
                   aria-label='Next slide'
-                  className='size-[1.45833rem] cursor-pointer'
+                  className='size-[1.45833rem] cursor-pointer shrink-0'
                   onClick={() => swiperInstance?.slideNext()}
                 >
                   <ChevronRight className='xsm:text-white size-[1.45833rem] text-[#090909]' />
                 </button>
               </div>
             </div>
-
-            <div className='xsm:absolute xsm:bottom-0 xsm:left-0 xsm:p-[0.41667rem_0.83333rem] xsm:text-white xsm:h-[2.29167rem] z-10 flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)] sm:mt-[1.25rem]'>
+            <div className='xsm:hidden flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)] mt-[1.25rem]'>
               <div className='flex-y-center xsm:space-x-[0.41667rem] space-x-[0.4275rem]'>
                 <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
                   {formatNumber(activeIndex + 1)}/{formatNumber(totalSlides)}
@@ -192,11 +215,14 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
       <div className='bg-white'>
         <div className='xsm:max-w-full xsm:h-auto xsm:p-[3.33333rem_0.83333rem] mx-auto flex h-[8.59375rem] max-w-[75rem] items-center justify-between'>
           <Link
-            href='#'
-            className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
+            href={locale === 'vi' ? '/ve-chung-toi/ban-lanh-dao-cong-ty' : '/about-us/leadership'}
+            className='font-open-sans xsm:text-[0.625rem] xsm:max-w-[5.5rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 rotate-90' />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang B</span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+              {' '}
+              {t('CorporateCulturePage.leadership')}
+            </span>
           </Link>
           <Link
             href={locale === 'vi' ? ROUTES.aboutUsVi : ROUTES.aboutUsEn}
@@ -205,10 +231,12 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
             {t('Breadcrumb.aboutUsPage')}
           </Link>
           <Link
-            href='#'
-            className='font-open-sans xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
+            href={locale === 'vi' ? '/ve-chung-toi/lich-su-hinh-thanh' : '/about-us/formation-history'}
+            className='font-open-sans xsm:max-w-[5.5rem] xsm:text-right xsm:text-[0.625rem] inline-flex items-center space-x-[0.3125rem] text-[0.83333rem] leading-[150%] text-[#D32F2F]'
           >
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>Trang A</span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+              {t('CorporateCulturePage.formationHistory')}
+            </span>
             <ICChevronDown className='xsm:size-[0.72917rem] size-[0.83333rem] shrink-0 -rotate-90' />
           </Link>
         </div>

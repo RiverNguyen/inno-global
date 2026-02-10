@@ -9,12 +9,17 @@ export default async function SocialResponsibility({ locale }: { locale: string 
 
   const banner = socialResponsibilityData?.acf?.banner
   const contents = socialResponsibilityData?.acf?.content ?? []
+  const aboutUsHref = locale === 'en' ? '/about-us' : '/ve-chung-toi'
 
   return (
     <main>
-      <Banner banner={banner} />
+      <Banner
+        banner={banner}
+        aboutUsHref={aboutUsHref}
+      />
       <Content
         contents={contents}
+        aboutUsHref={aboutUsHref}
         locale={locale}
       />
     </main>

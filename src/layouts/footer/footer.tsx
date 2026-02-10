@@ -2,6 +2,7 @@
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 
 import { IAcfImage, IAcfLink } from '@/interfaces/acf-wp.interface'
@@ -43,6 +44,7 @@ export default function Footer({ data }: IFooterProps) {
   const menuColumn1Ref = useRef<HTMLDivElement | null>(null)
   const menuColumn2Ref = useRef<HTMLDivElement | null>(null)
   const menuColumn1SvgRef = useRef<SVGSVGElement | null>(null)
+  const pathname = usePathname()
   const { logo, contact, menu_column_1, menu_column_2, socials, copyright, menu_column_3 } = data || {}
 
   useEffect(() => {
@@ -109,8 +111,13 @@ export default function Footer({ data }: IFooterProps) {
     }
   }
   if (!data) return null
+
+  const isSocialResponsibilityPage =
+    pathname?.includes('/about-us/social-responsibility') || pathname?.includes('/ve-chung-toi/trach-nhiem-xa-hoi')
+  const footerBgClass = isSocialResponsibilityPage ? 'bg-white' : 'bg-[#F0F0F0]'
+
   return (
-    <footer className='bg-[#F0F0F0] p-[2.08333rem_0_1.66667rem_0]'>
+    <footer className={`${footerBgClass} p-[2.08333rem_0_1.66667rem_0]`}>
       <div className='max-w-[75rem] mx-auto flex xsm:flex-col xsm:max-w-full xsm:px-[0.83333rem]'>
         <div className='max-w-[17.7rem] xsm:max-w-full'>
           <Link href='/'>

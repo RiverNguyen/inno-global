@@ -30,6 +30,7 @@
     "ceoMessage": "CEO Message"
   },
   "DetailProjectPage": {
+    "info": "Project information",
     "learnMore": "Learn more about the project",
     "related": "Related projects",
     "viewAll": "View all"
@@ -42,12 +43,20 @@
       "title": "Related blogs"
     }
   },
+  "OrganizationChartPage": {
+    "founder": "Founder",
+    "subCompany": "Sub company"
+  },
   "SubCompanyPage": {
-    "companyList": "Companys"
+    "companyList": "Companys",
+    "organizationChart": "Organization chart",
+    "leadership": "Leadership"
   },
   "CorporateCulturePage": {
     "coreValue": "core value",
-    "coreValues": "core values"
+    "coreValues": "core values",
+    "leadership": "Leadership",
+    "formationHistory": "Formation history"
   },
   "Breadcrumb": {
     "homePage": "Home",
