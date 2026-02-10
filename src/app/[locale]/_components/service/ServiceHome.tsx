@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useRef, useState, type WheelEvent } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/parallax'
@@ -86,6 +86,24 @@ export default function ServiceHome() {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  const handleServiceListWheelCapture = (event: WheelEvent<HTMLDivElement>) => {
+    const list = event.currentTarget
+    const hasScrollableOverflow = list.scrollHeight - list.clientHeight > 1
+
+    // If this list cannot scroll, let ScrollSnapWrapper handle it.
+    if (!hasScrollableOverflow) return
+
+    const isScrollingDown = event.deltaY > 0
+    const isScrollingUp = event.deltaY < 0
+    const atTopEdge = list.scrollTop <= 0
+    const atBottomEdge = list.scrollTop + list.clientHeight >= list.scrollHeight - 1
+
+    // Consume wheel only while the inner list can continue scrolling.
+    if ((isScrollingDown && !atBottomEdge) || (isScrollingUp && !atTopEdge) || event.deltaY === 0) {
+      event.stopPropagation()
+    }
+  }
+
   // Handle left menu click
   const handleServiceClick = (index: number) => {
     setActiveService(index)
@@ -146,7 +164,11 @@ export default function ServiceHome() {
       {/* Left Menu */}
       <div className='w-[35.3125rem] pt-[5.7rem] pr-[2.92rem] pl-[7.29rem] pb-[5.18rem] space-y-[2.24rem] z-20 relative bg-white'>
         <h3 className='pc-h3-40-s text-text-100'>Năng Lực - Dịch Vụ</h3>
-        <div className='grid grid-cols-1'>
+        <div
+          data-snap-ignore
+          onWheelCapture={handleServiceListWheelCapture}
+          className='grid grid-cols-1 sm:max-h-[80vh] sm:overflow-y-auto sm:overscroll-contain sm:pb-[10vh] sm:pr-[0.25rem] sm:[scrollbar-width:thin] sm:[scrollbar-color:rgba(211,47,47,0.45)_transparent] sm:[&::-webkit-scrollbar]:w-[0.35rem] sm:[&::-webkit-scrollbar-track]:bg-transparent sm:[&::-webkit-scrollbar-thumb]:rounded-full sm:[&::-webkit-scrollbar-thumb]:bg-primary-red-100/40 sm:[&::-webkit-scrollbar-thumb:hover]:bg-primary-red-100/65'
+        >
           {SERVICES.map((service, index) => (
             <p
               key={index}

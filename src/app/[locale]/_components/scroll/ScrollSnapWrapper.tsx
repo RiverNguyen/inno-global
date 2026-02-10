@@ -62,6 +62,20 @@ export default function ScrollSnapWrapper({
       }
 
       const canTriggerSnap = () => Date.now() >= actionLockedUntil && !isAnimating
+      const isIndexAtFooter = () => includeFooterSnap && index === sections.length
+      const isAtDocumentEnd = () =>
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2
+      const shouldSnapUpFromFooter = () => {
+        if (!includeFooterSnap) return false
+        if (isIndexAtFooter()) return true
+        if (!isAtDocumentEnd()) return false
+
+        const footer = getFooter()
+        if (!footer) return false
+        const rect = footer.getBoundingClientRect()
+        const visiblePx = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0))
+        return visiblePx > 0
+      }
 
       const syncIndexFromScroll = () => {
         const targets = getSnapTargets()
@@ -137,6 +151,11 @@ export default function ScrollSnapWrapper({
       const snapToDominantTarget = () => {
         if (isAnimating) return
         syncIndexFromScroll()
+        const lastSectionIndex = sections.length - 1
+        if (lastScrollDirection === 'up' && shouldSnapUpFromFooter()) {
+          scrollToTarget(lastSectionIndex)
+          return
+        }
 
         const targetIndex = getDominantTargetIndex()
         const targets = getSnapTargets()
@@ -169,7 +188,7 @@ export default function ScrollSnapWrapper({
         if (scrollEndTimer) clearTimeout(scrollEndTimer)
         scrollEndTimer = setTimeout(() => {
           snapToDominantTarget()
-        }, 2000)
+        }, 1000)
       }
 
       const mm = gsap.matchMedia()
@@ -187,6 +206,10 @@ export default function ScrollSnapWrapper({
           },
           onUp: () => {
             syncIndexFromScroll()
+            if (shouldSnapUpFromFooter()) {
+              scrollToTarget(sections.length - 1)
+              return
+            }
             scrollToTarget(Math.max(index - 1, 0))
           },
         })

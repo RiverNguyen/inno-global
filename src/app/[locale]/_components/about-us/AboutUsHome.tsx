@@ -130,9 +130,9 @@ export default function AboutUsHome({ data }: { data: ISectionAboutUsAcf }) {
       <Image
         src={background_mb.url}
         alt=''
-        fill
-        sizes='100vw'
-        className='object-cover w-full h-auto sm:hidden absolute bottom-0 left-0 pointer-events-none'
+        width={375}
+        height={385}
+        className='object-cover w-full !h-auto sm:hidden absolute bottom-0 left-0 pointer-events-none'
       />
       <div
         className='absolute sm:hidden bottom-[-3px] left-0 w-full pointer-events-none h-[3.13rem]'

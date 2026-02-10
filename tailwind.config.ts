@@ -5,6 +5,8 @@ const config: Config = {
   content: ['./src/**/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     screens: {
+      '2xl': '1536px',
+      xl: '1280px',
       lg: '1025px',
       sm: '640px',
       xlg: {

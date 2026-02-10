@@ -55,7 +55,7 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
             nextEl: '.project-thumb-swiper-next',
             prevEl: '.project-thumb-swiper-prev',
           }}
-          className='relative max-h-[9.94792rem]'
+          className='relative max-h-[9.94792rem] cursor-grab'
         >
           {data.map((item) => (
             <SwiperSlide
