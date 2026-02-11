@@ -17,8 +17,8 @@ export default function News({ data }: NewsProps) {
   const locale = useLocale()
 
   return (
-    <div className='w-full sm:h-[56.25rem] lg:h-fit p-[3.22rem_0_4.24rem] xsm:p-[2.5rem_0.83rem]'>
-      <div className='max-w-[85.42rem] mx-auto flex h-full xsm:flex-col xsm:max-w-full'>
+    <div className='w-full h-screen xsm:p-[2.5rem_0.83rem]'>
+      <div className='max-w-[85.42rem] mx-auto flex-center h-full xsm:flex-col xsm:max-w-full'>
         <h2 className='sm:hidden text-[1.25rem] font-semibold leading-[120%] tracking-[-0.03125rem] text-[#090909] mb-[1.25rem]'>
           {t('blogs')}
         </h2>

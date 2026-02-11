@@ -259,7 +259,7 @@ export default function Footer({ data }: IFooterProps) {
                           alt={item?.icon?.alt || ''}
                           width={40}
                           height={40}
-                          className='size-[2.83333rem] xsm:size-[1.66667rem] object-contain'
+                          className='size-[1.75rem] xsm:size-[1rem] object-contain'
                         />
                       </Link>
                     ))}

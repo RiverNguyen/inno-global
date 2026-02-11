@@ -314,7 +314,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
           {t('title')}
         </h1>
       </div>
-      <div className='xsm:pt-[1.25rem] xsm:pb-[0.83rem] sticky top-0 z-100 w-full bg-white py-5'>
+      <div className='xsm:pt-[1.25rem] xsm:pb-[0.83rem] sticky top-0 z-100 w-full bg-white py-2.5'>
         <div className='xsm:max-w-full xsm:flex-col mx-auto flex max-w-[75rem] items-center justify-between'>
           <div
             className='xsm:w-full xsm:order-2 xsm:px-[0.83333rem] xsm:overflow-x-auto xsm:space-x-[0.3125rem] flex items-center space-x-[0.72917rem]'
@@ -347,8 +347,8 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               onChange={handleYearsChange}
             />
           </div>
-          <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.83333rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
-            <div className='xsm:w-auto xsm:grow relative w-[16.61458rem] overflow-hidden'>
+          <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
+            <div className='xsm:w-auto xsm:grow relative w-[13.61458rem] overflow-hidden'>
               <input
                 type='text'
                 placeholder={t('placeholderSearch')}

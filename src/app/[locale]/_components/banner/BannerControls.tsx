@@ -1,34 +1,25 @@
 'use client'
 
-import Image from 'next/image'
 import type { SVGProps } from 'react'
 
 type BannerControlsProps = {
   activeIndex: number
   total: number
-  isPlaying: boolean
-  onTogglePlay: () => void
+  isPlaying?: boolean
+  onTogglePlay?: () => void
   onPrev: () => void
   onNext: () => void
   onSelect: (index: number) => void
 }
 
-export default function BannerControls({
-  activeIndex,
-  total,
-  isPlaying,
-  onTogglePlay,
-  onPrev,
-  onNext,
-  onSelect,
-}: BannerControlsProps) {
+export default function BannerControls({ activeIndex, total, onPrev, onNext, onSelect }: BannerControlsProps) {
   return (
     <div className='xsm:w-[17.86458rem] xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1.02rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[8.07rem] left-[12.5rem] z-10 flex items-end justify-between'>
       <div></div>
       {/* Slide counter */}
       <div className='xsm:justify-between xsm:w-full flex items-center space-x-[0.4375rem] text-white'>
         <div className='flex-y-center space-x-[0.4275rem] xsm:hidden'>
-          <button
+          {/* <button
             type='button'
             aria-label={isPlaying ? 'Pause autoplay' : 'Play autoplay'}
             aria-pressed={!isPlaying}
@@ -51,7 +42,7 @@ export default function BannerControls({
               unoptimized
               className={`absolute-center size-[1rem] scale-150 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}
             />
-          </button>
+          </button> */}
 
           {/* Progress bar segments */}
           <div className='flex items-center space-x-[0.1875rem]'>
