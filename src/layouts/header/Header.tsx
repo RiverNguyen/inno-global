@@ -157,7 +157,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 onClick={handleOpenSearch}
                 className='flex-center absolute top-0 right-0 size-[1.875rem]'
               >
-                <ICSearchHead className='text-text-100 size-[0.72917rem] rounded-full' />
+                <ICSearchHead className='text-text-100 size-[0.875rem]' />
               </button>
               <div
                 className={cn(

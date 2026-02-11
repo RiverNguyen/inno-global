@@ -199,6 +199,7 @@ export default function Footer({ data }: IFooterProps) {
                         <Link
                           href={item?.link?.url || ''}
                           target={item?.link?.target || '_self'}
+                          className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[0.10417rem] after:w-full after:bg-[#E00000] after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100"
                         >
                           {item?.link?.title}
                         </Link>
@@ -230,6 +231,7 @@ export default function Footer({ data }: IFooterProps) {
                         <Link
                           href={item?.link?.url || ''}
                           target={item?.link?.target || '_self'}
+                          className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[0.10417rem] after:w-full after:bg-[#E00000] after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100"
                         >
                           {item?.link?.title}
                         </Link>
@@ -277,6 +279,7 @@ export default function Footer({ data }: IFooterProps) {
                       href={item?.link?.url || ''}
                       target={item?.link?.target || '_self'}
                       key={index}
+                      className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[0.10417rem] after:w-full after:bg-[#E00000] after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100"
                     >
                       {item?.link?.title}
                     </Link>
