@@ -139,9 +139,6 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     // Add lang parameter
     params.append('lang', locale)
 
-    // Add tax parameter with all taxonomies
-    params.append('tax', TAX_QUERY)
-
     // Add limit (page is controlled by SWR Infinite via `paged`)
     params.append('limit', PAGE_LIMIT.toString())
 
@@ -151,21 +148,38 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     const normalizedTypes = [...selectedTypes].sort()
     const normalizedYears = [...selectedYears].sort()
 
-    normalizedLocations.forEach((loc) => {
-      params.append('location', loc)
-    })
+    // Build tax param to match active filters
+    const activeTaxonomies = new Set<string>()
+    if (normalizedLocations.length > 0) activeTaxonomies.add('location')
+    if (normalizedServices.length > 0) activeTaxonomies.add('service')
+    if (normalizedTypes.length > 0) activeTaxonomies.add('building_type')
+    if (normalizedYears.length > 0) activeTaxonomies.add('starting_year')
+    if (slugInvestor) activeTaxonomies.add('investor')
 
-    normalizedServices.forEach((service) => {
-      params.append('service', service)
-    })
+    // Keep default behavior when no filters are selected
+    const taxValue =
+      activeTaxonomies.size > 0 ? Array.from(activeTaxonomies).sort().join(',') : TAX_QUERY
+    params.append('tax', taxValue)
 
-    normalizedTypes.forEach((type) => {
-      params.append('building_type', type)
-    })
+    if (normalizedLocations.length > 0) {
+      // API expects comma-separated values, e.g. location=hcm,hn
+      params.append('location', normalizedLocations.join(','))
+    }
 
-    normalizedYears.forEach((year) => {
-      params.append('starting_year', year)
-    })
+    if (normalizedServices.length > 0) {
+      // API expects comma-separated values, e.g. service=design,build
+      params.append('service', normalizedServices.join(','))
+    }
+
+    if (normalizedTypes.length > 0) {
+      // API expects comma-separated values, e.g. building_type=house,office
+      params.append('building_type', normalizedTypes.join(','))
+    }
+
+    if (normalizedYears.length > 0) {
+      // API expects comma-separated values, e.g. starting_year=2020,2022
+      params.append('starting_year', normalizedYears.join(','))
+    }
 
     // Investor filter
     if (slugInvestor) {

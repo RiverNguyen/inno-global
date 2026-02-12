@@ -14,14 +14,14 @@
 }
 
 /* Khoảng cách khi 2 ảnh alignleft đứng cạnh nhau (không có span/p/div bọc) */
-#project_detail img.alignleft + img.alignright {
+#project_detail img.alignleft+img.alignright {
   margin-left: 1rem;
 }
 
 /* Đã có flex container (span/p/div) thì dùng gap, không cần margin thừa */
-#project_detail span:has(> img.alignleft) > img.alignleft + img.alignleft,
-#project_detail p:has(> img.alignleft) > img.alignleft + img.alignleft,
-#project_detail div:has(> img.alignleft) > img.alignleft + img.alignleft {
+#project_detail span:has(> img.alignleft)>img.alignleft+img.alignleft,
+#project_detail p:has(> img.alignleft)>img.alignleft+img.alignleft,
+#project_detail div:has(> img.alignleft)>img.alignleft+img.alignleft {
   margin-left: 0;
 }
 
@@ -216,7 +216,7 @@
     margin-top: 1.75rem;
   }
 
-  #project_detail img.alignleft + img.alignright {
+  #project_detail img.alignleft+img.alignright {
     margin-left: 0;
   }
 
@@ -278,7 +278,6 @@
   }
 
   #project_detail ul {
-    font-size: 0.875rem;
     line-height: normal;
     margin-top: 0.875rem;
   }
@@ -287,5 +286,16 @@
     font-size: 0.875rem;
     margin-top: 0.875rem;
     text-decoration-color: #d32f2f;
+  }
+
+  #project_detail p,
+  #project_detail span,
+  #project_detail ul {
+    color: var(--Text-80, rgba(9, 9, 9, 0.80));
+
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
   }
 }
