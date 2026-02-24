@@ -1,12 +1,12 @@
-/* eslint-disable import/order */
 'use client'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
-import { Navigation } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
 import { ISectionAwardAcf } from '@/interfaces/home.interface'
 
 export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
@@ -51,7 +51,7 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
           quality={100}
         />
         <div className='sm:w-[28.80208rem] space-y-[1.04rem] flex justify-center flex-col z-10'>
-          <p className='pc-h2-54-s text-text-100 '>{subtitle}</p>
+          <p className='pc-h2-54-s text-text-100'>{subtitle}</p>
           <p
             key={activeIndex}
             className='pc-body-20-r text-text-80 text-[1.04167rem] transition-all duration-500 animate-fade-in'
@@ -66,6 +66,7 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
             modules={[Navigation]}
             spaceBetween={80}
             slidesPerView={3}
+            centeredSlides
             loop={true}
             grabCursor
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -89,9 +90,8 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
                       />
                     </div>
                     <div
-                      className={`mt-[1.98rem] px-[0.78125rem] text-[1.04167rem] leading-[1.3] text-center py-[0.46875rem] text-white rounded-[3.625rem] transition-colors duration-300 ${
-                        isActive ? 'bg-gr-2' : 'bg-en-60 '
-                      }`}
+                      className={`mt-[1.98rem] px-[0.78125rem] text-[1.04167rem] leading-[1.3] text-center py-[0.46875rem] text-white rounded-[3.625rem] transition-colors duration-300 ${isActive ? 'bg-gr-2' : 'bg-en-60 '
+                        }`}
                     >
                       {item.year}
                     </div>
@@ -107,9 +107,8 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
                 {list_awards?.map((_, index) => (
                   <div
                     key={index}
-                    className={`h-[0.15625rem] rounded-full transition-all duration-300 bg-text-60 ${
-                      index === activeIndex ? 'w-[2.44rem] ' : 'w-[1.2rem] opacity-[0.32]'
-                    }`}
+                    className={`h-[0.15625rem] rounded-full transition-all duration-300 bg-text-60 ${index === activeIndex ? 'w-[2.44rem] ' : 'w-[1.2rem] opacity-[0.32]'
+                      }`}
                   />
                 ))}
               </div>
