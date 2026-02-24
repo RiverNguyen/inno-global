@@ -17,7 +17,6 @@ export default function Banner({ title, location, gallery }: { title: string; lo
   const [activeIndex, setActiveIndex] = useState(0)
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
   const totalSlides = Array.isArray(gallery) ? gallery.length : 0
-
   const formatSlideNumber = (num: number) => String(num).padStart(2, '0')
 
   return (
@@ -33,7 +32,7 @@ export default function Banner({ title, location, gallery }: { title: string; lo
           background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 38.76%, rgba(0, 0, 0, 0.74) 74.02%, #000 96.54%)',
         }}
       />
-      <div className="xsm:overflow-hidden xsm:relative">
+      <div className='h-full xsm:overflow-hidden xsm:relative'>
         <Swiper
           slidesPerView={1}
           modules={[Parallax, Autoplay]}

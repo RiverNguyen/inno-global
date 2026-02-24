@@ -157,8 +157,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     if (slugInvestor) activeTaxonomies.add('investor')
 
     // Keep default behavior when no filters are selected
-    const taxValue =
-      activeTaxonomies.size > 0 ? Array.from(activeTaxonomies).sort().join(',') : TAX_QUERY
+    const taxValue = activeTaxonomies.size > 0 ? Array.from(activeTaxonomies).sort().join(',') : TAX_QUERY
     params.append('tax', taxValue)
 
     if (normalizedLocations.length > 0) {
@@ -273,21 +272,20 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
   const requestingNextPageRef = useRef(false)
-  const didInitRef = useRef(false)
+  const prevBaseQueryForScrollRef = useRef<string | null>(null)
 
   // Reset back to page 1 when filters/sort/search change
   useEffect(() => {
     requestingNextPageRef.current = false
     void setSize(1)
 
-    // Avoid auto-scrolling on first mount
-    if (!didInitRef.current) {
-      didInitRef.current = true
-      return
-    }
+    const prev = prevBaseQueryForScrollRef.current
+    prevBaseQueryForScrollRef.current = baseQueryString
 
-    // Scroll up to the top of results when filters/search/sort change
-    scrollToElementInContainer('window', 'project-list', 0.6, 7.5)
+    // Chỉ scroll khi user đổi filter/search/sort (query thay đổi), không scroll khi vừa vào trang
+    if (prev !== null && prev !== baseQueryString) {
+      scrollToElementInContainer('window', 'project-list', 0.6, 7.5)
+    }
   }, [baseQueryString, setSize])
 
   useEffect(() => {
@@ -406,9 +404,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               items={typeItems}
               selectedValues={selectedTypes}
               onRemove={(value) =>
-                setQueryStates({
-                  building_type: selectedTypes.filter((v) => v !== value),
-                })
+                setQueryStates((prev) => ({
+                  ...prev,
+                  building_type: prev.building_type.filter((v) => v !== value),
+                }))
               }
             />
             <SelectedTags
@@ -416,9 +415,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               items={serviceItems}
               selectedValues={selectedServices}
               onRemove={(value) =>
-                setQueryStates({
-                  service: selectedServices.filter((v) => v !== value),
-                })
+                setQueryStates((prev) => ({
+                  ...prev,
+                  service: prev.service.filter((v) => v !== value),
+                }))
               }
             />
             <SelectedTags
@@ -426,9 +426,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               items={locationItems}
               selectedValues={selectedLocations}
               onRemove={(value) =>
-                setQueryStates({
-                  location: selectedLocations.filter((v) => v !== value),
-                })
+                setQueryStates((prev) => ({
+                  ...prev,
+                  location: prev.location.filter((v) => v !== value),
+                }))
               }
             />
             <SelectedTags
@@ -436,9 +437,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               items={yearItems}
               selectedValues={selectedYears}
               onRemove={(value) =>
-                setQueryStates({
-                  starting_year: selectedYears.filter((v) => v !== value),
-                })
+                setQueryStates((prev) => ({
+                  ...prev,
+                  starting_year: prev.starting_year.filter((v) => v !== value),
+                }))
               }
             />
           </div>
