@@ -103,6 +103,7 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
                   project={project}
                   key={index}
                   wrapperClassname='shrink-0 w-[16.19792rem]'
+                  classNameThumbnail='xsm:h-[10.175rem]'
                 />
               ))}
         </div>

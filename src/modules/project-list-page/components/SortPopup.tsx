@@ -68,7 +68,7 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
         <PopoverTrigger asChild>
           <button
             type='button'
-            className='font-open-sans xsm:size-[2.08333rem] xsm:bg-[#F0F0F0] xsm:border-none xsm:space-x-0 xsm:rounded-full xsm:hidden relative flex h-[2.5rem] shrink-0 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] px-[1.14583rem] py-[0.83333rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
+            className='font-open-sans xsm:size-[2.08333rem] xsm:bg-[#F0F0F0] xsm:border-none xsm:space-x-0 xsm:rounded-full xsm:hidden relative flex h-[2.5rem] shrink-0 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] px-[0.75rem] py-[0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
           >
             <span className='xsm:hidden [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('sort')}</span>
             <ICSort className='size-[0.83333rem] shrink-0' />

@@ -37,6 +37,18 @@ export default function CtaFixed() {
    * - Scroll mượt tới section
    * - Sau khi scroll xong thì mở lại scroll-spy
    */
+  const getScrollOffsetRem = () => {
+    // Trừ chiều cao header fixed để section không bị che
+    const headerEl = document.querySelector('header')
+    const headerOffsetPx = headerEl instanceof HTMLElement ? headerEl.offsetHeight : 0
+
+    // Buffer nhỏ để section "thoáng" hơn sau khi scroll
+    const extraBufferPx = 12
+
+    const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
+    return (headerOffsetPx + extraBufferPx) / rootFontSize
+  }
+
   const handleCtaClick = (e: React.MouseEvent<HTMLLIElement>) => {
     const targetSectionId = e.currentTarget.dataset.sectionTrigger
     if (!targetSectionId) return
@@ -53,7 +65,7 @@ export default function CtaFixed() {
     setActiveSectionId(targetSectionId)
 
     // Scroll mượt tới section
-    scrollToSection(targetSectionId, 1, 5)
+    scrollToSection(targetSectionId, 1, getScrollOffsetRem())
 
     // Mở lại observer sau khi animation scroll kết thúc
     window.setTimeout(() => {

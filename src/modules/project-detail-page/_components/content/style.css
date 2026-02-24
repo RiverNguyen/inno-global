@@ -278,7 +278,6 @@
   }
 
   #project_detail ul {
-    font-size: 0.875rem;
     line-height: normal;
     margin-top: 0.875rem;
   }
@@ -287,5 +286,16 @@
     font-size: 0.875rem;
     margin-top: 0.875rem;
     text-decoration-color: #d32f2f;
+  }
+
+  #project_detail p,
+  #project_detail span,
+  #project_detail ul {
+    color: var(--Text-80, rgba(9, 9, 9, 0.8));
+
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
   }
 }

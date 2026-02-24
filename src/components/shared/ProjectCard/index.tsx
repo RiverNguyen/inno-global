@@ -81,8 +81,10 @@ export default function ProjectCard({
               height={16}
               className='size-[0.83333rem] shrink-0 object-cover'
             />
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('location')}:</span>
-            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] xsm:pb-[0.125rem]'>
+              {t('location')}:
+            </span>
+            <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] xsm:pb-[0.125rem]'>
               {project?.taxonomies?.location?.[0]?.name || '-'}
             </span>
           </div>

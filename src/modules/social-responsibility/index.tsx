@@ -13,6 +13,11 @@ export default async function SocialResponsibility({ locale }: { locale: string 
 
   return (
     <main>
+      <style>{`
+        .header-desktop {
+          background-color: #fff;
+        }
+      `}</style>
       <Banner
         banner={banner}
         aboutUsHref={aboutUsHref}

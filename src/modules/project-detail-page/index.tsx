@@ -65,7 +65,7 @@ const ProjectDetail = ({ res, relatedProjects }: { res: IProjectDetail; relatedP
     <>
       <div
         id='tab-bar'
-        className='sticky top-[calc(2.92rem-1.875rem)] sm:hidden w-full pt-[1.875rem] shadow-[0_4px_30px_0_rgba(0,0,0,0.08)] z-50'
+        className='sticky top-0 sm:hidden w-full shadow-[0_4px_30px_0_rgba(0,0,0,0.08)] z-[50]'
       >
         <div
           className='flex items-center overflow-x-auto space-x-[0.20833rem] bg-white px-[0.83333rem]'
@@ -77,7 +77,7 @@ const ProjectDetail = ({ res, relatedProjects }: { res: IProjectDetail; relatedP
             type='button'
             onClick={() => handleScrollTo('info')}
             className={cn(
-              'font-open-sans text-[0.72917rem] leading-[150%] text-[#090909] text-edge-cap text-trim-both p-[0.72917rem_0.52083rem_0.625rem_0.52083rem] flex items-center justify-center border-b-2 border-b-transparent cursor-pointer transition ease-out duration-300',
+              'font-open-sans text-[0.72917rem] leading-[150%] text-[#090909] text-edge-cap text-trim-both p-[0.8917rem_0.52083rem_0.625rem_0.52083rem] flex items-center justify-center border-b-2 border-b-transparent cursor-pointer transition ease-out duration-300',
               currentTab === 'info' && 'border-b-[#D32F2F]',
             )}
           >
@@ -87,7 +87,7 @@ const ProjectDetail = ({ res, relatedProjects }: { res: IProjectDetail; relatedP
             type='button'
             onClick={() => handleScrollTo('related')}
             className={cn(
-              'font-open-sans text-[0.72917rem] leading-[150%] text-[#090909] text-edge-cap text-trim-both p-[0.72917rem_0.52083rem_0.625rem_0.52083rem] flex items-center justify-center border-b-2 border-b-transparent cursor-pointer transition ease-out duration-300',
+              'font-open-sans text-[0.72917rem] leading-[150%] text-[#090909] text-edge-cap text-trim-both p-[0.8917rem_0.52083rem_0.625rem_0.52083rem] flex items-center justify-center border-b-2 border-b-transparent cursor-pointer transition ease-out duration-300',
               currentTab === 'related' && 'border-b-[#D32F2F]',
             )}
           >

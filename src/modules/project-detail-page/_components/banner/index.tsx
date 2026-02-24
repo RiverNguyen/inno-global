@@ -17,7 +17,6 @@ export default function Banner({ title, location, gallery }: { title: string; lo
   const [activeIndex, setActiveIndex] = useState(0)
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
   const totalSlides = Array.isArray(gallery) ? gallery.length : 0
-
   const formatSlideNumber = (num: number) => String(num).padStart(2, '0')
 
   return (
@@ -33,103 +32,105 @@ export default function Banner({ title, location, gallery }: { title: string; lo
           background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 38.76%, rgba(0, 0, 0, 0.74) 74.02%, #000 96.54%)',
         }}
       />
-      <Swiper
-        slidesPerView={1}
-        modules={[Parallax, Autoplay]}
-        speed={1500}
-        loop={true}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        grabCursor={true}
-        parallax={true}
-        className='xsm:h-[11.35rem] relative h-full w-full'
-        onSwiper={setSwiperInstance}
-        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-      >
-        {Array.isArray(gallery) &&
-          gallery.map((image, index) => (
-            <SwiperSlide
-              key={index}
-              className='relative overflow-hidden'
-            >
-              <div
-                className='absolute top-0 left-0 size-full overflow-hidden will-change-transform'
-                data-swiper-parallax='70%'
+      <div className='h-full xsm:overflow-hidden xsm:relative'>
+        <Swiper
+          slidesPerView={1}
+          modules={[Parallax, Autoplay]}
+          speed={1500}
+          loop={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          grabCursor={true}
+          parallax={true}
+          className='xsm:h-[11.35rem] relative h-full w-full'
+          onSwiper={setSwiperInstance}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        >
+          {Array.isArray(gallery) &&
+            gallery.map((image, index) => (
+              <SwiperSlide
+                key={index}
+                className='relative overflow-hidden'
               >
-                <Image
-                  width={1920}
-                  height={1080}
-                  src={image.url}
-                  alt={image.alt}
-                  className='h-full w-full object-cover will-change-transform'
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-      </Swiper>
-      {/* Custom pagination & navigation */}
-      <div className='xsm:w-[17.86458rem] xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1.02rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[5.2125rem] left-[12.5rem] z-10 flex items-end justify-between'>
-        <div className='xsm:hidden space-y-4'>
-          <h1 className='text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-white'>{title}</h1>
-          <p className='flex-y-center text-[0.9375rem] leading-[1.5] text-white'>
-            <LocationIcon className='mr-[0.375rem] size-[1.125rem]' />
-            {location}
-          </p>
-        </div>
-        {/* Slide counter */}
-        <div className='xsm:justify-between xsm:w-full flex items-center space-x-[0.4375rem] text-white'>
-          <button
-            type='button'
-            aria-label='Previous slide'
-            className='group relative size-[1.25rem] -scale-x-100 cursor-pointer transition-opacity sm:hidden'
-            onClick={() => swiperInstance?.slidePrev()}
-          >
-            <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
-            <ICNavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
-          </button>
-
-          <div className='flex-y-center space-x-[0.4275rem]'>
-            <span className='text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
-              {formatSlideNumber(activeIndex + 1)}/{formatSlideNumber(totalSlides)}
-            </span>
-
-            {/* Progress bar segments */}
-            <div className='flex items-center space-x-[0.1875rem]'>
-              {Array.isArray(gallery) &&
-                gallery.map((_, index) => (
-                  <button
-                    key={index}
-                    type='button'
-                    aria-label={`Go to slide ${index + 1}`}
-                    className={`h-[0.15625rem] min-w-0 shrink-0 cursor-pointer transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] bg-white' : 'xsm:w-[0.67rem] w-[1.19792rem] bg-white/30'}`}
-                    onClick={() => swiperInstance?.slideToLoop(index)}
+                <div
+                  className='absolute top-0 left-0 size-full overflow-hidden will-change-transform'
+                  data-swiper-parallax='70%'
+                >
+                  <Image
+                    width={1920}
+                    height={1080}
+                    src={image.url}
+                    alt={image.alt}
+                    className='h-full w-full object-cover will-change-transform'
                   />
-                ))}
-            </div>
+                </div>
+              </SwiperSlide>
+            ))}
+        </Swiper>
+        {/* Custom pagination & navigation */}
+        <div className='xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[5.2125rem] left-[12.5rem] z-10 flex items-end justify-between'>
+          <div className='xsm:hidden space-y-4'>
+            <h1 className='text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-white'>{title}</h1>
+            <p className='flex-y-center text-[0.9375rem] leading-[1.5] text-white'>
+              <LocationIcon className='mr-[0.375rem] size-[1.125rem]' />
+              {location}
+            </p>
           </div>
-
-          {/* Navigation arrows - icons absolute để tránh layout shift khi hover (hover vùng không bị thu nhỏ) */}
-          <div className='flex items-center space-x-[0.2rem]'>
+          {/* Slide counter */}
+          <div className='xsm:justify-between xsm:w-full flex items-center space-x-[0.4375rem] text-white'>
             <button
               type='button'
               aria-label='Previous slide'
-              className='group xsm:hidden relative size-[1.25rem] -scale-x-100 cursor-pointer transition-opacity'
+              className='group relative size-[1.25rem] -scale-x-100 cursor-pointer transition-opacity sm:hidden'
               onClick={() => swiperInstance?.slidePrev()}
             >
               <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
               <ICNavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
             </button>
-            <button
-              type='button'
-              aria-label='Next slide'
-              className='group relative size-[1.25rem] cursor-pointer transition-opacity'
-              onClick={() => swiperInstance?.slideNext()}
-            >
-              <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
-              <ICNavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
-            </button>
+
+            <div className='flex-y-center space-x-[0.4275rem]'>
+              <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
+                {formatSlideNumber(activeIndex + 1)}/{formatSlideNumber(totalSlides)}
+              </span>
+
+              {/* Progress bar segments */}
+              <div className='flex items-center space-x-[0.1875rem]'>
+                {Array.isArray(gallery) &&
+                  gallery.map((_, index) => (
+                    <button
+                      key={index}
+                      type='button'
+                      aria-label={`Go to slide ${index + 1}`}
+                      className={`h-[0.15625rem] xsm:h-[0.125rem] min-w-0 shrink-0 cursor-pointer transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] bg-white' : 'xsm:w-[0.67rem] w-[1.19792rem] bg-white/30'}`}
+                      onClick={() => swiperInstance?.slideToLoop(index)}
+                    />
+                  ))}
+              </div>
+            </div>
+
+            {/* Navigation arrows - icons absolute để tránh layout shift khi hover (hover vùng không bị thu nhỏ) */}
+            <div className='flex items-center space-x-[0.2rem]'>
+              <button
+                type='button'
+                aria-label='Previous slide'
+                className='group xsm:hidden relative size-[1.25rem] -scale-x-100 cursor-pointer transition-opacity'
+                onClick={() => swiperInstance?.slidePrev()}
+              >
+                <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
+                <ICNavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
+              </button>
+              <button
+                type='button'
+                aria-label='Next slide'
+                className='group relative size-[1.25rem] cursor-pointer transition-opacity'
+                onClick={() => swiperInstance?.slideNext()}
+              >
+                <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
+                <ICNavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
+              </button>
+            </div>
           </div>
         </div>
       </div>

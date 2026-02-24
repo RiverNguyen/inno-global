@@ -139,9 +139,6 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     // Add lang parameter
     params.append('lang', locale)
 
-    // Add tax parameter with all taxonomies
-    params.append('tax', TAX_QUERY)
-
     // Add limit (page is controlled by SWR Infinite via `paged`)
     params.append('limit', PAGE_LIMIT.toString())
 
@@ -151,21 +148,37 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     const normalizedTypes = [...selectedTypes].sort()
     const normalizedYears = [...selectedYears].sort()
 
-    normalizedLocations.forEach((loc) => {
-      params.append('location', loc)
-    })
+    // Build tax param to match active filters
+    const activeTaxonomies = new Set<string>()
+    if (normalizedLocations.length > 0) activeTaxonomies.add('location')
+    if (normalizedServices.length > 0) activeTaxonomies.add('service')
+    if (normalizedTypes.length > 0) activeTaxonomies.add('building_type')
+    if (normalizedYears.length > 0) activeTaxonomies.add('starting_year')
+    if (slugInvestor) activeTaxonomies.add('investor')
 
-    normalizedServices.forEach((service) => {
-      params.append('service', service)
-    })
+    // Keep default behavior when no filters are selected
+    const taxValue = activeTaxonomies.size > 0 ? Array.from(activeTaxonomies).sort().join(',') : TAX_QUERY
+    params.append('tax', taxValue)
 
-    normalizedTypes.forEach((type) => {
-      params.append('building_type', type)
-    })
+    if (normalizedLocations.length > 0) {
+      // API expects comma-separated values, e.g. location=hcm,hn
+      params.append('location', normalizedLocations.join(','))
+    }
 
-    normalizedYears.forEach((year) => {
-      params.append('starting_year', year)
-    })
+    if (normalizedServices.length > 0) {
+      // API expects comma-separated values, e.g. service=design,build
+      params.append('service', normalizedServices.join(','))
+    }
+
+    if (normalizedTypes.length > 0) {
+      // API expects comma-separated values, e.g. building_type=house,office
+      params.append('building_type', normalizedTypes.join(','))
+    }
+
+    if (normalizedYears.length > 0) {
+      // API expects comma-separated values, e.g. starting_year=2020,2022
+      params.append('starting_year', normalizedYears.join(','))
+    }
 
     // Investor filter
     if (slugInvestor) {
@@ -259,21 +272,20 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
 
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
   const requestingNextPageRef = useRef(false)
-  const didInitRef = useRef(false)
+  const prevBaseQueryForScrollRef = useRef<string | null>(null)
 
   // Reset back to page 1 when filters/sort/search change
   useEffect(() => {
     requestingNextPageRef.current = false
     void setSize(1)
 
-    // Avoid auto-scrolling on first mount
-    if (!didInitRef.current) {
-      didInitRef.current = true
-      return
-    }
+    const prev = prevBaseQueryForScrollRef.current
+    prevBaseQueryForScrollRef.current = baseQueryString
 
-    // Scroll up to the top of results when filters/search/sort change
-    scrollToElementInContainer('window', 'project-list', 0.6, 7.5)
+    // Chỉ scroll khi user đổi filter/search/sort (query thay đổi), không scroll khi vừa vào trang
+    if (prev !== null && prev !== baseQueryString) {
+      scrollToElementInContainer('window', 'project-list', 0.6, 7.5)
+    }
   }, [baseQueryString, setSize])
 
   useEffect(() => {
@@ -314,7 +326,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
           {t('title')}
         </h1>
       </div>
-      <div className='xsm:pt-[1.25rem] xsm:pb-[0.83rem] sticky top-0 z-100 w-full bg-white py-5'>
+      <div className='xsm:pt-[1.25rem] xsm:pb-[0.83rem] sticky top-0 z-100 w-full bg-white py-2.5'>
         <div className='xsm:max-w-full xsm:flex-col mx-auto flex max-w-[75rem] items-center justify-between'>
           <div
             className='xsm:w-full xsm:order-2 xsm:px-[0.83333rem] xsm:overflow-x-auto xsm:space-x-[0.3125rem] flex items-center space-x-[0.72917rem]'
@@ -347,8 +359,8 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               onChange={handleYearsChange}
             />
           </div>
-          <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.83333rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
-            <div className='xsm:w-auto xsm:grow relative w-[16.61458rem] overflow-hidden'>
+          <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
+            <div className='xsm:w-auto xsm:grow relative w-[13.61458rem] overflow-hidden'>
               <input
                 type='text'
                 placeholder={t('placeholderSearch')}
@@ -392,9 +404,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               items={typeItems}
               selectedValues={selectedTypes}
               onRemove={(value) =>
-                setQueryStates({
-                  building_type: selectedTypes.filter((v) => v !== value),
-                })
+                setQueryStates((prev) => ({
+                  ...prev,
+                  building_type: prev.building_type.filter((v) => v !== value),
+                }))
               }
             />
             <SelectedTags
@@ -402,9 +415,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               items={serviceItems}
               selectedValues={selectedServices}
               onRemove={(value) =>
-                setQueryStates({
-                  service: selectedServices.filter((v) => v !== value),
-                })
+                setQueryStates((prev) => ({
+                  ...prev,
+                  service: prev.service.filter((v) => v !== value),
+                }))
               }
             />
             <SelectedTags
@@ -412,9 +426,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               items={locationItems}
               selectedValues={selectedLocations}
               onRemove={(value) =>
-                setQueryStates({
-                  location: selectedLocations.filter((v) => v !== value),
-                })
+                setQueryStates((prev) => ({
+                  ...prev,
+                  location: prev.location.filter((v) => v !== value),
+                }))
               }
             />
             <SelectedTags
@@ -422,9 +437,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               items={yearItems}
               selectedValues={selectedYears}
               onRemove={(value) =>
-                setQueryStates({
-                  starting_year: selectedYears.filter((v) => v !== value),
-                })
+                setQueryStates((prev) => ({
+                  ...prev,
+                  starting_year: prev.starting_year.filter((v) => v !== value),
+                }))
               }
             />
           </div>

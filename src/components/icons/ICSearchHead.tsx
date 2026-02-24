@@ -10,13 +10,13 @@ export default function ICSearchHead(props: React.SVGProps<SVGSVGElement>) {
     >
       <path
         d='M6.70817 12.2503C9.76875 12.2503 12.2498 9.76924 12.2498 6.70866C12.2498 3.64808 9.76875 1.16699 6.70817 1.16699C3.64759 1.16699 1.1665 3.64808 1.1665 6.70866C1.1665 9.76924 3.64759 12.2503 6.70817 12.2503Z'
-        stroke='currentColor'
+        stroke='#090909'
         strokeLinecap='round'
         strokeLinejoin='round'
       />
       <path
         d='M12.8332 12.8337L11.6665 11.667'
-        stroke='currentColor'
+        stroke='#090909'
         strokeLinecap='round'
         strokeLinejoin='round'
       />
