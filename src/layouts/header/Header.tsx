@@ -56,6 +56,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
 
   useEffect(() => {
     if (!openSearch) return
+    if (window.matchMedia('(max-width: 639px)').matches) return
 
     const handleClickOutsideSearch = (event: MouseEvent | TouchEvent) => {
       if (!(event.target instanceof Element)) return
@@ -314,7 +315,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               {menu.link.title}
             </Link>
           ))}
-        <div className='mt-[1.46rem] border-b border-solid border-[rgba(9,9,9,0.08)] pb-[0.83rem]'>
+        <div className='mt-[1.13rem] border-b border-solid border-[rgba(9,9,9,0.08)] pb-[0.3rem]'>
           <button
             type='button'
             onClick={() => setOpenMobileLanguage((prev) => !prev)}
@@ -331,7 +332,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           <div
             className={cn(
               'overflow-hidden transition-[max-height,opacity,margin] duration-200 ease-out',
-              openMobileLanguage ? 'mt-[0.62rem] max-h-[6rem] opacity-100' : 'mt-0 max-h-0 opacity-0',
+              openMobileLanguage ? 'mt-[0.5rem] max-h-[6rem] opacity-100' : 'mt-0 max-h-0 opacity-0',
             )}
           >
             {languages.map((lang) => (
@@ -340,7 +341,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 href='/'
                 locale={lang.key}
                 className={cn(
-                  'mb-header-16-m block py-[0.52rem]',
+                  'pc-body-14-r block py-[0.4rem]',
                   lang.key === locale ? 'text-primary-red-100' : 'text-en-60',
                 )}
                 onClick={handleCloseAll}
