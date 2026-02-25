@@ -3,7 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 
 import ButtonOutline from '@/components/custom/ButtonOutline'
 import ButtonRed from '@/components/custom/ButtonRed'
@@ -88,6 +88,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           'xsm:h-[2.92rem] transition-all duration-300 xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]',
           (openMenu || openSearch) && 'z-[201]',
           'header-desktop',
+          openMenu && 'duration-0',
         )}
         ref={headerRef}
       >
@@ -103,17 +104,17 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               href='/'
               onClick={handleCloseAll}
             >
-              {logo?.url && (
-                <Image
-                  src={logo.url}
-                  alt={logo?.alt || ''}
-                  width={93}
-                  height={44}
-                  unoptimized
-                  priority
-                  className='xsm:h-[1.5625rem] h-[2.29167rem] w-auto'
-                />
-              )}
+              {/* {logo?.url && ( */}
+              <Image
+                src={logo.url}
+                alt={logo?.alt || ''}
+                width={93}
+                height={44}
+                unoptimized
+                priority
+                className='xsm:h-[1.5625rem] h-[2.29167rem] w-auto'
+              />
+              {/* )} */}
             </Link>
             <div className='xsm:hidden relative ml-[2.08rem]'>
               <div
@@ -205,16 +206,18 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               <span>Đăng nhập</span>
               <ICUser className='size-[0.83333rem] text-white' />
             </ButtonRed>
-            <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.4rem] uppercase xsm:hidden'>
-              {['vi', 'en'].map((lang) => (
-                <Link
-                  key={lang}
-                  href='/'
-                  locale={lang}
-                  className={cn(lang === locale ? 'text-primary-red-100' : '')}
-                >
-                  {lang}
-                </Link>
+            <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.42rem] uppercase xsm:hidden'>
+              {['vi', 'en'].map((lang, index) => (
+                <Fragment key={lang}>
+                  {index > 0 && <div className='w-px h-[0.625rem] bg-[rgba(9,9,9,0.60)]'></div>}
+                  <Link
+                    href='/'
+                    locale={lang}
+                    className={cn(lang === locale ? 'text-primary-red-100' : '')}
+                  >
+                    {lang}
+                  </Link>
+                </Fragment>
               ))}
             </div>
           </div>
@@ -245,7 +248,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               className={cn(
                 'flex-y-center max-w-[3rem] shrink-0 overflow-hidden transition-[max-width,opacity,transform] duration-150 ease-out [will-change:max-width,opacity,transform]',
                 openSearch
-                  ? 'pointer-events-none max-w-0 -translate-x-1 opacity-0'
+                  ? 'pointer-events-none max-w-0 -translate-x-1 opacity-0 duration-0'
                   : 'max-w-[3rem] translate-x-0 opacity-100',
               )}
             >
