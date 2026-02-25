@@ -12,6 +12,19 @@ interface YearItemProps {
   className?: string
 }
 
+const positionRow1 = [
+  [7.08, 9.95],
+  [24.84, 12.4],
+  [43.59, 8.8],
+  [62.86, 8.7],
+]
+const positionRow2 = [
+  [13.28, 9.95],
+  [31.15, 10.6],
+  [48.54, 8.8],
+  [68.49, 8.7],
+]
+
 export default function YearItem({ year, description, isFirst, image, isOdd, className }: YearItemProps) {
   return (
     <div className={cn('absolute-center', isFirst && '', className)}>
