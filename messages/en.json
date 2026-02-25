@@ -32,6 +32,28 @@
     "labelArea": "Scale",
     "labelYear": "Year"
   },
+  "BlogListPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blogs",
+    "title": "Blogs",
+    "placeholderSearch": "Search keyword",
+    "newestToOldest": "Newest to oldest",
+    "oldestToNewest": "Oldest to newest",
+    "year": "Year"
+  },
+  "DetailBlogPage": {
+    "breadcrumbHome": "Home",
+    "blog": "Blog",
+    "writtenBy": "Written by",
+    "publishedDate": "Published date",
+    "tag": "Tag",
+    "share": "Share",
+    "viewAll": "View all",
+    "related": "Related blogs",
+    "contentSummary": "Content summary",
+    "seeLess": "See less",
+    "seeMore": "See more"
+  },
   "ServiceSection": {
     "viewDetail": "View detail",
     "bottomSheetTitle": "Capabilities - Services"

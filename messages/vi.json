@@ -32,6 +32,28 @@
     "labelArea": "Quy mô",
     "labelYear": "Năm"
   },
+  "BlogListPage": {
+    "breadcrumbHome": "Trang chủ",
+    "breadcrumbBlog": "Danh sách tin tức",
+    "title": "Danh sách tin tức",
+    "placeholderSearch": "Tìm kiếm từ khóa",
+    "newestToOldest": "Mới nhất đến cũ nhất",
+    "oldestToNewest": "Cũ nhất đến mới nhất",
+    "year": "Năm"
+  },
+  "DetailBlogPage": {
+    "breadcrumbHome": "Trang chủ",
+    "blog": "Tin tức",
+    "writtenBy": "Viết bởi",
+    "publishedDate": "Ngày đăng bài",
+    "tag": "Tag",
+    "share": "Chia sẻ",
+    "viewAll": "Xem tất cả",
+    "related": "Bài viết liên quan",
+    "contentSummary": "Tóm tắt nội dung",
+    "seeLess": "Thu gọn",
+    "seeMore": "Xem thêm"
+  },
   "ServiceSection": {
     "viewDetail": "Xem chi tiết",
     "bottomSheetTitle": "Năng lực - Dịch vụ"
