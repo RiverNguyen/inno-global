@@ -54,6 +54,26 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
     }
   }, [openMenu, openSearch])
 
+  useEffect(() => {
+    if (!openSearch) return
+
+    const handleClickOutsideSearch = (event: MouseEvent | TouchEvent) => {
+      if (!(event.target instanceof Element)) return
+
+      if (event.target.closest('#search') || event.target.closest('#result')) return
+
+      setOpenSearch(false)
+    }
+
+    document.addEventListener('mousedown', handleClickOutsideSearch)
+    // document.addEventListener('touchstart', handleClickOutsideSearch)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearch)
+      // document.removeEventListener('touchstart', handleClickOutsideSearch)
+    }
+  }, [openSearch])
+
   const handleOpenSearch = () => {
     setOpenMenu(false)
     setOpenSearch(true)
@@ -148,6 +168,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             >
               {openSearch && (
                 <input
+                  id='search'
                   type='text'
                   className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none bg-transparent'
                   placeholder='Nhập từ khoá tìm kiếm'
@@ -162,6 +183,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 <ICSearchHead className='text-text-100 size-[0.875rem]' />
               </button>
               <div
+                id='result'
                 className={cn(
                   'absolute bottom-[-0.88rem] left-0 translate-y-full w-full h-fit bg-white p-[1.25rem_0.83rem] cursor-default',
                   openSearch
