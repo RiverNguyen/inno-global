@@ -1,6 +1,20 @@
 import { FetchRelatedBlogsProps, FetchRelatedProjectsProps } from '@/services/service'
 
 const ENDPOINTS = {
+  contact: {
+    form_contact_vi: {
+      id: '7',
+      unit_tag: '6678855',
+    },
+    form_contact_en: {
+      id: '809',
+      unit_tag: '30d3980',
+    },
+    rank_math: {
+      en: '/en/contact',
+      vi: '/lien-he',
+    },
+  },
   home: {
     rank_math: {
       en: '/en/homepage',

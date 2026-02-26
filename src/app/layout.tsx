@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Open_Sans } from 'next/font/google'
 import NextTopLoader from 'nextjs-toploader'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 const openSans = Open_Sans({
@@ -38,6 +39,7 @@ export default function RootLayout({
           zIndex={1600}
           showAtBottom={false}
         />
+        <Toaster richColors />
       </body>
     </html>
   )
