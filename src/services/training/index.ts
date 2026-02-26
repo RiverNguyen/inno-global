@@ -26,6 +26,24 @@ const trainingService = {
       api: ENDPOINTS.training.getPage[locale],
     })
   },
+  getDetail: async (slug: string, locale: string) => {
+    return await fetchData({
+      api: ENDPOINTS.detail(slug, locale),
+    })
+  },
+  getRelated: async ({ locale, category }: { locale: string; category?: string }) => {
+    const params = new URLSearchParams()
+
+    params.append('lang', locale)
+    if (category) {
+      params.append('tax', 'training_category')
+      params.append('training_category', category)
+    }
+
+    return await fetchData({
+      api: `${ENDPOINTS.training.getRelated}?${params.toString()}`,
+    })
+  },
 }
 
 export default trainingService

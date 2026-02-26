@@ -111,6 +111,14 @@
     "placeholderSearch": "Tìm kiếm từ khóa",
     "noTrainings": "Không tìm thấy đào tạo"
   },
+  "DetailTrainingPage": {
+    "share": "Chia sẻ",
+    "viewAll": "Xem tất cả",
+    "related": "Tin tức Đào tạo khác",
+    "contentSummary": "Tóm tắt nội dung",
+    "seeLess": "Thu gọn",
+    "seeMore": "Xem thêm"
+  },
   "Breadcrumb": {
     "homePage": "Trang chủ",
     "servicePage": "Dịch vụ",
@@ -121,6 +129,7 @@
     "companyPage": "Công ty con/liên kết",
     "businessCulturePage": "Văn hóa doanh nghiệp",
     "organizationChartPage": "Sơ đồ tổ chức",
-    "trainingPage": "Đào tạo"
+    "trainingPage": "Đào tạo",
+    "detailTrainingPage": "Chi tiết đào tạo"
   }
 }

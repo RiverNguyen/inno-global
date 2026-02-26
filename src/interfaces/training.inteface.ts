@@ -4,6 +4,15 @@ export interface ITraining {
   id: number
   slug: string
   title: string
+  content: string
+  acf: {
+    banner: {
+      image: {
+        desktop: string
+        mobile: string
+      }
+    }
+  }
   // API responses vary by endpoint (WP media vs ACF image); UI needs at least `.url`.
   featured_image: ProjectFeaturedImage
   taxonomies: {

@@ -34,9 +34,7 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
     if (!tocs || tocs.length === 0) return
     const offsetRem = window.innerWidth <= 639 ? 5.25 : 5.75
 
-    const headings = tocs
-      .map((toc) => document.getElementById(toc.id))
-      .filter(Boolean) as HTMLElement[]
+    const headings = tocs.map((toc) => document.getElementById(toc.id)).filter(Boolean) as HTMLElement[]
 
     if (headings.length === 0) return
 
@@ -60,12 +58,11 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
     return () => ctx.revert()
   }, [tocs])
 
-  if (tocs.length < 1)
-    return null
+  if (tocs.length < 1) return null
 
   return (
     <>
-      <aside className='flex p-[1.5625rem] flex-col rounded-[0.20833rem] bg-[#F0F0F0] my-[2.08333rem] xsm:p-[0.72917rem] xsm:mt-[1.04167rem] xsm:mb-[2.08333rem]'>
+      <aside className='flex p-[1.5625rem] flex-col rounded-[0.20833rem] bg-[#F0F0F0] my-[2.08333rem] xsm:p-[0.72917rem] xsm:my-[2.08333rem]'>
         <h4 className='text-[#090909] font-open-sans text-[1.25rem] font-semibold leading-[150%] mb-[0.83333rem] xsm:text-[0.72917rem] xsm:mb-[0.72917rem]'>
           {t('contentSummary')}
         </h4>
@@ -111,8 +108,14 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
             <ChevronUp className='size-[0.9375rem] shrink-0' />
           </button>
 
-          <Drawer open={open} onOpenChange={setOpen}>
-            <DrawerContent hiddenDrag className='z-120 rounded-t-[1.25rem]'>
+          <Drawer
+            open={open}
+            onOpenChange={setOpen}
+          >
+            <DrawerContent
+              hiddenDrag
+              className='z-120 rounded-t-[1.25rem]'
+            >
               <div className='flex items-center justify-between p-[0.83333rem] border-b-[0.8px] border-[rgba(9,9,9,0.08)]'>
                 <h2 className='text-[#090909] font-open-sans text-[0.83333rem] font-semibold leading-[150%] capitalize'>
                   {t('contentSummary')}

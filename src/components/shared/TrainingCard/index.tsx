@@ -12,6 +12,7 @@ interface TrainingCardProps {
   wrapperClassname?: string
   classNameThumbnail?: string
   classNameTitle?: string
+  classNameContent?: string
 }
 
 export default function TrainingCard({
@@ -19,6 +20,7 @@ export default function TrainingCard({
   wrapperClassname,
   classNameThumbnail,
   classNameTitle,
+  classNameContent,
 }: TrainingCardProps) {
   const t = useTranslations('TrainingListPage')
   const locale = useLocale()
@@ -45,7 +47,7 @@ export default function TrainingCard({
           className='z-1 size-full object-cover transition-all duration-500 ease-[cubic-bezier(0.44,0,0,0.99)] lg:group-hover:scale-120'
         />
       </div>
-      <div className='pt-[0.72917rem]'>
+      <div className={cn('pt-[0.72917rem]', classNameContent)}>
         <div className='mb-[0.3125rem] flex items-center justify-between space-x-4 xsm:mb-[0.52083rem]'>
           <h3
             className={cn(

@@ -111,6 +111,14 @@
     "placeholderSearch": "Seach keyword",
     "noTrainings": "No trainings found"
   },
+  "DetailTrainingPage": {
+    "share": "Share",
+    "viewAll": "View all",
+    "related": "Related trainings",
+    "contentSummary": "Content summary",
+    "seeLess": "See less",
+    "seeMore": "See more"
+  },
   "Breadcrumb": {
     "homePage": "Home",
     "servicePage": "Services",
@@ -121,6 +129,7 @@
     "companyPage": "Subsidiary/affiliate company",
     "businessCulturePage": "Business culture",
     "organizationChartPage": "Organization chart",
-    "trainingPage": "Trainings"
+    "trainingPage": "Trainings",
+    "detailTrainingPage": "Detail training"
   }
 }
