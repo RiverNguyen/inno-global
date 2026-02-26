@@ -36,10 +36,13 @@
     "breadcrumbHome": "Trang chủ",
     "breadcrumbBlog": "Danh sách tin tức",
     "title": "Danh sách tin tức",
+    "tabAll": "Tất cả",
     "placeholderSearch": "Tìm kiếm từ khóa",
     "newestToOldest": "Mới nhất đến cũ nhất",
     "oldestToNewest": "Cũ nhất đến mới nhất",
-    "year": "Năm"
+    "year": "Năm",
+    "noBlogs": "Không tìm thấy bài viết",
+    "sortPopup": "Sắp xếp theo"
   },
   "DetailBlogPage": {
     "breadcrumbHome": "Trang chủ",

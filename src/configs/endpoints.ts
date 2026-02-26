@@ -12,13 +12,14 @@ const ENDPOINTS = {
       `api/v1/get-all/post?lang=${locale}&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
     relatedBlogs: 'api/v1/get-all/post',
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=category`,
     rank_math: {
       en: '/en/blogs',
       vi: '/danh-sach-tin-tuc',
     },
     rank_math_detail: {
-      en: (slug: string) => `/en/blog/${slug}`,
-      vi: (slug: string) => `/blog/${slug}`,
+      en: (slug: string) => `/en/${slug}`,
+      vi: (slug: string) => `/${slug}`,
     },
   },
   project: {

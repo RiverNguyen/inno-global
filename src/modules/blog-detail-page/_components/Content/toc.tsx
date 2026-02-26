@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 import { Drawer, DrawerClose, DrawerContent } from '@/components/ui/drawer'
-import { Skeleton } from '@/components/ui/skeleton'
 import useIsMobile from '@/hooks/useIsMobile'
 import { cn, convertRemToPx } from '@/lib/utils'
 import { scrollToSection } from '@/utils/scrollToSection'
@@ -62,9 +61,7 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
   }, [tocs])
 
   if (tocs.length < 1)
-    return (
-      <Skeleton className='mt-10 h-[18.5rem] top-[calc(4.5rem+0.625rem+0.625rem)] sticky w-[27.5rem] shrink-0 rounded-[0.75rem] p-[1.5rem_1.875rem] shadow-[0_3px_40px_1px_rgba(214,214,221,0.40)] space-y-4' />
-    )
+    return null
 
   return (
     <>

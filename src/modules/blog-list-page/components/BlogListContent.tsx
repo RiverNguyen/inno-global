@@ -168,6 +168,13 @@ export default function BlogListContent({
                 category={blog.taxonomies?.category?.[0]?.name || ''}
                 date={blog.date || ''}
                 thumbnail={blog.featured_image || { url: '', alt: '' }}
+                classNameCard='xsm:w-full xsm:flex-col xsm:gap-[1.04167rem]'
+                classNameThumbnail='xsm:h-[11.30208rem] xsm:w-full'
+                classNameTitle='xsm:text-[0.83333rem] xsm:font-semibold'
+                classNameCategory='xsm:text-[0.52083rem] xsm:tracking-normal'
+                classNameDate='xsm:text-[0.52083rem] xsm:tracking-normal'
+                classNameMetaWrapper='xsm:space-y-[0.41667rem]'
+                classNameMetaRow='xsm:space-x-[0.41667rem]'
               />
             </Link>
           </div>
@@ -178,7 +185,7 @@ export default function BlogListContent({
 
   return (
     <div className='col-span-full flex items-center justify-center py-20'>
-      <span className='text-[#090909]'>{t('noProjects') || 'No projects found'}</span>
+      <span className='text-[#090909]'>{t('noBlogs') || 'No blogs found'}</span>
     </div>
   )
 }

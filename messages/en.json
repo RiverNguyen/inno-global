@@ -36,10 +36,13 @@
     "breadcrumbHome": "Home",
     "breadcrumbBlog": "Blogs",
     "title": "Blogs",
+    "tabAll": "All",
     "placeholderSearch": "Search keyword",
     "newestToOldest": "Newest to oldest",
     "oldestToNewest": "Oldest to newest",
-    "year": "Year"
+    "year": "Year",
+    "noBlogs": "No blogs found",
+    "sortPopup": "Sort by"
   },
   "DetailBlogPage": {
     "breadcrumbHome": "Home",

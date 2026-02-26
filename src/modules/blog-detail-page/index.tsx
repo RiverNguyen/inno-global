@@ -14,7 +14,6 @@ interface BlogDetailProps {
 
 const BlogDetail = ({ locale, blog, relatedBlogs }: BlogDetailProps) => {
   const t = useTranslations('DetailBlogPage')
-  console.log(relatedBlogs)
 
   return (
     <div className="container mt-[3.65rem] xsm:mt-[5rem]">

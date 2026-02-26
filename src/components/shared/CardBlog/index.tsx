@@ -22,6 +22,8 @@ interface CardBlogProps {
   classNameCategory?: string
   classNameDate?: string
   classNameCard?: string
+  classNameMetaWrapper?: string
+  classNameMetaRow?: string
 }
 
 export default function CardBlog({
@@ -34,6 +36,8 @@ export default function CardBlog({
   classNameDate,
   classNameThumbnail,
   classNameCard,
+  classNameMetaWrapper,
+  classNameMetaRow,
 }: CardBlogProps) {
   const formattedDate = formatDateDDMMYYYY(date)
 
@@ -58,8 +62,8 @@ export default function CardBlog({
           className='size-full rounded-[inherit] object-cover'
         />
       </div>
-      <div className='xsm:space-y-[0.5rem] space-y-[0.3125rem]'>
-        <div className='flex items-center space-x-[0.625rem] uppercase'>
+      <div className={cn('xsm:space-y-[0.5rem] space-y-[0.3125rem]', classNameMetaWrapper)}>
+        <div className={cn('flex items-center space-x-[0.625rem] uppercase', classNameMetaRow)}>
           <p className={cn('text-primary-red/90 pc-sub-12-r xsm:tracking-normal', classNameCategory)}>
             {category || ''}
           </p>

@@ -117,6 +117,8 @@ const RelatedBlogs = ({ data }: { data: IBlog[] }) => {
                     classNameTitle='xsm:text-[0.83333rem] xsm:font-semibold'
                     classNameCategory='xsm:text-[0.52083rem] xsm:tracking-normal'
                     classNameDate='xsm:text-[0.52083rem] xsm:tracking-normal'
+                    classNameMetaWrapper='xsm:space-y-[0.5rem]'
+                    classNameMetaRow='xsm:space-x-[0.5rem]'
                   />
                 </Link>
               ))}

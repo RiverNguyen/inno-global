@@ -20,7 +20,7 @@
 }
 
 #blog_content :is(h1, h2, h3, h4, h5, h6):first-of-type {
-  margin-top: 0.83333rem; 
+  margin-top: 0.83333rem;
 }
 
 #blog_content h1 {
@@ -63,6 +63,48 @@
   max-width: 100%;
   display: block;
   margin-top: 2.08333rem;
+}
+
+/* CSS tag video */
+#blog_content .wp-video {
+  position: relative;
+  max-width: 100%;
+}
+
+#blog_content video {
+  max-width: 100%;
+  display: block;
+  margin-top: 2.08333rem;
+}
+
+#blog_content .wp-video::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('https://cms.inno.okhub-tech.com/wp-content/uploads/2026/02/icon-play-video.webp') center center no-repeat;
+  background-size: 2.70833rem 2.70833rem;
+  pointer-events: none; 
+  z-index: 2;
+}
+
+#blog_content .wp-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background: #000;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#blog_content .wp-video::before,
+#blog_content .wp-video::after {
+  transition: opacity 0.3s ease;
+}
+
+#blog_content .wp-video.is-playing::before,
+#blog_content .wp-video.is-playing::after {
+  opacity: 0;
 }
 
 /* CSS tag ul, li */
