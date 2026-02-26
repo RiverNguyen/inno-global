@@ -4,15 +4,16 @@ import { useLocale, useTranslations } from 'next-intl'
 import Banner from './components/Banner'
 import Image from 'next/image'
 import useSWRInfinite from 'swr/infinite'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { startTransition, useEffect, useMemo, useRef, useState } from 'react'
 import { Swiper as ISwiper } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/free-mode'
 import './styles.css'
 import Link from 'next/link'
 import ROUTES from '@/configs/routes'
-import { Pagination } from 'swiper/modules'
+import { FreeMode, Pagination } from 'swiper/modules'
 import FilterPopup from '../project-list-page/components/FilterPopup'
 import { parseAsArrayOf, parseAsString, useQueryStates } from 'nuqs'
 import ICSearch from '@/components/icons/ICSearch'
@@ -23,6 +24,7 @@ import TrainingListContent from './components/TrainingListContent'
 import ProjectListSkeleton from '../project-list-page/components/ProjectListSkeleton'
 import { fetcherCMS } from '@/lib/swr'
 import { scrollToElementInContainer } from '@/utils/scrollToElementInContainer'
+import { cn, convertRemToPx } from '@/lib/utils'
 
 type FilterItem = { label: string; value: string }
 
@@ -103,7 +105,7 @@ export default function TrainingListPage({
     // Build tax param to match active filters
     const activeTaxonomies = new Set<string>()
     if (normalizedYears.length > 0) activeTaxonomies.add('starting_year')
-    if (slugCategory) activeTaxonomies.add('category')
+    if (slugCategory) activeTaxonomies.add('training_category')
 
     // Keep default behavior when no filters are selected
     const taxValue = activeTaxonomies.size > 0 ? Array.from(activeTaxonomies).sort().join(',') : TAX_QUERY
@@ -116,7 +118,7 @@ export default function TrainingListPage({
 
     // Investor filter
     if (slugCategory) {
-      params.append('category', slugCategory)
+      params.append('training_category', slugCategory)
     }
 
     // Add sort parameters
@@ -197,8 +199,10 @@ export default function TrainingListPage({
   }
 
   const handleCategoryChange = (newCategory: string) => {
-    setQueryStates({
-      training_category: newCategory,
+    startTransition(() => {
+      setQueryStates({
+        training_category: newCategory,
+      })
     })
   }
 
@@ -218,7 +222,7 @@ export default function TrainingListPage({
 
     // Chỉ scroll khi user đổi filter/search/sort (query thay đổi), không scroll khi vừa vào trang
     if (prev !== null && prev !== baseQueryString) {
-      scrollToElementInContainer('window', 'project-list', 0.6, 7.5)
+      scrollToElementInContainer('window', 'training-list', 0.6, 6.25)
     }
   }, [baseQueryString, setSize])
 
@@ -274,69 +278,85 @@ export default function TrainingListPage({
   return (
     <>
       <Banner banner={acfData?.banner} />
-      <div className='pt-[6.25rem]'>
-        <div className='max-w-[75rem] mx-auto'>
-          <h2 className='font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] text-[#090909] mb-[2.08333rem]'>
+      <div className='pt-[6.25rem] xsm:pt-[2.08rem] '>
+        <div className='max-w-[75rem] mx-auto xsm:max-w-full'>
+          <h2 className='font-open-sans text-[2.8125rem] xsm:px-[0.83333rem] font-semibold leading-[120%] tracking-[-0.02813rem] text-[#090909] mb-[2.08333rem] xsm:text-[1.25rem] xsm:mb-[0.72917rem]'>
             {t('latest')}
           </h2>
-          <div className='flex space-x-[1.25rem] mb-[6.25rem]'>
-            <div className='relative shrink-0'>
+          <div className='flex sm:space-x-[1.25rem] mb-[6.25rem] xsm:mb-[1.04rem]'>
+            <div className='relative shrink-0 xsm:w-full'>
               <Swiper
-                slidesPerView={1}
+                slidesPerView='auto'
                 pagination={{
                   clickable: true,
                 }}
                 onSwiper={(swiper) => {
                   swiperRef.current = swiper
                 }}
-                loop
-                modules={[Pagination]}
-                className='w-[47.23958rem] h-[32.1875rem]'
+                modules={[Pagination, FreeMode]}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 'auto',
+                    spaceBetween: convertRemToPx(0.72917),
+                    loop: false,
+                  },
+                  639.98: {
+                    slidesPerView: 1,
+                    spaceBetween: 0,
+                    loop: true,
+                  },
+                }}
+                className='w-[47.23958rem] h-[32.1875rem] xsm:w-full xsm:h-auto xsm:px-[0.83333rem]!'
               >
                 {Array.isArray(latestTrainings) &&
                   latestTrainings.slice(0, 4).map((training, i) => (
-                    <SwiperSlide key={i}>
+                    <SwiperSlide
+                      key={i}
+                      className='xsm:w-[15.625rem]! xsm:h-[15.775rem]!'
+                    >
                       <Link
                         href={
                           locale === 'vi'
                             ? `${ROUTES.trainingsVi}/${training?.slug}`
                             : `${ROUTES.trainingsEn}/${training?.slug}`
                         }
-                        className='relative overflow-hidden block h-full'
+                        className='relative overflow-hidden block h-full xsm:bg-[#F6F6F6]'
                       >
-                        <Image
-                          src={training?.featured_image?.url || '/default.webp'}
-                          alt={''}
-                          fill
-                          className='size-full object-cover'
-                        />
-                        <div className='absolute inset-0 size-full bg-[#000] opacity-30'></div>
-                        <div className='absolute inset-0 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.40)_7.53%,rgba(0,0,0,0.30)_22.22%,rgba(0,0,0,0.00)_33.1%,rgba(0,0,0,0.00)_70.94%,rgba(0,0,0,0.74)_85.87%,#000_96.54%)] z-1'></div>
-                        <div className='absolute z-2 flex flex-col size-full justify-between pt-[1.67rem] pb-[1.46rem] px-[1.46rem]'>
-                          <div className='space-y-[1.04rem] w-[30.10417rem]'>
-                            <div className='w-fit bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] p-[0.20833rem_0.83333rem] text-white font-open-sans text-[0.72917rem] font-semibold leading-[150%] space-x-[0.20833rem] whitespace-nowrap capitalize'>
+                        <div className='relative h-full xsm:h-[7.65rem] w-full'>
+                          <Image
+                            src={training?.featured_image?.url || '/default.webp'}
+                            alt={''}
+                            fill
+                            className='object-cover'
+                          />
+                          <div className='absolute inset-0 size-full bg-black opacity-30 xsm:hidden'></div>
+                          <div className='absolute inset-0 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.40)_7.53%,rgba(0,0,0,0.30)_22.22%,rgba(0,0,0,0.00)_33.1%,rgba(0,0,0,0.00)_70.94%,rgba(0,0,0,0.74)_85.87%,#000_96.54%)] z-1 xsm:opacity-60'></div>
+                        </div>
+                        <div className='sm:absolute sm:top-0 sm:left-0 z-2 flex flex-col sm:size-full sm:justify-between pt-[1.67rem] pb-[1.46rem] px-[1.46rem] xsm:p-[0.625rem_0.83333rem_0.83333rem_0.83333rem]'>
+                          <div className='space-y-[1.04rem] xsm:space-y-[0.20833rem] sm:w-[30.10417rem] xsm:mb-[0.20833rem]'>
+                            <div className='w-fit bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] p-[0.20833rem_0.83333rem] text-white font-open-sans text-[0.72917rem] font-semibold leading-[150%] space-x-[0.20833rem] whitespace-nowrap sm:capitalize xsm:text-[0.625rem] xsm:leading-[120%] xsm:space-x-[0.3125rem]'>
                               <span>{t('format')}:</span>
-                              <span>{training?.taxonomies?.training_format[0]?.name}</span>
+                              <span>{training?.taxonomies?.training_format[0]?.name || '-'}</span>
                             </div>
-                            <h3 className='text-[1.66667rem] font-open-sans font-semibold leading-[120%] tracking-[-0.01667rem] text-white text-trim-both'>
+                            <h3 className='text-[1.66667rem] font-open-sans font-semibold leading-[120%] tracking-[-0.01667rem] text-white sm:text-trim-both xsm:text-[0.83333rem] xsm:leading-[150%] xsm:text-[#090909]'>
                               {training?.title}
                             </h3>
                           </div>
-                          <div className='space-y-[0.41667rem]'>
+                          <div className='space-y-[0.41667rem] xsm:space-y-[0.20833rem]'>
                             <div className='flex items-center space-x-[0.52083rem]'>
-                              <span className='text-[rgba(255,255,255,0.8)] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'>
+                              <span className='text-[rgba(255,255,255,0.8)] xsm:text-[#090909] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem]'>
                                 {t('lecturer')}:
                               </span>
-                              <span className='text-white font-open-sans text-[0.83333rem] font-semibold leading-normal text-trim-both'>
-                                {training?.taxonomies?.lecturer[0]?.name}
+                              <span className='text-white xsm:text-[#090909] font-open-sans text-[0.83333rem] font-semibold leading-normal sm:text-trim-both xsm:text-[0.72917rem] xsm:leading-[150%]'>
+                                {training?.taxonomies?.lecturer[0]?.name || '-'}
                               </span>
                             </div>
                             <div className='flex items-center space-x-[0.52083rem]'>
-                              <span className='text-[rgba(255,255,255,0.8)] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'>
+                              <span className='text-[rgba(255,255,255,0.8)] xsm:text-[#090909] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem]'>
                                 {t('participant')}:
                               </span>
-                              <span className='text-white font-open-sans text-[0.83333rem] font-semibold leading-normal text-trim-both'>
-                                {training?.taxonomies?.participant[0]?.name}
+                              <span className='text-white xsm:text-[#090909] font-open-sans text-[0.83333rem] font-semibold leading-normal sm:text-trim-both xsm:text-[0.72917rem] xsm:leading-[150%]'>
+                                {training?.taxonomies?.participant[0]?.name || '-'}
                               </span>
                             </div>
                           </div>
@@ -345,7 +365,7 @@ export default function TrainingListPage({
                     </SwiperSlide>
                   ))}
               </Swiper>
-              <div className='flex items-center w-full justify-between px-[1.66667rem] absolute top-1/2 left-0 right-0 -translate-y-1/2 z-10'>
+              <div className='flex items-center w-full justify-between px-[1.66667rem] absolute top-1/2 left-0 right-0 -translate-y-1/2 z-10 xsm:hidden'>
                 <button
                   type='button'
                   onClick={() => swiperRef.current?.slidePrev()}
@@ -380,7 +400,7 @@ export default function TrainingListPage({
                 </button>
               </div>
             </div>
-            <div className='space-y-[1.25rem] grow'>
+            <div className='space-y-[1.25rem] grow xsm:hidden'>
               {Array.isArray(latestTrainings) &&
                 latestTrainings.slice(4).map((training, i) => (
                   <Link
@@ -433,18 +453,26 @@ export default function TrainingListPage({
                 ))}
             </div>
           </div>
-          <div className=''>
-            <h2 className='font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] mb-[0.52083rem]'>
+          <div
+            className='xsm:pt-[1.04rem] xsm:px-[0.83333rem]'
+            id='training-list'
+          >
+            <h2 className='font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] mb-[0.52083rem] xsm:text-[1.25rem] xsm:mb-[1.25rem] text-[#090909]'>
               {t('other')}
             </h2>
-            <div className='py-[1.25rem] flex items-center justify-between'>
-              <div className='flex items-center space-x-[0.72917rem]'>
+            <div className='py-[1.25rem] xsm:pt-0 xsm:pb-[0.83333rem] flex items-center justify-between xsm:flex-col'>
+              <div className='flex items-center space-x-[0.72917rem] xsm:order-2 xsm:space-x-[0.3125rem]'>
                 <button
                   type='button'
                   onClick={() => handleCategoryChange('')}
-                  className='font-open-sans xsm:hidden flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
+                  className={cn(
+                    'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
+                    !slugCategory && 'before:opacity-100 text-white',
+                  )}
                 >
-                  <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{t('all')}</span>
+                  <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
+                    {t('all')}
+                  </span>
                 </button>
                 {Array.isArray(taxonomies.categories.data) &&
                   taxonomies.categories.data.map((category) => (
@@ -452,9 +480,14 @@ export default function TrainingListPage({
                       type='button'
                       key={category.id}
                       onClick={() => handleCategoryChange(category?.slug || '')}
-                      className='font-open-sans xsm:hidden flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
+                      className={cn(
+                        'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
+                        slugCategory === category?.slug && 'before:opacity-100 text-white',
+                      )}
                     >
-                      <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{category?.name}</span>
+                      <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
+                        {category?.name}
+                      </span>
                     </button>
                   ))}
                 <FilterPopup
@@ -464,7 +497,7 @@ export default function TrainingListPage({
                   onChange={handleYearsChange}
                 />
               </div>
-              <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
+              <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
                 <div className='xsm:w-auto xsm:grow relative w-[13.61458rem] overflow-hidden'>
                   <input
                     type='text'
@@ -496,31 +529,30 @@ export default function TrainingListPage({
               </div>
             </div>
           </div>
-          <div className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] pt-[2.08333rem] pb-[6.25rem]'>
+          <div className='xsm:pb-[3.125rem] pb-[6.25rem]'>
             <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
-              <div
-                className='xsm:px-[0.83333rem] xsm:w-full xsm:gap-x-[1.5625rem] flex sm:flex-wrap items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto'
-                style={{
-                  scrollbarWidth: 'none',
-                }}
-              >
-                <SelectedTags
-                  label={t('year')}
-                  items={yearItems}
-                  selectedValues={selectedYears}
-                  onRemove={(value) =>
-                    setQueryStates((prev) => ({
-                      ...prev,
-                      starting_year: prev.starting_year.filter((v) => v !== value),
-                    }))
-                  }
-                />
-              </div>
+              {selectedYears.length > 0 && (
+                <div
+                  className='xsm:px-[0.83333rem] pt-[2.08333rem] xsm:pt-0 xsm:w-full xsm:gap-x-[1.5625rem] flex sm:flex-wrap items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto'
+                  style={{
+                    scrollbarWidth: 'none',
+                  }}
+                >
+                  <SelectedTags
+                    label={t('year')}
+                    items={yearItems}
+                    selectedValues={selectedYears}
+                    onRemove={(value) =>
+                      setQueryStates((prev) => ({
+                        ...prev,
+                        starting_year: prev.starting_year.filter((v) => v !== value),
+                      }))
+                    }
+                  />
+                </div>
+              )}
 
-              <div
-                id='training-list'
-                className='xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:gap-y-[1.04167rem] tablet:grid-cols-2 grid grid-cols-1 gap-x-[1.5625rem] gap-y-[2.08333rem] pt-[2.08333rem] lg:grid-cols-3'
-              >
+              <div className='xsm:px-[0.83333rem] xsm:pt-[0.72917rem] xsm:gap-y-[1.25rem] tablet:grid-cols-2 grid grid-cols-1 gap-x-[2.08333rem] gap-y-[3.4375rem] pt-[2.08333rem] lg:grid-cols-3'>
                 <TrainingListContent
                   trainings={displayTrainings}
                   isInitialLoading={isLoading && displayTrainings.length === 0}
