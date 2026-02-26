@@ -35,34 +35,8 @@ export default function Content({ blog }: ContentProps) {
       return { html: '', tocs: [] as TocItem[] }
     }
 
-    // Convert WordPress-style [video] shortcodes to actual <video> elements
-    // const shortcodeRegex = /\[video([^\]]*)\]\[\/video\]/gi
-    // const processedHtml = initialHtml.replace(shortcodeRegex, (_match, attrs) => {
-    //   const attrRegex = /(\w+)="([^"]*)"/g
-    //   const attrMap: Record<string, string> = {}
-
-    //   let attrMatch: RegExpExecArray | null
-
-    //   while ((attrMatch = attrRegex.exec(attrs)) !== null) {
-    //     const [, key, value] = attrMatch
-    //     attrMap[key] = value
-    //   }
-
-    //   const mp4Src = attrMap.mp4
-    //   if (!mp4Src) return ''
-
-    //   const width = attrMap.width || '100%'
-    //   const height = attrMap.height || 'auto'
-
-    //   return `<video controls width="${width}" height="${height}" style="max-width: 100%; height: auto; display: block; margin: 1.5rem 0;">
-    //   <source src="${mp4Src}" type="video/mp4" />
-    //   Your browser does not support the video tag.
-    // </video>`
-    // })
-
     const parser = new DOMParser()
     const doc = parser.parseFromString(initialHtml, 'text/html')
-    // const doc = parser.parseFromString(processedHtml, 'text/html')
 
     const tables = Array.from(doc.querySelectorAll('table'))
 
@@ -124,49 +98,52 @@ export default function Content({ blog }: ContentProps) {
       const video = wrapper.querySelector('video')
       if (!video) return
 
-      let isPlaying = false
-
-      const enableOverlayClick = () => {
-        wrapper.addEventListener('click', handleClick)
-      }
-
-      const disableOverlayClick = () => {
-        wrapper.removeEventListener('click', handleClick)
-      }
-
-      const handleClick = () => {
-        if (!isPlaying) {
+      const handleClick = (e: MouseEvent) => {
+        // Chỉ play khi đang paused
+        if (video.paused && !wrapper.classList.contains('is-fullscreen')) {
           video.play()
         }
       }
 
       const onPlay = () => {
-        isPlaying = true
         wrapper.classList.add('is-playing')
         video.controls = true
-        disableOverlayClick()
+        wrapper.removeEventListener('click', handleClick)
       }
 
       const onPause = () => {
-        isPlaying = false
         wrapper.classList.remove('is-playing')
         video.controls = false
-        enableOverlayClick()
+        wrapper.addEventListener('click', handleClick)
       }
 
-      // initial state
+      const onFullscreenChange = () => {
+        const isFullscreen =
+          document.fullscreenElement === video ||
+          document.fullscreenElement === wrapper
+
+        if (isFullscreen) {
+          wrapper.classList.add('is-fullscreen')
+        } else {
+          wrapper.classList.remove('is-fullscreen')
+        }
+      }
+
+      // Initial state
       video.controls = false
-      enableOverlayClick()
+      wrapper.addEventListener('click', handleClick)
 
       video.addEventListener('play', onPlay)
       video.addEventListener('pause', onPause)
       video.addEventListener('ended', onPause)
+      document.addEventListener('fullscreenchange', onFullscreenChange)
 
       cleanups.push(() => {
         video.removeEventListener('play', onPlay)
         video.removeEventListener('pause', onPause)
         video.removeEventListener('ended', onPause)
-        disableOverlayClick()
+        document.removeEventListener('fullscreenchange', onFullscreenChange)
+        wrapper.removeEventListener('click', handleClick)
       })
     })
 

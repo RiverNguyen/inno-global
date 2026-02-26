@@ -69,6 +69,7 @@
 #blog_content .wp-video {
   position: relative;
   max-width: 100%;
+  cursor: pointer;
 }
 
 #blog_content video {
@@ -83,7 +84,8 @@
   inset: 0;
   background: url('https://cms.inno.okhub-tech.com/wp-content/uploads/2026/02/icon-play-video.webp') center center no-repeat;
   background-size: 2.70833rem 2.70833rem;
-  pointer-events: none; 
+  pointer-events: none;
+  cursor: pointer;
   z-index: 2;
 }
 
