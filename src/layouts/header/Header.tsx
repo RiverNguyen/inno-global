@@ -3,7 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 
 import ButtonOutline from '@/components/custom/ButtonOutline'
 import ButtonRed from '@/components/custom/ButtonRed'
@@ -54,6 +54,27 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
     }
   }, [openMenu, openSearch])
 
+  useEffect(() => {
+    if (!openSearch) return
+    if (window.matchMedia('(max-width: 639px)').matches) return
+
+    const handleClickOutsideSearch = (event: MouseEvent | TouchEvent) => {
+      if (!(event.target instanceof Element)) return
+
+      if (event.target.closest('#search') || event.target.closest('#result')) return
+
+      setOpenSearch(false)
+    }
+
+    document.addEventListener('mousedown', handleClickOutsideSearch)
+    // document.addEventListener('touchstart', handleClickOutsideSearch)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearch)
+      // document.removeEventListener('touchstart', handleClickOutsideSearch)
+    }
+  }, [openSearch])
+
   const handleOpenSearch = () => {
     setOpenMenu(false)
     setOpenSearch(true)
@@ -88,6 +109,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           'xsm:h-[2.92rem] transition-all duration-300 xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]',
           (openMenu || openSearch) && 'z-[201]',
           'header-desktop',
+          openMenu && 'duration-0',
         )}
         ref={headerRef}
       >
@@ -103,17 +125,17 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               href='/'
               onClick={handleCloseAll}
             >
-              {logo?.url && (
-                <Image
-                  src={logo.url}
-                  alt={logo?.alt || ''}
-                  width={93}
-                  height={44}
-                  unoptimized
-                  priority
-                  className='xsm:h-[1.5625rem] h-[2.29167rem] w-auto'
-                />
-              )}
+              {/* {logo?.url && ( */}
+              <Image
+                src={logo.url}
+                alt={logo?.alt || ''}
+                width={93}
+                height={44}
+                unoptimized
+                priority
+                className='xsm:h-[1.5625rem] h-[2.29167rem] w-auto'
+              />
+              {/* )} */}
             </Link>
             <div className='xsm:hidden relative ml-[2.08rem]'>
               <div
@@ -147,6 +169,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             >
               {openSearch && (
                 <input
+                  id='search'
                   type='text'
                   className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none bg-transparent'
                   placeholder='Nhập từ khoá tìm kiếm'
@@ -161,6 +184,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 <ICSearchHead className='text-text-100 size-[0.875rem]' />
               </button>
               <div
+                id='result'
                 className={cn(
                   'absolute bottom-[-0.88rem] left-0 translate-y-full w-full h-fit bg-white p-[1.25rem_0.83rem] cursor-default',
                   openSearch
@@ -205,16 +229,18 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               <span>Đăng nhập</span>
               <ICUser className='size-[0.83333rem] text-white' />
             </ButtonRed>
-            <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.4rem] uppercase xsm:hidden'>
-              {['vi', 'en'].map((lang) => (
-                <Link
-                  key={lang}
-                  href='/'
-                  locale={lang}
-                  className={cn(lang === locale ? 'text-primary-red-100' : '')}
-                >
-                  {lang}
-                </Link>
+            <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.42rem] uppercase xsm:hidden'>
+              {['vi', 'en'].map((lang, index) => (
+                <Fragment key={lang}>
+                  {index > 0 && <div className='w-px h-[0.625rem] bg-[rgba(9,9,9,0.60)]'></div>}
+                  <Link
+                    href='/'
+                    locale={lang}
+                    className={cn(lang === locale ? 'text-primary-red-100' : '')}
+                  >
+                    {lang}
+                  </Link>
+                </Fragment>
               ))}
             </div>
           </div>
@@ -245,7 +271,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               className={cn(
                 'flex-y-center max-w-[3rem] shrink-0 overflow-hidden transition-[max-width,opacity,transform] duration-150 ease-out [will-change:max-width,opacity,transform]',
                 openSearch
-                  ? 'pointer-events-none max-w-0 -translate-x-1 opacity-0'
+                  ? 'pointer-events-none max-w-0 -translate-x-1 opacity-0 duration-0'
                   : 'max-w-[3rem] translate-x-0 opacity-100',
               )}
             >
@@ -289,7 +315,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               {menu.link.title}
             </Link>
           ))}
-        <div className='mt-[1.46rem] border-b border-solid border-[rgba(9,9,9,0.08)] pb-[0.83rem]'>
+        <div className='mt-[1.13rem] border-b border-solid border-[rgba(9,9,9,0.08)] pb-[0.3rem]'>
           <button
             type='button'
             onClick={() => setOpenMobileLanguage((prev) => !prev)}
@@ -306,7 +332,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           <div
             className={cn(
               'overflow-hidden transition-[max-height,opacity,margin] duration-200 ease-out',
-              openMobileLanguage ? 'mt-[0.62rem] max-h-[6rem] opacity-100' : 'mt-0 max-h-0 opacity-0',
+              openMobileLanguage ? 'mt-[0.5rem] max-h-[6rem] opacity-100' : 'mt-0 max-h-0 opacity-0',
             )}
           >
             {languages.map((lang) => (
@@ -315,7 +341,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 href='/'
                 locale={lang.key}
                 className={cn(
-                  'mb-header-16-m block py-[0.52rem]',
+                  'pc-body-14-r block py-[0.4rem]',
                   lang.key === locale ? 'text-primary-red-100' : 'text-en-60',
                 )}
                 onClick={handleCloseAll}
