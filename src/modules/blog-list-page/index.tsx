@@ -2,18 +2,18 @@
 import { useDebounce } from '@uidotdev/usehooks'
 import { useLocale, useTranslations } from 'next-intl'
 import { parseAsArrayOf, parseAsString, useQueryStates } from 'nuqs'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { startTransition, useEffect, useMemo, useRef, useState } from 'react'
 import useSWRInfinite from 'swr/infinite'
 
 import ICSearch from '@/components/icons/ICSearch'
 import Breadcrumb from '@/components/shared/Breadcrumb'
 import { IBlog, ITaxonomies } from '@/interfaces/blog.interface'
 import { fetcherCMS } from '@/lib/swr'
-import FilterPopup from '@/modules/project-list-page/components/FilterPopup'
 import BlogListContent from '@/modules/blog-list-page/components/BlogListContent'
 import BlogListSkeleton from '@/modules/blog-list-page/components/BlogListSkeleton'
-import SelectedTags from '@/modules/project-list-page/components/SelectedTags'
-import SortPopup from '@/modules/project-list-page/components/SortPopup'
+import FilterPopup from '@/modules/blog-list-page/components/FilterPopup'
+import SelectedTags from '@/modules/blog-list-page/components/SelectedTags'
+import SortPopup from '@/modules/blog-list-page/components/SortPopup'
 import { scrollToElementInContainer } from '@/utils/scrollToElementInContainer'
 
 type FilterItem = { label: string; value: string }
@@ -44,15 +44,29 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
 
   const t = useTranslations('BlogListPage')
 
+  // Filter out unwanted categories (e.g., "uncategorized", empty names)
+  const filteredCategories = useMemo(() => {
+    return (taxonomies.categories?.data ?? []).filter((cat) => {
+      if (!cat?.id) return false
+      if (cat.id === 1) return false
+      if (cat.id === 7) return false
+      if (!cat?.name?.trim()) return false
+      if (cat.name.trim().toLowerCase() === 'uncategorized') return false
+
+      return true
+    })
+  }, [taxonomies.categories?.data])
+
   const yearItems: FilterItem[] = useMemo(
     () => taxonomies.years.data.map((y) => ({ label: y.name, value: y.slug })),
     [taxonomies.years.data],
   )
 
-  // Use nuqs to manage query params - automatically syncs with URL
+  // Use nuqs to manage query params — syncs with URL without full server round-trip
   const [
     {
       starting_year: selectedYears = [],
+      category: selectedCategory = '',
       sort: sortValue = 'newest',
       s: searchQuery = '',
     },
@@ -60,12 +74,13 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
   ] = useQueryStates(
     {
       starting_year: parseAsArrayOf(parseAsString).withDefault([]),
+      category: parseAsString.withDefault(''),
       sort: parseAsString.withDefault('newest'),
       s: parseAsString.withDefault(''),
     },
     {
       history: 'replace',
-      shallow: true,
+      shallow: true, // client-only URL update (history.replaceState), no router.replace → no server GET
       scroll: false,
     },
   )
@@ -110,6 +125,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     // Build tax param to match active filters
     const activeTaxonomies = new Set<string>()
     if (normalizedYears.length > 0) activeTaxonomies.add('starting_year')
+    if (selectedCategory) activeTaxonomies.add('category')
 
     // Keep default behavior when no filters are selected
     const taxValue = activeTaxonomies.size > 0 ? Array.from(activeTaxonomies).sort().join(',') : TAX_QUERY
@@ -118,6 +134,9 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     if (normalizedYears.length > 0) {
       // API expects comma-separated values, e.g. starting_year=2020,2022
       params.append('starting_year', normalizedYears.join(','))
+    }
+    if (selectedCategory) {
+      params.append('category', selectedCategory)
     }
 
     // Add sort parameters
@@ -130,12 +149,12 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     }
 
     return params.toString()
-  }, [locale, selectedYears, sortValue, searchQuery])
+  }, [locale, selectedYears, selectedCategory, sortValue, searchQuery])
 
   const [useInitialFallbackData, setUseInitialFallbackData] = useState(true)
 
-  // Only use server-provided `initialProjects` for the very first paint.
-  // When filters change, we don't want to "flash" back to the default list (initialProjects).
+  // Only use server-provided `initialBlogs` for the very first paint.
+  // When filters change, we don't want to "flash" back to the default list (initialBlogs).
   useEffect(() => {
     setUseInitialFallbackData(false)
   }, [])
@@ -219,7 +238,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
 
     // Chỉ scroll khi user đổi filter/search/sort (query thay đổi), không scroll khi vừa vào trang
     if (prev !== null && prev !== baseQueryString) {
-      scrollToElementInContainer('window', 'project-list', 0.6, 7.5)
+      scrollToElementInContainer('window', 'blog-list', 0.6, 7.5)
     }
   }, [baseQueryString, setSize])
 
@@ -269,6 +288,62 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
               scrollbarWidth: 'none',
             }}
           >
+            <button
+              type='button'
+              onClick={() => {
+                if (selectedCategory) {
+                  startTransition(() => {
+                    setQueryStates((prev) => ({
+                      ...prev,
+                      category: '',
+                    }))
+                  })
+                }
+              }}
+              className={`flex-center h-[2.5rem] px-[1.14583rem] rounded-[5.20833rem] xsm:h-[1.92708rem] xsm:px-[0.83333rem] xsm:border xsm:border-[rgba(9,9,9,0.08)] ${!selectedCategory
+                ? 'bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
+                : 'bg-white border border-[rgba(9,9,9,0.08)]'
+                }`}
+            >
+              <span
+                className={`font-open-sans text-[0.72917rem] leading-[150%] xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] whitespace-nowrap ${!selectedCategory ? 'text-white' : 'text-[#090909]'
+                  }`}
+              >
+                {t('tabAll')}
+              </span>
+            </button>
+
+            {filteredCategories.map((cat) => {
+              const isActive = selectedCategory === cat.slug
+              return (
+                <button
+                  key={cat.id}
+                  type='button'
+                  onClick={() => {
+                    if (selectedCategory !== cat.slug) {
+                      startTransition(() => {
+                        setQueryStates((prev) => ({
+                          ...prev,
+                          category: cat.slug,
+                        }))
+                      })
+                    }
+                  }}
+                  className={`flex-center h-[2.5rem] px-[1.14583rem] rounded-[5.20833rem] xsm:h-[1.92708rem] xsm:px-[0.83333rem] ${isActive
+                    ? 'bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] xsm:border xsm:border-[rgba(9,9,9,0.08)] xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
+                    : 'bg-white border border-[rgba(9,9,9,0.08)]'
+                    }`}
+                >
+                  <span
+                    className={`font-open-sans text-[0.72917rem] leading-[150%] xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] whitespace-nowrap ${isActive ? 'text-white' : 'text-[#090909]'
+                      }`}
+                  >
+                    {cat.name}
+                  </span>
+                </button>
+              )
+            })}
+
             <FilterPopup
               label={t('year')}
               items={yearItems}
@@ -307,7 +382,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
             />
           </div>
         </div>
-      </div>
+      </div >
       <div className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] bg-[#F8F8F8] pt-[2.29rem] pb-[7.29167rem]'>
         <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
           <div
@@ -329,7 +404,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
             />
           </div>
           <div
-            id='project-list'
+            id='blog-list'
             className='xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:gap-y-[1.04167rem] tablet:grid-cols-2 grid grid-cols-1 gap-x-[1.5625rem] gap-y-[2.08333rem] pt-[2.08333rem] lg:grid-cols-3'
           >
             <BlogListContent

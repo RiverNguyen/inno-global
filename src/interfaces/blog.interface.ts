@@ -62,4 +62,11 @@ export interface ITaxonomies {
       slug: string
     }[]
   }
+  categories: {
+    data: {
+      id: number
+      name: string
+      slug: string
+    }[]
+  }
 }

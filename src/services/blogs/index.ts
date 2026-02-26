@@ -8,13 +8,17 @@ const blogService = {
     })
   },
   getTaxonomies: async (locale: string) => {
-    const [years] = await Promise.all([
+    const [years, categories] = await Promise.all([
       fetchData({
         api: ENDPOINTS.blog.getYears(locale),
+      }),
+      fetchData({
+        api: ENDPOINTS.blog.getCategories(locale),
       }),
     ])
     return {
       years,
+      categories,
     }
   },
 }
