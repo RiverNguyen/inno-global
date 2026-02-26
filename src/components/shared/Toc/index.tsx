@@ -18,7 +18,7 @@ interface TocItem {
   level: number // h1 -> 1, h2 -> 2...
 }
 
-export default function Summary({ tocs }: { tocs: TocItem[] }) {
+export default function Toc({ tocs }: { tocs: TocItem[] }) {
   const t = useTranslations('DetailBlogPage')
   const [open, setOpen] = useState(false)
   const [expand, setExpand] = useState(false)
@@ -110,7 +110,6 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
             </span>
             <ChevronUp className='size-[0.9375rem] shrink-0' />
           </button>
-
           <Drawer open={open} onOpenChange={setOpen}>
             <DrawerContent hiddenDrag className='z-120 rounded-t-[1.25rem]'>
               <div className='flex items-center justify-between p-[0.83333rem] border-b-[0.8px] border-[rgba(9,9,9,0.08)]'>
@@ -131,7 +130,10 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
                   <li key={i}>
                     <button
                       type='button'
-                      onClick={() => scrollToHeading(toc.id)}
+                      onClick={() => {
+                        scrollToHeading(toc.id)
+                        setOpen(false)
+                      }}
                       className={cn(
                         'text-[rgba(9,9,9,0.80)] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] transition-all duration-200',
                         activeId === toc.id && 'text-[rgba(9,9,9,1)]',
@@ -159,83 +161,3 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
   )
 }
 
-// 'use client'
-// import ICChevronDown from '@/components/icons/ICChevronDown'
-// import ICClose from '@/components/icons/ICClose'
-// import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
-// import useIsMobile from '@/hooks/useIsMobile'
-
-// export default function Toc() {
-//   const { isLoading, isMobile } = useIsMobile()
-
-//   return (
-//     <>
-//       <div className='flex p-[1.5625rem] flex-col rounded-[0.20833rem] bg-[#F0F0F0] my-[2.08333rem] xsm:hidden'>
-//         <h3 className='text-[#090909] font-open-sans text-[1.25rem] font-semibold leading-[150%] mb-[0.83333rem]'>
-//           Tóm tắt nội dung
-//         </h3>
-//         <ul className='flex flex-col gap-[0.625rem] items-start'>
-//           <li className='text-[rgba(9,9,9,0.80)] font-open-sans text-[0.9375rem] leading-[150%]'>
-//             1. Tổng quan
-//           </li>
-//           <li className='text-[rgba(9,9,9,0.80)] font-open-sans text-[0.9375rem] leading-[150%]'>
-//             2. Giá trị cốt lõi của công ty
-//           </li>
-//           <li className='text-[rgba(9,9,9,0.80)] font-open-sans text-[0.9375rem] leading-[150%]'>
-//             3. Về 8 giá trị văn hóa cốt lõi của INNO
-//           </li>
-//           <li className='text-[rgba(9,9,9,0.80)] font-open-sans text-[0.9375rem] leading-[150%]'>
-//             4. Lời kết
-//           </li>
-//           <button className='text-[#000DFF] font-open-sans text-[0.9375rem] leading-[150%]'>
-//             Xem thêm
-//           </button>
-//         </ul>
-//       </div>
-
-//       {!isLoading && isMobile && (
-//         <Drawer
-//         >
-//           <DrawerTrigger asChild>
-//             <button className="fixed bottom-0 left-0 right-0 z-12 w-full flex h-[2.76042rem] p-[0.83333rem] justify-between items-center shrink-0 bg-white shadow-[0_-4px_12px_0_rgba(0,0,0,0.10)]">
-//               <span className='text-[#2E2E2E] font-open-sans text-[0.72917rem] font-semibold leading-[150%]'>
-//                 Tóm tắt nội dung
-//               </span>
-//               <ICChevronDown className='size-[0.9375rem] shrink-0' />
-//             </button>
-//           </DrawerTrigger>
-//           <DrawerContent>
-//             <DrawerHeader>
-//               <DrawerTitle>Tóm tắt nội dung</DrawerTitle>
-//               <DrawerClose asChild>
-//                 <button
-//                   type='button'
-//                   className='flex-center size-[1.25rem] cursor-pointer rounded-full bg-[rgba(9,9,9,0.10)] backdrop-blur-[14.117646217346191px]'
-//                 >
-//                   <ICClose className='size-[0.72917rem]' />
-//                 </button>
-//               </DrawerClose>
-//             </DrawerHeader>
-//             <ul className='flex flex-col gap-[0.52083rem] items-start'>
-//               <li className='text-[rgba(9,9,9,0.80)] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem]'>
-//                 1. Tổng quan
-//               </li>
-//               <li className='text-[rgba(9,9,9,0.80)] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem]'>
-//                 2. Giá trị cốt lõi của công ty
-//               </li>
-//               <li className='text-[rgba(9,9,9,0.80)] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem]'>
-//                 3. Về 8 giá trị văn hóa cốt lõi của INNO
-//               </li>
-//               <li className='text-[rgba(9,9,9,0.80)] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem]'>
-//                 4. Lời kết
-//               </li>
-//               <button className='text-[#000DFF] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem]'>
-//                 Xem thêm
-//               </button>
-//             </ul>
-//           </DrawerContent>
-//         </Drawer>
-//       )}
-//     </>
-//   )
-// }
