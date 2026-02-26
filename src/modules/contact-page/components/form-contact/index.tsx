@@ -89,19 +89,20 @@ export default function FormContact({ locale }: { locale: string }) {
     }
   }
 
-  const fieldClassName = 'gap-[0.10417rem]'
+  const fieldClassName = 'gap-[0.10417rem] xsm:gap-0 '
   const labelClassName =
-    'flex pb-[0.20833rem] gap-[0.10417rem] text-[#090909] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] '
+    'flex pb-[0.20833rem] gap-[0.10417rem] text-[#090909] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:pb-[0.10417rem] xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem]'
   const inputClassName =
-    'h-[2.91667rem] p-[0.83333rem_0.625rem] rounded-[0.41667rem] border border-[rgba(9,9,9,0.08)] bg-[#F0F0F0] backdrop-blur-sm placeholder:text-[rgba(9,9,9,0.40)] placeholder:font-open-sans placeholder:text-[0.83333rem] placeholder:leading-[150%] placeholder:tracking-[-0.01667rem] shadow-none outline-none ring-0 focus:ring-0 focus-visible:shadow-none focus-visible:outline-none focus-visible:ring-0'
+    'h-[2.91667rem] p-[0.83333rem_0.625rem] rounded-[0.41667rem] border border-[rgba(9,9,9,0.08)] bg-[#F0F0F0] backdrop-blur-sm placeholder:text-[rgba(9,9,9,0.40)] placeholder:font-open-sans placeholder:text-[0.83333rem] placeholder:leading-[150%] placeholder:tracking-[-0.01667rem] shadow-none outline-none ring-0 focus:ring-0 focus-visible:shadow-none focus-visible:outline-none focus-visible:ring-0 text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal xsm:h-[2.08333rem] xsm:p-[0.72917rem_0.625rem] xsm:placeholder:text-[0.625rem] xsm:placeholder:tracking-normal'
+  const messageClassName = 'mt-[0.20833rem] text-[#D32F2F] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:mt-[0.10417rem] xsm:text-[0.625rem] xsm:tracking-normal'
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-[1.66667rem]'
+        className='space-y-[1.66667rem] xsm:space-y-[0.83333rem]'
       >
-        <div className='grid grid-cols-2 gap-[1.04167rem]'>
+        <div className='grid grid-cols-2 gap-[1.04167rem] xsm:grid-cols-1 xsm:gap-[0.72917rem]'>
           <Field className={fieldClassName}>
             <FieldLabel className={labelClassName}>
               {translateContactForm('fullname')}
@@ -112,7 +113,7 @@ export default function FormContact({ locale }: { locale: string }) {
               className={inputClassName}
               {...form.register('fullname')}
             />
-            <FieldError>{form.formState.errors.fullname?.message}</FieldError>
+            <FieldError className={messageClassName}>{form.formState.errors.fullname?.message}</FieldError>
           </Field>
 
           <Field className={fieldClassName}>
@@ -126,11 +127,11 @@ export default function FormContact({ locale }: { locale: string }) {
               className={inputClassName}
               {...form.register('email')}
             />
-            <FieldError>{form.formState.errors.email?.message}</FieldError>
+            <FieldError className={messageClassName}>{form.formState.errors.email?.message}</FieldError>
           </Field>
         </div>
 
-        <div className='grid grid-cols-2 gap-[1.04167rem]'>
+        <div className='grid grid-cols-2 gap-[1.04167rem] xsm:grid-cols-1 xsm:gap-[0.72917rem]'>
           <Field className={fieldClassName}>
             <FieldLabel className={labelClassName}>{translateContactForm('companyName')}</FieldLabel>
             <Input
@@ -138,7 +139,7 @@ export default function FormContact({ locale }: { locale: string }) {
               className={inputClassName}
               {...form.register('companyName')}
             />
-            <FieldError>{form.formState.errors.companyName?.message}</FieldError>
+            <FieldError className={messageClassName}>{form.formState.errors.companyName?.message}</FieldError>
           </Field>
 
           <Field className={fieldClassName}>
@@ -151,7 +152,7 @@ export default function FormContact({ locale }: { locale: string }) {
               className={inputClassName}
               {...form.register('companysize')}
             />
-            <FieldError>{form.formState.errors.companysize?.message}</FieldError>
+            <FieldError className={messageClassName}>{form.formState.errors.companysize?.message}</FieldError>
           </Field>
         </div>
 
@@ -164,16 +165,16 @@ export default function FormContact({ locale }: { locale: string }) {
             value={form.watch('field')}
             onValueChange={(value) => form.setValue('field', value, { shouldValidate: true })}
           >
-            <SelectTrigger className={cn(inputClassName, 'data-[placeholder]:text-[rgba(9,9,9,0.40)]')}>
+            <SelectTrigger className={cn(inputClassName, 'data-[placeholder]:text-[rgba(9,9,9,0.40)] xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal')}>
               <SelectValue placeholder={translateContactForm('placeholderField')} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value='option1'>Linh vực 1</SelectItem>
-              <SelectItem value='option2'>Linh vực 2</SelectItem>
-              <SelectItem value='option3'>Linh vực 3</SelectItem>
+              <SelectItem value='option1'>Lĩnh vực 1</SelectItem>
+              <SelectItem value='option2'>Lĩnh vực 2</SelectItem>
+              <SelectItem value='option3'>Lĩnh vực 3</SelectItem>
             </SelectContent>
           </Select>
-          <FieldError>{form.formState.errors.field?.message}</FieldError>
+          <FieldError className={messageClassName}>{form.formState.errors.field?.message}</FieldError>
         </Field>
 
         <Field className={fieldClassName}>
@@ -182,17 +183,17 @@ export default function FormContact({ locale }: { locale: string }) {
             <span className='text-[#D32F2F]'>*</span>
           </FieldLabel>
           <Textarea
-            className={cn(inputClassName, 'h-[7.13542rem]')}
+            className={cn(inputClassName, 'h-[7.13542rem] xsm:h-[5.20833rem]')}
             placeholder={translateContactForm('placeholderNote')}
             {...form.register('note')}
           />
-          <FieldError>{form.formState.errors.note?.message}</FieldError>
+          <FieldError className={messageClassName}>{form.formState.errors.note?.message}</FieldError>
         </Field>
 
         <Button
           type='submit'
           disabled={form.formState.isSubmitting}
-          className='w-full h-[2.60417rem] flex-center rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] text-white font-open-sans text-[0.72917rem] leading-[150%]'
+          className='w-full h-[2.60417rem] flex-center rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] text-white font-open-sans text-[0.72917rem] leading-[150%] xsm:h-[2.08333rem] xsm:mt-[0.9375rem]'
         >
           {form.formState.isSubmitting ? translateContactForm('submitLoading') : translateContactForm('submit')}
         </Button>

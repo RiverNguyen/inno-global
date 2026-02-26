@@ -45,6 +45,7 @@
     "sortPopup": "Sắp xếp theo"
   },
   "ContactForm": {
+    "title": "Liên hệ",
     "fullname": "Họ tên",
     "email": "Email",
     "companyName": "Tên công ty",

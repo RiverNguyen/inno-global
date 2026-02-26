@@ -45,6 +45,7 @@
     "sortPopup": "Sort by"
   },
   "ContactForm": {
+    "title": "Contact",
     "fullname": "Full name",
     "email": "Email",
     "companyName": "Company name",
