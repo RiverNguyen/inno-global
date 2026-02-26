@@ -4,7 +4,6 @@ import Image from 'next/image'
 
 import FormContact from './components/form-contact'
 export default function Contact({ locale }: { locale: string }) {
-
   return (
     <main className='relative w-full min-h-screen h-[56.25rem]'>
       <Image

@@ -41,7 +41,11 @@ const BlogDetailPage = async ({ params }: { params: Promise<{ locale: string; sl
 
   return (
     <main className='relative'>
-      <BlogDetail locale={locale} blog={blogData} relatedBlogs={relatedBlogs} />
+      <BlogDetail
+        locale={locale}
+        blog={blogData}
+        relatedBlogs={relatedBlogs}
+      />
     </main>
   )
 }

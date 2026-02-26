@@ -31,9 +31,7 @@ export const useWpVideoPlayer = (rootId: string, trigger?: unknown) => {
       }
 
       const onFullscreenChange = () => {
-        const isFullscreen =
-          document.fullscreenElement === video ||
-          document.fullscreenElement === wrapper
+        const isFullscreen = document.fullscreenElement === video || document.fullscreenElement === wrapper
 
         if (isFullscreen) {
           wrapper.classList.add('is-fullscreen')
@@ -64,4 +62,3 @@ export const useWpVideoPlayer = (rootId: string, trigger?: unknown) => {
     }
   }, [rootId, trigger])
 }
-

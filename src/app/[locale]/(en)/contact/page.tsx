@@ -6,7 +6,6 @@ import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
 import Contact from '@/modules/contact-page'
 import metadataValues from '@/utils/metadataValues'
 
-
 export const dynamicParams = false
 
 export function generateStaticParams() {

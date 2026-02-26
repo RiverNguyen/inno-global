@@ -69,4 +69,3 @@ export function buildTocFromHtml(initialHtml: string): { html: string; tocs: Toc
     tocs: mappedTocs,
   }
 }
-

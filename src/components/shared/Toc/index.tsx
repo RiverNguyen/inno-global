@@ -34,9 +34,7 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
     if (!tocs || tocs.length === 0) return
     const offsetRem = window.innerWidth <= 639 ? 5.25 : 5.75
 
-    const headings = tocs
-      .map((toc) => document.getElementById(toc.id))
-      .filter(Boolean) as HTMLElement[]
+    const headings = tocs.map((toc) => document.getElementById(toc.id)).filter(Boolean) as HTMLElement[]
 
     if (headings.length === 0) return
 
@@ -60,8 +58,7 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
     return () => ctx.revert()
   }, [tocs])
 
-  if (tocs.length < 1)
-    return null
+  if (tocs.length < 1) return null
 
   return (
     <>
@@ -110,8 +107,14 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
             </span>
             <ChevronUp className='size-[0.9375rem] shrink-0' />
           </button>
-          <Drawer open={open} onOpenChange={setOpen}>
-            <DrawerContent hiddenDrag className='z-120 rounded-t-[1.25rem]'>
+          <Drawer
+            open={open}
+            onOpenChange={setOpen}
+          >
+            <DrawerContent
+              hiddenDrag
+              className='z-120 rounded-t-[1.25rem]'
+            >
               <div className='flex items-center justify-between p-[0.83333rem] border-b-[0.8px] border-[rgba(9,9,9,0.08)]'>
                 <h2 className='text-[#090909] font-open-sans text-[0.83333rem] font-semibold leading-[150%] capitalize'>
                   {t('contentSummary')}
@@ -160,4 +163,3 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
     </>
   )
 }
-

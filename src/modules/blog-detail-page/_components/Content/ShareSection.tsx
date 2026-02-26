@@ -100,9 +100,7 @@ export default function ShareSection({ blog }: ShareSectionProps) {
           <span className='text-[rgba(9,9,9,0.80)] xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem]'>
             {t('publishedDate')}:
           </span>
-          <span className='text-[#090909] font-semibold xsm:capitalize'>
-            {formatDateToDDMMYYYY(blog?.date)}
-          </span>
+          <span className='text-[#090909] font-semibold xsm:capitalize'>{formatDateToDDMMYYYY(blog?.date)}</span>
         </div>
 
         <div className='flex items-center gap-[0.52083rem] font-open-sans text-[0.9375rem] leading-[150%] xsm:gap-[0.26042rem] xsm:text-[0.625rem]'>
@@ -124,4 +122,3 @@ export default function ShareSection({ blog }: ShareSectionProps) {
     </div>
   )
 }
-

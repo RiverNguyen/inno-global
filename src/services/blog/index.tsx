@@ -10,7 +10,7 @@ const blogService = {
   getRelatedBlogs: async ({
     locale,
     category,
-    tag,
+    // tag,
   }: {
     locale: string
     category?: string

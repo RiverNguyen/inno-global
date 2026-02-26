@@ -241,7 +241,7 @@ body {
   background-color: #d32f2f;
 }
 
-html>body[data-scroll-locked] {
+html > body[data-scroll-locked] {
   overflow: auto !important;
   --removed-body-scroll-bar-size: 0px;
   margin-right: 0 !important;
