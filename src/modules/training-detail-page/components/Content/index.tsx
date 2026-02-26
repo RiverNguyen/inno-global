@@ -5,6 +5,7 @@ import { useEffect, useMemo } from 'react'
 import './styles.css'
 import { ITraining } from '@/interfaces/training.inteface'
 import Summary from '@/modules/blog-detail-page/_components/Content/toc'
+
 import ShareSection from '../ShareSection'
 
 interface TocItem {
@@ -97,7 +98,7 @@ export default function Content({ training }: ContentProps) {
       const video = wrapper.querySelector('video')
       if (!video) return
 
-      const handleClick = (e: MouseEvent) => {
+      const handleClick = (_e: MouseEvent) => {
         // Chỉ play khi đang paused
         if (video.paused && !wrapper.classList.contains('is-fullscreen')) {
           video.play()

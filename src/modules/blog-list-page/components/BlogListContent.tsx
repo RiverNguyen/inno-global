@@ -162,7 +162,10 @@ export default function BlogListContent({
             key={blog.id || i}
             data-blog-item
           >
-            <Link href={locale === 'vi' ? `/tin-tuc/${blog.slug}` : `/blogs/${blog.slug}`} className='block'>
+            <Link
+              href={locale === 'vi' ? `/tin-tuc/${blog.slug}` : `/blogs/${blog.slug}`}
+              className='block'
+            >
               <CardBlog
                 title={blog.title || ''}
                 category={blog.taxonomies?.category?.[0]?.name || ''}

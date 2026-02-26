@@ -1,11 +1,12 @@
 'use client'
 
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { useMemo, useRef } from 'react'
+
 import TrainingCard from '@/components/shared/TrainingCard'
 import { ITraining } from '@/interfaces/training.inteface'
 import ProjectListSkeleton from '@/modules/project-list-page/components/ProjectListSkeleton'
-import { useGSAP } from '@gsap/react'
-import { useMemo, useRef } from 'react'
 
 const FADE_Y = 24
 const FADE_DURATION = 0.45

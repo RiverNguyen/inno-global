@@ -106,7 +106,10 @@ const RelatedBlogs = ({ data }: { data: IBlog[] }) => {
             data
               .filter((blog) => blog.slug !== params.slug)
               .map((blog, index) => (
-                <Link key={index} href={locale === 'vi' ? `/tin-tuc/${blog.slug}` : `/blogs/${blog.slug}`}>
+                <Link
+                  key={index}
+                  href={locale === 'vi' ? `/tin-tuc/${blog.slug}` : `/blogs/${blog.slug}`}
+                >
                   <CardBlog
                     title={blog.title || ''}
                     category={blog.taxonomies?.category?.[0]?.name || ''}

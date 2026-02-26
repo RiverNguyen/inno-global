@@ -1,9 +1,10 @@
 'use client'
+import { toast } from 'sonner'
+
 import IconFacebook from '@/components/icons/ICFacebook'
 import IconLinkedin from '@/components/icons/ICInstagram'
 import IconShareLink from '@/components/icons/ICShareLink'
 import IconTwitter from '@/components/icons/ICTwitter'
-import { toast } from 'sonner'
 
 export default function ShareSection() {
   const shareUrl = typeof window !== 'undefined' ? window.location.href : ''

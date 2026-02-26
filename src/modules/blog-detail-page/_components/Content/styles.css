@@ -79,10 +79,11 @@
 }
 
 #blog_content .wp-video::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
-  background: url('https://cms.inno.okhub-tech.com/wp-content/uploads/2026/02/icon-play-video.webp') center center no-repeat;
+  background: url('https://cms.inno.okhub-tech.com/wp-content/uploads/2026/02/icon-play-video.webp') center center
+    no-repeat;
   background-size: 2.70833rem 2.70833rem;
   pointer-events: none;
   cursor: pointer;
@@ -90,7 +91,7 @@
 }
 
 #blog_content .wp-video::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   opacity: 0.3;

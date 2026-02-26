@@ -10,7 +10,7 @@ import metadataValues from '@/utils/metadataValues'
 export const dynamic = 'force-dynamic'
 
 export function generateStaticParams() {
-  return [{ locale: 'vi' }]
+  return [{ locale: 'en' }]
 }
 
 export async function generateMetadata({

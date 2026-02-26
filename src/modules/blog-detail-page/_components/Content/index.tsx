@@ -98,7 +98,7 @@ export default function Content({ blog }: ContentProps) {
       const video = wrapper.querySelector('video')
       if (!video) return
 
-      const handleClick = (e: MouseEvent) => {
+      const handleClick = (_e: MouseEvent) => {
         // Chỉ play khi đang paused
         if (video.paused && !wrapper.classList.contains('is-fullscreen')) {
           video.play()
@@ -118,9 +118,7 @@ export default function Content({ blog }: ContentProps) {
       }
 
       const onFullscreenChange = () => {
-        const isFullscreen =
-          document.fullscreenElement === video ||
-          document.fullscreenElement === wrapper
+        const isFullscreen = document.fullscreenElement === video || document.fullscreenElement === wrapper
 
         if (isFullscreen) {
           wrapper.classList.add('is-fullscreen')

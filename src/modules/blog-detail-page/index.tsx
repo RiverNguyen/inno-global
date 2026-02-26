@@ -16,7 +16,7 @@ const BlogDetail = ({ locale, blog, relatedBlogs }: BlogDetailProps) => {
   const t = useTranslations('DetailBlogPage')
 
   return (
-    <div className="container mt-[3.65rem] xsm:mt-[5rem]">
+    <div className='container mt-[3.65rem] xsm:mt-[5rem]'>
       <Breadcrumb
         navItems={[
           { label: t('breadcrumbHome'), href: '/' },
@@ -26,7 +26,7 @@ const BlogDetail = ({ locale, blog, relatedBlogs }: BlogDetailProps) => {
         classNameContainer='xsm:hidden pt-[2.8125rem]'
       />
 
-      <div className="my-[6.25rem] xsm:mt-0 xsm:my-0">
+      <div className='my-[6.25rem] xsm:mt-0 xsm:my-0'>
         <Content blog={blog} />
       </div>
 

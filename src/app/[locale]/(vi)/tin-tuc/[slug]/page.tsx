@@ -30,18 +30,20 @@ const BlogDetailPage = async ({ params }: { params: Promise<{ locale: string; sl
 
   const blogData = await blogService.getBlogDetail(slug, locale)
   const category = blogData?.taxonomies?.category?.[0]?.slug
-  const tag = blogData?.taxonomies?.post_tag?.[0]?.slug
 
   const relatedRes = await blogService.getRelatedBlogs({
     locale,
     category,
-    tag,
   })
   const relatedBlogs = Array.isArray(relatedRes?.data) ? relatedRes.data : []
 
   return (
     <main className='relative'>
-      <BlogDetail locale={locale} blog={blogData} relatedBlogs={relatedBlogs} />
+      <BlogDetail
+        locale={locale}
+        blog={blogData}
+        relatedBlogs={relatedBlogs}
+      />
     </main>
   )
 }
