@@ -118,6 +118,21 @@ const ENDPOINTS = {
       vi: '/van-hoa-doanh-nghiep',
     },
   },
+  auth: {
+    login: 'api/v1/auth/login',
+    register: 'api/v1/auth/register',
+    refreshToken: 'api/v1/auth/refresh',
+    logout: 'api/v1/auth/logout',
+    info: 'api/v1/users/me',
+    requestOTP: 'api/v1/auth/password/otp/request',
+    verifyOTP: 'api/v1/auth/password/otp/verify',
+    resetPassword: 'api/v1/auth/password/otp/reset',
+    registerOTP: 'api/v1/auth/register/verify',
+    resendRegisterOTP: 'api/v1/auth/register/resend-otp',
+    updateInfo: 'api/v1/users/me/profile',
+    changePassword: 'api/v1/users/me/password',
+    forgotPassword: 'api/v1/auth/forgot-password',
+  },
 }
 
 export default ENDPOINTS

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 'use client'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
@@ -90,8 +91,9 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
                       />
                     </div>
                     <div
-                      className={`mt-[1.98rem] px-[0.78125rem] text-[1.04167rem] leading-[1.3] text-center py-[0.46875rem] text-white rounded-[3.625rem] transition-colors duration-300 ${isActive ? 'bg-gr-2' : 'bg-en-60 '
-                        }`}
+                      className={`mt-[1.98rem] px-[0.78125rem] text-[1.04167rem] leading-[1.3] text-center py-[0.46875rem] text-white rounded-[3.625rem] transition-colors duration-300 ${
+                        isActive ? 'bg-gr-2' : 'bg-en-60 '
+                      }`}
                     >
                       {item.year}
                     </div>
@@ -107,8 +109,9 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
                 {list_awards?.map((_, index) => (
                   <div
                     key={index}
-                    className={`h-[0.15625rem] rounded-full transition-all duration-300 bg-text-60 ${index === activeIndex ? 'w-[2.44rem] ' : 'w-[1.2rem] opacity-[0.32]'
-                      }`}
+                    className={`h-[0.15625rem] rounded-full transition-all duration-300 bg-text-60 ${
+                      index === activeIndex ? 'w-[2.44rem] ' : 'w-[1.2rem] opacity-[0.32]'
+                    }`}
                   />
                 ))}
               </div>

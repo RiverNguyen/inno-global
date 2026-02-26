@@ -117,7 +117,10 @@ export default function Footer({ data }: IFooterProps) {
   const footerBgClass = isSocialResponsibilityPage ? 'bg-white' : 'bg-[#F0F0F0]'
 
   return (
-    <footer className={`${footerBgClass} p-[2.08333rem_0_1.66667rem_0]`}>
+    <footer
+      className={`${footerBgClass} p-[2.08333rem_0_1.66667rem_0]`}
+      id='footer'
+    >
       <div className='max-w-[75rem] mx-auto flex xsm:flex-col xsm:max-w-full xsm:px-[0.83333rem]'>
         <div className='max-w-[17.7rem] xsm:max-w-full'>
           <Link href='/'>

@@ -3,6 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { useEffect, useRef, useState } from 'react'
 
 import ButtonOutline from '@/components/custom/ButtonOutline'
@@ -30,6 +31,9 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
   const mobileSearchInputRef = useRef<HTMLInputElement>(null)
   const params = useParams()
   const locale = params.locale as 'vi' | 'en'
+  const { data: session } = useSession()
+
+  console.log(session)
 
   const headerRef = useRef<HTMLElement>(null)
   useScrollHeader(headerRef as React.RefObject<HTMLElement>)
@@ -201,10 +205,14 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             >
               {menus[menus.length - 1].link.title}
             </Link>
-            <ButtonRed className='xsm:hidden'>
-              <span>Đăng nhập</span>
-              <ICUser className='size-[0.83333rem] text-white' />
-            </ButtonRed>
+            {!session?.user && (
+              <Link href={locale === 'vi' ? '/dang-nhap' : '/login'}>
+                <ButtonRed className='xsm:hidden'>
+                  <span>{locale === 'vi' ? 'Đăng nhập' : 'Login'}</span>
+                  <ICUser className='size-[0.83333rem] text-white' />
+                </ButtonRed>
+              </Link>
+            )}
             <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.4rem] uppercase xsm:hidden'>
               {['vi', 'en'].map((lang) => (
                 <Link
@@ -217,6 +225,25 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 </Link>
               ))}
             </div>
+
+            {session?.user && (
+              <div className='flex-y-center space-x-[0.52rem]'>
+                <div className='size-[2.5rem] rounded-full border border-[#D32F2F] relative overflow-hidden'>
+                  <Image
+                    src={session?.user?.avatar_url || ''}
+                    alt={session?.user?.first_name || ''}
+                    className='size-full object-cover'
+                    fill
+                  />
+                </div>
+                <div className=''>
+                  <p className='text-[#090909] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem]'>
+                    {session?.user?.display_name || '---'}
+                  </p>
+                  <p className='text-[#090909]/40 text-[0.72917rem] leading-[1.5]'>ID: {session?.user?.username}</p>
+                </div>
+              </div>
+            )}
           </div>
           {/* mobile menu */}
           <div
