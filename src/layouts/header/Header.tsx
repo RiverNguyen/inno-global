@@ -227,7 +227,10 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             </div>
 
             {session?.user && (
-              <div className='flex-y-center space-x-[0.52rem]'>
+              <Link
+                href='/dashboard'
+                className='flex-y-center space-x-[0.52rem]'
+              >
                 <div className='size-[2.5rem] rounded-full border border-[#D32F2F] relative overflow-hidden'>
                   <Image
                     src={session?.user?.avatar_url || ''}
@@ -242,7 +245,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                   </p>
                   <p className='text-[#090909]/40 text-[0.72917rem] leading-[1.5]'>ID: {session?.user?.username}</p>
                 </div>
-              </div>
+              </Link>
             )}
           </div>
           {/* mobile menu */}

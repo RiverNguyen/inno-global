@@ -110,6 +110,36 @@
     "error": "Sending OTP failed",
     "success": "OTP has been sent to your email",
     "desc": "Please enter your account email to retrieve the password",
-    "validateEmailFormat": "Please enter a valid email address"
+    "validateEmailFormat": "Please enter a valid email address",
+    "resendOTPSuccess": "OTP has been sent to your email",
+    "resendOTPError": "Sending OTP failed"
+  },
+  "VerifyOTPPage": {
+    "title": "Verify OTP",
+    "desc": "Please enter the OTP sent to your email to reset your password.",
+    "validateOTP": "Please enter the OTP",
+    "submit": "Verify",
+    "loading": "Verifying OTP...",
+    "error": "Verifying OTP failed",
+    "success": "OTP verified successfully",
+    "label": "OTP",
+    "placeholderOTP": "Please enter the OTP",
+    "resendOTP": "Resend OTP",
+    "resendOTPSuccess": "OTP has been sent to your email",
+    "resendOTPError": "Sending OTP failed"
+  },
+  "ChangePasswordPage": {
+    "title": "Change password",
+    "validatePasswordLength": "Password must be at least 6 characters",
+    "validateConfirmPasswordLength": "Confirm password must be at least 6 characters",
+    "labelPassword": "New password",
+    "placeholderPassword": "Enter new password",
+    "labelConfirmPassword": "Confirm new password",
+    "placeholderConfirmPassword": "Confirm new password",
+    "validateConfirmPassword": "Confirm password does not match",
+    "submit": "Submit",
+    "loading": "Changing password...",
+    "error": "Changing password failed",
+    "success": "Password changed successfully"
   }
 }
