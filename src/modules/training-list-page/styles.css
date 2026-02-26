@@ -1,0 +1,29 @@
+.swiper-pagination {
+  bottom: 0 !important;
+  width: 13.02083rem !important;
+  right: 0;
+  left: auto !important;
+  padding: 1.66667rem 2.08333rem;
+  display: flex;
+  align-items: center;
+}
+
+.swiper-pagination-bullet {
+  height: 0.15625rem !important;
+  background: #fff !important;
+  opacity: 0.32 !important;
+  width: 1.19792rem !important;
+  margin-right: 0.15625rem !important;
+  margin-left: 0 !important;
+  border-radius: 0 !important;
+  transition: all 0.3s ease-out;
+}
+
+.swiper-pagination-bullet:last-child {
+  margin-right: 0 !important;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  width: 4.79167rem !important;
+}

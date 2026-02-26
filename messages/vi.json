@@ -72,6 +72,20 @@
     "leadership": "Ban lãnh đạo công ty",
     "formationHistory": "Lịch sử hình thành"
   },
+  "TrainingListPage": {
+    "latest": "Đào tạo Mới nhất",
+    "other": "Đào tạo khác",
+    "lecturer": "Giảng viên",
+    "participant": "Đối tượng",
+    "format": "Hình thức",
+    "all": "Tất cả",
+    "year": "Năm",
+    "newestToOldest": "Mới nhất đến cũ nhất",
+    "oldestToNewest": "Cũ nhất đến mới nhất",
+    "sortPopup": "Sắp xếp theo",
+    "placeholderSearch": "Tìm kiếm từ khóa",
+    "noTrainings": "Không tìm thấy đào tạo"
+  },
   "Breadcrumb": {
     "homePage": "Trang chủ",
     "servicePage": "Dịch vụ",
@@ -81,6 +95,7 @@
     "historyPage": "Lịch sử hình thành & phát triển",
     "companyPage": "Công ty con/liên kết",
     "businessCulturePage": "Văn hóa doanh nghiệp",
-    "organizationChartPage": "Sơ đồ tổ chức"
+    "organizationChartPage": "Sơ đồ tổ chức",
+    "trainingPage": "Đào tạo"
   }
 }
