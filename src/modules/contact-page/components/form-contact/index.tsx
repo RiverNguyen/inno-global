@@ -7,14 +7,8 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 
 import ButtonRed from '@/components/custom/ButtonRed'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer'
+import ICClose from '@/components/icons/ICClose'
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { Field, FieldLabel, FieldError } from '@/components/ui/field'
 import { Form } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -24,7 +18,6 @@ import endpoints from '@/configs/endpoints'
 import CF7Request from '@/fetches/cf7Request'
 import useIsMobile from '@/hooks/useIsMobile'
 import { cn } from '@/lib/utils'
-import ICClose from '@/components/icons/ICClose'
 
 const fieldOptions = [
   { value: 'option1', label: 'Lĩnh vực 1' },
@@ -113,7 +106,8 @@ export default function FormContact({ locale }: { locale: string }) {
     'flex pb-[0.20833rem] gap-[0.10417rem] text-[#090909] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:pb-[0.10417rem] xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem]'
   const inputClassName =
     'h-[2.91667rem] p-[0.83333rem_0.625rem] rounded-[0.41667rem] border border-[rgba(9,9,9,0.08)] bg-[#F0F0F0] backdrop-blur-sm placeholder:text-[rgba(9,9,9,0.40)] placeholder:font-open-sans placeholder:text-[0.83333rem] placeholder:leading-[150%] placeholder:tracking-[-0.01667rem] shadow-none outline-none ring-0 focus:ring-0 focus-visible:shadow-none focus-visible:outline-none focus-visible:ring-0 text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal xsm:h-[2.08333rem] xsm:p-[0.72917rem_0.625rem] xsm:placeholder:text-[0.625rem] xsm:placeholder:tracking-normal'
-  const messageClassName = 'mt-[0.20833rem] text-[#D32F2F] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:mt-[0.10417rem] xsm:text-[0.625rem] xsm:tracking-normal'
+  const messageClassName =
+    'mt-[0.20833rem] text-[#D32F2F] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:mt-[0.10417rem] xsm:text-[0.625rem] xsm:tracking-normal'
 
   return (
     <Form {...form}>
@@ -182,22 +176,28 @@ export default function FormContact({ locale }: { locale: string }) {
           </FieldLabel>
 
           {isMobile && !isLoading ? (
-            <Drawer open={open} onOpenChange={setOpen}>
+            <Drawer
+              open={open}
+              onOpenChange={setOpen}
+            >
               <DrawerTrigger asChild>
                 <button
-                  type="button"
-                  className={cn(
-                    inputClassName,
-                    'w-full text-left flex items-center justify-between',
-                  )}
+                  type='button'
+                  className={cn(inputClassName, 'w-full text-left flex items-center justify-between')}
                 >
-                  {form.watch('field')
-                    ? fieldOptions.find(o => o.value === form.watch('field'))?.label
-                    : translateContactForm('placeholderField')}
+                  {(() => {
+                    const fieldValue = form.watch('field')
+                    return fieldValue
+                      ? fieldOptions.find((o) => o.value === fieldValue)?.label
+                      : translateContactForm('placeholderField')
+                  })()}
                 </button>
               </DrawerTrigger>
 
-              <DrawerContent hiddenDrag className='rounded-[1.25rem_1.25rem_0_0] bg-white z-[102]'>
+              <DrawerContent
+                hiddenDrag
+                className='rounded-[1.25rem_1.25rem_0_0] bg-white z-[102]'
+              >
                 <DrawerHeader className='flex items-center justify-between border-b border-b-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
                   <DrawerTitle className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>
                     {translateContactForm('field')}
@@ -212,14 +212,14 @@ export default function FormContact({ locale }: { locale: string }) {
                   </DrawerClose>
                 </DrawerHeader>
 
-                <div className="p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem] space-y-[0.52083rem]">
-                  {fieldOptions.map(option => {
+                <div className='p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem] space-y-[0.52083rem]'>
+                  {fieldOptions.map((option) => {
                     const isSelected = form.watch('field') === option.value
 
                     return (
                       <button
                         key={option.value}
-                        type="button"
+                        type='button'
                         onClick={() => {
                           form.setValue('field', option.value, { shouldValidate: true })
                           setOpen(false)
@@ -241,12 +241,26 @@ export default function FormContact({ locale }: { locale: string }) {
               value={form.watch('field')}
               onValueChange={(value) => form.setValue('field', value, { shouldValidate: true })}
             >
-              <SelectTrigger className={cn(inputClassName, 'data-[placeholder]:text-[rgba(9,9,9,0.40)] xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal')}>
-                <SelectValue className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal' placeholder={translateContactForm('placeholderField')} />
+              <SelectTrigger
+                className={cn(
+                  inputClassName,
+                  'data-[placeholder]:text-[rgba(9,9,9,0.40)] xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal',
+                )}
+              >
+                <SelectValue
+                  className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal'
+                  placeholder={translateContactForm('placeholderField')}
+                />
               </SelectTrigger>
               <SelectContent>
-                {fieldOptions.map(option => (
-                  <SelectItem key={option.value} value={option.value} className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal'>{option.label}</SelectItem>
+                {fieldOptions.map((option) => (
+                  <SelectItem
+                    key={option.value}
+                    value={option.value}
+                    className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal'
+                  >
+                    {option.label}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
