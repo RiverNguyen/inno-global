@@ -11,8 +11,9 @@ import ICClose from '@/components/icons/ICClose'
 import ICMenu from '@/components/icons/ICMenu'
 import ICSearchHead from '@/components/icons/ICSearchHead'
 import ICUser from '@/components/icons/ICUser'
+import ROUTES from '@/configs/routes'
 import { useScrollHeader } from '@/hooks/useScrollHeader'
-import { Link } from '@/i18n/navigation'
+import { Link, useRouter } from '@/i18n/navigation'
 import { IAcfImage } from '@/interfaces/acf-wp.interface'
 import { IMenu } from '@/interfaces/header.interface'
 import { cn } from '@/lib/utils'
@@ -30,8 +31,10 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
   const mobileSearchInputRef = useRef<HTMLInputElement>(null)
   const params = useParams()
   const locale = params.locale as 'vi' | 'en'
+  const router = useRouter()
 
   const headerRef = useRef<HTMLElement>(null)
+  const searchRef = useRef<HTMLFormElement>(null)
   useScrollHeader(headerRef as React.RefObject<HTMLElement>)
 
   useEffect(() => {
@@ -58,20 +61,18 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
     if (!openSearch) return
     if (window.matchMedia('(max-width: 639px)').matches) return
 
-    const handleClickOutsideSearch = (event: MouseEvent | TouchEvent) => {
-      if (!(event.target instanceof Element)) return
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!searchRef.current) return
 
-      if (event.target.closest('#search') || event.target.closest('#result')) return
-
-      setOpenSearch(false)
+      if (!searchRef.current.contains(event.target as Node)) {
+        setOpenSearch(false)
+      }
     }
 
-    document.addEventListener('mousedown', handleClickOutsideSearch)
-    // document.addEventListener('touchstart', handleClickOutsideSearch)
+    document.addEventListener('mousedown', handleClickOutside)
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutsideSearch)
-      // document.removeEventListener('touchstart', handleClickOutsideSearch)
+      document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [openSearch])
 
@@ -93,6 +94,14 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
     setOpenMenu((prev) => !prev)
     setOpenSearch(false)
   }
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const value = e.currentTarget.search.value.trim()
+    if (!value) return
+    router.push(locale === 'vi' ? `${ROUTES.searchVi}?q=${value}` : `${ROUTES.searchEn}?q=${value}`)
+  }
+
   if (!Array.isArray(menus) || menus.length === 0) return null
   return (
     <>
@@ -160,8 +169,10 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
           </nav>
           {/* search */}
           <div className='flex-y-center space-x-5 xsm:hidden'>
-            <div
+            <form
+              ref={searchRef}
               onClick={!openSearch ? handleOpenSearch : undefined}
+              onSubmit={handleSearchSubmit}
               className={cn(
                 'flex-y-center relative size-[1.875rem] rounded-full bg-white/80 transition-all duration-500',
                 openSearch && 'w-[51.04167rem] shrink-0',
@@ -176,9 +187,9 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 />
               )}
               <button
-                type='button'
+                type={openSearch ? 'submit' : 'button'}
                 aria-label={openSearch ? 'Close search' : 'Open search'}
-                onClick={handleOpenSearch}
+                onClick={openSearch ? undefined : handleOpenSearch}
                 className='flex-center absolute top-0 right-0 size-[1.875rem]'
               >
                 <ICSearchHead className='text-text-100 size-[0.875rem]' />
@@ -217,7 +228,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                   </button>
                 ))}
               </div>
-            </div>
+            </form>
             <Link
               href={menus[menus.length - 1].link.url || ''}
               target={menus[menus.length - 1].link.target || '_self'}
