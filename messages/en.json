@@ -149,6 +149,17 @@
     "seeLess": "See less",
     "seeMore": "See more"
   },
+  "SearchPage": {
+    "result": "Search results",
+    "project": "Projects",
+    "service": "Services",
+    "blog": "Blogs",
+    "training": "Trainings",
+    "relatedProject": "Related projects",
+    "relatedService": "Related services",
+    "relatedBlog": "Related blogs",
+    "relatedTraining": "Related trainings"
+  },
   "Breadcrumb": {
     "homePage": "Home",
     "servicePage": "Services",
@@ -160,6 +171,7 @@
     "businessCulturePage": "Business culture",
     "organizationChartPage": "Organization chart",
     "trainingPage": "Trainings",
-    "detailTrainingPage": "Detail training"
+    "detailTrainingPage": "Detail training",
+    "searchPage": "Search"
   }
 }

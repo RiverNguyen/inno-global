@@ -41,6 +41,15 @@ const serviceApi = {
       api: ENDPOINTS.service.getPage[locale],
     })
   },
+  search: async ({ locale, q, limit = 12 }: { locale: string; q: string; limit?: number }) => {
+    return await fetchData({
+      api: ENDPOINTS.service.search({
+        locale,
+        q,
+        limit,
+      }),
+    })
+  },
 }
 
 export default serviceApi

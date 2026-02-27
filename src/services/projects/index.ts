@@ -7,6 +7,32 @@ const projectService = {
       api: ENDPOINTS.project.getAll(locale),
     })
   },
+  search: async ({ locale, q, limit = 12 }: { locale: string; q: string; limit?: number }) => {
+    return await fetchData({
+      api: ENDPOINTS.project.search({ locale, q, limit }),
+    })
+  },
+  getProjectDetail: async (locale: string, slug: string) => {
+    return await fetchData({
+      api: ENDPOINTS.detail(slug, locale),
+    })
+  },
+  getRelated: async ({ locale, location, investor }: { locale: string; location?: string; investor?: string }) => {
+    const params = new URLSearchParams()
+    params.append('lang', locale)
+    if (location) {
+      params.append('tax', 'location')
+      params.append('location', location)
+    }
+    if (investor) {
+      params.append('tax', 'investor')
+      params.append('investor', investor)
+    }
+
+    return await fetchData({
+      api: `${ENDPOINTS.project.relatedProjects}?${params.toString()}`,
+    })
+  },
   getTaxonomies: async (locale: string) => {
     const [types, services, locations, years] = await Promise.all([
       fetchData({
