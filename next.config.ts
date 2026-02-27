@@ -3,6 +3,11 @@ import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
   /* config options here */
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
+  },
   images: {
     formats: ['image/webp'],
     minimumCacheTTL: 2678400, // 31 days

@@ -220,6 +220,16 @@
     "success": "Thay đổi mật khẩu thành công"
   },
   "UserPage": {
-    "hello": "Xin chào bạn!"
+    "hello": "Xin chào bạn!",
+    "accountInfo": "Thông tin tài khoản",
+    "changePassword": "Thay đổi mật khẩu",
+    "logout": "Đăng xuất",
+    "staffId": "ID Nhân sự",
+    "fullName": "Họ và tên",
+    "email": "Email",
+    "position": "Chức vụ",
+    "employee": "Nhân viên",
+    "undefined": "Không xác định",
+    "department": "Phòng ban"
   }
 }

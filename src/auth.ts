@@ -28,6 +28,11 @@ declare module 'next-auth' {
       last_name?: string
       display_name?: string
       avatar_512?: string
+      phong_ban?: string
+      user_code?: string
+      token?: {
+        accessToken?: string
+      }
     }
   }
 
@@ -47,6 +52,11 @@ declare module 'next-auth' {
       last_name?: string
       display_name?: string
       avatar_512?: string
+      phong_ban?: string
+      user_code?: string
+      token?: {
+        accessToken?: string
+      }
     }
   }
 }
@@ -72,6 +82,44 @@ function safeIsoExpToUnixSeconds(exp: unknown): number | undefined {
   } catch {
     return
   }
+}
+
+function normalizeAvatarUrl(url: unknown): string | undefined {
+  if (typeof url !== 'string' || !url) return
+  if (url.startsWith('data:') || url.startsWith('blob:')) return url
+
+  const base = (ENV.CMS ?? '').replace(/\/$/, '')
+  if (/^(https?:)?\/\//.test(url)) {
+    if (!base) return url
+    try {
+      const parsed = new URL(url)
+      const cmsOrigin = new URL(base).origin
+      if (parsed.origin !== cmsOrigin && parsed.pathname.startsWith('/wp-content/')) {
+        return `${base}${parsed.pathname}${parsed.search}${parsed.hash}`
+      }
+    } catch {
+      return url
+    }
+    return url
+  }
+
+  if (!base) return url
+
+  return `${base}${url.startsWith('/') ? url : `/${url}`}`
+}
+function normalizeUserProfile(nextUser: any, prevUser?: any) {
+  const mergedUser = {
+    ...(prevUser ?? {}),
+    ...(nextUser ?? {}),
+  }
+
+  const avatar512 = normalizeAvatarUrl(mergedUser?.avatar_512)
+  const avatarUrl = normalizeAvatarUrl(mergedUser?.avatar_url)
+
+  if (avatar512) mergedUser.avatar_512 = avatar512
+  if (avatarUrl) mergedUser.avatar_url = avatarUrl
+
+  return mergedUser
 }
 
 async function refreshAccessToken(token: any) {
@@ -118,9 +166,17 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         token.accessExp = decodedToken.exp
       }
       if (account && user) {
+        const normalizedUser = normalizeUserProfile(user?.user)
         return {
           ...token,
           ...user,
+          user: {
+            ...normalizedUser,
+            token: {
+              ...(normalizedUser?.token ?? {}),
+              accessToken: user.accessToken ?? normalizedUser?.token?.accessToken,
+            },
+          },
           accessToken: user.accessToken,
           refreshToken: user.refreshToken,
           refreshExp: user.refreshExp,
@@ -131,12 +187,13 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           const dataMe = await fetchDataAuth({
             api: ENDPOINTS.auth.info,
           })
-          const { success, data } = dataMe
+          const { success, data } = dataMe ?? {}
+          if (!success || !data) return token
+
+          const normalizedUser = normalizeUserProfile(data, token?.user)
           return {
             ...token,
-            user: {
-              ...data,
-            },
+            user: normalizedUser,
           }
         }
         if (session?._action === 'refreshToken') {
@@ -157,6 +214,15 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         session.refreshExp = token.refreshExp
         // NOTE: Thêm logic để lấy thông tin user từ api nếu cần truyền vào session
         session.user = token.user
+        if (!session?.user?.token?.accessToken && token?.accessToken) {
+          session.user = {
+            ...(session.user ?? {}),
+            token: {
+              ...(session?.user?.token ?? {}),
+              accessToken: token.accessToken,
+            },
+          }
+        }
         session.expires = token.expires
       }
       return session

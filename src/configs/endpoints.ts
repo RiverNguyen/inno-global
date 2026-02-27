@@ -148,7 +148,7 @@ const ENDPOINTS = {
     register: 'api/v1/auth/register',
     refreshToken: 'api/v1/auth/refresh',
     logout: 'api/v1/auth/logout',
-    info: 'api/v1/users/me',
+    info: 'api/v1/auth/me',
     requestOTP: 'api/v1/auth/password/otp/request',
     verifyOTP: 'api/v1/auth/verify-otp-only',
     verifyOTPAndResetPassword: 'api/v1/auth/verify-otp-and-reset',
@@ -158,6 +158,7 @@ const ENDPOINTS = {
     updateInfo: 'api/v1/users/me/profile',
     changePassword: 'api/v1/users/me/password',
     forgotPassword: 'api/v1/auth/forgot-password',
+    updateAvatar: 'api/v1/auth/avatar',
   },
   training: {
     getRelated: 'api/v1/get-all/training',

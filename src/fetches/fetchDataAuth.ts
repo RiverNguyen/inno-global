@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { auth } from '@/auth'
@@ -14,7 +13,7 @@ export type RequestPostGuest = {
 export default async function fetchDataAuth(request: RequestPostGuest) {
   try {
     const session = await auth()
-    const token = session?.accessToken
+    const token = session?.user?.token?.accessToken
 
     const myHeaders = new Headers()
     // Only attach Authorization when we actually have a token.

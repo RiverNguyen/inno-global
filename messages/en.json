@@ -207,6 +207,16 @@
     "resendOTPSuccess": "OTP has been sent to your email",
     "resendOTPError": "Sending OTP failed"
   },
+  "UserPage": {
+    "hello": "Hello!",
+    "accountInfo": "Account information",
+    "changePassword": "Change password",
+    "logout": "Logout",
+    "staffId": "Staff ID",
+    "fullName": "Full name",
+    "email": "Email",
+    "position": "Position"
+  },
   "ChangePasswordPage": {
     "title": "Change password",
     "validatePasswordLength": "Password must be at least 6 characters",

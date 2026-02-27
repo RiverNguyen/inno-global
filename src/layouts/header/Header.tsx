@@ -3,7 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
-import { useSession } from 'next-auth/react'
+import type { Session } from 'next-auth'
 import { useEffect, useRef, useState } from 'react'
 
 import ButtonOutline from '@/components/custom/ButtonOutline'
@@ -12,6 +12,8 @@ import ICClose from '@/components/icons/ICClose'
 import ICMenu from '@/components/icons/ICMenu'
 import ICSearchHead from '@/components/icons/ICSearchHead'
 import ICUser from '@/components/icons/ICUser'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useScrollHeader } from '@/hooks/useScrollHeader'
 import { Link } from '@/i18n/navigation'
 import { IAcfImage } from '@/interfaces/acf-wp.interface'
@@ -23,7 +25,13 @@ const languages = [
   { key: 'en' as const, label: 'Tiếng Anh' },
 ]
 
-export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu[] } }) {
+export default function Header({
+  data,
+  session,
+}: {
+  data: { logo: IAcfImage; menus: IMenu[] }
+  session: Session | null
+}) {
   const { logo, menus } = data
   const [openSearch, setOpenSearch] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
@@ -31,7 +39,6 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
   const mobileSearchInputRef = useRef<HTMLInputElement>(null)
   const params = useParams()
   const locale = params.locale as 'vi' | 'en'
-  const { data: session } = useSession()
 
   const headerRef = useRef<HTMLElement>(null)
   useScrollHeader(headerRef as React.RefObject<HTMLElement>)
@@ -254,18 +261,21 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 className='flex-y-center space-x-[0.52rem]'
               >
                 <div className='size-[2.5rem] rounded-full border border-[#D32F2F] relative overflow-hidden'>
-                  <Image
-                    src={session?.user?.avatar_url || ''}
-                    alt={session?.user?.first_name || ''}
-                    className='size-full object-cover'
-                    fill
-                  />
+                  <Avatar className='size-full'>
+                    <AvatarImage
+                      src={session?.user?.avatar_512 || ''}
+                      className='object-cover'
+                    />
+                    <AvatarFallback>
+                      <Skeleton className='size-full rounded-full' />
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
                 <div className=''>
                   <p className='text-[#090909] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem]'>
                     {session?.user?.display_name || '---'}
                   </p>
-                  <p className='text-[#090909]/40 text-[0.72917rem] leading-[1.5]'>ID: {session?.user?.username}</p>
+                  <p className='text-[#090909]/40 text-[0.72917rem] leading-[1.5]'>ID: {session?.user?.user_code}</p>
                 </div>
               </Link>
             )}
