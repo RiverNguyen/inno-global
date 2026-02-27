@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 
 import { IAcfImage, IAcfLink } from '@/interfaces/acf-wp.interface'
+import { cn } from '@/lib/utils'
 interface IFooterContact {
   icon?: IAcfImage
   label?: string
@@ -122,7 +123,7 @@ export default function Footer({ data }: IFooterProps) {
       id='footer'
     >
       <div className='max-w-[75rem] mx-auto flex xsm:flex-col xsm:max-w-full xsm:px-[0.83333rem]'>
-        <div className='max-w-[17.7rem] xsm:max-w-full'>
+        <div className='max-w-[17.7rem] xsm:max-w-full xsm:pb-[0.83rem]'>
           <Link href='/'>
             <Image
               src={logo?.url || ''}
@@ -185,7 +186,7 @@ export default function Footer({ data }: IFooterProps) {
                 {menu_column_1?.title}{' '}
                 <ChevronDown
                   ref={menuColumn1SvgRef}
-                  className='size-[0.83333rem] sm:hidden shrink-0 pointer-events-none'
+                  className='size-[0.83333rem] sm:hidden shrink-0 pointer-events-none text-[#D32F2F]'
                 />
               </p>
               <div
@@ -196,7 +197,15 @@ export default function Footer({ data }: IFooterProps) {
                   {Array.isArray(menu_column_1?.items) &&
                     menu_column_1?.items?.map((item, index) => (
                       <p
-                        className='text-[#090909]/80 text-[0.625rem] leading-[1.4] tracking-[-0.00625rem]'
+                        className={cn(
+                          'text-[#090909]/80 text-[0.625rem] leading-[1.4] tracking-[-0.00625rem]',
+                          index === 0 && 'xsm:order-1',
+                          index === 1 && 'xsm:order-3',
+                          index === 2 && 'xsm:order-5',
+                          index === 3 && 'xsm:order-2',
+                          index === 4 && 'xsm:order-4',
+                          index === 5 && 'xsm:order-6',
+                        )}
                         key={index}
                       >
                         <Link
@@ -218,7 +227,7 @@ export default function Footer({ data }: IFooterProps) {
                 className='text-[#090909] text-[0.83333rem] font-semibold leading-[1.4] tracking-[-0.00625rem] mb-[0.71rem] xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem]'
               >
                 {menu_column_2?.title}{' '}
-                <ChevronDown className='size-[0.83333rem] sm:hidden shrink-0 pointer-events-none' />
+                <ChevronDown className='size-[0.83333rem] sm:hidden shrink-0 pointer-events-none text-[#D32F2F]' />
               </p>
               <div
                 ref={menuColumn2Ref}

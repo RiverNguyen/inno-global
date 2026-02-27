@@ -1,6 +1,13 @@
 import { IMedia } from './media.interface'
 import { ITerm } from './taxonomy.interface'
 
+export interface IBlogTaxonomyTerm {
+  id: number
+  name: string
+  slug: string
+  description?: string
+}
+
 export interface IBlogRes {
   success: boolean
   total: number
@@ -17,12 +24,15 @@ export interface IBlogRes {
 
 export interface IBlog {
   id: number
+  title: string
   type: string
   slug: string
-  title: string
   content: string
   excerpt: string
+  status?: string
   date: string
+  modified?: string
+  author?: number
   featured_image: IMedia
   taxonomies: {
     category: ITerm[]
@@ -34,5 +44,29 @@ export interface IBlog {
   }
   acf: {
     short_desc: string
+    banner?: {
+      title?: string
+      image?: {
+        desktop?: IMedia | false
+        mobile?: IMedia | false
+      }
+    }
+  }
+}
+
+export interface ITaxonomies {
+  years: {
+    data: {
+      id: number
+      name: string
+      slug: string
+    }[]
+  }
+  categories: {
+    data: {
+      id: number
+      name: string
+      slug: string
+    }[]
   }
 }

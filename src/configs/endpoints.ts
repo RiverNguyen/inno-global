@@ -1,6 +1,20 @@
 import { FetchRelatedBlogsProps, FetchRelatedProjectsProps } from '@/services/service'
 
 const ENDPOINTS = {
+  contact: {
+    form_contact_vi: {
+      id: '7',
+      unit_tag: '6678855',
+    },
+    form_contact_en: {
+      id: '809',
+      unit_tag: '30d3980',
+    },
+    rank_math: {
+      en: '/en/contact',
+      vi: '/lien-he',
+    },
+  },
   home: {
     rank_math: {
       en: '/en/homepage',
@@ -10,6 +24,17 @@ const ENDPOINTS = {
   blog: {
     getAll: ({ locale, limit }: { locale: string; limit: number }) =>
       `api/v1/get-all/post?lang=${locale}&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
+    relatedBlogs: 'api/v1/get-all/post',
+    getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=category`,
+    rank_math: {
+      en: '/en/blogs',
+      vi: '/danh-sach-tin-tuc',
+    },
+    rank_math_detail: {
+      en: (slug: string) => `/en/${slug}`,
+      vi: (slug: string) => `/${slug}`,
+    },
   },
   project: {
     getAll: (locale: string) =>
@@ -133,6 +158,26 @@ const ENDPOINTS = {
     updateInfo: 'api/v1/users/me/profile',
     changePassword: 'api/v1/users/me/password',
     forgotPassword: 'api/v1/auth/forgot-password',
+    training: {
+      getRelated: 'api/v1/get-all/training',
+      getAll: ({ locale, limit = 12 }: { locale: string; limit?: number }) =>
+        `api/v1/get-all/training?lang=${locale}&tax=format,training_category,lecturer,participant,starting_year&orderby=date&order=DESC&limit=${limit}&paged=1`,
+      getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=training_category`,
+
+      getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+      getPage: {
+        vi: 'wp/v2/pages/740?_fields=acf&acf_format=standard',
+        en: 'wp/v2/pages/744?_fields=acf&acf_format=standard',
+      },
+      rank_math: {
+        en: '/en/trainings',
+        vi: '/dao-tao',
+      },
+      rank_math_detail: {
+        en: (slug: string) => `/en/training/${slug}`,
+        vi: (slug: string) => `/training/${slug}`,
+      },
+    },
   },
 }
 

@@ -9,6 +9,8 @@ const ROUTES = {
   projectsEn: '/projects',
   blogsEn: '/blogs',
   blogsVi: '/tin-tuc',
+  trainingsVi: '/dao-tao',
+  trainingsEn: '/trainings',
 }
 
 export default ROUTES

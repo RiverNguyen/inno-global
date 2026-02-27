@@ -19,6 +19,7 @@ export default async function sitemap() {
       '/about-us/organizational-chart',
       '/about-us/social-responsibility',
       '/about-us/sub-company',
+      '/trainings',
     ].map((path) => ({
       url: `${baseUrl}${locale}${path}`,
       lastModified,
@@ -39,6 +40,7 @@ export default async function sitemap() {
       '/ve-chung-toi/so-do-to-chuc',
       '/ve-chung-toi/trach-nhiem-xa-hoi',
       '/ve-chung-toi/cong-ty-con',
+      '/dao-tao',
     ].map((path) => ({
       url: `${baseUrl}${locale}${path}`,
       lastModified,
@@ -56,13 +58,15 @@ export default async function sitemap() {
     }
   }
 
-  const [projectEn, projectVi, leadershipEn, leadershipVi, blogEn, blogVi] = await Promise.all([
+  const [projectEn, projectVi, leadershipEn, leadershipVi, blogEn, blogVi, trainingEn, trainingVi] = await Promise.all([
     fetchSlugs('api/v1/slugs?post_type=project&lang=en'),
     fetchSlugs('api/v1/slugs?post_type=project&lang=vi'),
     fetchSlugs('api/v1/slugs?post_type=leadership&lang=en'),
     fetchSlugs('api/v1/slugs?post_type=leadership&lang=vi'),
     fetchSlugs('api/v1/slugs?post_type=post&lang=en'),
     fetchSlugs('api/v1/slugs?post_type=post&lang=vi'),
+    fetchSlugs('api/v1/slugs?post_type=training&lang=en'),
+    fetchSlugs('api/v1/slugs?post_type=training&lang=vi'),
   ])
 
   // Helper to get slug from either string or object
@@ -123,11 +127,29 @@ export default async function sitemap() {
       .filter((item): item is { url: string; lastModified: Date; priority: number } => item !== null)
   }
 
+  const generatePageStaticTraining = (prefix: string, trainings: any[], locale: string) => {
+    if (!trainings || trainings?.length === 0 || !Array.isArray(trainings)) {
+      return []
+    }
+    return trainings
+      .map((training: any) => {
+        const slug = getSlug(training)
+        if (!slug) return null
+        return {
+          url: `${baseUrl}${locale}/${prefix}/${slug}`,
+          lastModified,
+          priority: 0.8,
+        }
+      })
+      .filter((item): item is { url: string; lastModified: Date; priority: number } => item !== null)
+  }
+
   // Handle different possible response structures
   // API might return { projects: [...] } or directly [...]
   const getProjects = (data: any) => data?.projects || data?.data || (Array.isArray(data) ? data : [])
   const getLeaderships = (data: any) => data?.leaderships || data?.data || (Array.isArray(data) ? data : [])
   const getPosts = (data: any) => data?.posts || data?.data || (Array.isArray(data) ? data : [])
+  const getTrainigs = (data: any) => data?.trainings || data?.data || (Array.isArray(data) ? data : [])
 
   const generatePageStaticProjectVi = generatePageStaticProject('du-an', getProjects(projectVi), '')
   const generatePageStaticProjectEn = generatePageStaticProject('projects', getProjects(projectEn), '/en')
@@ -146,6 +168,9 @@ export default async function sitemap() {
   const generatePageStaticBlogVi = generatePageStaticBlog('tin-tuc', getPosts(blogVi), '')
   const generatePageStaticBlogEn = generatePageStaticBlog('blogs', getPosts(blogEn), '/en')
 
+  const generatePageStaticTrainingVi = generatePageStaticTraining('dao-tao', getTrainigs(trainingVi), '')
+  const generatePageStaticTrainingEn = generatePageStaticTraining('trainings', getTrainigs(trainingEn), '/en')
+
   return [
     // Static pages first
     ...generatePageStaticEn,
@@ -157,5 +182,7 @@ export default async function sitemap() {
     ...generatePageStaticLeadershipVi,
     ...generatePageStaticBlogEn,
     ...generatePageStaticBlogVi,
+    ...generatePageStaticTrainingEn,
+    ...generatePageStaticTrainingVi,
   ]
 }

@@ -32,6 +32,61 @@
     "labelArea": "Scale",
     "labelYear": "Year"
   },
+  "BlogListPage": {
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blogs",
+    "title": "Blogs",
+    "tabAll": "All",
+    "placeholderSearch": "Search keyword",
+    "newestToOldest": "Newest to oldest",
+    "oldestToNewest": "Oldest to newest",
+    "year": "Year",
+    "noBlogs": "No blogs found",
+    "sortPopup": "Sort by"
+  },
+  "ContactForm": {
+    "title": "Contact",
+    "fullname": "Full name",
+    "email": "Email",
+    "companyName": "Company name",
+    "companysize": "Company size",
+    "field": "Field",
+    "note": "Note",
+    "submit": "Submit",
+    "submitLoading": "Submitting...",
+    "placeholderFullname": "Enter full name",
+    "placeholderEmail": "Enter email",
+    "placeholderCompanyName": "Enter company name",
+    "placeholderCompanysize": "Select company size",
+    "placeholderField": "Select field",
+    "placeholderNote": "Enter note",
+    "fullnameRequired": "Please enter your full name",
+    "fullnameInvalid": "Please enter your full name",
+    "emailRequired": "Please enter your email",
+    "emailInvalid": "Please enter your email",
+    "companysizeRequired": "Please enter your company size",
+    "companysizeInvalid": "Please enter your company size",
+    "fieldRequired": "Please select a field",
+    "fieldInvalid": "Please select a field",
+    "noteRequired": "Please enter a note",
+    "noteInvalid": "Please enter a note",
+    "submitSuccess": "Submit successfully",
+    "submitFailed": "Submit failed",
+    "submitFailedMessage": "Submit failed, please try again"
+  },
+  "DetailBlogPage": {
+    "breadcrumbHome": "Home",
+    "blog": "Blog",
+    "writtenBy": "Written by",
+    "publishedDate": "Published date",
+    "tag": "Tag",
+    "share": "Share",
+    "viewAll": "View all",
+    "related": "Related blogs",
+    "contentSummary": "Content summary",
+    "seeLess": "See less",
+    "seeMore": "See more"
+  },
   "ServiceSection": {
     "viewDetail": "View detail",
     "bottomSheetTitle": "Capabilities - Services"
@@ -72,6 +127,28 @@
     "leadership": "Leadership",
     "formationHistory": "Formation history"
   },
+  "TrainingListPage": {
+    "latest": "Latest training",
+    "other": "Other training",
+    "lecturer": "Lecturer",
+    "participant": "Participant",
+    "format": "Format",
+    "all": "All",
+    "year": "Year",
+    "newestToOldest": "Newest to oldest",
+    "oldestToNewest": "Oldest to newest",
+    "sortPopup": "Sort",
+    "placeholderSearch": "Seach keyword",
+    "noTrainings": "No trainings found"
+  },
+  "DetailTrainingPage": {
+    "share": "Share",
+    "viewAll": "View all",
+    "related": "Related trainings",
+    "contentSummary": "Content summary",
+    "seeLess": "See less",
+    "seeMore": "See more"
+  },
   "Breadcrumb": {
     "homePage": "Home",
     "servicePage": "Services",
@@ -81,7 +158,9 @@
     "historyPage": "History of establishment & development",
     "companyPage": "Subsidiary/affiliate company",
     "businessCulturePage": "Business culture",
-    "organizationChartPage": "Organization chart"
+    "organizationChartPage": "Organization chart",
+    "trainingPage": "Trainings",
+    "detailTrainingPage": "Detail training"
   },
   "LoginPage": {
     "title": "Login",
