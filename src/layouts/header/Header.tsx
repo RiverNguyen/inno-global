@@ -228,7 +228,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
 
             {session?.user && (
               <Link
-                href='/dashboard'
+                href={locale === 'vi' ? '/thong-tin-tai-khoan' : '/dashboard'}
                 className='flex-y-center space-x-[0.52rem]'
               >
                 <div className='size-[2.5rem] rounded-full border border-[#D32F2F] relative overflow-hidden'>

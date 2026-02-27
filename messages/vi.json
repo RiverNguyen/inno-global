@@ -139,5 +139,8 @@
     "loading": "Đang thay đổi mật khẩu...",
     "error": "Thay đổi mật khẩu thất bại",
     "success": "Thay đổi mật khẩu thành công"
+  },
+  "UserPage": {
+    "hello": "Xin chào bạn!"
   }
 }

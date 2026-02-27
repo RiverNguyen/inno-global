@@ -27,6 +27,7 @@ declare module 'next-auth' {
       first_name?: string
       last_name?: string
       display_name?: string
+      avatar_512?: string
     }
   }
 
@@ -40,11 +41,12 @@ declare module 'next-auth' {
       id?: number
       username?: string
       email?: string
-      role?: string
+      roles?: string[]
       avatar_url?: string
       first_name?: string
       last_name?: string
       display_name?: string
+      avatar_512?: string
     }
   }
 }
