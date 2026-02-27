@@ -3,6 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
+import { useRouter } from 'nextjs-toploader/app'
 import { Fragment, useEffect, useRef, useState } from 'react'
 
 import ButtonOutline from '@/components/custom/ButtonOutline'
@@ -13,7 +14,7 @@ import ICSearchHead from '@/components/icons/ICSearchHead'
 import ICUser from '@/components/icons/ICUser'
 import ROUTES from '@/configs/routes'
 import { useScrollHeader } from '@/hooks/useScrollHeader'
-import { Link, useRouter } from '@/i18n/navigation'
+import { Link } from '@/i18n/navigation'
 import { IAcfImage } from '@/interfaces/acf-wp.interface'
 import { IMenu } from '@/interfaces/header.interface'
 import { cn } from '@/lib/utils'
@@ -30,8 +31,13 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
   const [openMobileLanguage, setOpenMobileLanguage] = useState(true)
   const mobileSearchInputRef = useRef<HTMLInputElement>(null)
   const params = useParams()
-  const locale = params.locale as 'vi' | 'en'
   const router = useRouter()
+  const locale = params.locale as 'vi' | 'en'
+
+  const [searchHistory, setSearchHistory] = useState<string[]>(() => {
+    const searchs = typeof window !== 'undefined' ? localStorage.getItem('searchs') : null
+    return searchs ? JSON.parse(searchs) : []
+  })
 
   const headerRef = useRef<HTMLElement>(null)
   const searchRef = useRef<HTMLFormElement>(null)
@@ -97,12 +103,31 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const value = e.currentTarget.search.value.trim()
+
+    const value = e.currentTarget?.search?.value.trim() || e.currentTarget?.['search-mobile']?.value.trim()
     if (!value) return
+
+    const newSearchHistory = [value, ...searchHistory.filter((item: string) => item !== value)]
+
+    localStorage.setItem('searchs', JSON.stringify(newSearchHistory))
+    setSearchHistory(newSearchHistory)
+    handleCloseAll()
     router.push(locale === 'vi' ? `${ROUTES.searchVi}?q=${value}` : `${ROUTES.searchEn}?q=${value}`)
   }
 
+  const handleRemoveSearchHistory = (value: string) => {
+    const newSearchHistory = searchHistory.filter((item: string) => item !== value)
+    localStorage.setItem('searchs', JSON.stringify(newSearchHistory))
+    setSearchHistory(newSearchHistory)
+  }
+
+  const handleRemoveAllSearchHistory = () => {
+    localStorage.removeItem('searchs')
+    setSearchHistory([])
+  }
+
   if (!Array.isArray(menus) || menus.length === 0) return null
+
   return (
     <>
       <div
@@ -194,40 +219,54 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               >
                 <ICSearchHead className='text-text-100 size-[0.875rem]' />
               </button>
-              <div
-                id='result'
-                className={cn(
-                  'absolute bottom-[-0.88rem] left-0 translate-y-full w-full h-fit bg-white p-[1.25rem_0.83rem] cursor-default',
-                  openSearch
-                    ? 'opacity-100 pointer-events-auto delay-300 transition-all duration-300'
-                    : 'opacity-0 pointer-events-none ',
-                )}
-                style={{
-                  boxShadow:
-                    '0 563px 158px 0 rgba(92, 92, 92, 0.00), 0 361px 144px 0 rgba(92, 92, 92, 0.01), 0 203px 122px 0 rgba(92, 92, 92, 0.05), 0 90px 90px 0 rgba(92, 92, 92, 0.09), 0 23px 50px 0 rgba(92, 92, 92, 0.10)',
-                }}
-              >
-                <div className='flex-y-center justify-between pb-[0.83rem] border-b border-solid border-[rgba(9,9,9,0.08)]'>
-                  <span className='pc-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
-                  <Image
-                    src='/header/ic-trash.svg'
-                    alt='trash'
-                    width={28}
-                    height={28}
-                    className='size-[1.25rem] shrink-0 object-contain cursor-pointer'
-                    unoptimized
-                  />
+              {searchHistory.length > 0 && (
+                <div
+                  id='result'
+                  className={cn(
+                    'absolute bottom-[-0.88rem] left-0 translate-y-full w-full h-fit bg-white p-[1.25rem_0.83rem] cursor-default',
+                    openSearch
+                      ? 'opacity-100 pointer-events-auto delay-300 transition-all duration-300'
+                      : 'opacity-0 pointer-events-none',
+                  )}
+                  style={{
+                    boxShadow:
+                      '0 563px 158px 0 rgba(92, 92, 92, 0.00), 0 361px 144px 0 rgba(92, 92, 92, 0.01), 0 203px 122px 0 rgba(92, 92, 92, 0.05), 0 90px 90px 0 rgba(92, 92, 92, 0.09), 0 23px 50px 0 rgba(92, 92, 92, 0.10)',
+                  }}
+                >
+                  <div className='flex-y-center justify-between pb-[0.83rem] border-b border-solid border-[rgba(9,9,9,0.08)]'>
+                    <span className='pc-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
+                    <Image
+                      src='/header/ic-trash.svg'
+                      alt='trash'
+                      width={28}
+                      height={28}
+                      className='size-[1.25rem] shrink-0 object-contain cursor-pointer'
+                      unoptimized
+                      onClick={handleRemoveAllSearchHistory}
+                    />
+                  </div>
+                  {searchHistory.map((value, index) => (
+                    <div
+                      key={index}
+                      className='pc-body-16-r text-text-100 flex-y-center h-[2.29rem] w-full justify-between'
+                    >
+                      <Link
+                        href={locale === 'vi' ? `${ROUTES.searchVi}?q=${value}` : `${ROUTES.searchEn}?q=${value}`}
+                        className='grow text-left'
+                        onClick={handleCloseAll}
+                      >
+                        {value}
+                      </Link>
+                      <button
+                        type='button'
+                        onClick={() => handleRemoveSearchHistory(value)}
+                      >
+                        <ICClose className='text-text-100 size-[0.83333rem] shrink-0 stroke-[1.5px]' />
+                      </button>
+                    </div>
+                  ))}
                 </div>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <button
-                    key={index}
-                    className='pc-body-16-r text-text-100 flex-y-center h-[2.29rem] w-full justify-between'
-                  >
-                    <span>Demo {index + 1}</span>
-                    <ICClose className='text-text-100 size-[0.83333rem] shrink-0 stroke-[1.5px]' />
-                  </button>
-                ))}
-              </div>
+              )}
             </form>
             <Link
               href={menus[menus.length - 1].link.url || ''}
@@ -256,7 +295,8 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             </div>
           </div>
           {/* mobile menu */}
-          <div
+          <form
+            onSubmit={handleSearchSubmit}
             className={cn(
               'flex h-[1.875rem] w-[3.9rem] shrink-0 items-center overflow-hidden rounded-[5.20833rem] bg-[rgba(9,_9,_9,_0.10)] sm:hidden transition-[width,opacity,transform] duration-180 ease-out',
               openSearch && 'w-[calc(100%-2.1rem)]',
@@ -267,17 +307,31 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               ref={mobileSearchInputRef}
               type='text'
               placeholder='Nhập từ khoá tìm kiếm'
+              id='search-mobile'
               className={cn(
                 'h-[1.875rem] min-w-0 flex-1 max-w-0 border-none bg-transparent p-0 text-en opacity-0 outline-none transition-[max-width,opacity,padding] duration-200 ease-out [will-change:max-width,opacity] placeholder:pc-body-14-r placeholder:text-en-60 focus:border-none focus:outline-none focus:ring-0',
                 openSearch && 'max-w-full px-[0.83rem] opacity-100',
               )}
             />
-            <button
-              onClick={handleOpenSearch}
-              className='flex-center size-[1.875rem] shrink-0'
-            >
-              <ICSearchHead className='text-text-80 size-[0.9375rem]' />
-            </button>
+            {!openSearch && (
+              <button
+                type='button'
+                onClick={handleOpenSearch}
+                className='flex-center size-[1.875rem] shrink-0'
+              >
+                <ICSearchHead className='text-text-80 size-[0.9375rem]' />
+              </button>
+            )}
+
+            {openSearch && (
+              <button
+                type='submit'
+                className='flex-center size-[1.875rem] shrink-0'
+              >
+                <ICSearchHead className='text-text-80 size-[0.9375rem]' />
+              </button>
+            )}
+
             <div
               className={cn(
                 'flex-y-center max-w-[3rem] shrink-0 overflow-hidden transition-[max-width,opacity,transform] duration-150 ease-out [will-change:max-width,opacity,transform]',
@@ -288,16 +342,18 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             >
               <div className='h-[0.9375rem] border-l border-solid border-[rgba(9,_9,_9,_0.60)]/[0.28]'></div>
               <button
+                type='button'
                 className='flex-center size-[1.875rem] shrink-0'
                 onClick={handleToggleMenu}
               >
                 <ICMenu className='text-text-80 size-[0.9375rem]' />
               </button>
             </div>
-          </div>
+          </form>
           {/* close mobile */}
           {(openMenu || openSearch) && (
             <button
+              type='button'
               onClick={handleCloseAll}
               className='xsm:flex-center hidden size-[1.35417rem] shrink-0'
             >
@@ -395,17 +451,29 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             height={28}
             className='size-[1.45833rem] shrink-0 object-contain'
             unoptimized
+            onClick={handleRemoveAllSearchHistory}
           />
         </div>
         <div className='h-fit w-full'>
-          {Array.from({ length: 20 }).map((_, index) => (
-            <button
+          {searchHistory.map((value, index) => (
+            <div
               key={index}
               className='mb-body-14-r text-text-100 flex-y-center h-[2.34rem] w-full justify-between'
             >
-              <span>Demo {index + 1}</span>
-              <ICClose className='text-title-m size-[1rem] shrink-0' />
-            </button>
+              <Link
+                href={locale === 'vi' ? `${ROUTES.searchVi}?q=${value}` : `${ROUTES.searchEn}?q=${value}`}
+                className='grow text-left'
+                onClick={handleCloseAll}
+              >
+                {value}
+              </Link>
+              <button
+                type='button'
+                onClick={() => handleRemoveSearchHistory(value)}
+              >
+                <ICClose className='text-title-m size-[1rem] shrink-0' />
+              </button>
+            </div>
           ))}
         </div>
       </div>

@@ -91,6 +91,7 @@
     "viewDetail": "View detail",
     "bottomSheetTitle": "Capabilities - Services"
   },
+
   "LeadershipPage": {
     "title": "Leadership"
   },
@@ -148,6 +149,9 @@
     "contentSummary": "Content summary",
     "seeLess": "See less",
     "seeMore": "See more"
+  },
+  "ServiceListPage": {
+    "noServices": "No services found"
   },
   "SearchPage": {
     "result": "Search results",

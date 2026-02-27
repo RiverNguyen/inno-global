@@ -56,32 +56,30 @@ export default function SearchDetail({
   ]
 
   const handleScrollToSection = (id: string) => {
-    scrollToSection(id, 0.6, isMobile && !isLoading ? 4 : 5)
+    const isFirstSection = id === 'project'
+
+    scrollToSection(id, 0.6, isMobile && !isLoading ? (isFirstSection ? 5.66667 : 4) : isFirstSection ? 7.29 : 5)
   }
 
   useEffect(() => {
-    const sections = document.querySelectorAll('#search-result > section')
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('#search-result > section')
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveTab(entry.target.id)
-          }
-        })
-      },
-      {
-        root: null, // viewport
-        threshold: 0.7, // 70% of the section is visible
-      },
-    )
+      let current = ''
 
-    sections.forEach((section) => observer.observe(section))
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect()
 
-    return () => {
-      sections.forEach((section) => observer.unobserve(section))
-      observer.disconnect()
+        if (rect.top <= window.innerHeight * 0.4) {
+          current = section.id
+        }
+      })
+
+      if (current) setActiveTab(current)
     }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
@@ -93,6 +91,19 @@ export default function SearchDetail({
       ([entry]) => {
         // Nếu sentinel không còn trong viewport
         setIsSticky(!entry.isIntersecting)
+        const header = document.querySelector('header')
+
+        if (!header) return
+
+        if (entry.isIntersecting) {
+          // sentinel đang trong viewport → header hiện
+          header.style.transform = 'translateY(0)'
+          header.style.visibility = 'visible'
+        } else {
+          // sentinel ra khỏi viewport → header ẩn
+          header.style.transform = 'translateY(-150%)'
+          header.style.visibility = 'hidden'
+        }
       },
       {
         root: null,
@@ -209,7 +220,7 @@ export default function SearchDetail({
             )}
             {Array.isArray(serviceRes.data) && serviceRes.data.length === 0 && (
               <div className='col-span-full flex items-center justify-center py-20'>
-                <span className='text-[#090909]'>{t('ProjectListPage.noProjects') || 'No projects found'}</span>
+                <span className='text-[#090909]'>{t('ServiceListPage.noServices') || 'No services found'}</span>
               </div>
             )}
           </section>

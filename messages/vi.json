@@ -149,6 +149,9 @@
     "seeLess": "Thu gọn",
     "seeMore": "Xem thêm"
   },
+  "ServiceListPage": {
+    "noServices": "Không tìm thấy dịch vụ"
+  },
   "SearchPage": {
     "result": "Kết quả tìm kiếm",
     "project": "Dự án",
