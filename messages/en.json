@@ -127,6 +127,28 @@
     "leadership": "Leadership",
     "formationHistory": "Formation history"
   },
+  "TrainingListPage": {
+    "latest": "Latest training",
+    "other": "Other training",
+    "lecturer": "Lecturer",
+    "participant": "Participant",
+    "format": "Format",
+    "all": "All",
+    "year": "Year",
+    "newestToOldest": "Newest to oldest",
+    "oldestToNewest": "Oldest to newest",
+    "sortPopup": "Sort",
+    "placeholderSearch": "Seach keyword",
+    "noTrainings": "No trainings found"
+  },
+  "DetailTrainingPage": {
+    "share": "Share",
+    "viewAll": "View all",
+    "related": "Related trainings",
+    "contentSummary": "Content summary",
+    "seeLess": "See less",
+    "seeMore": "See more"
+  },
   "Breadcrumb": {
     "homePage": "Home",
     "servicePage": "Services",
@@ -136,6 +158,8 @@
     "historyPage": "History of establishment & development",
     "companyPage": "Subsidiary/affiliate company",
     "businessCulturePage": "Business culture",
-    "organizationChartPage": "Organization chart"
+    "organizationChartPage": "Organization chart",
+    "trainingPage": "Trainings",
+    "detailTrainingPage": "Detail training"
   }
 }

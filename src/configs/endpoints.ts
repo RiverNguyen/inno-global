@@ -143,6 +143,26 @@ const ENDPOINTS = {
       vi: '/van-hoa-doanh-nghiep',
     },
   },
+  training: {
+    getRelated: 'api/v1/get-all/training',
+    getAll: ({ locale, limit = 12 }: { locale: string; limit?: number }) =>
+      `api/v1/get-all/training?lang=${locale}&tax=format,training_category,lecturer,participant,starting_year&orderby=date&order=DESC&limit=${limit}&paged=1`,
+    getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=training_category`,
+
+    getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    getPage: {
+      vi: 'wp/v2/pages/740?_fields=acf&acf_format=standard',
+      en: 'wp/v2/pages/744?_fields=acf&acf_format=standard',
+    },
+    rank_math: {
+      en: '/en/trainings',
+      vi: '/dao-tao',
+    },
+    rank_math_detail: {
+      en: (slug: string) => `/en/training/${slug}`,
+      vi: (slug: string) => `/training/${slug}`,
+    },
+  },
 }
 
 export default ENDPOINTS
