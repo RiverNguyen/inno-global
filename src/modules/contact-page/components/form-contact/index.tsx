@@ -1,11 +1,20 @@
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
-import { Button } from '@/components/ui/button'
+import ButtonRed from '@/components/custom/ButtonRed'
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer'
 import { Field, FieldLabel, FieldError } from '@/components/ui/field'
 import { Form } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -13,9 +22,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea'
 import endpoints from '@/configs/endpoints'
 import CF7Request from '@/fetches/cf7Request'
+import useIsMobile from '@/hooks/useIsMobile'
 import { cn } from '@/lib/utils'
+import ICClose from '@/components/icons/ICClose'
+
+const fieldOptions = [
+  { value: 'option1', label: 'Lĩnh vực 1' },
+  { value: 'option2', label: 'Lĩnh vực 2' },
+  { value: 'option3', label: 'Lĩnh vực 3' },
+]
 
 export default function FormContact({ locale }: { locale: string }) {
+  const { isMobile, isLoading } = useIsMobile()
+  const [open, setOpen] = useState(false)
   const translateContactForm = useTranslations('ContactForm')
   const messages = {
     fullnameRequired: translateContactForm('fullnameRequired'),
@@ -161,19 +180,77 @@ export default function FormContact({ locale }: { locale: string }) {
             {translateContactForm('field')}
             <span className='text-[#D32F2F]'>*</span>
           </FieldLabel>
-          <Select
-            value={form.watch('field')}
-            onValueChange={(value) => form.setValue('field', value, { shouldValidate: true })}
-          >
-            <SelectTrigger className={cn(inputClassName, 'data-[placeholder]:text-[rgba(9,9,9,0.40)] xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal')}>
-              <SelectValue placeholder={translateContactForm('placeholderField')} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='option1'>Lĩnh vực 1</SelectItem>
-              <SelectItem value='option2'>Lĩnh vực 2</SelectItem>
-              <SelectItem value='option3'>Lĩnh vực 3</SelectItem>
-            </SelectContent>
-          </Select>
+
+          {isMobile && !isLoading ? (
+            <Drawer open={open} onOpenChange={setOpen}>
+              <DrawerTrigger asChild>
+                <button
+                  type="button"
+                  className={cn(
+                    inputClassName,
+                    'w-full text-left flex items-center justify-between',
+                  )}
+                >
+                  {form.watch('field')
+                    ? fieldOptions.find(o => o.value === form.watch('field'))?.label
+                    : translateContactForm('placeholderField')}
+                </button>
+              </DrawerTrigger>
+
+              <DrawerContent hiddenDrag className='rounded-[1.25rem_1.25rem_0_0] bg-white z-[102]'>
+                <DrawerHeader className='flex items-center justify-between border-b border-b-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
+                  <DrawerTitle className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>
+                    {translateContactForm('field')}
+                  </DrawerTitle>
+                  <DrawerClose asChild>
+                    <button
+                      type='button'
+                      className='flex size-[1.25rem] cursor-pointer items-center justify-center rounded-full bg-[rgba(9,9,9,0.10)] backdrop-blur-[14.117646217346191px]'
+                    >
+                      <ICClose className='size-[0.72917rem]' />
+                    </button>
+                  </DrawerClose>
+                </DrawerHeader>
+
+                <div className="p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem] space-y-[0.52083rem]">
+                  {fieldOptions.map(option => {
+                    const isSelected = form.watch('field') === option.value
+
+                    return (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => {
+                          form.setValue('field', option.value, { shouldValidate: true })
+                          setOpen(false)
+                        }}
+                        className={cn(
+                          'w-full text-left text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal',
+                          isSelected && 'font-semibold text-[#D32F2F]',
+                        )}
+                      >
+                        {option.label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </DrawerContent>
+            </Drawer>
+          ) : (
+            <Select
+              value={form.watch('field')}
+              onValueChange={(value) => form.setValue('field', value, { shouldValidate: true })}
+            >
+              <SelectTrigger className={cn(inputClassName, 'data-[placeholder]:text-[rgba(9,9,9,0.40)] xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal')}>
+                <SelectValue className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal' placeholder={translateContactForm('placeholderField')} />
+              </SelectTrigger>
+              <SelectContent>
+                {fieldOptions.map(option => (
+                  <SelectItem key={option.value} value={option.value} className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal'>{option.label}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
           <FieldError className={messageClassName}>{form.formState.errors.field?.message}</FieldError>
         </Field>
 
@@ -190,13 +267,13 @@ export default function FormContact({ locale }: { locale: string }) {
           <FieldError className={messageClassName}>{form.formState.errors.note?.message}</FieldError>
         </Field>
 
-        <Button
+        <ButtonRed
           type='submit'
           disabled={form.formState.isSubmitting}
           className='w-full h-[2.60417rem] flex-center rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] text-white font-open-sans text-[0.72917rem] leading-[150%] xsm:h-[2.08333rem] xsm:mt-[0.9375rem]'
         >
           {form.formState.isSubmitting ? translateContactForm('submitLoading') : translateContactForm('submit')}
-        </Button>
+        </ButtonRed>
       </form>
     </Form>
   )
