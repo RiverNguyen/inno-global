@@ -22,7 +22,7 @@ interface IBackgroundSwiperProps {
 
 export default function BackgroundSwiper({ data, thumbsSwiper, setActiveIndex }: IBackgroundSwiperProps) {
   return (
-    <div className='absolute top-0 left-0 w-full h-full pointer-events-none xsm:h-[20.625rem]'>
+    <div className='xsm:h-[20.625rem] pointer-events-none absolute top-0 left-0 h-full w-full'>
       <Swiper
         loop={true}
         autoplay={{
@@ -52,9 +52,9 @@ export default function BackgroundSwiper({ data, thumbsSwiper, setActiveIndex }:
               />
             </SwiperSlide>
           ))}
-        <div className='sm:hidden project-background-swiper-pagination absolute z-50 flex items-center justify-center w-full px-[0.83rem]' />
+        <div className='project-background-swiper-pagination absolute z-50 flex w-full items-center justify-center px-[0.83rem] sm:hidden' />
       </Swiper>
-      <div className='absolute bottom-0 left-0 w-full h-[33.17708rem] bg-[linear-gradient(0deg,rgba(0,0,0,0.90)_0%,rgba(0,0,0,0.00)_100%)] z-10 xsm:h-full xsm:bg-[linear-gradient(0deg,#000_22.37%,rgba(102,102,102,0.00)_42.53%)] opacity-[0.48] xsm:hidden' />
+      <div className='xsm:h-full xsm:bg-[linear-gradient(0deg,#000_22.37%,rgba(102,102,102,0.00)_42.53%)] xsm:hidden absolute bottom-0 left-0 z-10 h-[33.17708rem] w-full bg-[linear-gradient(0deg,rgba(0,0,0,0.90)_0%,rgba(0,0,0,0.00)_100%)] opacity-[0.48]' />
     </div>
   )
 }

@@ -10,7 +10,7 @@ import { ISectionAboutUsAcf } from '@/interfaces/home.interface'
 function StatCard({ number, subtitle }: { number: string; subtitle: string }) {
   return (
     <>
-      <div className='pc-h1-64-s text-primary-red tabular-nums leading-none xsm:mb-28-number'>
+      <div className='pc-h1-64-s text-primary-red xsm:mb-28-number leading-none tabular-nums'>
         <div className='inline-flex items-end'>
           {String(number)
             .split('')
@@ -57,7 +57,7 @@ function StatCard({ number, subtitle }: { number: string; subtitle: string }) {
                 </span>
               )
             })}
-          <span className='ml-[0.1em] inline-block text-[2rem] translate-y-[-1rem] xsm:translate-y-[0.25rem] font-bold xsm:mb-28-number'>
+          <span className='xsm:translate-y-[0.25rem] xsm:mb-28-number ml-[0.1em] inline-block translate-y-[-1rem] text-[2rem] font-bold'>
             +
           </span>
         </div>
@@ -118,37 +118,37 @@ export default function AboutUsHome({ data }: { data: ISectionAboutUsAcf }) {
   return (
     <div
       ref={rootRef}
-      className='relative h-screen w-full xsm:h-fit'
+      className='xsm:h-fit relative h-screen w-full'
     >
       <Image
         src={background_pc.url}
         alt=''
         fill
         sizes='100vw'
-        className='object-cover size-full xsm:hidden pointer-events-none'
+        className='xsm:hidden pointer-events-none size-full object-cover'
       />
       <Image
         src={background_mb.url}
         alt=''
         width={375}
         height={385}
-        className='object-cover w-full !h-auto sm:hidden absolute bottom-0 left-0 pointer-events-none'
+        className='pointer-events-none absolute bottom-0 left-0 !h-auto w-full object-cover sm:hidden'
       />
       <div
-        className='absolute sm:hidden bottom-[-3px] left-0 w-full pointer-events-none h-[3.13rem]'
+        className='pointer-events-none absolute bottom-[-3px] left-0 h-[3.13rem] w-full sm:hidden'
         style={{
           background:
             'linear-gradient(180deg, rgba(248, 248, 248, 0.00) 29.34%, rgba(248, 248, 248, 0.60) 44.75%, rgba(248, 248, 248, 0.90) 64.91%, #FFF 97.1%)',
         }}
       ></div>
-      <div className='sm:absolute-center z-10 h-screen xsm:h-fit container flex justify-end xsm:pt-[3.33rem] xsm:px-[0.83rem]'>
-        <div className='sm:w-[36.4rem] h-fit sm:my-auto'>
+      <div className='sm:absolute-center xsm:h-fit xsm:pt-[3.33rem] xsm:px-[0.83rem] z-10 container flex h-screen justify-end'>
+        <div className='h-fit sm:my-auto sm:w-[36.4rem]'>
           <h2
             className='pc-h1-64-s text-text-100 xsm:mb-h2-24-sm'
             dangerouslySetInnerHTML={{ __html: title }}
           ></h2>
-          <p className='pc-body-20-r text-text-80 mt-[02.08rem] xsm:mt-[0.94rem] xsm:mb-body-14-r'>{description}</p>
-          <div className='mt-[1.67rem] xsm:mt-[1.46rem]'>
+          <p className='pc-body-20-r text-text-80 xsm:mt-[0.94rem] xsm:mb-body-14-r mt-[02.08rem]'>{description}</p>
+          <div className='xsm:mt-[1.46rem] mt-[1.67rem]'>
             <div className='xsm:hidden grid grid-cols-3 gap-x-[2.6rem] gap-y-[1.88rem]'>
               {Array.isArray(number) &&
                 number.map((stat) => (
@@ -161,7 +161,7 @@ export default function AboutUsHome({ data }: { data: ISectionAboutUsAcf }) {
                 ))}
             </div>
 
-            <div className='sm:hidden xsm:pb-[7.34rem]'>
+            <div className='xsm:pb-[7.34rem] sm:hidden'>
               {[0, 2, 4].map((startIndex) => {
                 const rowStats = number.slice(startIndex, startIndex + 2)
 

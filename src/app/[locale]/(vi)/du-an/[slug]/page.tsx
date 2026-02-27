@@ -41,7 +41,7 @@ const ProjectDetailPage = async ({ params }: { params: Promise<{ locale: string;
   })
 
   return (
-    <main className='relative xsm:pt-[2.92rem]'>
+    <main className='xsm:pt-[2.92rem] relative'>
       <ProjectDetail
         res={res}
         relatedProjects={relatedRes?.data}

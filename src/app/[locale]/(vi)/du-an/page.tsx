@@ -26,7 +26,7 @@ export default async function ProjectListPageVi({ params }: ProjectListPageViPro
   ])
 
   return (
-    <main className='relative pt-[3.65rem] xsm:pt-[2.92rem]'>
+    <main className='xsm:pt-[2.92rem] relative pt-[3.65rem]'>
       <ProjectListPage
         initialProjects={initialProjects}
         taxonomies={taxonomies}

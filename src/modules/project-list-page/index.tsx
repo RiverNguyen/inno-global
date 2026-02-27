@@ -394,7 +394,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       <div className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] bg-[#F8F8F8] pt-[2.29rem] pb-[7.29167rem]'>
         <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
           <div
-            className='xsm:px-[0.83333rem] xsm:w-full xsm:gap-x-[1.5625rem] flex sm:flex-wrap items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto'
+            className='xsm:px-[0.83333rem] xsm:w-full xsm:gap-x-[1.5625rem] flex items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto sm:flex-wrap'
             style={{
               scrollbarWidth: 'none',
             }}

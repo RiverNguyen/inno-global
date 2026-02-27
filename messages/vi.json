@@ -161,5 +161,8 @@
     "organizationChartPage": "Sơ đồ tổ chức",
     "trainingPage": "Đào tạo",
     "detailTrainingPage": "Chi tiết đào tạo"
+  },
+  "PrivacyPolicyPage": {
+    "effectiveDate": "Hiệu lực từ ngày"
   }
 }
