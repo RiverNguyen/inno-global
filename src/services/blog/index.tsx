@@ -7,7 +7,15 @@ const blogService = {
       api: ENDPOINTS.detail(slug, locale),
     })
   },
-  getRelatedBlogs: async ({ locale, category }: { locale: string; category?: string }) => {
+  getRelatedBlogs: async ({
+    locale,
+    category,
+    // tag,
+  }: {
+    locale: string
+    category?: string
+    tag?: string
+  }) => {
     const params = new URLSearchParams()
 
     params.append('lang', locale)

@@ -18,7 +18,7 @@ interface TocItem {
   level: number // h1 -> 1, h2 -> 2...
 }
 
-export default function Summary({ tocs }: { tocs: TocItem[] }) {
+export default function Toc({ tocs }: { tocs: TocItem[] }) {
   const t = useTranslations('DetailBlogPage')
   const [open, setOpen] = useState(false)
   const [expand, setExpand] = useState(false)
@@ -107,7 +107,6 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
             </span>
             <ChevronUp className='size-[0.9375rem] shrink-0' />
           </button>
-
           <Drawer
             open={open}
             onOpenChange={setOpen}
@@ -134,7 +133,10 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
                   <li key={i}>
                     <button
                       type='button'
-                      onClick={() => scrollToHeading(toc.id)}
+                      onClick={() => {
+                        scrollToHeading(toc.id)
+                        setOpen(false)
+                      }}
                       className={cn(
                         'text-[rgba(9,9,9,0.80)] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] transition-all duration-200',
                         activeId === toc.id && 'text-[rgba(9,9,9,1)]',
@@ -161,6 +163,7 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
     </>
   )
 }
+<<<<<<< HEAD:src/modules/blog-detail-page/_components/Content/toc.tsx
 
 // 'use client'
 // import ICChevronDown from '@/components/icons/ICChevronDown'
@@ -242,3 +245,5 @@ export default function Summary({ tocs }: { tocs: TocItem[] }) {
 //     </>
 //   )
 // }
+=======
+>>>>>>> main:src/components/shared/Toc/index.tsx
