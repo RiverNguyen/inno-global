@@ -41,6 +41,11 @@ const serviceApi = {
       api: ENDPOINTS.service.getPage[locale],
     })
   },
+  getTaxonomies: async (locale: string) => {
+    return await fetchData({
+      api: ENDPOINTS.taxonomies.get(locale, 'service'),
+    })
+  },
 }
 
 export default serviceApi

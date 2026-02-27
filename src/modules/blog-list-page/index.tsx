@@ -300,16 +300,14 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                   })
                 }
               }}
-              className={`flex-center h-[2.5rem] px-[1.14583rem] rounded-[5.20833rem] xsm:h-[1.92708rem] xsm:px-[0.83333rem] xsm:border xsm:border-[rgba(9,9,9,0.08)] ${
-                !selectedCategory
-                  ? 'bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
-                  : 'bg-white border border-[rgba(9,9,9,0.08)]'
-              }`}
+              className={`flex-center h-[2.5rem] px-[1.14583rem] rounded-[5.20833rem] xsm:h-[1.92708rem] xsm:px-[0.83333rem] xsm:border xsm:border-[rgba(9,9,9,0.08)] ${!selectedCategory
+                ? 'bg-gr-2 xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
+                : 'bg-white border border-[rgba(9,9,9,0.08)]'
+                }`}
             >
               <span
-                className={`font-open-sans text-[0.72917rem] leading-[150%] xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] whitespace-nowrap ${
-                  !selectedCategory ? 'text-white' : 'text-[#090909]'
-                }`}
+                className={`font-open-sans text-[0.72917rem] leading-[150%] xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] whitespace-nowrap ${!selectedCategory ? 'text-white' : 'text-[#090909]'
+                  }`}
               >
                 {t('tabAll')}
               </span>
@@ -331,16 +329,14 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                       })
                     }
                   }}
-                  className={`flex-center h-[2.5rem] px-[1.14583rem] rounded-[5.20833rem] xsm:h-[1.92708rem] xsm:px-[0.83333rem] ${
-                    isActive
-                      ? 'bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] xsm:border xsm:border-[rgba(9,9,9,0.08)] xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
-                      : 'bg-white border border-[rgba(9,9,9,0.08)]'
-                  }`}
+                  className={`flex-center h-[2.5rem] px-[1.14583rem] rounded-[5.20833rem] xsm:h-[1.92708rem] xsm:px-[0.83333rem] ${isActive
+                    ? 'bg-gr-2 xsm:border xsm:border-[rgba(9,9,9,0.08)] xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
+                    : 'bg-white border border-[rgba(9,9,9,0.08)]'
+                    }`}
                 >
                   <span
-                    className={`font-open-sans text-[0.72917rem] leading-[150%] xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] whitespace-nowrap ${
-                      isActive ? 'text-white' : 'text-[#090909]'
-                    }`}
+                    className={`font-open-sans text-[0.72917rem] leading-[150%] xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] whitespace-nowrap ${isActive ? 'text-white' : 'text-[#090909]'
+                      }`}
                   >
                     {cat.name}
                   </span>
