@@ -38,6 +38,7 @@ const config: Config = {
       backgroundImage: {
         'gr-2': 'radial-gradient(298.39% 130.99% at 6.62% 16.15%, #CA2A2A 15.19%, #D32F2F 53.77%, #FF6E6E 100%)',
         'gr-2-reverse': 'radial-gradient(298.39% 130.99% at 6.62% 16.15%, #FF6E6E 0%, #D32F2F 46.23%, #CA2A2A 84.81%)',
+        'gradient':'linear-gradient(180deg, #FFB2B2 23.97%, #D32F2F 81.78%)',
       },
       boxShadow: {},
       keyframes: {
