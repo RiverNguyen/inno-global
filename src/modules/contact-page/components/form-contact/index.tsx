@@ -186,9 +186,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                   )}
                   disabled={isSubmitting}
                 >
-                  {form.watch('field')
-                    ? serviceTaxonomies.data.find((o) => o.slug === form.watch('field'))?.name
-                    : translateContactForm('placeholderField')}
+                  {form.watch('field') || translateContactForm('placeholderField')}
                 </button>
               </DrawerTrigger>
 
@@ -212,14 +210,14 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
 
                 <div className='p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem] space-y-[0.52083rem]'>
                   {serviceTaxonomies.data.map((option) => {
-                    const isSelected = form.watch('field') === option.slug
+                    const isSelected = form.watch('field') === option.name
 
                     return (
                       <button
                         key={option.slug}
                         type='button'
                         onClick={() => {
-                          form.setValue('field', option.slug, { shouldValidate: true })
+                          form.setValue('field', option.name, { shouldValidate: true })
                           setOpen(false)
                         }}
                         disabled={isSubmitting}
@@ -257,8 +255,8 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                 {serviceTaxonomies.data.map((option) => (
                   <SelectItem
                     key={option.slug}
-                    value={option.slug}
-                    className='data-[state=checked]:text-[#D32F2F] focus:bg-white focus:text-[#D32F2F] text-[rgba(9,9,9,0.60)] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] mb-[0.83333rem] cursor-pointer xsm:text-[0.625rem] xsm:tracking-normal'
+                    value={option.name}
+                    className='data-[state=checked]:text-[#D32F2F] focus:bg-white focus:text-[#D32F2F] text-[rgba(9,9,9,0.60)] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] mb-[0.83333rem] last:mb-0 cursor-pointer xsm:text-[0.625rem] xsm:tracking-normal'
                     disabled={isSubmitting}
                   >
                     {option.name}
@@ -284,7 +282,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
         <ButtonRed
           type='submit'
           disabled={isSubmitting}
-          className='w-full h-[2.60417rem] flex-center rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] text-white font-open-sans text-[0.72917rem] leading-[150%] xsm:h-[2.08333rem] xsm:mt-[0.9375rem]'
+          className='disabled:opacity-50 disabled:cursor-not-allowed w-full h-[2.60417rem] flex-center rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] text-white font-open-sans text-[0.72917rem] leading-[150%] xsm:h-[2.08333rem] xsm:mt-[0.9375rem]'
         >
           {isSubmitting ? translateContactForm('submitLoading') : translateContactForm('submit')}
         </ButtonRed>
