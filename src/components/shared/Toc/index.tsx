@@ -62,7 +62,7 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
 
   return (
     <>
-      <aside className='flex p-[1.5625rem] flex-col rounded-[0.20833rem] bg-[#F0F0F0] my-[2.08333rem] xsm:p-[0.72917rem] xsm:mt-[1.04167rem] xsm:mb-[2.08333rem]'>
+      <aside className='flex p-[1.5625rem] flex-col rounded-[0.20833rem] bg-[#F0F0F0] my-[2.08333rem] xsm:p-[0.72917rem] xsm:my-[2.08333rem]'>
         <h4 className='text-[#090909] font-open-sans text-[1.25rem] font-semibold leading-[150%] mb-[0.83333rem] xsm:text-[0.72917rem] xsm:mb-[0.72917rem]'>
           {t('contentSummary')}
         </h4>

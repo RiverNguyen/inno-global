@@ -1,0 +1,233 @@
+#training_content {
+  color: rgba(9, 9, 9, 0.8);
+  font-family: 'Open Sans';
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+/* CSS tag heading */
+#training_content h1,
+#training_content h2,
+#training_content h3,
+#training_content h4,
+#training_content h5,
+#training_content h6 {
+  color: #090909;
+  font-weight: 600;
+  margin-top: 3.33333rem;
+}
+
+#training_content h1 {
+  font-size: 2rem;
+}
+
+#training_content h2 {
+  font-size: 1.25rem;
+}
+
+#training_content h3 {
+  font-size: 1.125rem;
+}
+
+#training_content h4 {
+  font-size: 1rem;
+}
+
+#training_content h5 {
+  font-size: 0.9375rem;
+}
+
+#training_content h6 {
+  font-size: 0.875rem;
+}
+
+#training_content p,
+#training_content span {
+  color: rgba(9, 9, 9, 0.8);
+  font-family: 'Open Sans';
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin-top: 1.25rem;
+}
+
+/* CSS tag image */
+#training_content img {
+  max-width: 100%;
+  display: block;
+  margin-top: 2.08333rem;
+}
+
+/* CSS tag video */
+#training_content .wp-video {
+  width: 100% !important;
+  position: relative;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+#training_content video {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  margin-top: 2.08333rem;
+}
+
+#training_content .wp-video::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://cms.inno.okhub-tech.com/wp-content/uploads/2026/02/icon-play-video.webp') center center
+    no-repeat;
+  background-size: 2.70833rem 2.70833rem;
+  pointer-events: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#training_content .wp-video::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background: #000;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#training_content .wp-video::before,
+#training_content .wp-video::after {
+  transition: opacity 0.3s ease;
+}
+
+#training_content .wp-video.is-playing::before,
+#training_content .wp-video.is-playing::after {
+  opacity: 0;
+}
+
+/* CSS tag ul, li */
+#training_content ul {
+  list-style: disc;
+}
+
+#training_content ol {
+  list-style: decimal;
+}
+
+#training_content li {
+  margin-left: 1rem;
+  margin-top: 0.83333rem;
+}
+
+#training_content p:has(img) {
+  display: flex;
+  justify-content: space-between;
+}
+
+#training_content p:has(img) img {
+  margin-top: 0;
+}
+
+#training_content img {
+  display: inline-block;
+  height: 31.82292rem;
+  object-fit: cover;
+}
+
+#training_content img.alignleft,
+#training_content img.alignright {
+  width: 50%;
+}
+
+#training_content img.alignleft {
+  margin-right: 1.25rem;
+}
+
+@media (max-width: 639px) {
+  #training_content {
+    font-size: 0.72917rem;
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-both;
+  }
+
+  #training_content h1,
+  #training_content h2,
+  #training_content h3,
+  #training_content h4,
+  #training_content h5,
+  #training_content h6 {
+    margin-top: 1.66667rem;
+  }
+
+  #training_content h1 {
+    font-size: 1.04166rem;
+  }
+
+  #training_content h2 {
+    font-size: 0.83333rem;
+  }
+
+  #training_content h3 {
+    font-size: 0.66666rem;
+  }
+
+  #training_content h4 {
+    font-size: 0.53333rem;
+  }
+
+  #training_content h5 {
+    font-size: 0.42666rem;
+  }
+
+  #training_content h6 {
+    font-size: 0.34133rem;
+  }
+
+  #training_content p,
+  #training_content span {
+    font-size: 0.72917rem;
+    margin-top: 0.9375rem;
+  }
+
+  /* CSS tag image */
+  #training_content img {
+    max-width: 100%;
+    display: block;
+    margin-top: 0.9375rem;
+    height: 11.875rem;
+  }
+
+  /* CSS tag ul, li */
+  #training_content ul {
+    list-style: disc;
+  }
+
+  #training_content ol {
+    list-style: decimal;
+  }
+
+  #training_content li {
+    margin-left: 0.83333rem;
+    margin-top: 0.9375rem;
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-both;
+  }
+
+  #training_content p:has(img) {
+    flex-direction: column;
+  }
+
+  #training_content img.alignleft,
+  #training_content img.alignright {
+    width: 100%;
+    height: 17.86458rem;
+  }
+
+  #training_content img.alignleft {
+    margin-bottom: 0.9375rem;
+    margin-right: 0;
+  }
+}

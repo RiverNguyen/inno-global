@@ -21,8 +21,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const [serviceTaxonomies] = await Promise.all([
-    serviceApi.getTaxonomies(locale),
-  ])
-  return <Contact locale={locale} serviceTaxonomies={serviceTaxonomies} />
+  const [serviceTaxonomies] = await Promise.all([serviceApi.getTaxonomies(locale)])
+  return (
+    <Contact
+      locale={locale}
+      serviceTaxonomies={serviceTaxonomies}
+    />
+  )
 }

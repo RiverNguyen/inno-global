@@ -23,10 +23,6 @@ const blogService = {
       params.append('tax', 'category')
       params.append('category', category)
     }
-    // if (tag) {
-    //   params.append('tax', 'post_tag')
-    //   params.append('post_tag', tag)
-    // }
 
     return await fetchData({
       api: `${ENDPOINTS.blog.relatedBlogs}?${params.toString()}`,

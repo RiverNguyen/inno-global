@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { ITaxonomyRes } from '@/interfaces/taxonomy.interface'
 
 import FormContact from './components/form-contact'
-export default function Contact({ locale, serviceTaxonomies }: { locale: string, serviceTaxonomies: ITaxonomyRes }) {
+export default function Contact({ locale, serviceTaxonomies }: { locale: string; serviceTaxonomies: ITaxonomyRes }) {
   const t = useTranslations('ContactForm')
   return (
     <main className='relative w-full min-h-screen h-[56.25rem] xsm:h-full'>
@@ -22,7 +22,10 @@ export default function Contact({ locale, serviceTaxonomies }: { locale: string,
         <h1 className='text-[rgba(9,9,9,0.80)] font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] xsm:text-[1.35417rem] xsm:tracking-normal'>
           {t('title')}
         </h1>
-        <FormContact locale={locale} serviceTaxonomies={serviceTaxonomies} />
+        <FormContact
+          locale={locale}
+          serviceTaxonomies={serviceTaxonomies}
+        />
       </div>
     </main>
   )
