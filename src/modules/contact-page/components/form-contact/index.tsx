@@ -1,5 +1,6 @@
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -187,6 +188,8 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                   disabled={isSubmitting}
                 >
                   {form.watch('field') || translateContactForm('placeholderField')}
+
+                  <ChevronDown className='size-[1.04167rem] text-[#090909] opacity-60' />
                 </button>
               </DrawerTrigger>
 
@@ -242,7 +245,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
               <SelectTrigger
                 className={cn(
                   inputClassName,
-                  'xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal data-[placeholder]:text-[rgba(9,9,9,0.40)]',
+                  'xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal data-[placeholder]:text-[rgba(9,9,9,0.40)] [&_svg]:size-[1.25rem] [&_svg]:text-[#090909] [&_svg]:opacity-60',
                 )}
                 disabled={isSubmitting}
               >

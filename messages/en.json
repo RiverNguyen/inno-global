@@ -259,5 +259,8 @@
   },
   "TermsOfUsePage": {
     "effectiveDate": "Effective from"
+  },
+  "HistoryPage": {
+    "continue": "To be continued..."
   }
 }

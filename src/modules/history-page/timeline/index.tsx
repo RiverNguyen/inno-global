@@ -9,9 +9,5 @@ import TimelineMobile from './TimelineMobile'
 export default function IndexTimeline({ timeline }: { timeline: ITimelineItem[] }) {
   const { isMobile, isLoading } = useIsMobile()
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  return <div>{isMobile ? <TimelineMobile timeline={timeline} /> : <Timeline timeline={timeline} />}</div>
+  return <div>{isMobile && !isLoading ? <TimelineMobile timeline={timeline} /> : <Timeline timeline={timeline} />}</div>
 }

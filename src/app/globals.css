@@ -252,3 +252,25 @@ html > body[data-scroll-locked] {
   --removed-body-scroll-bar-size: 0px;
   margin-right: 0 !important;
 }
+
+@keyframes ripple_marker {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(211, 47, 47, 0.2),
+      0 0 0 0 rgba(211, 47, 47, 0.1);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0.75rem rgba(211, 47, 47, 0),
+      0 0 0 1.5rem rgba(211, 47, 47, 0);
+  }
+}
+
+.ripple-marker {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  animation: ripple_marker 1s linear infinite;
+  pointer-events: none;
+}
