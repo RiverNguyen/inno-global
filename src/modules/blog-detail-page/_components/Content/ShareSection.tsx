@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 
@@ -53,38 +54,34 @@ export default function ShareSection({ blog }: ShareSectionProps) {
         <div className='flex items-center gap-[0.625rem]'>
           <button
             onClick={handleCopyLink}
-            className='xsm:size-[1.25rem] size-[2.08333rem]'
             aria-label='Sao chép liên kết'
           >
-            <IconShareLink className='h-auto w-full' />
+            <IconShareLink className='xsm:size-[1.25rem] inline-block size-[2.08333rem]' />
           </button>
-          <a
+          <Link
             href={facebookShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='xsm:size-[1.25rem] size-[2.08333rem]'
             aria-label='Chia sẻ lên Facebook'
           >
-            <IconFacebook className='h-auto w-full' />
-          </a>
-          <a
+            <IconFacebook className='xsm:size-[1.25rem] inline-block size-[2.08333rem]' />
+          </Link>
+          <Link
             href={linkedInShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='xsm:size-[1.25rem] size-[2.08333rem]'
             aria-label='Chia sẻ lên LinkedIn'
           >
-            <IconLinkedin className='h-auto w-full' />
-          </a>
-          <a
+            <IconLinkedin className='xsm:size-[1.25rem] inline-block size-[2.08333rem]' />
+          </Link>
+          <Link
             href={xShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='xsm:size-[1.25rem] size-[2.08333rem]'
             aria-label='Chia sẻ lên X'
           >
-            <IconTwitter className='h-auto w-full' />
-          </a>
+            <IconTwitter className='xsm:size-[1.25rem] inline-block size-[2.08333rem]' />
+          </Link>
         </div>
       </div>
 
@@ -111,7 +108,7 @@ export default function ShareSection({ blog }: ShareSectionProps) {
             {blog?.taxonomies?.post_tag?.map((tag) => (
               <span
                 key={tag.id}
-                className='flex-center font-open-sans xsm:text-[0.625rem] bg-[rgba(211,47,47,0.06)] px-[0.52083rem] py-[0.41667rem] text-[0.72917rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'
+                className='flex-center font-open-sans xsm:text-[0.625rem] text-primary-red xsm:h-[1.3021rem] h-[1.3542rem] bg-[rgba(211,47,47,0.06)] px-[0.52083rem] text-[0.72917rem] leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'
               >
                 {tag.name}
               </span>

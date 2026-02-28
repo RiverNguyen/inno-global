@@ -23,7 +23,6 @@ const HORIZONTAL_LINE_GAP = HORIZONTAL_LINE_GAP_REM * REM_TO_PX
 const ITEM_LINE_GAP = HORIZONTAL_LINE_GAP * 2
 const CORNER_RADIUS = 28
 const BOUNDARY_MARGIN_REM = 5.2
-const TO_BE_CONTINUED_LABEL = 'To be continued...'
 const START_MARKER_ICON = '/history/marker.svg'
 const FIRST_ITEM_IMAGE_SIZE_REM = 14.58333
 const DEFAULT_ITEM_IMAGE_SIZE_REM = 10.41667
@@ -150,16 +149,59 @@ const buildTimelinePath = (rows: ITimelinePoint[]): string => {
 
 const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoint: boolean) => {
   if (isStartPoint) {
+    const baseRadius = markerConfig.start.radius
+
     return (
       <g>
-        {/* <circle
+        {/* Ripple 1 (giống 0.75rem mobile) */}
+        <circle
           cx={point.x}
           cy={point.y}
-          r={markerConfig.start.radius}
-          fill={markerConfig.start.fill}
-          stroke={markerConfig.start.stroke}
-          strokeWidth={markerConfig.start.strokeWidth}
-        /> */}
+          r={baseRadius}
+          fill='#D32F2F'
+          opacity='0.2'
+        >
+          <animate
+            attributeName='r'
+            from={baseRadius}
+            to={baseRadius + 24}
+            dur='1s'
+            repeatCount='indefinite'
+          />
+          <animate
+            attributeName='opacity'
+            from='0.2'
+            to='0'
+            dur='1s'
+            repeatCount='indefinite'
+          />
+        </circle>
+
+        {/* Ripple 2 (giống 1.5rem mobile) */}
+        <circle
+          cx={point.x}
+          cy={point.y}
+          r={baseRadius}
+          fill='#D32F2F'
+          opacity='0.1'
+        >
+          <animate
+            attributeName='r'
+            from={baseRadius}
+            to={baseRadius + 48}
+            dur='1s'
+            repeatCount='indefinite'
+          />
+          <animate
+            attributeName='opacity'
+            from='0.1'
+            to='0'
+            dur='1s'
+            repeatCount='indefinite'
+          />
+        </circle>
+
+        {/* Icon chính */}
         <image
           href={START_MARKER_ICON}
           x={point.x - markerConfig.start.iconSize / 2}
@@ -220,7 +262,7 @@ const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoi
 
 export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
   const lastItem = timeline[timeline.length - 1]
-  const hasToBeContinuedAtEnd = lastItem?.year === TO_BE_CONTINUED_LABEL
+  const hasToBeContinuedAtEnd = lastItem?.isToBeContinued === true
   const totalRealItems = hasToBeContinuedAtEnd ? timeline.length - 1 : timeline.length
   const shouldHideToBeContinued = hasToBeContinuedAtEnd && totalRealItems % ITEMS_PER_ROW === 0
   const visibleData = shouldHideToBeContinued ? timeline.slice(0, -1) : timeline
@@ -233,7 +275,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
   const pathD = buildTimelinePath(points)
 
   return (
-    <section className='w-full py-20'>
+    <section className='w-full p-0'>
       <div className='container'>
         <svg
           viewBox={`0 0 ${SVG_WIDTH} ${svgHeight}`}
@@ -269,7 +311,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
 
           {points.map((point, index) => {
             const currentItem = visibleData[index]
-            const isToBeContinued = currentItem.year === TO_BE_CONTINUED_LABEL
+            const isToBeContinued = currentItem.isToBeContinued === true
             const isStartPoint = index === 0
             const isEndPoint = index === points.length - 1
             const isOddItem = (index + 1) % 2 === 1
@@ -299,9 +341,13 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
             const yearX = clamp(rawYearX, CONTENT_SAFE_PADDING_X, SVG_WIDTH - yearWidth - CONTENT_SAFE_PADDING_X)
             const yearY = isToBeContinued
               ? point.y + toPx(0.8)
-              : point.stemUp
-                ? point.y + toPx(2.3)
-                : point.y - yearHeight - toPx(0.6)
+              : isStartPoint
+                ? point.stemUp
+                  ? point.y + toPx(4.1)
+                  : point.y - yearHeight - toPx(1.0)
+                : point.stemUp
+                  ? point.y + toPx(2.3)
+                  : point.y - yearHeight - toPx(0.6)
             const hasDescription = !!currentItem.description?.trim()
 
             return (
@@ -360,7 +406,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                       >
                         <div className='flex h-full w-full items-center justify-start'>
                           <div
-                            className='text-text-80 max-h-full w-full overflow-x-hidden overflow-y-auto pr-[0.35rem] text-[0.9375rem] leading-normal font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
+                            className='text-text-80 max-h-full w-full overflow-x-hidden overflow-y-auto pr-[0.35rem] text-[0.9375rem] leading-normal font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-[#090909] [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
                             dangerouslySetInnerHTML={{ __html: currentItem.description }}
                           />
                         </div>

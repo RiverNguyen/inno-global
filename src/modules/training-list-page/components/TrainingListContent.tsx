@@ -154,12 +154,11 @@ export default function TrainingListContent({
         className='contents'
       >
         {trainings.map((training: ITraining, i: number) => (
-          <div
+          <TrainingCard
+            training={training}
             key={training.id || i}
             data-project-item
-          >
-            <TrainingCard training={training} />
-          </div>
+          />
         ))}
       </div>
     )

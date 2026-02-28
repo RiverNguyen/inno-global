@@ -161,7 +161,10 @@
     "relatedProject": "Dự án liên quan",
     "relatedService": "Dịch vụ liên quan",
     "relatedBlog": "Tin tức liên quan",
-    "relatedTraining": "Tin tức đào tạo liên quan"
+    "relatedTraining": "Tin tức đào tạo liên quan",
+    "noResult": "Không có kết quả tìm kiếm phù hợp",
+    "noResultDesc": "Chương trình là một phần trong chiến lược phát triển dài hạn của INNO, hướng tới xây dựng đội ngũ ...",
+    "goBack": "Quay lại"
   },
   "Breadcrumb": {
     "homePage": "Trang chủ",
@@ -276,5 +279,8 @@
   },
   "TermsOfUsePage": {
     "effectiveDate": "Hiệu lực từ ngày"
+  },
+  "HistoryPage": {
+    "continue": "Còn tiếp..."
   }
 }

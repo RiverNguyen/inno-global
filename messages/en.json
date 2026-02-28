@@ -162,7 +162,10 @@
     "relatedProject": "Related projects",
     "relatedService": "Related services",
     "relatedBlog": "Related blogs",
-    "relatedTraining": "Related trainings"
+    "relatedTraining": "Related trainings",
+    "noResult": "No search results found",
+    "noResultDesc": "The program is part of INNO's long-term development strategy, aiming to build a strong team...",
+    "goBack": "Go back"
   },
   "Breadcrumb": {
     "homePage": "Home",
@@ -256,5 +259,8 @@
   },
   "TermsOfUsePage": {
     "effectiveDate": "Effective from"
+  },
+  "HistoryPage": {
+    "continue": "To be continued..."
   }
 }

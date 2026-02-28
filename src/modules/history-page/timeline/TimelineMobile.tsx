@@ -31,7 +31,7 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
 
         {timeline.map((item: ITimelineItem, index: number) => {
           const isLeftContent = index % 2 === 0
-          const isToBeContinued = item.year === 'To be continued...'
+          const isToBeContinued = item.isToBeContinued === true
           const hasUl = item.description?.includes('<ul')
           const shouldHavePx = !isLeftContent || hasUl
           const isFirstItem = index === 0
@@ -69,14 +69,21 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
                           fill
                           className='object-contain'
                         />
+                        <div className='ripple-marker' />
                       </div>
                     </div>
                   ) : (
                     <>
-                      {/* outer marker */}
-                      <div className='absolute-center size-[1.5rem] rounded-full bg-[#D32F2F] opacity-20'></div>
+                      {/* outer marker 1 */}
+                      {isToBeContinued && (
+                        <div className='absolute-center size-[1.5625rem] rounded-full bg-[#D32F2F] opacity-20'></div>
+                      )}
+
+                      {/* outer marker 2 */}
+                      <div className='absolute-center size-[1.1875rem] rounded-full bg-[#D32F2F] opacity-20'></div>
+
                       {/* inner marker */}
-                      <div className='absolute-center size-[1rem] rounded-full bg-[#ef3b3b]'></div>
+                      <div className='absolute-center size-[0.75rem] rounded-full bg-[#ef3b3b]'></div>
                     </>
                   )}
 
@@ -124,7 +131,7 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
                   {item.description && (
                     <div
                       className={cn(
-                        'text-text-80 font-open-sans text-[0.625rem] leading-[150%] [&_p]:m-0 [&_ul]:m-0 [&_ul]:list-disc',
+                        'text-text-80 font-open-sans text-[0.625rem] leading-[150%] [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-[#090909] [&_ul]:m-0 [&_ul]:list-disc',
                         shouldHavePx && 'pl-[0.9375rem]',
                       )}
                       dangerouslySetInnerHTML={{ __html: item.description }}

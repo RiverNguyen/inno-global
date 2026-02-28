@@ -171,11 +171,11 @@ export default function BlogListContent({
                 category={blog.taxonomies?.category?.[0]?.name || ''}
                 date={blog.date || ''}
                 thumbnail={blog.featured_image || { url: '', alt: '' }}
-                classNameCard='xsm:w-full xsm:flex-col xsm:gap-[1.04167rem]'
-                classNameThumbnail='xsm:h-[11.30208rem] xsm:w-full'
-                classNameTitle='xsm:text-[0.83333rem] xsm:font-semibold'
-                classNameCategory='xsm:text-[0.52083rem] xsm:tracking-normal'
-                classNameDate='xsm:text-[0.52083rem] xsm:tracking-normal'
+                classNameCard='xsm:w-full xsm:flex-col xsm:gap-[1.04167rem] xsm:items-start xsm:space-x-0'
+                classNameThumbnail='xsm:h-[11.30208rem] xsm:w-full '
+                classNameTitle='xsm:text-[0.83333rem] xsm:font-semibold text-[0.83333rem]'
+                classNameCategory='xsm:text-[0.52083rem] xsm:tracking-normal text-[0.52083rem]'
+                classNameDate='xsm:text-[0.52083rem] xsm:tracking-normal text-[0.52083rem]'
                 classNameMetaWrapper='xsm:space-y-[0.41667rem]'
                 classNameMetaRow='xsm:space-x-[0.41667rem]'
               />
