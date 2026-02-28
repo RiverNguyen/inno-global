@@ -18,6 +18,8 @@ import { ITrainingRes } from '@/interfaces/training.inteface'
 import { cn } from '@/lib/utils'
 import { scrollToSection } from '@/utils/scrollToSection'
 
+import NoResult from './components/NoResult'
+
 export default function SearchDetail({
   projectRes,
   serviceRes,
@@ -91,19 +93,6 @@ export default function SearchDetail({
       ([entry]) => {
         // Nếu sentinel không còn trong viewport
         setIsSticky(!entry.isIntersecting)
-        const header = document.querySelector('header')
-
-        if (!header) return
-
-        if (entry.isIntersecting) {
-          // sentinel đang trong viewport → header hiện
-          header.style.transform = 'translateY(0)'
-          header.style.visibility = 'visible'
-        } else {
-          // sentinel ra khỏi viewport → header ẩn
-          header.style.transform = 'translateY(-150%)'
-          header.style.visibility = 'hidden'
-        }
       },
       {
         root: null,
@@ -117,6 +106,35 @@ export default function SearchDetail({
       observer.disconnect()
     }
   }, [])
+
+  if (
+    projectRes.data &&
+    projectRes.data.length === 0 &&
+    serviceRes.data &&
+    serviceRes.data.length === 0 &&
+    blogRes.data &&
+    blogRes.data.length === 0 &&
+    trainingRes.data &&
+    trainingRes.data.length === 0
+  ) {
+    return (
+      <div className='relative bg-white'>
+        <Breadcrumb
+          classNameContainer='pt-[2.34375rem] max-w-[75rem] mx-auto xsm:hidden'
+          navItems={[
+            {
+              label: t('Breadcrumb.homePage'),
+              href: '/',
+            },
+          ]}
+          lastItem={{
+            label: t('Breadcrumb.searchPage'),
+          }}
+        />
+        <NoResult />
+      </div>
+    )
+  }
 
   return (
     <>
@@ -140,11 +158,11 @@ export default function SearchDetail({
       <div ref={sentinelRef} />
       <div
         className={cn(
-          'xsm:pb-[0.83333rem] sticky top-0 z-10 bg-white py-[1.25rem]',
+          'xsm:pb-[0.83333rem] sticky top-0 z-100 bg-white py-[1.25rem]',
           isSticky && 'xsm:shadow-[0_4px_30px_0_rgba(0,0,0,0.08)]',
         )}
       >
-        <div className='xsm:px-[0.83333rem] container flex items-center space-x-[0.72917rem]'>
+        <div className='xsm:px-[0.83333rem] xsm:overflow-x-auto container flex items-center space-x-[0.72917rem]'>
           {tabs.map((tab, i) => (
             <button
               type='button'
@@ -163,7 +181,7 @@ export default function SearchDetail({
         </div>
       </div>
 
-      <div className='xsm:pt-[1.66667rem] xsm:pb-[2.91667rem] pt-[2.29rem] pb-[7.29rem]'>
+      <div className='xsm:pt-[1.66667rem] xsm:pb-[2.91667rem] xsm:bg-white bg-[#F8F8F8] pt-[2.29rem] pb-[7.29rem]'>
         <div
           className='container'
           id='search-result'
