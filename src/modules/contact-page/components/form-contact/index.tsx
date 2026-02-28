@@ -2,14 +2,14 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
 import ButtonRed from '@/components/custom/ButtonRed'
 import ICClose from '@/components/icons/ICClose'
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
-import { Field, FieldLabel, FieldError } from '@/components/ui/field'
+import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { Form } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -17,21 +17,21 @@ import { Textarea } from '@/components/ui/textarea'
 import endpoints from '@/configs/endpoints'
 import CF7Request from '@/fetches/cf7Request'
 import useIsMobile from '@/hooks/useIsMobile'
+import { ITaxonomyRes } from '@/interfaces/taxonomy.interface'
 import { cn } from '@/lib/utils'
 
-const fieldOptions = [
-  { value: 'option1', label: 'Lĩnh vực 1' },
-  { value: 'option2', label: 'Lĩnh vực 2' },
-  { value: 'option3', label: 'Lĩnh vực 3' },
-]
+interface FormContactProps {
+  locale: string
+  serviceTaxonomies: ITaxonomyRes
+}
 
-export default function FormContact({ locale }: { locale: string }) {
+export default function FormContact({ locale, serviceTaxonomies }: FormContactProps) {
   const { isMobile, isLoading } = useIsMobile()
   const [open, setOpen] = useState(false)
   const translateContactForm = useTranslations('ContactForm')
   const messages = {
     fullnameRequired: translateContactForm('fullnameRequired'),
-    fullNameInvalid: translateContactForm('fullNameInvalid'),
+    fullnameInvalid: translateContactForm('fullnameInvalid'),
     emailRequired: translateContactForm('emailRequired'),
     emailInvalid: translateContactForm('emailInvalid'),
     companysizeRequired: translateContactForm('companysizeRequired'),
@@ -46,6 +46,7 @@ export default function FormContact({ locale }: { locale: string }) {
     fullname: z.string().min(1, {
       message: messages.fullnameRequired,
     }),
+
     email: z
       .string()
       .min(1, {
@@ -54,16 +55,11 @@ export default function FormContact({ locale }: { locale: string }) {
       .email({
         message: messages.emailInvalid,
       }),
+
     companyName: z.string().optional(),
-    companysize: z.string().min(1, {
-      message: messages.companysizeRequired,
-    }),
-    field: z.string().min(1, {
-      message: messages.fieldRequired,
-    }),
-    note: z.string().min(1, {
-      message: messages.noteRequired,
-    }),
+    companysize: z.string().optional(),
+    field: z.string().optional(),
+    note: z.string().optional(),
   })
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -79,7 +75,7 @@ export default function FormContact({ locale }: { locale: string }) {
     mode: 'onBlur',
   })
 
-  const fieldValue = useWatch({ control: form.control, name: 'field', defaultValue: '' })
+  const isSubmitting = form.formState.isSubmitting
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -127,6 +123,7 @@ export default function FormContact({ locale }: { locale: string }) {
               placeholder={translateContactForm('placeholderFullname')}
               className={inputClassName}
               {...form.register('fullname')}
+              disabled={isSubmitting}
             />
             <FieldError className={messageClassName}>{form.formState.errors.fullname?.message}</FieldError>
           </Field>
@@ -141,6 +138,7 @@ export default function FormContact({ locale }: { locale: string }) {
               placeholder={translateContactForm('placeholderEmail')}
               className={inputClassName}
               {...form.register('email')}
+              disabled={isSubmitting}
             />
             <FieldError className={messageClassName}>{form.formState.errors.email?.message}</FieldError>
           </Field>
@@ -153,29 +151,25 @@ export default function FormContact({ locale }: { locale: string }) {
               placeholder={translateContactForm('placeholderCompanyName')}
               className={inputClassName}
               {...form.register('companyName')}
+              disabled={isSubmitting}
             />
             <FieldError className={messageClassName}>{form.formState.errors.companyName?.message}</FieldError>
           </Field>
 
           <Field className={fieldClassName}>
-            <FieldLabel className={labelClassName}>
-              {translateContactForm('companysize')}
-              <span className='text-[#D32F2F]'>*</span>
-            </FieldLabel>
+            <FieldLabel className={labelClassName}>{translateContactForm('companysize')}</FieldLabel>
             <Input
               placeholder={translateContactForm('placeholderCompanysize')}
               className={inputClassName}
               {...form.register('companysize')}
+              disabled={isSubmitting}
             />
             <FieldError className={messageClassName}>{form.formState.errors.companysize?.message}</FieldError>
           </Field>
         </div>
 
         <Field className={fieldClassName}>
-          <FieldLabel className={labelClassName}>
-            {translateContactForm('field')}
-            <span className='text-[#D32F2F]'>*</span>
-          </FieldLabel>
+          <FieldLabel className={labelClassName}>{translateContactForm('field')}</FieldLabel>
 
           {isMobile && !isLoading ? (
             <Drawer
@@ -185,11 +179,14 @@ export default function FormContact({ locale }: { locale: string }) {
               <DrawerTrigger asChild>
                 <button
                   type='button'
-                  className={cn(inputClassName, 'flex w-full items-center justify-between text-left')}
+                  className={cn(
+                    inputClassName,
+                    'flex w-full items-center justify-between text-left',
+                    isSubmitting && 'cursor-not-allowed opacity-50',
+                  )}
+                  disabled={isSubmitting}
                 >
-                  {fieldValue
-                    ? fieldOptions.find((o) => o.value === fieldValue)?.label
-                    : translateContactForm('placeholderField')}
+                  {form.watch('field') || translateContactForm('placeholderField')}
                 </button>
               </DrawerTrigger>
 
@@ -212,23 +209,25 @@ export default function FormContact({ locale }: { locale: string }) {
                 </DrawerHeader>
 
                 <div className='space-y-[0.52083rem] p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem]'>
-                  {fieldOptions.map((option) => {
-                    const isSelected = fieldValue === option.value
+                  {serviceTaxonomies.data.map((option) => {
+                    const isSelected = form.watch('field') === option.name
 
                     return (
                       <button
-                        key={option.value}
+                        key={option.slug}
                         type='button'
                         onClick={() => {
-                          form.setValue('field', option.value, { shouldValidate: true })
+                          form.setValue('field', option.name, { shouldValidate: true })
                           setOpen(false)
                         }}
+                        disabled={isSubmitting}
                         className={cn(
                           'xsm:text-[0.625rem] xsm:tracking-normal w-full text-left text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]',
                           isSelected && 'font-semibold text-[#D32F2F]',
+                          isSubmitting && 'cursor-not-allowed opacity-50',
                         )}
                       >
-                        {option.label}
+                        {option.name}
                       </button>
                     )
                   })}
@@ -237,7 +236,7 @@ export default function FormContact({ locale }: { locale: string }) {
             </Drawer>
           ) : (
             <Select
-              value={fieldValue}
+              value={form.watch('field')}
               onValueChange={(value) => form.setValue('field', value, { shouldValidate: true })}
             >
               <SelectTrigger
@@ -245,6 +244,7 @@ export default function FormContact({ locale }: { locale: string }) {
                   inputClassName,
                   'xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal data-[placeholder]:text-[rgba(9,9,9,0.40)]',
                 )}
+                disabled={isSubmitting}
               >
                 <SelectValue
                   className='xsm:text-[0.625rem] xsm:tracking-normal text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'
@@ -252,13 +252,14 @@ export default function FormContact({ locale }: { locale: string }) {
                 />
               </SelectTrigger>
               <SelectContent>
-                {fieldOptions.map((option) => (
+                {serviceTaxonomies.data.map((option) => (
                   <SelectItem
-                    key={option.value}
-                    value={option.value}
-                    className='xsm:text-[0.625rem] xsm:tracking-normal text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'
+                    key={option.slug}
+                    value={option.name}
+                    className='xsm:text-[0.625rem] xsm:tracking-normal mb-[0.83333rem] cursor-pointer text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] text-[rgba(9,9,9,0.60)] last:mb-0 focus:bg-white focus:text-[#D32F2F] data-[state=checked]:text-[#D32F2F]'
+                    disabled={isSubmitting}
                   >
-                    {option.label}
+                    {option.name}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -268,24 +269,22 @@ export default function FormContact({ locale }: { locale: string }) {
         </Field>
 
         <Field className={fieldClassName}>
-          <FieldLabel className={labelClassName}>
-            {translateContactForm('note')}
-            <span className='text-[#D32F2F]'>*</span>
-          </FieldLabel>
+          <FieldLabel className={labelClassName}>{translateContactForm('note')}</FieldLabel>
           <Textarea
             className={cn(inputClassName, 'xsm:h-[5.20833rem] h-[7.13542rem]')}
             placeholder={translateContactForm('placeholderNote')}
             {...form.register('note')}
+            disabled={isSubmitting}
           />
           <FieldError className={messageClassName}>{form.formState.errors.note?.message}</FieldError>
         </Field>
 
         <ButtonRed
           type='submit'
-          disabled={form.formState.isSubmitting}
-          className='flex-center font-open-sans xsm:h-[2.08333rem] xsm:mt-[0.9375rem] h-[2.60417rem] w-full rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] text-[0.72917rem] leading-[150%] text-white shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px]'
+          disabled={isSubmitting}
+          className='flex-center font-open-sans xsm:h-[2.08333rem] xsm:mt-[0.9375rem] h-[2.60417rem] w-full rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] text-[0.72917rem] leading-[150%] text-white shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] disabled:cursor-not-allowed disabled:opacity-50'
         >
-          {form.formState.isSubmitting ? translateContactForm('submitLoading') : translateContactForm('submit')}
+          {isSubmitting ? translateContactForm('submitLoading') : translateContactForm('submit')}
         </ButtonRed>
       </form>
     </Form>
