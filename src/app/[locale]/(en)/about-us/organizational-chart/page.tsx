@@ -27,7 +27,7 @@ export default async function OrganizationChartPage({ params }: { params: Promis
   const res = await organizationService.getPage(locale)
 
   return (
-    <main className='pt-[3.65rem] xsm:pt-[2.92rem] xsm:bg-[url("/sub-company/d-bg-deco-mb.webp")] bg-[url("/sub-company/d-bg-deco.webp")] bg-cover bg-center bg-no-repeat'>
+    <main className='xsm:pt-[2.92rem] xsm:bg-[url("/sub-company/d-bg-deco-mb.webp")] bg-[url("/sub-company/d-bg-deco.webp")] bg-cover bg-center bg-no-repeat pt-[3.65rem]'>
       <OrganizationalChartDetail res={res} />
     </main>
   )

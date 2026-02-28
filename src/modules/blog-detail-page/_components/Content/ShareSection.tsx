@@ -45,73 +45,73 @@ export default function ShareSection({ blog }: ShareSectionProps) {
   const xShare = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodeURIComponent(title)}`
 
   return (
-    <div className='flex justify-between items-center pt-[0.9375rem] border-t-[0.05208rem] border-t-[rgba(9,9,9,0.08)] mt-[2.08333rem] xsm:flex-col-reverse xsm:items-start xsm:justify-start xsm:gap-[1.04167rem] xsm:p-[0.83333rem_0_2.08333rem_0] xsm:mt-[1.66667rem]'>
+    <div className='xsm:flex-col-reverse xsm:items-start xsm:justify-start xsm:gap-[1.04167rem] xsm:p-[0.83333rem_0_2.08333rem_0] xsm:mt-[1.66667rem] mt-[2.08333rem] flex items-center justify-between border-t-[0.05208rem] border-t-[rgba(9,9,9,0.08)] pt-[0.9375rem]'>
       <div className='flex items-center gap-[0.52083rem]'>
-        <span className='text-[rgba(9,9,9,0.80) font-open-sans text-[0.9375rem] leading-[150%] xsm:text-[0.625rem] xsm:tracking-[-0.00625rem]'>
+        <span className='text-[rgba(9,9,9,0.80) font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] text-[0.9375rem] leading-[150%]'>
           Chia sẻ:
         </span>
         <div className='flex items-center gap-[0.625rem]'>
           <button
             onClick={handleCopyLink}
-            className='size-[2.08333rem] xsm:size-[1.25rem]'
+            className='xsm:size-[1.25rem] size-[2.08333rem]'
             aria-label='Sao chép liên kết'
           >
-            <IconShareLink className='w-full h-auto' />
+            <IconShareLink className='h-auto w-full' />
           </button>
           <a
             href={facebookShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='size-[2.08333rem] xsm:size-[1.25rem]'
+            className='xsm:size-[1.25rem] size-[2.08333rem]'
             aria-label='Chia sẻ lên Facebook'
           >
-            <IconFacebook className='w-full h-auto' />
+            <IconFacebook className='h-auto w-full' />
           </a>
           <a
             href={linkedInShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='size-[2.08333rem] xsm:size-[1.25rem]'
+            className='xsm:size-[1.25rem] size-[2.08333rem]'
             aria-label='Chia sẻ lên LinkedIn'
           >
-            <IconLinkedin className='w-full h-auto' />
+            <IconLinkedin className='h-auto w-full' />
           </a>
           <a
             href={xShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='size-[2.08333rem] xsm:size-[1.25rem]'
+            className='xsm:size-[1.25rem] size-[2.08333rem]'
             aria-label='Chia sẻ lên X'
           >
-            <IconTwitter className='w-full h-auto' />
+            <IconTwitter className='h-auto w-full' />
           </a>
         </div>
       </div>
 
-      <div className='flex items-center gap-[1.71875rem] xsm:flex-col xsm:items-start xsm:gap-[0.625rem]'>
-        <div className='flex items-center gap-[0.52083rem] font-open-sans text-[0.9375rem] leading-[150%] xsm:gap-[0.26042rem] xsm:text-[0.625rem]'>
-          <span className='text-[rgba(9,9,9,0.80)] xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem]'>
+      <div className='xsm:flex-col xsm:items-start xsm:gap-[0.625rem] flex items-center gap-[1.71875rem]'>
+        <div className='font-open-sans xsm:gap-[0.26042rem] xsm:text-[0.625rem] flex items-center gap-[0.52083rem] text-[0.9375rem] leading-[150%]'>
+          <span className='xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem] text-[rgba(9,9,9,0.80)]'>
             {t('writtenBy')}:
           </span>
-          <span className='text-[#090909] font-semibold xsm:capitalize'>{blog?.author}</span>
+          <span className='xsm:capitalize font-semibold text-[#090909]'>{blog?.author}</span>
         </div>
 
-        <div className='flex items-center gap-[0.52083rem] font-open-sans text-[0.9375rem] leading-[150%] xsm:gap-[0.26042rem] xsm:text-[0.625rem]'>
-          <span className='text-[rgba(9,9,9,0.80)] xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem]'>
+        <div className='font-open-sans xsm:gap-[0.26042rem] xsm:text-[0.625rem] flex items-center gap-[0.52083rem] text-[0.9375rem] leading-[150%]'>
+          <span className='xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem] text-[rgba(9,9,9,0.80)]'>
             {t('publishedDate')}:
           </span>
-          <span className='text-[#090909] font-semibold xsm:capitalize'>{formatDateToDDMMYYYY(blog?.date)}</span>
+          <span className='xsm:capitalize font-semibold text-[#090909]'>{formatDateToDDMMYYYY(blog?.date)}</span>
         </div>
 
-        <div className='flex items-center gap-[0.52083rem] font-open-sans text-[0.9375rem] leading-[150%] xsm:gap-[0.26042rem] xsm:text-[0.625rem]'>
-          <span className='text-[rgba(9,9,9,0.80)] xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem]'>
+        <div className='font-open-sans xsm:gap-[0.26042rem] xsm:text-[0.625rem] flex items-center gap-[0.52083rem] text-[0.9375rem] leading-[150%]'>
+          <span className='xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem] text-[rgba(9,9,9,0.80)]'>
             {t('tag')}:
           </span>
           <div className='flex items-center gap-[0.26042rem]'>
             {blog?.taxonomies?.post_tag?.map((tag) => (
               <span
                 key={tag.id}
-                className='flex-center py-[0.41667rem] px-[0.52083rem] bg-[rgba(211,47,47,0.06)] text-[#D32F2F] font-open-sans text-[0.72917rem] leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] xsm:text-[0.625rem]'
+                className='flex-center font-open-sans xsm:text-[0.625rem] bg-[rgba(211,47,47,0.06)] px-[0.52083rem] py-[0.41667rem] text-[0.72917rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'
               >
                 {tag.name}
               </span>

@@ -24,7 +24,7 @@ export default async function SearchPage({
   ])
 
   return (
-    <main className='relative pt-[3.65rem] xsm:pt-[2.92rem] bg-[#F8F8F8] xsm:bg-white'>
+    <main className='xsm:pt-[2.92rem] xsm:bg-white relative bg-[#F8F8F8] pt-[3.65rem]'>
       <SearchDetail
         projectRes={projectRes}
         serviceRes={serviceRes}

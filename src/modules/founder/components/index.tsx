@@ -26,7 +26,7 @@ export default function Founder({
   const organizationChartPath = locale === 'en' ? '/organization-chart' : '/so-do-to-chuc'
   const organizationChartHref = `${aboutUsBasePath}${organizationChartPath}`
   return (
-    <main className='xsm:bg-white sm:bg-[linear-gradient(112deg,#F8F8F8_11.8%,#F8F8F8_54.52%,#F8F8F8_84.75%)] pt-[3.65rem] xsm:pt-[2.92rem]'>
+    <main className='xsm:bg-white xsm:pt-[2.92rem] pt-[3.65rem] sm:bg-[linear-gradient(112deg,#F8F8F8_11.8%,#F8F8F8_54.52%,#F8F8F8_84.75%)]'>
       <div className='relative'>
         <Image
           src='/leadership/maskgroup.webp'

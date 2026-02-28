@@ -177,5 +177,84 @@
     "trainingPage": "Trainings",
     "detailTrainingPage": "Detail training",
     "searchPage": "Search"
+  },
+  "LoginPage": {
+    "title": "Login",
+    "username": "Username",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "placeholderUsername": "Please enter the employee ID",
+    "placeholderPassword": "********",
+    "validateUsername": "Please enter the employee ID",
+    "validatePassword": "Please enter the password",
+    "submit": "Login",
+    "loading": "Loading...",
+    "invalidCredentials": "Invalid username or password",
+    "error": "Login failed",
+    "success": "Login successfully",
+    "desc": "Login to learn and update more information from INNO"
+  },
+  "ForgotPasswordPage": {
+    "title": "Forgot password",
+    "email": "Email",
+    "validateEmail": "Please enter email",
+    "placeholderEmail": "Please enter email",
+    "submit": "Next",
+    "loading": "Sending OTP...",
+    "error": "Sending OTP failed",
+    "success": "OTP has been sent to your email",
+    "desc": "Please enter your account email to retrieve the password",
+    "validateEmailFormat": "Please enter a valid email address",
+    "resendOTPSuccess": "OTP has been sent to your email",
+    "resendOTPError": "Sending OTP failed"
+  },
+  "VerifyOTPPage": {
+    "title": "Verify OTP",
+    "desc": "Please enter the OTP sent to your email to reset your password.",
+    "validateOTP": "Please enter the OTP",
+    "submit": "Verify",
+    "loading": "Verifying OTP...",
+    "error": "Verifying OTP failed",
+    "success": "OTP verified successfully",
+    "label": "OTP",
+    "placeholderOTP": "Please enter the OTP",
+    "resendOTP": "Resend OTP",
+    "resendOTPSuccess": "OTP has been sent to your email",
+    "resendOTPError": "Sending OTP failed"
+  },
+  "UserPage": {
+    "hello": "Hello!",
+    "accountInfo": "Account information",
+    "changePassword": "Change password",
+    "logout": "Logout",
+    "staffId": "Staff ID",
+    "fullName": "Full name",
+    "email": "Email",
+    "position": "Position",
+    "changeAvatar": "Change photo",
+    "avatarLoading": "Loading...",
+    "avatarUpdateSuccess": "Profile picture updated",
+    "avatarUpdateFailed": "Failed to update profile picture"
+  },
+  "ChangePasswordPage": {
+    "title": "Change password",
+    "validatePasswordLength": "Password must be at least 6 characters",
+    "validateConfirmPasswordLength": "Confirm password must be at least 6 characters",
+    "labelPassword": "New password",
+    "placeholderPassword": "Enter new password",
+    "labelConfirmPassword": "Confirm new password",
+    "placeholderConfirmPassword": "Confirm new password",
+    "validateConfirmPassword": "Confirm password does not match",
+    "submit": "Submit",
+    "loading": "Changing password...",
+    "error": "Changing password failed",
+    "success": "Password changed successfully"
+  },
+  "PrivacyPolicyPage": {
+    "effectiveDate": "Effective from"
+  },
+  "TermsOfUsePage": {
+    "effectiveDate": "Effective from"
   }
 }

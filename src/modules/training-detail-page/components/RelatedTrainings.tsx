@@ -25,7 +25,7 @@ export default function RelatedTrainings({ data }: { data: ITraining[] }) {
   return (
     <section
       id='related'
-      className='mb-[6.25rem] xsm:mb-[2.29rem] xsm:pt-[2.08333rem]'
+      className='xsm:mb-[2.29rem] xsm:pt-[2.08333rem] mb-[6.25rem]'
     >
       <div className='flex-y-center mx-auto max-w-[75rem] justify-between'>
         <h2 className='xsm:px-[0.8275rem] xsm:text-[1.25rem] xsm:font-semibold text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-[#090909]'>
@@ -74,7 +74,7 @@ export default function RelatedTrainings({ data }: { data: ITraining[] }) {
           </Swiper>
         )}
 
-        <div className='absolute top-[calc((11.56094rem/2)-(2.083rem/2))] left-0 right-0 pointer-events-none flex w-[83.33333rem] mx-auto justify-between'>
+        <div className='pointer-events-none absolute top-[calc((11.56094rem/2)-(2.083rem/2))] right-0 left-0 mx-auto flex w-[83.33333rem] justify-between'>
           <button
             type='button'
             className='related-blogs-prev flex-center group pointer-events-auto relative size-[2.083rem] cursor-pointer overflow-hidden rounded-full bg-[#F0F0F0] transition-all duration-300'
@@ -116,7 +116,7 @@ export default function RelatedTrainings({ data }: { data: ITraining[] }) {
       <div className='sm:hidden'>
         <Link
           href={viewAllUrl}
-          className='flex-center mx-auto mt-[1.56rem] w-[6.97917rem] h-[2.6rem] rounded-[5.2rem] border border-[#090909]/60'
+          className='flex-center mx-auto mt-[1.56rem] h-[2.6rem] w-[6.97917rem] rounded-[5.2rem] border border-[#090909]/60'
         >
           <span className='flex-center text-[0.72917rem] leading-[150%] text-[#090909]/60'>
             {t('viewAll')}

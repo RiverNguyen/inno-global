@@ -20,7 +20,7 @@ const TrainingDetail = ({ training, relatedTrainings }: TrainingDetailProps) => 
           ...training?.acf?.banner,
         }}
       />
-      <div className='container my-[6.25rem] xsm:mt-0 xsm:my-0'>
+      <div className='xsm:mt-0 xsm:my-0 container my-[6.25rem]'>
         <Content training={training} />
       </div>
       <RelatedTrainings data={relatedTrainings} />

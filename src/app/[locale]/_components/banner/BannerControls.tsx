@@ -18,7 +18,7 @@ export default function BannerControls({ activeIndex, total, onPrev, onNext, onS
       <div></div>
       {/* Slide counter */}
       <div className='xsm:justify-between xsm:w-full flex items-center space-x-[0.4375rem] text-white'>
-        <div className='flex-y-center space-x-[0.4275rem] xsm:hidden'>
+        <div className='flex-y-center xsm:hidden space-x-[0.4275rem]'>
           {/* <button
             type='button'
             aria-label={isPlaying ? 'Pause autoplay' : 'Play autoplay'}
@@ -59,7 +59,7 @@ export default function BannerControls({ activeIndex, total, onPrev, onNext, onS
         </div>
 
         {/* Navigation arrows - icons absolute để tránh layout shift khi hover (hover vùng không bị thu nhỏ) */}
-        <div className='flex items-center space-x-[0.2rem] xsm:hidden'>
+        <div className='xsm:hidden flex items-center space-x-[0.2rem]'>
           <button
             type='button'
             aria-label='Previous slide'

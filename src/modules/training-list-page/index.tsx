@@ -282,13 +282,13 @@ export default function TrainingListPage({
   return (
     <>
       <Banner banner={acfData?.banner} />
-      <div className='pt-[6.25rem] xsm:pt-[2.08rem] relative'>
-        <div className='max-w-[75rem] mx-auto xsm:max-w-full'>
-          <h2 className='font-open-sans text-[2.8125rem] xsm:px-[0.83333rem] font-semibold leading-[120%] tracking-[-0.02813rem] text-[#090909] mb-[2.08333rem] xsm:text-[1.25rem] xsm:mb-[0.72917rem]'>
+      <div className='xsm:pt-[2.08rem] relative pt-[6.25rem]'>
+        <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
+          <h2 className='font-open-sans xsm:px-[0.83333rem] xsm:text-[1.25rem] xsm:mb-[0.72917rem] mb-[2.08333rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[#090909]'>
             {t('latest')}
           </h2>
-          <div className='flex sm:space-x-[1.25rem] mb-[6.25rem] xsm:mb-[1.04rem]'>
-            <div className='relative shrink-0 xsm:w-full'>
+          <div className='xsm:mb-[1.04rem] mb-[6.25rem] flex sm:space-x-[1.25rem]'>
+            <div className='xsm:w-full relative shrink-0'>
               <Swiper
                 slidesPerView='auto'
                 pagination={{
@@ -310,7 +310,7 @@ export default function TrainingListPage({
                     loop: true,
                   },
                 }}
-                className='w-[47.23958rem] h-[32.1875rem] xsm:w-full xsm:h-auto xsm:px-[0.83333rem]!'
+                className='xsm:w-full xsm:h-auto xsm:px-[0.83333rem]! h-[32.1875rem] w-[47.23958rem]'
               >
                 {Array.isArray(latestTrainings) &&
                   latestTrainings.slice(0, 4).map((training, i) => (
@@ -324,42 +324,42 @@ export default function TrainingListPage({
                             ? `${ROUTES.trainingsVi}/${training?.slug}`
                             : `${ROUTES.trainingsEn}/${training?.slug}`
                         }
-                        className='relative overflow-hidden block h-full xsm:bg-[#F6F6F6]'
+                        className='xsm:bg-[#F6F6F6] relative block h-full overflow-hidden'
                       >
-                        <div className='relative h-full xsm:h-[7.65rem] w-full'>
+                        <div className='xsm:h-[7.65rem] relative h-full w-full'>
                           <Image
                             src={training?.featured_image?.url || '/default.webp'}
                             alt={''}
                             fill
                             className='object-cover'
                           />
-                          <div className='absolute inset-0 size-full bg-black opacity-30 xsm:hidden'></div>
-                          <div className='absolute inset-0 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.40)_7.53%,rgba(0,0,0,0.30)_22.22%,rgba(0,0,0,0.00)_33.1%,rgba(0,0,0,0.00)_70.94%,rgba(0,0,0,0.74)_85.87%,#000_96.54%)] z-1 xsm:opacity-60'></div>
+                          <div className='xsm:hidden absolute inset-0 size-full bg-black opacity-30'></div>
+                          <div className='xsm:opacity-60 absolute inset-0 z-1 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.40)_7.53%,rgba(0,0,0,0.30)_22.22%,rgba(0,0,0,0.00)_33.1%,rgba(0,0,0,0.00)_70.94%,rgba(0,0,0,0.74)_85.87%,#000_96.54%)]'></div>
                         </div>
-                        <div className='sm:absolute sm:top-0 sm:left-0 z-2 flex flex-col sm:size-full sm:justify-between pt-[1.67rem] pb-[1.46rem] px-[1.46rem] xsm:p-[0.625rem_0.83333rem_0.83333rem_0.83333rem]'>
-                          <div className='space-y-[1.04rem] xsm:space-y-[0.20833rem] sm:w-[30.10417rem] xsm:mb-[0.20833rem]'>
-                            <div className='inline-flex items-center bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] p-[0.20833rem_0.83333rem] text-white font-open-sans text-[0.72917rem] font-semibold leading-[150%] space-x-[0.20833rem] whitespace-nowrap sm:capitalize xsm:text-[0.625rem] xsm:leading-[120%] xsm:space-x-[0.3125rem]'>
+                        <div className='xsm:p-[0.625rem_0.83333rem_0.83333rem_0.83333rem] z-2 flex flex-col px-[1.46rem] pt-[1.67rem] pb-[1.46rem] sm:absolute sm:top-0 sm:left-0 sm:size-full sm:justify-between'>
+                          <div className='xsm:space-y-[0.20833rem] xsm:mb-[0.20833rem] space-y-[1.04rem] sm:w-[30.10417rem]'>
+                            <div className='font-open-sans xsm:text-[0.625rem] xsm:leading-[120%] xsm:space-x-[0.3125rem] inline-flex items-center space-x-[0.20833rem] rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] p-[0.20833rem_0.83333rem] text-[0.72917rem] leading-[150%] font-semibold whitespace-nowrap text-white sm:capitalize'>
                               <span>{t('format')}:</span>
                               <span>{training?.taxonomies?.training_format[0]?.name || '-'}</span>
                             </div>
-                            <h3 className='text-[1.66667rem] font-open-sans font-semibold leading-[120%] tracking-[-0.01667rem] text-white sm:text-trim-both xsm:text-[0.83333rem] xsm:leading-[150%] xsm:text-[#090909]'>
+                            <h3 className='font-open-sans sm:text-trim-both xsm:text-[0.83333rem] xsm:leading-[150%] xsm:text-[#090909] text-[1.66667rem] leading-[120%] font-semibold tracking-[-0.01667rem] text-white'>
                               {training?.title}
                             </h3>
                           </div>
-                          <div className='space-y-[0.41667rem] xsm:space-y-[0.20833rem]'>
+                          <div className='xsm:space-y-[0.20833rem] space-y-[0.41667rem]'>
                             <div className='flex items-center space-x-[0.52083rem]'>
-                              <span className='text-[rgba(255,255,255,0.8)] xsm:text-[#090909] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem]'>
+                              <span className='xsm:text-[#090909] font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] text-[rgba(255,255,255,0.8)]'>
                                 {t('lecturer')}:
                               </span>
-                              <span className='text-white xsm:text-[#090909] font-open-sans text-[0.83333rem] font-semibold leading-normal sm:text-trim-both xsm:text-[0.72917rem] xsm:leading-[150%]'>
+                              <span className='xsm:text-[#090909] font-open-sans sm:text-trim-both xsm:text-[0.72917rem] xsm:leading-[150%] text-[0.83333rem] leading-normal font-semibold text-white'>
                                 {training?.taxonomies?.lecturer[0]?.name || '-'}
                               </span>
                             </div>
                             <div className='flex items-center space-x-[0.52083rem]'>
-                              <span className='text-[rgba(255,255,255,0.8)] xsm:text-[#090909] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem]'>
+                              <span className='xsm:text-[#090909] font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] text-[rgba(255,255,255,0.8)]'>
                                 {t('participant')}:
                               </span>
-                              <span className='text-white xsm:text-[#090909] font-open-sans text-[0.83333rem] font-semibold leading-normal sm:text-trim-both xsm:text-[0.72917rem] xsm:leading-[150%]'>
+                              <span className='xsm:text-[#090909] font-open-sans sm:text-trim-both xsm:text-[0.72917rem] xsm:leading-[150%] text-[0.83333rem] leading-normal font-semibold text-white'>
                                 {training?.taxonomies?.participant[0]?.name || '-'}
                               </span>
                             </div>
@@ -369,11 +369,11 @@ export default function TrainingListPage({
                     </SwiperSlide>
                   ))}
               </Swiper>
-              <div className='flex items-center w-full justify-between px-[1.66667rem] absolute top-1/2 left-0 right-0 -translate-y-1/2 z-10 xsm:hidden'>
+              <div className='xsm:hidden absolute top-1/2 right-0 left-0 z-10 flex w-full -translate-y-1/2 items-center justify-between px-[1.66667rem]'>
                 <button
                   type='button'
                   onClick={() => swiperRef.current?.slidePrev()}
-                  className='relative p-[0.625rem] flex items-center justify-center rounded-[5.20833rem] overflow-hidden bg-white before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)] before:opacity-0 lg:hover:before:opacity-100 group before:transition-all before:ease-[cubic-bezier(0.44,0,0,1)] before:duration-600'
+                  className='group relative flex items-center justify-center overflow-hidden rounded-[5.20833rem] bg-white p-[0.625rem] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)] before:opacity-0 before:transition-all before:duration-600 before:ease-[cubic-bezier(0.44,0,0,1)] before:content-[""] lg:hover:before:opacity-100'
                 >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -381,7 +381,7 @@ export default function TrainingListPage({
                     height='16'
                     viewBox='0 0 16 16'
                     fill='currentColor'
-                    className='relative z-1 size-[0.83333rem] text-[#090909] opacity-80 lg:group-hover:text-white lg:group-hover:opacity-100 transition-all ease-[cubic-bezier(0.44,0,0,1)] duration-600'
+                    className='relative z-1 size-[0.83333rem] text-[#090909] opacity-80 transition-all duration-600 ease-[cubic-bezier(0.44,0,0,1)] lg:group-hover:text-white lg:group-hover:opacity-100'
                   >
                     <path d='M6.50145 7.99902L4.33799 8.00576L6.5 7.99902L10.4662 3.76312L9.52344 2.82031L4.33799 8.00576L9.52344 13.1912L10.4663 12.2484L6.50145 7.99902Z' />
                   </svg>
@@ -389,7 +389,7 @@ export default function TrainingListPage({
                 <button
                   type='button'
                   onClick={() => swiperRef.current?.slideNext()}
-                  className='relative p-[0.625rem] flex items-center justify-center rounded-[5.20833rem] overflow-hidden bg-white before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)] before:opacity-0 lg:hover:before:opacity-100 group before:transition-all before:ease-[cubic-bezier(0.44,0,0,1)] before:duration-600'
+                  className='group relative flex items-center justify-center overflow-hidden rounded-[5.20833rem] bg-white p-[0.625rem] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)] before:opacity-0 before:transition-all before:duration-600 before:ease-[cubic-bezier(0.44,0,0,1)] before:content-[""] lg:hover:before:opacity-100'
                 >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -397,14 +397,14 @@ export default function TrainingListPage({
                     height='16'
                     viewBox='0 0 16 16'
                     fill='currentColor'
-                    className='relative z-1 size-[0.83333rem] text-[#090909] opacity-80 lg:group-hover:text-white lg:group-hover:opacity-100 transition-all ease-[cubic-bezier(0.44,0,0,1)] duration-600'
+                    className='relative z-1 size-[0.83333rem] text-[#090909] opacity-80 transition-all duration-600 ease-[cubic-bezier(0.44,0,0,1)] lg:group-hover:text-white lg:group-hover:opacity-100'
                   >
                     <path d='M9.49855 7.99902L11.662 8.00576L9.5 7.99902L5.53375 3.76312L6.47656 2.82031L11.662 8.00576L6.47656 13.1912L5.53375 12.2484L9.49855 7.99902Z' />
                   </svg>
                 </button>
               </div>
             </div>
-            <div className='space-y-[1.25rem] grow xsm:hidden'>
+            <div className='xsm:hidden grow space-y-[1.25rem]'>
               {Array.isArray(latestTrainings) &&
                 latestTrainings.slice(4).map((training, i) => (
                   <Link
@@ -413,7 +413,7 @@ export default function TrainingListPage({
                         ? `${ROUTES.trainingsVi}/${training?.slug}`
                         : `${ROUTES.trainingsEn}/${training?.slug}`
                     }
-                    className='relative overflow-hidden block h-[15.46875rem]'
+                    className='relative block h-[15.46875rem] overflow-hidden'
                     key={i}
                   >
                     <Image
@@ -423,31 +423,31 @@ export default function TrainingListPage({
                       className='size-full object-cover'
                     />
                     <div className='absolute inset-0 size-full bg-[#000] opacity-30'></div>
-                    <div className='absolute inset-0 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.40)_7.53%,rgba(0,0,0,0.30)_22.22%,rgba(0,0,0,0.00)_33.1%,rgba(0,0,0,0.00)_70.94%,rgba(0,0,0,0.74)_85.87%,#000_96.54%)] z-1'></div>
-                    <div className='absolute z-2 flex flex-col size-full justify-between p-[0.9375rem]'>
-                      <div className='space-y-[0.41667rem] w-[17.08333rem]'>
-                        <div className='inline-flex items-center bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] p-[0.20833rem_0.83333rem] text-white font-open-sans text-[0.625rem] font-semibold leading-[150%] space-x-[0.20833rem] whitespace-nowrap capitalize'>
+                    <div className='absolute inset-0 z-1 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.40)_7.53%,rgba(0,0,0,0.30)_22.22%,rgba(0,0,0,0.00)_33.1%,rgba(0,0,0,0.00)_70.94%,rgba(0,0,0,0.74)_85.87%,#000_96.54%)]'></div>
+                    <div className='absolute z-2 flex size-full flex-col justify-between p-[0.9375rem]'>
+                      <div className='w-[17.08333rem] space-y-[0.41667rem]'>
+                        <div className='font-open-sans inline-flex items-center space-x-[0.20833rem] rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] p-[0.20833rem_0.83333rem] text-[0.625rem] leading-[150%] font-semibold whitespace-nowrap text-white capitalize'>
                           <span>{t('format')}:</span>
                           <span>{training?.taxonomies?.training_format[0]?.name}</span>
                         </div>
-                        <h3 className='text-[1.04167rem] font-open-sans font-semibold leading-[150%] tracking-[-0.01667rem] text-white text-trim-both'>
+                        <h3 className='font-open-sans text-trim-both text-[1.04167rem] leading-[150%] font-semibold tracking-[-0.01667rem] text-white'>
                           {training?.title}
                         </h3>
                       </div>
                       <div className='space-y-[0.20833rem]'>
                         <div className='flex items-center space-x-[0.3125rem]'>
-                          <span className='text-[rgba(255,255,255,0.8)] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'>
+                          <span className='font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] text-[rgba(255,255,255,0.8)]'>
                             {t('lecturer')}:
                           </span>
-                          <span className='text-white font-open-sans text-[0.83333rem] font-semibold leading-normal text-trim-both'>
+                          <span className='font-open-sans text-trim-both text-[0.83333rem] leading-normal font-semibold text-white'>
                             {training?.taxonomies?.lecturer[0]?.name}
                           </span>
                         </div>
                         <div className='flex items-center space-x-[0.3125rem]'>
-                          <span className='text-[rgba(255,255,255,0.8)] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'>
+                          <span className='font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] text-[rgba(255,255,255,0.8)]'>
                             {t('participant')}:
                           </span>
-                          <span className='text-white font-open-sans text-[0.83333rem] font-semibold leading-normal text-trim-both'>
+                          <span className='font-open-sans text-trim-both text-[0.83333rem] leading-normal font-semibold text-white'>
                             {training?.taxonomies?.participant[0]?.name}
                           </span>
                         </div>
@@ -460,22 +460,22 @@ export default function TrainingListPage({
         </div>
         <h2
           id='training-list'
-          className='max-w-[75rem] mx-auto xsm:max-w-full xsm:pt-[1.04rem] xsm:px-[0.83333rem] font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] mb-[0.52083rem] xsm:text-[1.25rem] xsm:mb-0 text-[#090909]'
+          className='xsm:max-w-full xsm:pt-[1.04rem] xsm:px-[0.83333rem] font-open-sans xsm:text-[1.25rem] xsm:mb-0 mx-auto mb-[0.52083rem] max-w-[75rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[#090909]'
         >
           {t('other')}
         </h2>
-        <div className='sticky top-0 py-[1.25rem] xsm:pt-[1.25rem] xsm:pb-[0.83333rem] z-100 bg-white'>
-          <div className='xsm:px-[0.83333rem] flex items-center justify-between xsm:flex-col max-w-[75rem] mx-auto xsm:max-w-full'>
-            <div className='flex items-center space-x-[0.72917rem] xsm:order-2 xsm:space-x-[0.3125rem]'>
+        <div className='xsm:pt-[1.25rem] xsm:pb-[0.83333rem] sticky top-0 z-100 bg-white py-[1.25rem]'>
+          <div className='xsm:px-[0.83333rem] xsm:flex-col xsm:max-w-full mx-auto flex max-w-[75rem] items-center justify-between'>
+            <div className='xsm:order-2 xsm:space-x-[0.3125rem] flex items-center space-x-[0.72917rem]'>
               <button
                 type='button'
                 onClick={() => handleCategoryChange('')}
                 className={cn(
-                  'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
-                  !slugCategory && 'before:opacity-100 text-white',
+                  'font-open-sans xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold relative flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] overflow-hidden rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal whitespace-nowrap text-[#090909] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 before:ease-out before:content-[""] lg:hover:text-white lg:hover:before:opacity-100',
+                  !slugCategory && 'text-white before:opacity-100',
                 )}
               >
-                <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
+                <span className='relative z-1 sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both]'>
                   {t('all')}
                 </span>
               </button>
@@ -486,11 +486,11 @@ export default function TrainingListPage({
                     key={category.id}
                     onClick={() => handleCategoryChange(category?.slug || '')}
                     className={cn(
-                      'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
-                      slugCategory === category?.slug && 'before:opacity-100 text-white',
+                      'font-open-sans xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold relative flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] overflow-hidden rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal whitespace-nowrap text-[#090909] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 before:ease-out before:content-[""] lg:hover:text-white lg:hover:before:opacity-100',
+                      slugCategory === category?.slug && 'text-white before:opacity-100',
                     )}
                   >
-                    <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
+                    <span className='relative z-1 sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both]'>
                       {category?.name}
                     </span>
                   </button>
@@ -539,7 +539,7 @@ export default function TrainingListPage({
           <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
             {selectedYears.length > 0 && (
               <div
-                className='xsm:px-[0.83333rem] pt-[2.08333rem] xsm:pt-0 xsm:w-full xsm:gap-x-[1.5625rem] flex sm:flex-wrap items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto'
+                className='xsm:px-[0.83333rem] xsm:pt-0 xsm:w-full xsm:gap-x-[1.5625rem] flex items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto pt-[2.08333rem] sm:flex-wrap'
                 style={{
                   scrollbarWidth: 'none',
                 }}

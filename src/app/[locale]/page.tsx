@@ -7,6 +7,7 @@ import BannerHome from '@/app/[locale]/_components/banner/BannerHome'
 import ProjectsSection from '@/app/[locale]/_components/projects'
 import ScrollSnapWrapper from '@/app/[locale]/_components/scroll/ScrollSnapWrapper'
 import ServiceSection from '@/app/[locale]/_components/service'
+import SessionSyncOnMount from '@/app/[locale]/_components/SessionSyncOnMount'
 import ENDPOINTS from '@/configs/endpoints'
 import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
@@ -39,6 +40,7 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
   if (!acfData) return null
   return (
     <ScrollSnapWrapper includeFooterSnap>
+      <SessionSyncOnMount />
       <section data-snap>
         <BannerHome data={acfData?.acf?.banner || []} />
       </section>

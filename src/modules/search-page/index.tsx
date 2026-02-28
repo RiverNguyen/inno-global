@@ -120,7 +120,7 @@ export default function SearchDetail({
 
   return (
     <>
-      <div className='bg-white relative'>
+      <div className='relative bg-white'>
         <Breadcrumb
           classNameContainer='pt-[2.34375rem] max-w-[75rem] mx-auto xsm:hidden'
           navItems={[
@@ -133,29 +133,29 @@ export default function SearchDetail({
             label: t('Breadcrumb.searchPage'),
           }}
         />
-        <h1 className='pt-[3.125rem] font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] text-[rgba(9,9,9,0.8)] container xsm:px-[0.83333rem] xsm:pt-[1.66667rem] pb-[0.41667rem] xsm:pb-0 xsm:text-[1.35417rem] xsm:tracking-normal xsm:text-[#090909]'>
+        <h1 className='font-open-sans xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:pb-0 xsm:text-[1.35417rem] xsm:tracking-normal xsm:text-[#090909] container pt-[3.125rem] pb-[0.41667rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.8)]'>
           {t('SearchPage.result')}
         </h1>
       </div>
       <div ref={sentinelRef} />
       <div
         className={cn(
-          'sticky top-0 py-[1.25rem] xsm:pb-[0.83333rem] z-10 bg-white',
+          'xsm:pb-[0.83333rem] sticky top-0 z-10 bg-white py-[1.25rem]',
           isSticky && 'xsm:shadow-[0_4px_30px_0_rgba(0,0,0,0.08)]',
         )}
       >
-        <div className='flex items-center container xsm:px-[0.83333rem] space-x-[0.72917rem]'>
+        <div className='xsm:px-[0.83333rem] container flex items-center space-x-[0.72917rem]'>
           {tabs.map((tab, i) => (
             <button
               type='button'
               key={i}
               onClick={() => handleScrollToSection(tab.id)}
               className={cn(
-                'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
-                activeTab === tab.id && 'before:opacity-100 text-white',
+                'font-open-sans xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold relative flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] overflow-hidden rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal whitespace-nowrap text-[#090909] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 before:ease-out before:content-[""] lg:hover:text-white lg:hover:before:opacity-100',
+                activeTab === tab.id && 'text-white before:opacity-100',
               )}
             >
-              <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
+              <span className='relative z-1 sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both]'>
                 {tab.label}
               </span>
             </button>
@@ -163,18 +163,18 @@ export default function SearchDetail({
         </div>
       </div>
 
-      <div className='pt-[2.29rem] pb-[7.29rem] xsm:pt-[1.66667rem] xsm:pb-[2.91667rem]'>
+      <div className='xsm:pt-[1.66667rem] xsm:pb-[2.91667rem] pt-[2.29rem] pb-[7.29rem]'>
         <div
           className='container'
           id='search-result'
         >
           <section id='project'>
-            <h2 className='font-open-sans text-[2.08333rem] xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] font-semibold leading-[120%] traking-[-0.03125rem] text-[#090909] mb-[2.08333rem] xsm:px-[0.83333rem]'>
+            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] text-[2.08333rem] leading-[120%] font-semibold text-[#090909]'>
               {t('SearchPage.relatedProject')}
             </h2>
             {Array.isArray(projectRes.data) && projectRes.data.length > 0 && (
               <div
-                className='grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem] xsm:flex xsm:gap-0 xsm:space-x-[0.83333rem] xsm:overflow-x-auto xsm:px-[0.83333rem]'
+                className='xsm:flex xsm:gap-0 xsm:space-x-[0.83333rem] xsm:overflow-x-auto xsm:px-[0.83333rem] grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem]'
                 style={{
                   scrollbarWidth: 'none',
                 }}
@@ -196,13 +196,13 @@ export default function SearchDetail({
           </section>
           <section
             id='service'
-            className='pt-[4.69rem] xsm:pt-[2.91667rem]'
+            className='xsm:pt-[2.91667rem] pt-[4.69rem]'
           >
-            <h2 className='font-open-sans text-[2.08333rem] xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] font-semibold leading-[120%] traking-[-0.03125rem] text-[#090909] mb-[2.08333rem] xsm:px-[0.83333rem]'>
+            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] text-[2.08333rem] leading-[120%] font-semibold text-[#090909]'>
               {t('SearchPage.relatedService')}
             </h2>
             {Array.isArray(serviceRes.data) && serviceRes.data.length > 0 && (
-              <div className='grid grid-cols-2 gap-x-[1.66667rem] gap-y-[2.08333rem] xsm:px-[0.83333rem] xsm:gap-[0.3125rem]'>
+              <div className='xsm:px-[0.83333rem] xsm:gap-[0.3125rem] grid grid-cols-2 gap-x-[1.66667rem] gap-y-[2.08333rem]'>
                 {serviceRes.data.map((service, i) => (
                   <ServiceCard
                     title={service.name}
@@ -226,14 +226,14 @@ export default function SearchDetail({
           </section>
           <section
             id='blog'
-            className='pt-[4.69rem] xsm:pt-[2.91667rem]'
+            className='xsm:pt-[2.91667rem] pt-[4.69rem]'
           >
-            <h2 className='font-open-sans text-[2.08333rem] xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] font-semibold leading-[120%] traking-[-0.03125rem] text-[#090909] mb-[2.08333rem] xsm:px-[0.83333rem]'>
+            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] text-[2.08333rem] leading-[120%] font-semibold text-[#090909]'>
               {t('SearchPage.relatedBlog')}
             </h2>
             {Array.isArray(blogRes.data) && blogRes.data.length > 0 && (
               <div
-                className='grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem] xsm:flex xsm:gap-0 xsm:space-x-[0.83333rem] xsm:overflow-x-auto xsm:px-[0.83333rem]'
+                className='xsm:flex xsm:gap-0 xsm:space-x-[0.83333rem] xsm:overflow-x-auto xsm:px-[0.83333rem] grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem]'
                 style={{
                   scrollbarWidth: 'none', // Ẩn scrollbar trên Firefox
                 }}
@@ -268,14 +268,14 @@ export default function SearchDetail({
           </section>
           <section
             id='training'
-            className='pt-[4.69rem] xsm:pt-[2.91667rem]'
+            className='xsm:pt-[2.91667rem] pt-[4.69rem]'
           >
-            <h2 className='font-open-sans text-[2.08333rem] xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] font-semibold leading-[120%] traking-[-0.03125rem] text-[#090909] mb-[2.08333rem] xsm:px-[0.83333rem]'>
+            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] text-[2.08333rem] leading-[120%] font-semibold text-[#090909]'>
               {t('SearchPage.relatedTraining')}
             </h2>
             {Array.isArray(trainingRes.data) && trainingRes.data.length > 0 && (
               <div
-                className='grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem] xsm:px-[0.83333rem] xsm:flex xsm:gap-0 xsm:space-x-[0.72917rem] xsm:overflow-x-auto'
+                className='xsm:px-[0.83333rem] xsm:flex xsm:gap-0 xsm:space-x-[0.72917rem] xsm:overflow-x-auto grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem]'
                 style={{
                   scrollbarWidth: 'none',
                 }}

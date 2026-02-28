@@ -4,6 +4,7 @@ import endpoints from '@/configs/endpoints'
 import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
 import Contact from '@/modules/contact-page'
+import serviceApi from '@/services/service'
 import metadataValues from '@/utils/metadataValues'
 
 export const dynamicParams = false
@@ -20,5 +21,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  return <Contact locale={locale} />
+  const [serviceTaxonomies] = await Promise.all([serviceApi.getTaxonomies(locale)])
+  return (
+    <Contact
+      locale={locale}
+      serviceTaxonomies={serviceTaxonomies}
+    />
+  )
 }

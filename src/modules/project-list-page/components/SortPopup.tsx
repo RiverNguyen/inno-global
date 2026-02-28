@@ -112,7 +112,7 @@ export default function SortPopup({ label, items, value, onChange }: SortPopupPr
         </DrawerTrigger>
         <DrawerContent
           hiddenDrag
-          className='rounded-[1.25rem_1.25rem_0_0] bg-white z-[102]'
+          className='z-[102] rounded-[1.25rem_1.25rem_0_0] bg-white'
         >
           <DrawerHeader className='flex items-center justify-between border-b border-b-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
             <DrawerTitle className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>

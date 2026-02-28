@@ -3,6 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
+import type { Session } from 'next-auth'
 import { useRouter } from 'nextjs-toploader/app'
 import { Fragment, useEffect, useRef, useState } from 'react'
 
@@ -12,6 +13,8 @@ import ICClose from '@/components/icons/ICClose'
 import ICMenu from '@/components/icons/ICMenu'
 import ICSearchHead from '@/components/icons/ICSearchHead'
 import ICUser from '@/components/icons/ICUser'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Skeleton } from '@/components/ui/skeleton'
 import ROUTES from '@/configs/routes'
 import { useScrollHeader } from '@/hooks/useScrollHeader'
 import { Link } from '@/i18n/navigation'
@@ -24,7 +27,13 @@ const languages = [
   { key: 'en' as const, label: 'Tiếng Anh' },
 ]
 
-export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu[] } }) {
+export default function Header({
+  data,
+  session,
+}: {
+  data: { logo: IAcfImage; menus: IMenu[] }
+  session: Session | null
+}) {
   const { logo, menus } = data
   const [openSearch, setOpenSearch] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
@@ -140,7 +149,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
       ></div>
       <header
         className={cn(
-          'xsm:h-[2.92rem] transition-all duration-300 xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center bg-white/80 fixed top-0 left-0 z-[99] h-[3.65rem] w-full shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px]',
+          'xsm:h-[2.92rem] xsm:shadow-[0_4px_30px_0_rgba(0,_0,_0,_0.06)] flex-y-center fixed top-0 left-0 z-[99] h-[3.65rem] w-full bg-white/80 shadow-[0_0_30px_0_rgba(0,_0,_0,_0.06)] backdrop-blur-[4px] transition-all duration-300',
           (openMenu || openSearch) && 'z-[201]',
           'header-desktop',
           openMenu && 'duration-0',
@@ -193,7 +202,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             </div>
           </nav>
           {/* search */}
-          <div className='flex-y-center space-x-5 xsm:hidden'>
+          <div className='flex-y-center xsm:hidden space-x-5'>
             <form
               ref={searchRef}
               onClick={!openSearch ? handleOpenSearch : undefined}
@@ -207,7 +216,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 <input
                   id='search'
                   type='text'
-                  className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none bg-transparent'
+                  className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none bg-transparent pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none'
                   placeholder='Nhập từ khoá tìm kiếm'
                 />
               )}
@@ -223,24 +232,24 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 <div
                   id='result'
                   className={cn(
-                    'absolute bottom-[-0.88rem] left-0 translate-y-full w-full h-fit bg-white p-[1.25rem_0.83rem] cursor-default',
+                    'absolute bottom-[-0.88rem] left-0 h-fit w-full translate-y-full cursor-default bg-white p-[1.25rem_0.83rem]',
                     openSearch
-                      ? 'opacity-100 pointer-events-auto delay-300 transition-all duration-300'
-                      : 'opacity-0 pointer-events-none',
+                      ? 'pointer-events-auto opacity-100 transition-all delay-300 duration-300'
+                      : 'pointer-events-none opacity-0',
                   )}
                   style={{
                     boxShadow:
                       '0 563px 158px 0 rgba(92, 92, 92, 0.00), 0 361px 144px 0 rgba(92, 92, 92, 0.01), 0 203px 122px 0 rgba(92, 92, 92, 0.05), 0 90px 90px 0 rgba(92, 92, 92, 0.09), 0 23px 50px 0 rgba(92, 92, 92, 0.10)',
                   }}
                 >
-                  <div className='flex-y-center justify-between pb-[0.83rem] border-b border-solid border-[rgba(9,9,9,0.08)]'>
+                  <div className='flex-y-center justify-between border-b border-solid border-[rgba(9,9,9,0.08)] pb-[0.83rem]'>
                     <span className='pc-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
                     <Image
                       src='/header/ic-trash.svg'
                       alt='trash'
                       width={28}
                       height={28}
-                      className='size-[1.25rem] shrink-0 object-contain cursor-pointer'
+                      className='size-[1.25rem] shrink-0 cursor-pointer object-contain'
                       unoptimized
                       onClick={handleRemoveAllSearchHistory}
                     />
@@ -271,18 +280,22 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             <Link
               href={menus[menus.length - 1].link.url || ''}
               target={menus[menus.length - 1].link.target || '_self'}
-              className='pc-body-16-r text-en inline-block xsm:hidden'
+              className='pc-body-16-r text-en xsm:hidden inline-block'
             >
               {menus[menus.length - 1].link.title}
             </Link>
-            <ButtonRed className='xsm:hidden'>
-              <span>Đăng nhập</span>
-              <ICUser className='size-[0.83333rem] text-white' />
-            </ButtonRed>
-            <div className='flex-y-center pc-body-16-r text-text-100 space-x-[0.42rem] uppercase xsm:hidden'>
+            {!session?.user && (
+              <Link href={locale === 'vi' ? '/dang-nhap' : '/login'}>
+                <ButtonRed className='xsm:hidden'>
+                  <span>{locale === 'vi' ? 'Đăng nhập' : 'Login'}</span>
+                  <ICUser className='size-[0.83333rem] text-white' />
+                </ButtonRed>
+              </Link>
+            )}
+            <div className='flex-y-center pc-body-16-r text-text-100 xsm:hidden space-x-[0.42rem] uppercase'>
               {['vi', 'en'].map((lang, index) => (
                 <Fragment key={lang}>
-                  {index > 0 && <div className='w-px h-[0.625rem] bg-[rgba(9,9,9,0.60)]'></div>}
+                  {index > 0 && <div className='h-[0.625rem] w-px bg-[rgba(9,9,9,0.60)]'></div>}
                   <Link
                     href='/'
                     locale={lang}
@@ -293,12 +306,37 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 </Fragment>
               ))}
             </div>
+
+            {session?.user && (
+              <Link
+                href={locale === 'vi' ? '/thong-tin-tai-khoan' : '/dashboard'}
+                className='flex-y-center space-x-[0.52rem]'
+              >
+                <div className='relative size-[2.5rem] overflow-hidden rounded-full border border-[#D32F2F]'>
+                  <Avatar className='size-full'>
+                    <AvatarImage
+                      src={session?.user?.avatar_512 || ''}
+                      className='object-cover'
+                    />
+                    <AvatarFallback>
+                      <Skeleton className='size-full rounded-full' />
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+                <div className=''>
+                  <p className='text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]'>
+                    {session?.user?.display_name || '---'}
+                  </p>
+                  <p className='text-[0.72917rem] leading-[1.5] text-[#090909]/40'>ID: {session?.user?.user_code}</p>
+                </div>
+              </Link>
+            )}
           </div>
           {/* mobile menu */}
           <form
             onSubmit={handleSearchSubmit}
             className={cn(
-              'flex h-[1.875rem] w-[3.9rem] shrink-0 items-center overflow-hidden rounded-[5.20833rem] bg-[rgba(9,_9,_9,_0.10)] sm:hidden transition-[width,opacity,transform] duration-180 ease-out',
+              'flex h-[1.875rem] w-[3.9rem] shrink-0 items-center overflow-hidden rounded-[5.20833rem] bg-[rgba(9,_9,_9,_0.10)] transition-[width,opacity,transform] duration-180 ease-out sm:hidden',
               openSearch && 'w-[calc(100%-2.1rem)]',
               openMenu && 'xsm:hidden',
             )}
@@ -309,7 +347,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
               placeholder='Nhập từ khoá tìm kiếm'
               id='search-mobile'
               className={cn(
-                'h-[1.875rem] min-w-0 flex-1 max-w-0 border-none bg-transparent p-0 text-en opacity-0 outline-none transition-[max-width,opacity,padding] duration-200 ease-out [will-change:max-width,opacity] placeholder:pc-body-14-r placeholder:text-en-60 focus:border-none focus:outline-none focus:ring-0',
+                'text-en placeholder:pc-body-14-r placeholder:text-en-60 h-[1.875rem] max-w-0 min-w-0 flex-1 border-none bg-transparent p-0 opacity-0 transition-[max-width,opacity,padding] duration-200 ease-out [will-change:max-width,opacity] outline-none focus:border-none focus:ring-0 focus:outline-none',
                 openSearch && 'max-w-full px-[0.83rem] opacity-100',
               )}
             />
@@ -365,8 +403,8 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
       {/* mobile menu */}
       <div
         className={cn(
-          'fixed top-0 left-0 z-[98] h-screen w-full overflow-y-auto bg-white px-[0.83333rem] pt-[calc(2.92rem+0.31rem)] transition-[transform,opacity] duration-200 ease-out will-change-transform sm:hidden pb-[20vh]',
-          openMenu ? 'translate-x-0 opacity-100 pointer-events-auto' : 'translate-x-full opacity-0 pointer-events-none',
+          'fixed top-0 left-0 z-[98] h-screen w-full overflow-y-auto bg-white px-[0.83333rem] pt-[calc(2.92rem+0.31rem)] pb-[20vh] transition-[transform,opacity] duration-200 ease-out will-change-transform sm:hidden',
+          openMenu ? 'pointer-events-auto translate-x-0 opacity-100' : 'pointer-events-none translate-x-full opacity-0',
           openMenu && 'z-[200]',
         )}
       >
@@ -392,7 +430,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             <ChevronDown
               className={cn(
                 'size-[0.95rem] shrink-0 transition-transform duration-200 ease-out',
-                openMobileLanguage && 'rotate-180 text-primary-red-100',
+                openMobileLanguage && 'text-primary-red-100 rotate-180',
               )}
             />
           </button>
@@ -426,7 +464,7 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
         <Link
           href={menus[menus.length - 1].link.url || ''}
           target={menus[menus.length - 1].link.target || '_self'}
-          className='w-full block'
+          className='block w-full'
           onClick={handleCloseAll}
         >
           <ButtonOutline className='w-full'>{menus[menus.length - 1].link.title}</ButtonOutline>
@@ -437,13 +475,13 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
         className={cn(
           'fixed top-0 left-0 z-[98] h-screen w-full overflow-y-auto bg-white px-[0.83333rem] pt-[calc(2.92rem+0.31rem)] transition-[transform,opacity] duration-200 ease-out will-change-transform sm:hidden',
           openSearch
-            ? 'translate-x-0 opacity-100 pointer-events-auto'
-            : 'translate-x-full opacity-0 pointer-events-none',
+            ? 'pointer-events-auto translate-x-0 opacity-100'
+            : 'pointer-events-none translate-x-full opacity-0',
           openSearch && 'z-[200]',
         )}
       >
         <div className='flex-y-center h-[1.87rem] justify-between'>
-          <span className='mb-body-14-r text-text-40 '>Lịch sử tìm kiếm</span>
+          <span className='mb-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
           <Image
             src='/header/ic-trash.svg'
             alt='trash'

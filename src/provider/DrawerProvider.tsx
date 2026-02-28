@@ -57,7 +57,7 @@ const DrawerProvider: FC<DrawerProviderProps> = ({ children, className, open, se
     >
       <DrawerContent
         suppressHydrationWarning
-        className={cn('w-full rounded-[1rem_1rem_0rem_0rem] bg-white z-101', className)}
+        className={cn('z-101 w-full rounded-[1rem_1rem_0rem_0rem] bg-white', className)}
         hiddenDrag={!showDrawerDrag}
       >
         {/* Giữ lại để tránh báo error */}

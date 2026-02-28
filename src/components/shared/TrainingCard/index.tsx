@@ -30,7 +30,7 @@ export default function TrainingCard({
     <Link
       href={locale === 'vi' ? `${ROUTES.trainingsVi}/${training?.slug}` : `${ROUTES.trainingsEn}/${training?.slug}`}
       className={cn(
-        'group block relative overflow-hidden xsm:pb-[1.25rem] xsm:border-b xsm:border-b-[rgba(9,9,9,0.08)] xsm:last:border-b-0 xsm:last:pb-[1.04rem]',
+        'group xsm:pb-[1.25rem] xsm:border-b xsm:border-b-[rgba(9,9,9,0.08)] xsm:last:border-b-0 xsm:last:pb-[1.04rem] relative block overflow-hidden',
         wrapperClassname,
       )}
     >
@@ -49,26 +49,26 @@ export default function TrainingCard({
         />
       </div>
       <div className={cn('pt-[0.72917rem]', classNameContent)}>
-        <div className='mb-[0.3125rem] flex items-center justify-between space-x-4 xsm:mb-[0.52083rem]'>
+        <div className='xsm:mb-[0.52083rem] mb-[0.3125rem] flex items-center justify-between space-x-4'>
           <h3
             className={cn(
-              'font-open-sans line-clamp-2 text-[0.9375rem] leading-[150%] font-semibold text-[#090909] xsm:text-[0.72917rem]',
+              'font-open-sans xsm:text-[0.72917rem] line-clamp-2 text-[0.9375rem] leading-[150%] font-semibold text-[#090909]',
               classNameTitle,
             )}
           >
             {training?.title}
           </h3>
         </div>
-        <div className='flex flex-col space-y-[0.46875rem] xsm:space-y-[0.3125rem]'>
-          <div className='font-open-sans flex items-center space-x-[0.72917rem] xsm:space-x-[0.72917rem] text-[0.72917rem] leading-[150%] text-[#090909] xsm:tracking-[-0.01458rem]'>
+        <div className='xsm:space-y-[0.3125rem] flex flex-col space-y-[0.46875rem]'>
+          <div className='font-open-sans xsm:space-x-[0.72917rem] xsm:tracking-[-0.01458rem] flex items-center space-x-[0.72917rem] text-[0.72917rem] leading-[150%] text-[#090909]'>
             <span className='whitespace-nowrap'>{t('format')}:</span>
             <span className='line-clamp-1 max-w-full'>{training?.taxonomies?.training_format?.[0]?.name || '-'}</span>
           </div>
-          <div className='font-open-sans flex items-center space-x-[0.72917rem] xsm:space-x-[0.72917rem] text-[0.72917rem] leading-[150%] text-[#090909] xsm:tracking-[-0.01458rem]'>
+          <div className='font-open-sans xsm:space-x-[0.72917rem] xsm:tracking-[-0.01458rem] flex items-center space-x-[0.72917rem] text-[0.72917rem] leading-[150%] text-[#090909]'>
             <span>{t('lecturer')}:</span>
             <span>{training?.taxonomies?.lecturer?.[0]?.name || '-'}</span>
           </div>
-          <div className='font-open-sans flex items-center space-x-[0.72917rem] xsm:space-x-[0.72917rem] text-[0.72917rem] leading-[150%] text-[#090909] xsm:tracking-[-0.01458rem]'>
+          <div className='font-open-sans xsm:space-x-[0.72917rem] xsm:tracking-[-0.01458rem] flex items-center space-x-[0.72917rem] text-[0.72917rem] leading-[150%] text-[#090909]'>
             <span>{t('participant')}:</span>
             <span>{training?.taxonomies?.participant?.[0]?.name || '-'}</span>
           </div>

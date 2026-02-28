@@ -99,8 +99,8 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
   )
 
   return (
-    <div className='absolute bottom-0 left-0 h-[5.47rem] xsm:h-[2.4rem] w-full z-10'>
-      <div className='absolute left-0 top-0 size-full bg-[rgba(0,0,0,0.28)] backdrop-blur-[2.08px] xsm:backdrop-blur-[0.91px]'></div>
+    <div className='xsm:h-[2.4rem] absolute bottom-0 left-0 z-10 h-[5.47rem] w-full'>
+      <div className='xsm:backdrop-blur-[0.91px] absolute top-0 left-0 size-full bg-[rgba(0,0,0,0.28)] backdrop-blur-[2.08px]'></div>
       <div className='absolute inset-0'>
         <div
           ref={marqueeViewportRef}
@@ -108,13 +108,13 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
         >
           <div
             ref={marqueeTrackRef}
-            className='flex h-full w-max items-center whitespace-nowrap will-change-transform transform-gpu'
+            className='flex h-full w-max transform-gpu items-center whitespace-nowrap will-change-transform'
           >
             {Array.from({ length: logoRepeat ?? 0 }).map((_, repeatIndex) => (
               <div
                 key={repeatIndex}
                 ref={repeatIndex === 0 ? marqueeGroupRef : undefined}
-                className='flex h-full items-center gap-[2.18rem] pr-[2.18rem] shrink-0'
+                className='flex h-full shrink-0 items-center gap-[2.18rem] pr-[2.18rem]'
               >
                 {Array.isArray(logos) &&
                   logos.map((logo, index) => (
@@ -126,7 +126,7 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
                       width={100}
                       height={100}
                       unoptimized
-                      className='h-auto w-auto sm:min-h-[1.63474rem] sm:max-h-[3.5rem] object-contain shrink-0 max-h-[1rem] min-h-[0.72rem]'
+                      className='h-auto max-h-[1rem] min-h-[0.72rem] w-auto shrink-0 object-contain sm:max-h-[3.5rem] sm:min-h-[1.63474rem]'
                     />
                   ))}
               </div>
