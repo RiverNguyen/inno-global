@@ -63,12 +63,15 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
   return (
     <>
       <aside className='flex p-[1.5625rem] flex-col rounded-[0.20833rem] bg-[#F0F0F0] my-[2.08333rem] xsm:p-[0.72917rem] xsm:my-[2.08333rem]'>
-        <h4 className='text-[#090909] font-open-sans text-[1.25rem] font-semibold leading-[150%] mb-[0.83333rem] xsm:text-[0.72917rem] xsm:mb-[0.72917rem]'>
+        <h4 className='text-[#090909] font-open-sans text-[1.45833rem] font-semibold leading-[150%] mb-[0.83333rem] xsm:text-[0.72917rem] xsm:mb-[0.72917rem]'>
           {t('contentSummary')}
         </h4>
-        <ul className='flex flex-col gap-[0.625rem] items-start xsm:gap-[0.52083rem]'>
+        <ul className='flex flex-col space-y-[0.625rem] items-start xsm:space-y-[0.52083rem]'>
           {tocs.slice(0, expand ? tocs.length : 4).map((toc, i) => (
-            <li key={i}>
+            <li
+              key={i}
+              className='flex'
+            >
               <button
                 type='button'
                 onClick={() => scrollToHeading(toc.id)}

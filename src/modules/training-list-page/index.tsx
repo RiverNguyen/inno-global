@@ -282,7 +282,7 @@ export default function TrainingListPage({
   return (
     <>
       <Banner banner={acfData?.banner} />
-      <div className='pt-[6.25rem] xsm:pt-[2.08rem] '>
+      <div className='pt-[6.25rem] xsm:pt-[2.08rem] relative'>
         <div className='max-w-[75rem] mx-auto xsm:max-w-full'>
           <h2 className='font-open-sans text-[2.8125rem] xsm:px-[0.83333rem] font-semibold leading-[120%] tracking-[-0.02813rem] text-[#090909] mb-[2.08333rem] xsm:text-[1.25rem] xsm:mb-[0.72917rem]'>
             {t('latest')}
@@ -338,7 +338,7 @@ export default function TrainingListPage({
                         </div>
                         <div className='sm:absolute sm:top-0 sm:left-0 z-2 flex flex-col sm:size-full sm:justify-between pt-[1.67rem] pb-[1.46rem] px-[1.46rem] xsm:p-[0.625rem_0.83333rem_0.83333rem_0.83333rem]'>
                           <div className='space-y-[1.04rem] xsm:space-y-[0.20833rem] sm:w-[30.10417rem] xsm:mb-[0.20833rem]'>
-                            <div className='w-fit bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] p-[0.20833rem_0.83333rem] text-white font-open-sans text-[0.72917rem] font-semibold leading-[150%] space-x-[0.20833rem] whitespace-nowrap sm:capitalize xsm:text-[0.625rem] xsm:leading-[120%] xsm:space-x-[0.3125rem]'>
+                            <div className='inline-flex items-center bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] p-[0.20833rem_0.83333rem] text-white font-open-sans text-[0.72917rem] font-semibold leading-[150%] space-x-[0.20833rem] whitespace-nowrap sm:capitalize xsm:text-[0.625rem] xsm:leading-[120%] xsm:space-x-[0.3125rem]'>
                               <span>{t('format')}:</span>
                               <span>{training?.taxonomies?.training_format[0]?.name || '-'}</span>
                             </div>
@@ -426,7 +426,7 @@ export default function TrainingListPage({
                     <div className='absolute inset-0 size-full bg-[linear-gradient(180deg,rgba(0,0,0,0.40)_7.53%,rgba(0,0,0,0.30)_22.22%,rgba(0,0,0,0.00)_33.1%,rgba(0,0,0,0.00)_70.94%,rgba(0,0,0,0.74)_85.87%,#000_96.54%)] z-1'></div>
                     <div className='absolute z-2 flex flex-col size-full justify-between p-[0.9375rem]'>
                       <div className='space-y-[0.41667rem] w-[17.08333rem]'>
-                        <div className='w-fit bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] p-[0.20833rem_0.83333rem] text-white font-open-sans text-[0.625rem] font-semibold leading-[150%] space-x-[0.20833rem] whitespace-nowrap capitalize'>
+                        <div className='inline-flex items-center bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] rounded-[5.20833rem] p-[0.20833rem_0.83333rem] text-white font-open-sans text-[0.625rem] font-semibold leading-[150%] space-x-[0.20833rem] whitespace-nowrap capitalize'>
                           <span>{t('format')}:</span>
                           <span>{training?.taxonomies?.training_format[0]?.name}</span>
                         </div>
@@ -457,119 +457,120 @@ export default function TrainingListPage({
                 ))}
             </div>
           </div>
-          <div
-            className='xsm:pt-[1.04rem] xsm:px-[0.83333rem]'
-            id='training-list'
-          >
-            <h2 className='font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] mb-[0.52083rem] xsm:text-[1.25rem] xsm:mb-[1.25rem] text-[#090909]'>
-              {t('other')}
-            </h2>
-            <div className='py-[1.25rem] xsm:pt-0 xsm:pb-[0.83333rem] flex items-center justify-between xsm:flex-col'>
-              <div className='flex items-center space-x-[0.72917rem] xsm:order-2 xsm:space-x-[0.3125rem]'>
-                <button
-                  type='button'
-                  onClick={() => handleCategoryChange('')}
-                  className={cn(
-                    'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
-                    !slugCategory && 'before:opacity-100 text-white',
-                  )}
-                >
-                  <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
-                    {t('all')}
-                  </span>
-                </button>
-                {Array.isArray(taxonomies.categories.data) &&
-                  taxonomies.categories.data.map((category) => (
-                    <button
-                      type='button'
-                      key={category.id}
-                      onClick={() => handleCategoryChange(category?.slug || '')}
-                      className={cn(
-                        'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
-                        slugCategory === category?.slug && 'before:opacity-100 text-white',
-                      )}
-                    >
-                      <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
-                        {category?.name}
-                      </span>
-                    </button>
-                  ))}
-                <FilterPopup
-                  label={t('year')}
-                  items={yearItems}
-                  value={selectedYears}
-                  onChange={handleYearsChange}
+        </div>
+        <h2
+          id='training-list'
+          className='max-w-[75rem] mx-auto xsm:max-w-full xsm:pt-[1.04rem] xsm:px-[0.83333rem] font-open-sans text-[2.8125rem] font-semibold leading-[120%] tracking-[-0.02813rem] mb-[0.52083rem] xsm:text-[1.25rem] xsm:mb-0 text-[#090909]'
+        >
+          {t('other')}
+        </h2>
+        <div className='sticky top-0 py-[1.25rem] xsm:pt-[1.25rem] xsm:pb-[0.83333rem] z-100 bg-white'>
+          <div className='xsm:px-[0.83333rem] flex items-center justify-between xsm:flex-col max-w-[75rem] mx-auto xsm:max-w-full'>
+            <div className='flex items-center space-x-[0.72917rem] xsm:order-2 xsm:space-x-[0.3125rem]'>
+              <button
+                type='button'
+                onClick={() => handleCategoryChange('')}
+                className={cn(
+                  'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
+                  !slugCategory && 'before:opacity-100 text-white',
+                )}
+              >
+                <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
+                  {t('all')}
+                </span>
+              </button>
+              {Array.isArray(taxonomies.categories.data) &&
+                taxonomies.categories.data.map((category) => (
+                  <button
+                    type='button'
+                    key={category.id}
+                    onClick={() => handleCategoryChange(category?.slug || '')}
+                    className={cn(
+                      'relative overflow-hidden font-open-sans flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909] xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold whitespace-nowrap before:absolute before:content-[""] before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 lg:hover:before:opacity-100 lg:hover:text-white before:ease-out',
+                      slugCategory === category?.slug && 'before:opacity-100 text-white',
+                    )}
+                  >
+                    <span className='relative sm:[text-box-edge:cap_alphabetic] sm:[text-box-trim:trim-both] z-1'>
+                      {category?.name}
+                    </span>
+                  </button>
+                ))}
+              <FilterPopup
+                label={t('year')}
+                items={yearItems}
+                value={selectedYears}
+                onChange={handleYearsChange}
+              />
+            </div>
+            <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
+              <div className='xsm:w-auto xsm:grow relative w-[13.61458rem] overflow-hidden'>
+                <input
+                  type='text'
+                  placeholder={t('placeholderSearch')}
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.83333rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
                 />
-              </div>
-              <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
-                <div className='xsm:w-auto xsm:grow relative w-[13.61458rem] overflow-hidden'>
-                  <input
-                    type='text'
-                    placeholder={t('placeholderSearch')}
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.83333rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
-                  />
-                  <div className='xsm:right-[0.83333rem] absolute top-1/2 right-[1.14583rem] -translate-y-1/2'>
-                    <ICSearch className='size-[0.83333rem]' />
-                  </div>
+                <div className='xsm:right-[0.83333rem] absolute top-1/2 right-[1.14583rem] -translate-y-1/2'>
+                  <ICSearch className='size-[0.83333rem]' />
                 </div>
-                <SortPopup
-                  label={t('sortPopup')}
-                  keySp='sort'
-                  items={[
-                    {
-                      label: t('newestToOldest'),
-                      value: 'newest',
-                    },
-                    {
-                      label: t('oldestToNewest'),
-                      value: 'oldest',
-                    },
-                  ]}
-                  value={sortValue}
-                  onChange={(value) => setQueryStates({ sort: value })}
-                />
               </div>
+              <SortPopup
+                label={t('sortPopup')}
+                keySp='sort'
+                items={[
+                  {
+                    label: t('newestToOldest'),
+                    value: 'newest',
+                  },
+                  {
+                    label: t('oldestToNewest'),
+                    value: 'oldest',
+                  },
+                ]}
+                value={sortValue}
+                onChange={(value) => setQueryStates({ sort: value })}
+              />
             </div>
           </div>
-          <div className='xsm:pb-[3.125rem] pb-[6.25rem]'>
-            <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
-              {selectedYears.length > 0 && (
-                <div
-                  className='xsm:px-[0.83333rem] pt-[2.08333rem] xsm:pt-0 xsm:w-full xsm:gap-x-[1.5625rem] flex sm:flex-wrap items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto'
-                  style={{
-                    scrollbarWidth: 'none',
-                  }}
-                >
-                  <SelectedTags
-                    label={t('year')}
-                    items={yearItems}
-                    selectedValues={selectedYears}
-                    onRemove={(value) =>
-                      setQueryStates((prev) => ({
-                        ...prev,
-                        starting_year: prev.starting_year.filter((v) => v !== value),
-                      }))
-                    }
-                  />
-                </div>
-              )}
+        </div>
 
-              <div className='xsm:px-[0.83333rem] xsm:pt-[0.72917rem] xsm:gap-y-[1.25rem] tablet:grid-cols-2 grid grid-cols-1 gap-x-[2.08333rem] gap-y-[3.4375rem] pt-[2.08333rem] lg:grid-cols-3'>
-                <TrainingListContent
-                  trainings={displayTrainings}
-                  isInitialLoading={isLoading && displayTrainings.length === 0}
-                  isFiltering={shouldShowFilteringSkeleton}
-                  t={t}
-                />
-                {isLoadingMore ? <ProjectListSkeleton /> : null}
-                <div
-                  ref={loadMoreRef}
-                  className='col-span-full h-px w-full'
-                  aria-hidden='true'
+        <div className='xsm:pb-[3.125rem] pb-[6.25rem]'>
+          <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
+            {selectedYears.length > 0 && (
+              <div
+                className='xsm:px-[0.83333rem] pt-[2.08333rem] xsm:pt-0 xsm:w-full xsm:gap-x-[1.5625rem] flex sm:flex-wrap items-center gap-x-[1.77083rem] gap-y-[0.52083rem] overflow-x-auto'
+                style={{
+                  scrollbarWidth: 'none',
+                }}
+              >
+                <SelectedTags
+                  label={t('year')}
+                  items={yearItems}
+                  selectedValues={selectedYears}
+                  onRemove={(value) =>
+                    setQueryStates((prev) => ({
+                      ...prev,
+                      starting_year: prev.starting_year.filter((v) => v !== value),
+                    }))
+                  }
                 />
               </div>
+            )}
+
+            <div className='xsm:px-[0.83333rem] xsm:pt-[0.72917rem] xsm:gap-y-[1.25rem] tablet:grid-cols-2 grid grid-cols-1 gap-x-[2.08333rem] gap-y-[3.4375rem] pt-[2.08333rem] lg:grid-cols-3'>
+              <TrainingListContent
+                trainings={displayTrainings}
+                isInitialLoading={isLoading && displayTrainings.length === 0}
+                isFiltering={shouldShowFilteringSkeleton}
+                t={t}
+              />
+              {isLoadingMore ? <ProjectListSkeleton /> : null}
+              <div
+                ref={loadMoreRef}
+                className='col-span-full h-px w-full'
+                aria-hidden='true'
+              />
             </div>
           </div>
         </div>
