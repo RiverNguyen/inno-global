@@ -40,7 +40,6 @@ export default function CardBlog({
   classNameMetaRow,
 }: CardBlogProps) {
   const formattedDate = formatDateDDMMYYYY(date)
-
   return (
     <article
       className={cn(
