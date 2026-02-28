@@ -8,7 +8,7 @@ export default function ButtonOutline({
   return (
     <button
       className={cn(
-        'rounded-[5.20833rem] relative w-fit overflow-hidden group shadow-[0_0_2px_0_rgba(0,_0,_0,_0.10),_0_1px_8px_0_rgba(0,_0,_0,_0.10)] backdrop-blur-[6px] h-[2.08333rem] px-[1.15rem] border border-solid border-text-60 flex-center space-x-[0.36rem] pc-button-14-r text-text-60',
+        'group border-text-60 flex-center pc-button-14-r text-text-60 relative h-[2.08333rem] w-fit space-x-[0.36rem] overflow-hidden rounded-[5.20833rem] border border-solid px-[1.15rem] shadow-[0_0_2px_0_rgba(0,_0,_0,_0.10),_0_1px_8px_0_rgba(0,_0,_0,_0.10)] backdrop-blur-[6px]',
         className,
       )}
       {...props}

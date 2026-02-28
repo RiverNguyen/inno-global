@@ -107,10 +107,10 @@ export default function SelectedTags({ label, items, selectedValues, onRemove }:
       <span className='font-open-sans xsm:text-[0.72917rem] xsm:leading-[150%] text-[0.83333rem] leading-normal font-semibold whitespace-nowrap text-[#090909] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
         {label}:
       </span>
-      <div className='flex sm:flex-wrap items-center gap-x-[1.04167rem] gap-y-[0.36458rem] bg-[#F0F0F0] p-[0.46875rem_0.52083rem]'>
+      <div className='flex items-center gap-x-[1.04167rem] gap-y-[0.36458rem] bg-[#F0F0F0] p-[0.46875rem_0.52083rem] sm:flex-wrap'>
         {selectedValues.map((value, i) => (
           <Fragment key={value}>
-            {i > 0 && <div className='w-[0.0625rem] h-[1rem] bg-[rgba(9,9,9,0.08)] shrink-0'></div>}
+            {i > 0 && <div className='h-[1rem] w-[0.0625rem] shrink-0 bg-[rgba(9,9,9,0.08)]'></div>}
             <SelectedTagItem
               value={value}
               label={getLabel(value)}

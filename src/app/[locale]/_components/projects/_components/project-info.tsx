@@ -16,64 +16,64 @@ export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
   const locale = useLocale()
 
   return (
-    <div className='absolute bottom-0 left-0 w-[41.51042rem] p-[0.52083rem_5.20833rem_0_7.29167rem] z-10 xsm:w-auto xsm:left-[0.52rem] xsm:right-[0.52rem]  xsm:p-0'>
-      <div className='relative w-full h-[12.5rem] rounded-[0.20833rem] shadow-[0_239px_67px_0_rgba(181,181,181,0.00),0_153px_61px_0_rgba(181,181,181,0.01),0_86px_52px_0_rgba(181,181,181,0.05),0_38px_38px_0_rgba(181,181,181,0.09),0_10px_21px_0_rgba(181,181,181,0.10)] xsm:overflow-hidden xsm:bg-white'>
+    <div className='xsm:w-auto xsm:left-[0.52rem] xsm:right-[0.52rem] xsm:p-0 absolute bottom-0 left-0 z-10 w-[41.51042rem] p-[0.52083rem_5.20833rem_0_7.29167rem]'>
+      <div className='xsm:overflow-hidden xsm:bg-white relative h-[12.5rem] w-full rounded-[0.20833rem] shadow-[0_239px_67px_0_rgba(181,181,181,0.00),0_153px_61px_0_rgba(181,181,181,0.01),0_86px_52px_0_rgba(181,181,181,0.05),0_38px_38px_0_rgba(181,181,181,0.09),0_10px_21px_0_rgba(181,181,181,0.10)]'>
         {data.map((item, index) => (
           <div
             className={cn(
-              'absolute bottom-[1.333rem] left-0 w-full flex flex-col opacity-0 invisible sm:translate-y-full transition-all duration-300 ease-in-out  xsm:top-[1.25rem] xsm:right-[0.83333rem] xsm:bottom-[0.3167rem] xsm:left-[0.83333rem] xsm:w-auto',
-              activeIndex === index && 'opacity-100 visible sm:translate-y-0',
+              'xsm:top-[1.25rem] xsm:right-[0.83333rem] xsm:bottom-[0.3167rem] xsm:left-[0.83333rem] xsm:w-auto invisible absolute bottom-[1.333rem] left-0 flex w-full flex-col opacity-0 transition-all duration-300 ease-in-out sm:translate-y-full',
+              activeIndex === index && 'visible opacity-100 sm:translate-y-0',
             )}
             key={item.id}
           >
-            <h3 className='text-white flex items-center justify-between space-x-[1rem] group xsm:text-[#090909]'>
+            <h3 className='group xsm:text-[#090909] flex items-center justify-between space-x-[1rem] text-white'>
               <Link
-                className='text-[1.25rem] font-semibold leading-normal tracking-[-0.02813rem] xsm:text-[0.72917rem] line-clamp-1'
+                className='xsm:text-[0.72917rem] line-clamp-1 text-[1.25rem] leading-normal font-semibold tracking-[-0.02813rem]'
                 href={`/projects/${item.link}`}
               >
                 {item.title || '-'}
               </Link>
               <Link
-                className='shrink-0 flex items-center space-x-[0.20833rem] text-[0.83rem] leading-normal tracking-[-0.01667rem] opacity-80 xsm:text-[0.625rem] xsm:text-[#D32F2F]'
+                className='xsm:text-[0.625rem] xsm:text-[#D32F2F] flex shrink-0 items-center space-x-[0.20833rem] text-[0.83rem] leading-normal tracking-[-0.01667rem] opacity-80'
                 href={locale === 'vi' ? `${ROUTES.projectsVi}/${item.link}` : `${ROUTES.projectsEn}/${item.link}`}
               >
                 {t('viewDetail')}{' '}
-                <ChevronRightIcon className='xsm:size-[0.625rem] size-[0.83rem] group-hover:translate-x-[0.5rem] transition-all duration-300 ease-in-out' />
+                <ChevronRightIcon className='xsm:size-[0.625rem] size-[0.83rem] transition-all duration-300 ease-in-out group-hover:translate-x-[0.5rem]' />
               </Link>
             </h3>
-            <p className='text-[0.9375rem] text-white/80 mt-0.5 line-clamp-3 xsm:text-[0.72917rem] xsm:leading-[1.5] xsm:text-[#090909]/80 xsm:line-clamp-4 xsm:mt-[0.73rem]'>
+            <p className='xsm:text-[0.72917rem] xsm:leading-[1.5] xsm:text-[#090909]/80 xsm:line-clamp-4 xsm:mt-[0.73rem] mt-0.5 line-clamp-3 text-[0.9375rem] text-white/80'>
               {item.content || '-'}
             </p>
-            <div className='grid grid-cols-2 mt-[1.46rem] gap-x-[1rem] xsm:mt-auto'>
-              <div className='flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem] xsm:pb-[0.52rem] xsm:border-[#090909]/10'>
-                <p className='text-[0.83333rem] text-white/90 tracking-[-0.01667rem] mr-[0.52rem] xsm:text-[0.625rem] xsm:text-[#090909]'>
+            <div className='xsm:mt-auto mt-[1.46rem] grid grid-cols-2 gap-x-[1rem]'>
+              <div className='xsm:pb-[0.52rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]'>
+                <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
                   {t('labelInvestor')}
                 </p>
-                <p className='text-[0.83333rem] font-semibold text-white tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:text-[#090909]/90'>
+                <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
                   {item.investor || '-'}
                 </p>
               </div>
-              <div className='flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem] xsm:pt-[0.52rem] xsm:pb-[0.73rem] xsm:border-[#090909]/10'>
-                <p className='text-[0.83333rem] text-white/90 tracking-[-0.01667rem] mr-[0.52rem] xsm:text-[0.625rem] xsm:text-[#090909]'>
+              <div className='xsm:pt-[0.52rem] xsm:pb-[0.73rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]'>
+                <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
                   {t('labelLocation')}
                 </p>
-                <p className='text-[0.83333rem] font-semibold text-white tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:text-[#090909]/90'>
+                <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
                   {item.location || '-'}
                 </p>
               </div>
-              <div className='flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem] xsm:pb-[0.52rem] xsm:border-[#090909]/10'>
-                <p className='text-[0.83333rem] text-white/90 tracking-[-0.01667rem] mr-[0.52rem] xsm:text-[0.625rem] xsm:text-[#090909]'>
+              <div className='xsm:pb-[0.52rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]'>
+                <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
                   {t('labelArea')}
                 </p>
-                <p className='text-[0.83333rem] font-semibold text-white tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:text-[#090909]/90'>
+                <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
                   {item.area || '-'}
                 </p>
               </div>
-              <div className='flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem] xsm:pb-[0.52rem] xsm:border-[#090909]/10'>
-                <p className='text-[0.83333rem] text-white/90 tracking-[-0.01667rem] mr-[0.52rem] xsm:text-[0.625rem] xsm:text-[#090909]'>
+              <div className='xsm:pb-[0.52rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]'>
+                <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
                   {t('labelYear')}
                 </p>
-                <p className='text-[0.83333rem] font-semibold text-white tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:text-[#090909]/90'>
+                <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
                   {item.year || '-'}
                 </p>
               </div>

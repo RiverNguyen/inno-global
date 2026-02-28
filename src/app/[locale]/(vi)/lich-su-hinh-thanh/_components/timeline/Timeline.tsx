@@ -237,7 +237,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
       <div className='container'>
         <svg
           viewBox={`0 0 ${SVG_WIDTH} ${svgHeight}`}
-          className='w-full h-auto'
+          className='h-auto w-full'
         >
           <defs>
             <linearGradient
@@ -360,7 +360,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                       >
                         <div className='flex h-full w-full items-center justify-start'>
                           <div
-                            className='w-full max-h-full overflow-y-auto overflow-x-hidden pr-[0.35rem] text-[0.9375rem] font-normal leading-normal text-text-80 [scrollbar-width:thin] [&_p]:m-0 [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4 [&_li]:mb-1'
+                            className='text-text-80 max-h-full w-full overflow-x-hidden overflow-y-auto pr-[0.35rem] text-[0.9375rem] leading-normal font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
                             dangerouslySetInnerHTML={{ __html: currentItem.description }}
                           />
                         </div>
@@ -377,7 +377,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                 >
                   <div
                     className={cn(
-                      'flex h-full w-full items-center justify-center text-center text-[2.083333rem] font-semibold leading-[1.2] -tracking-[0.03125rem] whitespace-nowrap text-text-100/20',
+                      'text-text-100/20 flex h-full w-full items-center justify-center text-center text-[2.083333rem] leading-[1.2] font-semibold -tracking-[0.03125rem] whitespace-nowrap',
                       isToBeContinued && 'text-[1.25rem] -tracking-[0.0125rem]',
                       isStartPoint && 'text-[2.083333rem] text-[#111111]',
                     )}

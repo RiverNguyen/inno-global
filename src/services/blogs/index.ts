@@ -7,6 +7,11 @@ const blogService = {
       api: ENDPOINTS.blog.getAll({ locale, limit: 12 }),
     })
   },
+  search: async ({ locale, q, limit = 12 }: { locale: string; q: string; limit?: number }) => {
+    return await fetchData({
+      api: ENDPOINTS.blog.search({ locale, q, limit }),
+    })
+  },
   getTaxonomies: async (locale: string) => {
     const [years, categories] = await Promise.all([
       fetchData({

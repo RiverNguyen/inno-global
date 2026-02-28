@@ -17,15 +17,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function HistoryPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   const pageAcf = await historyService.getPageAcf(locale)
-  const timeline = [...pageAcf?.acf?.timeline || [], {
-    year: 'To be continued...',
-    description: '',
-    image: null,
-  }]
-
+  const timeline = [
+    ...(pageAcf?.acf?.timeline || []),
+    {
+      year: 'To be continued...',
+      description: '',
+      image: null,
+    },
+  ]
 
   return (
-    <main className='w-full relative'>
+    <main className='relative w-full'>
       <BannerHistory banner={pageAcf?.acf?.banner} />
       <IndexTimeline timeline={timeline} />
     </main>

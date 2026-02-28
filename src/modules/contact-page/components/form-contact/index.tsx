@@ -111,9 +111,9 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-[1.66667rem] xsm:space-y-[0.83333rem]'
+        className='xsm:space-y-[0.83333rem] space-y-[1.66667rem]'
       >
-        <div className='grid grid-cols-2 gap-[1.04167rem] xsm:grid-cols-1 xsm:gap-[0.72917rem]'>
+        <div className='xsm:grid-cols-1 xsm:gap-[0.72917rem] grid grid-cols-2 gap-[1.04167rem]'>
           <Field className={fieldClassName}>
             <FieldLabel className={labelClassName}>
               {translateContactForm('fullname')}
@@ -144,7 +144,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
           </Field>
         </div>
 
-        <div className='grid grid-cols-2 gap-[1.04167rem] xsm:grid-cols-1 xsm:gap-[0.72917rem]'>
+        <div className='xsm:grid-cols-1 xsm:gap-[0.72917rem] grid grid-cols-2 gap-[1.04167rem]'>
           <Field className={fieldClassName}>
             <FieldLabel className={labelClassName}>{translateContactForm('companyName')}</FieldLabel>
             <Input
@@ -181,8 +181,8 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                   type='button'
                   className={cn(
                     inputClassName,
-                    'w-full text-left flex items-center justify-between',
-                    isSubmitting && 'opacity-50 cursor-not-allowed',
+                    'flex w-full items-center justify-between text-left',
+                    isSubmitting && 'cursor-not-allowed opacity-50',
                   )}
                   disabled={isSubmitting}
                 >
@@ -192,7 +192,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
 
               <DrawerContent
                 hiddenDrag
-                className='rounded-[1.25rem_1.25rem_0_0] bg-white z-[102]'
+                className='z-[102] rounded-[1.25rem_1.25rem_0_0] bg-white'
               >
                 <DrawerHeader className='flex items-center justify-between border-b border-b-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
                   <DrawerTitle className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>
@@ -208,7 +208,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                   </DrawerClose>
                 </DrawerHeader>
 
-                <div className='p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem] space-y-[0.52083rem]'>
+                <div className='space-y-[0.52083rem] p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem]'>
                   {serviceTaxonomies.data.map((option) => {
                     const isSelected = form.watch('field') === option.name
 
@@ -222,9 +222,9 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                         }}
                         disabled={isSubmitting}
                         className={cn(
-                          'w-full text-left text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal',
+                          'xsm:text-[0.625rem] xsm:tracking-normal w-full text-left text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]',
                           isSelected && 'font-semibold text-[#D32F2F]',
-                          isSubmitting && 'opacity-50 cursor-not-allowed',
+                          isSubmitting && 'cursor-not-allowed opacity-50',
                         )}
                       >
                         {option.name}
@@ -242,12 +242,12 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
               <SelectTrigger
                 className={cn(
                   inputClassName,
-                  'data-[placeholder]:text-[rgba(9,9,9,0.40)] xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal',
+                  'xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal data-[placeholder]:text-[rgba(9,9,9,0.40)]',
                 )}
                 disabled={isSubmitting}
               >
                 <SelectValue
-                  className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal'
+                  className='xsm:text-[0.625rem] xsm:tracking-normal text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'
                   placeholder={translateContactForm('placeholderField')}
                 />
               </SelectTrigger>
@@ -256,7 +256,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                   <SelectItem
                     key={option.slug}
                     value={option.name}
-                    className='data-[state=checked]:text-[#D32F2F] focus:bg-white focus:text-[#D32F2F] text-[rgba(9,9,9,0.60)] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] mb-[0.83333rem] last:mb-0 cursor-pointer xsm:text-[0.625rem] xsm:tracking-normal'
+                    className='xsm:text-[0.625rem] xsm:tracking-normal mb-[0.83333rem] cursor-pointer text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] text-[rgba(9,9,9,0.60)] last:mb-0 focus:bg-white focus:text-[#D32F2F] data-[state=checked]:text-[#D32F2F]'
                     disabled={isSubmitting}
                   >
                     {option.name}
@@ -271,7 +271,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
         <Field className={fieldClassName}>
           <FieldLabel className={labelClassName}>{translateContactForm('note')}</FieldLabel>
           <Textarea
-            className={cn(inputClassName, 'h-[7.13542rem] xsm:h-[5.20833rem]')}
+            className={cn(inputClassName, 'xsm:h-[5.20833rem] h-[7.13542rem]')}
             placeholder={translateContactForm('placeholderNote')}
             {...form.register('note')}
             disabled={isSubmitting}
@@ -282,7 +282,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
         <ButtonRed
           type='submit'
           disabled={isSubmitting}
-          className='disabled:opacity-50 disabled:cursor-not-allowed w-full h-[2.60417rem] flex-center rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] text-white font-open-sans text-[0.72917rem] leading-[150%] xsm:h-[2.08333rem] xsm:mt-[0.9375rem]'
+          className='flex-center font-open-sans xsm:h-[2.08333rem] xsm:mt-[0.9375rem] h-[2.60417rem] w-full rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] text-[0.72917rem] leading-[150%] text-white shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] disabled:cursor-not-allowed disabled:opacity-50'
         >
           {isSubmitting ? translateContactForm('submitLoading') : translateContactForm('submit')}
         </ButtonRed>

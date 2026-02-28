@@ -13,7 +13,7 @@ export default function Banner({ banner, aboutUsHref }: BannerProps) {
   const t = useTranslations()
 
   return (
-    <div className='xsm:h-auto relative h-screen overflow-hidden sm:h-[56.25rem] lg:h-screen xsm:pt-[2.92rem]'>
+    <div className='xsm:h-auto xsm:pt-[2.92rem] relative h-screen overflow-hidden sm:h-[56.25rem] lg:h-screen'>
       <Image
         src={banner?.image_desktop || '/social-responsibility/banner.webp'}
         alt='Banner'

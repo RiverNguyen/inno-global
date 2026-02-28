@@ -26,7 +26,7 @@ export default function Projects({ data }: IProjectsProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   return (
-    <div className='relative h-[28.125rem] sm:h-[56.25rem] lg:h-screen w-full sm:overflow-hidden'>
+    <div className='relative h-[28.125rem] w-full sm:h-[56.25rem] sm:overflow-hidden lg:h-screen'>
       <BackgroundSwiper
         data={data}
         thumbsSwiper={thumbsSwiper as SwiperType}

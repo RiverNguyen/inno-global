@@ -5,7 +5,7 @@ import ENV from '@/configs/env'
 import getMetaDataRankMath from '@/fetches/getMetaDataRankMath'
 import { IProjectDetail, IProjectsRes } from '@/interfaces/project.interface'
 import ProjectDetail from '@/modules/project-detail-page'
-import projectService from '@/services/project'
+import projectService from '@/services/projects'
 import metadataValues from '@/utils/metadataValues'
 
 export const dynamic = 'force-dynamic'
@@ -34,14 +34,14 @@ const ProjectDetailPage = async ({ params }: { params: Promise<{ locale: string;
   const location = res?.taxonomies?.location[0]?.slug
   const investor = res?.taxonomies?.investor[0]?.slug
 
-  const relatedRes: IProjectsRes = await projectService.getProjects({
+  const relatedRes: IProjectsRes = await projectService.getRelated({
     locale,
     location,
     investor,
   })
 
   return (
-    <main className='relative xsm:pt-[2.92rem]'>
+    <main className='xsm:pt-[2.92rem] relative'>
       <ProjectDetail
         res={res}
         relatedProjects={relatedRes?.data}

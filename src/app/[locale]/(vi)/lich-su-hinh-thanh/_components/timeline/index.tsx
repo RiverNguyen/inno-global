@@ -13,9 +13,5 @@ export default function IndexTimeline({ timeline }: { timeline: ITimelineItem[] 
     return <div>Loading...</div>
   }
 
-  return (
-    <div>
-      {isMobile ? <TimelineMobile timeline={timeline} /> : <Timeline timeline={timeline} />}
-    </div>
-  )
+  return <div>{isMobile ? <TimelineMobile timeline={timeline} /> : <Timeline timeline={timeline} />}</div>
 }

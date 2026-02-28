@@ -32,7 +32,7 @@ export default function Banner({ title, location, gallery }: { title: string; lo
           background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 38.76%, rgba(0, 0, 0, 0.74) 74.02%, #000 96.54%)',
         }}
       />
-      <div className='h-full xsm:overflow-hidden xsm:relative'>
+      <div className='xsm:overflow-hidden xsm:relative h-full'>
         <Swiper
           slidesPerView={1}
           modules={[Parallax, Autoplay]}
@@ -103,7 +103,7 @@ export default function Banner({ title, location, gallery }: { title: string; lo
                       key={index}
                       type='button'
                       aria-label={`Go to slide ${index + 1}`}
-                      className={`h-[0.15625rem] xsm:h-[0.125rem] min-w-0 shrink-0 cursor-pointer transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] bg-white' : 'xsm:w-[0.67rem] w-[1.19792rem] bg-white/30'}`}
+                      className={`xsm:h-[0.125rem] h-[0.15625rem] min-w-0 shrink-0 cursor-pointer transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] bg-white' : 'xsm:w-[0.67rem] w-[1.19792rem] bg-white/30'}`}
                       onClick={() => swiperInstance?.slideToLoop(index)}
                     />
                   ))}

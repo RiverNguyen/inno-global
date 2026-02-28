@@ -62,18 +62,18 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
 
   return (
     <>
-      <aside className='flex p-[1.5625rem] flex-col rounded-[0.20833rem] bg-[#F0F0F0] my-[2.08333rem] xsm:p-[0.72917rem] xsm:my-[2.08333rem]'>
-        <h4 className='text-[#090909] font-open-sans text-[1.25rem] font-semibold leading-[150%] mb-[0.83333rem] xsm:text-[0.72917rem] xsm:mb-[0.72917rem]'>
+      <aside className='xsm:p-[0.72917rem] xsm:my-[2.08333rem] my-[2.08333rem] flex flex-col rounded-[0.20833rem] bg-[#F0F0F0] p-[1.5625rem]'>
+        <h4 className='font-open-sans xsm:text-[0.72917rem] xsm:mb-[0.72917rem] mb-[0.83333rem] text-[1.25rem] leading-[150%] font-semibold text-[#090909]'>
           {t('contentSummary')}
         </h4>
-        <ul className='flex flex-col gap-[0.625rem] items-start xsm:gap-[0.52083rem]'>
+        <ul className='xsm:gap-[0.52083rem] flex flex-col items-start gap-[0.625rem]'>
           {tocs.slice(0, expand ? tocs.length : 4).map((toc, i) => (
             <li key={i}>
               <button
                 type='button'
                 onClick={() => scrollToHeading(toc.id)}
                 className={cn(
-                  'text-[rgba(9,9,9,0.80)] font-open-sans text-[0.9375rem] leading-[150%] transition-all duration-200 xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem]',
+                  'font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.80)] transition-all duration-200',
                   activeId === toc.id && 'text-[rgba(9,9,9,1)]',
                 )}
               >
@@ -85,7 +85,7 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
             <button
               type='button'
               onClick={() => setExpand((prev) => !prev)}
-              className='text-[#000DFF] font-open-sans text-[0.9375rem] leading-[150%] xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem]'
+              className='font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] text-[0.9375rem] leading-[150%] text-[#000DFF]'
             >
               {expand ? t('seeLess') : t('seeMore')}
             </button>
@@ -99,10 +99,10 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
             type='button'
             onClick={() => setOpen(true)}
             className={cn(
-              'fixed bottom-0 left-0 right-0 z-120 w-full flex h-[2.76042rem] p-[0.83333rem] justify-between items-center shrink-0 bg-white shadow-[0_-4px_12px_0_rgba(0,0,0,0.10)] ',
+              'fixed right-0 bottom-0 left-0 z-120 flex h-[2.76042rem] w-full shrink-0 items-center justify-between bg-white p-[0.83333rem] shadow-[0_-4px_12px_0_rgba(0,0,0,0.10)]',
             )}
           >
-            <span className='text-[#2E2E2E] font-open-sans text-[0.72917rem] font-semibold leading-[150%]'>
+            <span className='font-open-sans text-[0.72917rem] leading-[150%] font-semibold text-[#2E2E2E]'>
               {t('contentSummary')}
             </span>
             <ChevronUp className='size-[0.9375rem] shrink-0' />
@@ -115,20 +115,20 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
               hiddenDrag
               className='z-120 rounded-t-[1.25rem]'
             >
-              <div className='flex items-center justify-between p-[0.83333rem] border-b-[0.8px] border-[rgba(9,9,9,0.08)]'>
-                <h2 className='text-[#090909] font-open-sans text-[0.83333rem] font-semibold leading-[150%] capitalize'>
+              <div className='flex items-center justify-between border-b-[0.8px] border-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
+                <h2 className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold text-[#090909] capitalize'>
                   {t('contentSummary')}
                 </h2>
                 <DrawerClose asChild>
                   <button
                     type='button'
-                    className='size-[1.25rem] flex-center rounded-full bg-[rgba(9,9,9,0.10)] backdrop-blur-[14.117646217346191px]'
+                    className='flex-center size-[1.25rem] rounded-full bg-[rgba(9,9,9,0.10)] backdrop-blur-[14.117646217346191px]'
                   >
                     <X className='size-[0.72917rem]' />
                   </button>
                 </DrawerClose>
               </div>
-              <ul className='flex flex-col gap-[0.52083rem] items-start p-[0.83333rem_0_1.66667rem_0.83333rem]'>
+              <ul className='flex flex-col items-start gap-[0.52083rem] p-[0.83333rem_0_1.66667rem_0.83333rem]'>
                 {tocs.slice(0, expand ? tocs.length : 4).map((toc, i) => (
                   <li key={i}>
                     <button
@@ -138,7 +138,7 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
                         setOpen(false)
                       }}
                       className={cn(
-                        'text-[rgba(9,9,9,0.80)] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] transition-all duration-200',
+                        'font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] text-[rgba(9,9,9,0.80)] transition-all duration-200',
                         activeId === toc.id && 'text-[rgba(9,9,9,1)]',
                       )}
                     >
@@ -150,7 +150,7 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
                   <button
                     onClick={() => setExpand((prev) => !prev)}
                     type='button'
-                    className='text-[#000DFF] font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem]'
+                    className='font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] text-[#000DFF]'
                   >
                     {expand ? t('seeLess') : t('seeMore')}
                   </button>
