@@ -75,15 +75,14 @@ export default function Toc({ tocs, classNameContentSummary }: { tocs: TocItem[]
           {tocs.slice(0, expand ? tocs.length : 4).map((toc, i) => (
             <li
               key={i}
-              className='flex'
+              className={cn(
+                'font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.80)] transition-all duration-200',
+                activeId === toc.id && 'text-[rgba(9,9,9,1)]',
+              )}
             >
               <button
                 type='button'
                 onClick={() => scrollToHeading(toc.id)}
-                className={cn(
-                  'font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.80)] transition-all duration-200',
-                  activeId === toc.id && 'text-[rgba(9,9,9,1)]',
-                )}
               >
                 {toc.text}
               </button>
@@ -138,17 +137,19 @@ export default function Toc({ tocs, classNameContentSummary }: { tocs: TocItem[]
               </div>
               <ul className='flex flex-col items-start gap-[0.52083rem] p-[0.83333rem_0_1.66667rem_0.83333rem]'>
                 {tocs.slice(0, expand ? tocs.length : 4).map((toc, i) => (
-                  <li key={i}>
+                  <li
+                    key={i}
+                    className={cn(
+                      'font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] text-[rgba(9,9,9,0.80)] transition-all duration-200',
+                      activeId === toc.id && 'text-[rgba(9,9,9,1)]',
+                    )}
+                  >
                     <button
                       type='button'
                       onClick={() => {
                         scrollToHeading(toc.id)
                         setOpen(false)
                       }}
-                      className={cn(
-                        'font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] text-[rgba(9,9,9,0.80)] transition-all duration-200',
-                        activeId === toc.id && 'text-[rgba(9,9,9,1)]',
-                      )}
                     >
                       {toc.text}
                     </button>

@@ -26,7 +26,7 @@ const RelatedBlogs = ({ data }: { data: IBlog[] }) => {
   return (
     <section
       id='related'
-      className='xsm:mb-[2.29rem] mb-[6.25rem]'
+      className='xsm:pb-[2.29rem] xsm:pt-[1.04167rem] pb-[6.25rem]'
     >
       <div className='flex-y-center mx-auto max-w-[75rem] justify-between'>
         <h2 className='xsm:px-[0.8275rem] xsm:text-[1.25rem] xsm:font-semibold text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-[#090909]'>
@@ -72,6 +72,11 @@ const RelatedBlogs = ({ data }: { data: IBlog[] }) => {
                         category={blog.taxonomies?.category?.[0]?.name || ''}
                         date={blog.date || ''}
                         thumbnail={blog.featured_image || { url: '', alt: '' }}
+                        classNameTitle='text-[0.83333rem]'
+                        classNameMetaWrapper='space-y-[0.41667rem]'
+                        classNameCategory='text-[0.52083rem]'
+                        classNameDate='text-[0.52083rem]'
+                        classNameMetaRow='space-x-[0.41667rem]'
                       />
                     </Link>
                   </SwiperSlide>
@@ -79,7 +84,7 @@ const RelatedBlogs = ({ data }: { data: IBlog[] }) => {
           </Swiper>
         )}
 
-        <div className='absolute-center pointer-events-none flex w-[83.33333rem] justify-between'>
+        <div className='pointer-events-none absolute top-[6.4375rem] left-1/2 flex w-[83.33333rem] -translate-x-1/2 justify-between'>
           <button
             type='button'
             className='related-blogs-prev flex-center group pointer-events-auto relative size-[2.083rem] cursor-pointer overflow-hidden rounded-full bg-[#F0F0F0] transition-all duration-300'
@@ -101,7 +106,7 @@ const RelatedBlogs = ({ data }: { data: IBlog[] }) => {
       </div>
 
       {isMobile && !isLoading && (
-        <div className='hidden_scroll mt-[1.04167rem] flex space-x-[0.83333rem] overflow-x-auto px-[0.8275rem] sm:hidden'>
+        <div className='hidden_scroll mt-[0.72917rem] flex space-x-[0.83333rem] overflow-x-auto sm:hidden'>
           {Array.isArray(data) &&
             data
               .filter((blog) => blog.slug !== params.slug)
@@ -109,13 +114,14 @@ const RelatedBlogs = ({ data }: { data: IBlog[] }) => {
                 <Link
                   key={index}
                   href={locale === 'vi' ? `/tin-tuc/${blog.slug}` : `/blogs/${blog.slug}`}
+                  className='xsm:first:ml-[0.83333rem] xsm:last:mr-[0.83333rem] inline-block w-[15.625rem] shrink-0'
                 >
                   <CardBlog
                     title={blog.title || ''}
                     category={blog.taxonomies?.category?.[0]?.name || ''}
                     date={blog.date || ''}
                     thumbnail={blog.featured_image || { url: '', alt: '' }}
-                    classNameCard='xsm:w-[15.625rem] xsm:flex-col xsm:gap-[1.04167rem]'
+                    classNameCard='xsm:w-full xsm:flex-col xsm:gap-[1.04167rem] xsm:space-x-0'
                     classNameThumbnail='xsm:h-[9.89583rem] xsm:w-full'
                     classNameTitle='xsm:text-[0.83333rem] xsm:font-semibold'
                     classNameCategory='xsm:text-[0.52083rem] xsm:tracking-normal'
