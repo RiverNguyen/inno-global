@@ -59,6 +59,24 @@ export default function SearchDetail({
 
   const handleScrollToSection = (id: string) => {
     const isFirstSection = id === 'project'
+    const targetElement = document.getElementById(id)
+    if (!targetElement) return
+
+    const offsetPx = (isFirstSection ? 5.66667 : 4) * parseFloat(getComputedStyle(document.documentElement).fontSize)
+
+    const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offsetPx
+
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+
+    if (isIOS) {
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth',
+      })
+      return
+    }
 
     scrollToSection(id, 0.6, isMobile && !isLoading ? (isFirstSection ? 5.66667 : 4) : isFirstSection ? 7.29 : 5)
   }
@@ -144,7 +162,7 @@ export default function SearchDetail({
           navItems={[
             {
               label: t('Breadcrumb.homePage'),
-              href: '/',
+              href: locale === 'vi' ? ROUTES.homeVi : ROUTES.homeEn,
             },
           ]}
           lastItem={{
@@ -253,7 +271,7 @@ export default function SearchDetail({
               <div
                 className='xsm:flex xsm:gap-0 xsm:space-x-[0.83333rem] xsm:overflow-x-auto xsm:px-[0.83333rem] grid grid-cols-3 gap-x-[1.5625rem] gap-y-[2.08333rem]'
                 style={{
-                  scrollbarWidth: 'none', // Ẩn scrollbar trên Firefox
+                  scrollbarWidth: 'none',
                 }}
               >
                 {blogRes.data.map((blog, i) => (
