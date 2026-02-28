@@ -1,13 +1,10 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-
 import { ITraining } from '@/interfaces/training.inteface'
 
 import Banner from './components/Banner'
+import Content from './components/Content'
 import RelatedTrainings from './components/RelatedTrainings'
-
-const Content = dynamic(() => import('./components/Content'), { ssr: false })
 
 interface TrainingDetailProps {
   training: ITraining

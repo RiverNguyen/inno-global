@@ -15,7 +15,7 @@ function slugify(text: string): string {
 }
 
 export function buildTocFromHtml(initialHtml: string): { html: string; tocs: TocItem[] } {
-  if (!initialHtml) {
+  if (!initialHtml || typeof window === 'undefined') {
     return { html: '', tocs: [] }
   }
 

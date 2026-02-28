@@ -25,7 +25,7 @@ export default function RelatedTrainings({ data }: { data: ITraining[] }) {
   return (
     <section
       id='related'
-      className='xsm:mb-[2.29rem] mb-[6.25rem]'
+      className='xsm:mb-[2.29rem] xsm:pt-[2.08333rem] mb-[6.25rem]'
     >
       <div className='flex-y-center mx-auto max-w-[75rem] justify-between'>
         <h2 className='xsm:px-[0.8275rem] xsm:text-[1.25rem] xsm:font-semibold text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-[#090909]'>
@@ -65,13 +65,16 @@ export default function RelatedTrainings({ data }: { data: ITraining[] }) {
                     key={index}
                     className='h-full w-full'
                   >
-                    <TrainingCard training={training} />
+                    <TrainingCard
+                      training={training}
+                      classNameThumbnail='h-[11.56094rem]'
+                    />
                   </SwiperSlide>
                 ))}
           </Swiper>
         )}
 
-        <div className='absolute-center pointer-events-none flex w-[83.33333rem] justify-between'>
+        <div className='pointer-events-none absolute top-[calc((11.56094rem/2)-(2.083rem/2))] right-0 left-0 mx-auto flex w-[83.33333rem] justify-between'>
           <button
             type='button'
             className='related-blogs-prev flex-center group pointer-events-auto relative size-[2.083rem] cursor-pointer overflow-hidden rounded-full bg-[#F0F0F0] transition-all duration-300'
@@ -104,6 +107,7 @@ export default function RelatedTrainings({ data }: { data: ITraining[] }) {
                   wrapperClassname='xsm:w-[15.625rem] shrink-0 bg-[#F6F6F6] xsm:border-b-0 xsm:pb-0 xsm:last:pb-0'
                   classNameContent='p-[0.625rem_0.83333rem_0.83333rem_0.83333rem]'
                   classNameTitle='xsm:max-w-full xsm:line-clamp-2'
+                  classNameThumbnail='xsm:h-[7.65rem]'
                 />
               ))}
         </div>

@@ -184,7 +184,8 @@ const ENDPOINTS = {
       `api/v1/get-all/training?lang=${locale}&s=${q}&tax=format,training_category,lecturer,participant,starting_year&orderby=date&order=DESC&limit=${limit}&paged=1`,
     getAll: ({ locale, limit = 12 }: { locale: string; limit?: number }) =>
       `api/v1/get-all/training?lang=${locale}&tax=format,training_category,lecturer,participant,starting_year&orderby=date&order=DESC&limit=${limit}&paged=1`,
-    getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=training_category`,
+    getCategories: (locale: string) =>
+      `api/v1/taxonomies?lang=${locale}&taxonomy=training_category&orderby=data&order=DESC`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
     getPage: {
       vi: 'wp/v2/pages/740?_fields=acf&acf_format=standard',

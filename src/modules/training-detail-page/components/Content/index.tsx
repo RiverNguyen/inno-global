@@ -24,7 +24,10 @@ export default function Content({ training }: ContentProps) {
 
   return (
     <section className='xsm:px-[0.83333rem]'>
-      <Toc tocs={tocs} />
+      <Toc
+        tocs={tocs}
+        classNameContentSummary='text-[1.45833rem]'
+      />
 
       <article
         id='training_content'

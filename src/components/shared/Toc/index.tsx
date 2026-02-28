@@ -18,7 +18,7 @@ interface TocItem {
   level: number // h1 -> 1, h2 -> 2...
 }
 
-export default function Toc({ tocs }: { tocs: TocItem[] }) {
+export default function Toc({ tocs, classNameContentSummary }: { tocs: TocItem[]; classNameContentSummary?: string }) {
   const t = useTranslations('DetailBlogPage')
   const [open, setOpen] = useState(false)
   const [expand, setExpand] = useState(false)
@@ -62,8 +62,13 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
 
   return (
     <>
-      <aside className='xsm:p-[0.72917rem] xsm:mt-[1.04167rem] xsm:mb-[2.08333rem] my-[2.08333rem] flex flex-col rounded-[0.20833rem] bg-[#F0F0F0] p-[1.5625rem]'>
-        <h4 className='font-open-sans xsm:text-[0.72917rem] xsm:mb-[0.72917rem] mb-[0.83333rem] text-[1.25rem] leading-[150%] font-semibold text-[#090909]'>
+      <aside className='xsm:p-[0.72917rem] xsm:my-[2.08333rem] my-[2.08333rem] flex flex-col rounded-[0.20833rem] bg-[#F0F0F0] p-[1.5625rem]'>
+        <h4
+          className={cn(
+            'font-open-sans xsm:text-[0.72917rem] xsm:mb-[0.72917rem] mb-[0.83333rem] text-[1.25rem] leading-[150%] font-semibold text-[#090909]',
+            classNameContentSummary,
+          )}
+        >
           {t('contentSummary')}
         </h4>
         <ul className='xsm:gap-[0.52083rem] flex flex-col items-start gap-[0.625rem]'>

@@ -121,6 +121,7 @@ export default function Header({
     localStorage.setItem('searchs', JSON.stringify(newSearchHistory))
     setSearchHistory(newSearchHistory)
     handleCloseAll()
+    mobileSearchInputRef.current?.blur()
     router.push(locale === 'vi' ? `${ROUTES.searchVi}?q=${value}` : `${ROUTES.searchEn}?q=${value}`)
   }
 

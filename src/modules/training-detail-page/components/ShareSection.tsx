@@ -35,15 +35,15 @@ export default function ShareSection() {
   const xShare = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodeURIComponent(title)}`
 
   return (
-    <div className='xsm:flex-col-reverse xsm:items-start xsm:justify-start xsm:gap-[1.04167rem] xsm:p-[0.83333rem_0_2.08333rem_0] xsm:mt-[1.66667rem] mt-[2.08333rem] flex items-center justify-between border-t-[0.05208rem] border-t-[rgba(9,9,9,0.08)] pt-[0.9375rem]'>
+    <div className='xsm:flex-col-reverse xsm:items-start xsm:justify-start xsm:gap-[1.04167rem] xsm:p-[0.83333rem_0_2.08333rem_0] xsm:pt-0 xsm:mt-[1.66667rem] mt-[2.08333rem] flex items-center justify-between pt-[0.9375rem]'>
       <div className='flex items-center gap-[0.52083rem]'>
-        <span className='text-[rgba(9,9,9,0.80) font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] text-[0.9375rem] leading-[150%]'>
+        <span className='xsm:text-[#090909] font-open-sans xsm:leading-[120%] xsm:text-[0.83333rem] xsm:font-semibold text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.80)]'>
           Chia sẻ:
         </span>
         <div className='flex items-center gap-[0.625rem]'>
           <button
             onClick={handleCopyLink}
-            className='xsm:size-[1.25rem] size-[2.08333rem]'
+            className='size-[2.08333rem]'
             aria-label='Sao chép liên kết'
           >
             <IconShareLink className='h-auto w-full' />
@@ -52,7 +52,7 @@ export default function ShareSection() {
             href={facebookShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='xsm:size-[1.25rem] size-[2.08333rem]'
+            className='size-[2.08333rem]'
             aria-label='Chia sẻ lên Facebook'
           >
             <IconFacebook className='h-auto w-full' />
@@ -61,7 +61,7 @@ export default function ShareSection() {
             href={linkedInShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='xsm:size-[1.25rem] size-[2.08333rem]'
+            className='size-[2.08333rem]'
             aria-label='Chia sẻ lên LinkedIn'
           >
             <IconLinkedin className='h-auto w-full' />
@@ -70,7 +70,7 @@ export default function ShareSection() {
             href={xShare}
             target='_blank'
             rel='noopener noreferrer'
-            className='xsm:size-[1.25rem] size-[2.08333rem]'
+            className='size-[2.08333rem]'
             aria-label='Chia sẻ lên X'
           >
             <IconTwitter className='h-auto w-full' />
