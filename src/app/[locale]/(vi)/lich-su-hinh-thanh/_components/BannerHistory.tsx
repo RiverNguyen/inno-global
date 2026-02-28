@@ -2,21 +2,22 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 import Breadcrumb from '@/components/shared/Breadcrumb'
+import { IBannerHistory } from '@/interfaces/history.interface'
 
-export default function BannerHistory() {
+export default function BannerHistory({ banner }: { banner: IBannerHistory }) {
   const t = useTranslations()
   return (
     <section className='relative w-full h-screen xsm:h-[18.17708rem]'>
       <Image
         className='size-full object-cover xsm:hidden'
-        src='/history/d-bg-history.jpg'
+        src={banner?.image_desktop || '/history/d-bg-history.jpg'}
         alt=''
         width={1920}
         height={1080}
       />
       <Image
         className='size-full object-cover sm:hidden'
-        src='/history/d-bg-history-mb.webp'
+        src={banner?.image_mobile || '/history/d-bg-history-mb.webp'}
         alt=''
         width={375}
         height={350}
@@ -39,7 +40,7 @@ export default function BannerHistory() {
           />
         </div>
         <h1 className='font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] text-[3.33333rem] leading-[2.39583rem] font-semibold text-white'>
-          {t('Breadcrumb.developmentHistoryPage')}
+          {banner?.title || t('Breadcrumb.developmentHistoryPage')}
         </h1>
       </div>
     </section>

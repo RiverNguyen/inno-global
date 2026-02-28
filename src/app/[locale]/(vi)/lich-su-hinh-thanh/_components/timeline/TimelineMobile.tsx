@@ -2,12 +2,12 @@
 
 import Image from 'next/image'
 
-import { timelineMockData, ITimelineItem } from '@/app/[locale]/(vi)/lich-su-hinh-thanh/_components/timeline/mockData'
+import { ITimelineItem } from '@/interfaces/history.interface'
 import { cn } from '@/lib/utils'
 
 const START_MARKER_ICON = '/history/marker.svg'
 
-export default function TimelineMobile() {
+export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[] }) {
   return (
     <section className="relative p-[3.33rem_0_4.84rem_0]">
       <Image
@@ -30,7 +30,7 @@ export default function TimelineMobile() {
         {/* Center line */}
         <div className="absolute left-1/2 top-[2.604165rem] h-[calc(100%-3rem)] w-[0.10417rem] -translate-x-1/2 bg-[rgba(9,9,9,0.15)]" />
 
-        {timelineMockData.map((item: ITimelineItem, index: number) => {
+        {timeline.map((item: ITimelineItem, index: number) => {
           const isLeftContent = index % 2 === 0
           const isToBeContinued = item.year === 'To be continued...'
           const hasUl = item.description?.includes('<ul')
@@ -39,7 +39,7 @@ export default function TimelineMobile() {
 
           return (
             <div
-              key={item.id}
+              key={`${item.year}-${index}`}
               className="relative mb-[1.6rem] last:mb-0 flex w-full"
             >
               {/* Marker + driver + image */}
@@ -78,8 +78,8 @@ export default function TimelineMobile() {
                     <div className={cn('absolute-y-center flex-center size-[5.20833rem] rounded-full bg-[linear-gradient(180deg,#FFB2B2_23.97%,#D32F2F_81.78%)]', !isLeftContent ? 'left-0' : 'right-0')}>
                       <div className="relative size-[4.75229rem]">
                         <Image
-                          src={item.image.url}
-                          alt={item.image.alt}
+                          src={item?.image?.url || '/default.webp'}
+                          alt={item?.image?.alt || 'Inno Global'}
                           fill
                           className="object-cover rounded-full"
                         />

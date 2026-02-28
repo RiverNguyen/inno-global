@@ -1,6 +1,6 @@
 'use client'
 
-import { timelineMockData } from '@/app/[locale]/(vi)/lich-su-hinh-thanh/_components/timeline/mockData'
+import { ITimelineItem } from '@/interfaces/history.interface'
 import { cn } from '@/lib/utils'
 
 const positionRowOdd = [
@@ -218,12 +218,12 @@ const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoi
   )
 }
 
-export default function Timeline() {
-  const lastItem = timelineMockData[timelineMockData.length - 1]
+export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
+  const lastItem = timeline[timeline.length - 1]
   const hasToBeContinuedAtEnd = lastItem?.year === TO_BE_CONTINUED_LABEL
-  const totalRealItems = hasToBeContinuedAtEnd ? timelineMockData.length - 1 : timelineMockData.length
+  const totalRealItems = hasToBeContinuedAtEnd ? timeline.length - 1 : timeline.length
   const shouldHideToBeContinued = hasToBeContinuedAtEnd && totalRealItems % ITEMS_PER_ROW === 0
-  const visibleData = shouldHideToBeContinued ? timelineMockData.slice(0, -1) : timelineMockData
+  const visibleData = shouldHideToBeContinued ? timeline.slice(0, -1) : timeline
 
   const points = visibleData.map((_, index) => getPointByIndex(index))
   const rows = Math.ceil(visibleData.length / ITEMS_PER_ROW)
@@ -305,7 +305,7 @@ export default function Timeline() {
             const hasDescription = !!currentItem.description?.trim()
 
             return (
-              <g key={`${currentItem.id}-${index}`}>
+              <g key={`${currentItem.year}-${index}`}>
                 {!isToBeContinued && (
                   <line
                     x1={point.x}
@@ -333,7 +333,7 @@ export default function Timeline() {
                     </defs>
 
                     <image
-                      href={currentItem.image.url}
+                      href={currentItem.image?.url || '/default.webp'}
                       x={imageCenterX - imageRadius}
                       y={imageY}
                       width={imageSize}

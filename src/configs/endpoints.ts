@@ -119,6 +119,14 @@ const ENDPOINTS = {
       vi: '/trach-nhiem-xa-hoi',
     },
   },
+  history: {
+    en: 'wp/v2/pages/705?_fields=acf&acf_format=standard',
+    vi: 'wp/v2/pages/703?_fields=acf&acf_format=standard',
+    rank_math: {
+      en: '/en/history-of-formation',
+      vi: '/lich-su-hinh-thanh',
+    },
+  },
   leadershipPage: {
     vi: 'wp/v2/pages/594?_fields=acf&acf_format=standard',
     en: 'wp/v2/pages/596?_fields=acf&acf_format=standard',
