@@ -3,11 +3,13 @@
 import { ChevronLeft } from 'lucide-react'
 import { useRouter } from 'nextjs-toploader/app'
 
-export default function BackButton() {
+import { cn } from '@/lib/utils'
+
+export default function BackButton({ className }: { className?: string }) {
   const router = useRouter()
   return (
     <ChevronLeft
-      className='mr-[0.42rem] size-4 lg:hidden'
+      className={cn('mr-[0.42rem] size-4 lg:hidden', className)}
       onClick={() => router.back()}
     />
   )

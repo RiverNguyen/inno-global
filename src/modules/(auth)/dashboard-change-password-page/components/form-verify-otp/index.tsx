@@ -18,6 +18,7 @@ import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { Form } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Skeleton } from '@/components/ui/skeleton'
+import BackButton from '@/modules/(auth)/dashboard/_components/back-button'
 
 const RESEND_OTP_COOLDOWN_MS = 60_000
 const RESEND_OTP_LS_KEY_PREFIX = 'verifyOtp:resendUntil:'
@@ -138,8 +139,11 @@ export default function FormVerifyOTP({ user, onSuccess }: FormVerifyOTPProps) {
   const isResendDisabled = form.formState.isSubmitting || isResendingOtp || resendSecondsLeft > 0
 
   return (
-    <>
-      <h1 className='mb-[1.25rem] text-[1.45rem] leading-[1.5] font-semibold text-[#090909]'>Thay đổi mật khẩu</h1>
+    <section className='xsm:pt-[3.54rem]'>
+      <h1 className='xsm:flex xsm:text-[0.83rem] xsm:mb-[2.29rem] xsm:text-[#333] mb-[1.25rem] text-[1.45rem] leading-[1.5] font-semibold text-[#090909]'>
+        <BackButton className='translate-y-[0.1rem]' />
+        Thay đổi mật khẩu
+      </h1>
       <div className='flex-y-center space-x-[0.62rem]'>
         <div className='relative size-[2.5rem] overflow-hidden rounded-full border border-[#D32F2F]'>
           <Avatar className='size-full object-cover'>
@@ -153,16 +157,18 @@ export default function FormVerifyOTP({ user, onSuccess }: FormVerifyOTPProps) {
           </Avatar>
         </div>
         <div className=''>
-          <p className='xsm:leading-[1.2] xsm:tracking-normal xsm:font-semibold text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]'>
+          <p className='xsm:leading-[1.2] xsm:tracking-normal xsm:font-normal text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]'>
             {user?.display_name || '---'}
           </p>
           <p className='text-[0.72917rem] leading-[1.5] text-[#090909]/40'>ID: {session?.user?.user_code}</p>
         </div>
       </div>
-      <div className='mt-[0.89rem] mb-[1.35rem] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]/80'>
+      <div className='xsm:mb-[1.25rem] xsm:text-[0.625rem] mt-[0.89rem] mb-[1.35rem] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]/80'>
         <p>
-          Mã xác nhận sẽ được gửi về email:{' '}
-          <strong className='leading-[1.3] font-semibold tracking-[-0.00833rem] text-[#090909]'>{user?.email}</strong>
+          Mã xác nhận sẽ được gửi về email: <br className='lg:hidden' />
+          <strong className='xsm:text-[0.729rem] leading-[1.3] font-semibold tracking-[-0.00833rem] text-[#090909]'>
+            {user?.email}
+          </strong>
         </p>
         <p>Nhấn nút “lấy mã xác thực” phía dưới để tiến hành gửi mã:</p>
       </div>
@@ -192,7 +198,7 @@ export default function FormVerifyOTP({ user, onSuccess }: FormVerifyOTPProps) {
                 type='button'
                 onClick={handleResendOTP}
                 disabled={isResendDisabled}
-                className='xsm:h-[2.083rem] flex-center h-[2.91667rem] rounded-[5.2rem] border border-[#090909]/60 px-[1.15rem] text-[0.72rem] leading-[1.5] whitespace-nowrap text-[#090909]/60 disabled:cursor-not-allowed disabled:opacity-50'
+                className='xsm:h-[2.083rem] flex-center xsm:min-w-[7.23rem] h-[2.91667rem] rounded-[5.2rem] border border-[#090909]/60 px-[1.15rem] text-[0.72rem] leading-[1.5] whitespace-nowrap text-[#090909]/60 disabled:cursor-not-allowed disabled:opacity-50'
               >
                 {t('resendOTP')}
                 {resendSecondsLeft > 0 ? ` (${resendSecondsLeft}s)` : ''}
@@ -203,7 +209,7 @@ export default function FormVerifyOTP({ user, onSuccess }: FormVerifyOTPProps) {
           </Field>
           <ButtonRed
             type='submit'
-            className={`xsm:mt-[0.63rem] xsm:h-[2.083rem] mt-[1.35rem] h-[2.6rem] min-w-[8rem] text-[0.73rem] leading-[1.5] ${form.formState.isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
+            className={`xsm:mt-[1.25rem] xsm:w-full xsm:h-[2.083rem] mt-[1.35rem] h-[2.6rem] min-w-[8rem] text-[0.73rem] leading-[1.5] ${form.formState.isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
             disabled={form.formState.isSubmitting}
           >
             {form.formState.isSubmitting ? (
@@ -216,6 +222,6 @@ export default function FormVerifyOTP({ user, onSuccess }: FormVerifyOTPProps) {
           </ButtonRed>
         </form>
       </Form>
-    </>
+    </section>
   )
 }

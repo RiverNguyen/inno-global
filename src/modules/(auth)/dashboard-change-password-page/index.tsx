@@ -5,7 +5,7 @@ const DashboardChangePasswordModule = async () => {
   const session = await auth()
 
   return (
-    <div className='flex-1 bg-white p-[1.46rem]'>
+    <div className='xsm:p-[0.83rem] flex-1 bg-white p-[1.46rem]'>
       <ChangePasswordFlow user={session?.user} />
     </div>
   )
