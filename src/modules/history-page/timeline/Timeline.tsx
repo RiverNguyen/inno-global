@@ -158,22 +158,22 @@ const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoi
           cx={point.x}
           cy={point.y}
           r={baseRadius}
-          fill="#D32F2F"
-          opacity="0.2"
+          fill='#D32F2F'
+          opacity='0.2'
         >
           <animate
-            attributeName="r"
+            attributeName='r'
             from={baseRadius}
             to={baseRadius + 24}
-            dur="1s"
-            repeatCount="indefinite"
+            dur='1s'
+            repeatCount='indefinite'
           />
           <animate
-            attributeName="opacity"
-            from="0.2"
-            to="0"
-            dur="1s"
-            repeatCount="indefinite"
+            attributeName='opacity'
+            from='0.2'
+            to='0'
+            dur='1s'
+            repeatCount='indefinite'
           />
         </circle>
 
@@ -182,22 +182,22 @@ const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoi
           cx={point.x}
           cy={point.y}
           r={baseRadius}
-          fill="#D32F2F"
-          opacity="0.1"
+          fill='#D32F2F'
+          opacity='0.1'
         >
           <animate
-            attributeName="r"
+            attributeName='r'
             from={baseRadius}
             to={baseRadius + 48}
-            dur="1s"
-            repeatCount="indefinite"
+            dur='1s'
+            repeatCount='indefinite'
           />
           <animate
-            attributeName="opacity"
-            from="0.1"
-            to="0"
-            dur="1s"
-            repeatCount="indefinite"
+            attributeName='opacity'
+            from='0.1'
+            to='0'
+            dur='1s'
+            repeatCount='indefinite'
           />
         </circle>
 
