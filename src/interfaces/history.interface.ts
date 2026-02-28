@@ -16,4 +16,6 @@ export interface ITimelineItem {
   year: string
   description: string
   image: IAcfImage | null
+  /** True for the placeholder "to be continued" item; used to hide image/line regardless of locale */
+  isToBeContinued?: boolean
 }

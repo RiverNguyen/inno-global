@@ -4,7 +4,8 @@ export interface ITimelineItem {
   id: string
   year: string
   description: string
-  image: IAcfImage
+  image: IAcfImage | null
+  isToBeContinued?: boolean
 }
 
 const createMockImage = (id: number, url: string, alt: string): IAcfImage => ({
@@ -78,6 +79,7 @@ export const timelineMockData: ITimelineItem[] = [
     id: 'future',
     year: 'To be continued...',
     description: '',
-    image: createMockImage(9, '/history/d-bg-history.jpg', 'Các mốc tiếp theo'),
+    image: null,
+    isToBeContinued: true,
   },
 ]

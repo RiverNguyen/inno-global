@@ -271,5 +271,8 @@
   },
   "TermsOfUsePage": {
     "effectiveDate": "Hiệu lực từ ngày"
+  },
+  "HistoryPage": {
+    "continue": "Còn tiếp..."
   }
 }
