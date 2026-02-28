@@ -9,6 +9,7 @@ import ICSearch from '@/components/icons/ICSearch'
 import Breadcrumb from '@/components/shared/Breadcrumb'
 import { IBlog, ITaxonomies } from '@/interfaces/blog.interface'
 import { fetcherCMS } from '@/lib/swr'
+import { cn } from '@/lib/utils'
 import BlogListContent from '@/modules/blog-list-page/components/BlogListContent'
 import BlogListSkeleton from '@/modules/blog-list-page/components/BlogListSkeleton'
 import FilterPopup from '@/modules/blog-list-page/components/FilterPopup'
@@ -276,11 +277,11 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
           lastItem={{ label: t('breadcrumbBlog') }}
           classNameContainer='xsm:hidden pt-[2.34375rem]'
         />
-        <h1 className='xsm:px-[0.83333rem] font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 mb-[0.41667rem] pt-[3.125rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rbga(9,9,9,0.8)]'>
+        <h1 className='xsm:px-[0.83333rem] font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 text-primary/80 mb-[0.41667rem] pt-[3.125rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem]'>
           {t('title')}
         </h1>
       </div>
-      <div className='xsm:pt-[1.25rem] xsm:pb-[0.83rem] sticky top-0 z-100 w-full bg-white py-2.5'>
+      <div className='xsm:pt-[1.25rem] xsm:pb-[0.83rem] sticky top-0 z-100 w-full bg-white py-[1.25rem]'>
         <div className='xsm:max-w-full xsm:flex-col mx-auto flex max-w-[75rem] items-center justify-between'>
           <div
             className='xsm:w-full xsm:order-2 xsm:px-[0.83333rem] xsm:overflow-x-auto xsm:space-x-[0.3125rem] flex items-center space-x-[0.72917rem]'
@@ -300,16 +301,18 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                   })
                 }
               }}
-              className={`flex-center xsm:h-[1.92708rem] xsm:px-[0.83333rem] xsm:border xsm:border-[rgba(9,9,9,0.08)] h-[2.5rem] rounded-[5.20833rem] px-[1.14583rem] ${
+              className={cn(
+                'flex-center xsm:h-[1.92708rem] xsm:px-[0.83333rem] xsm:border xsm:border-[rgba(9,9,9,0.08)] h-[2.5rem] rounded-[5.20833rem] px-[1.14583rem]',
                 !selectedCategory
-                  ? 'bg-gr-2 xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
-                  : 'border border-[rgba(9,9,9,0.08)] bg-white'
-              }`}
+                  ? 'xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)]'
+                  : 'border border-[rgba(9,9,9,0.08)] bg-white',
+              )}
             >
               <span
-                className={`font-open-sans xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] text-[0.72917rem] leading-[150%] whitespace-nowrap ${
-                  !selectedCategory ? 'text-white' : 'text-[#090909]'
-                }`}
+                className={cn(
+                  'font-open-sans xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] text-[0.72917rem] leading-[150%] whitespace-nowrap',
+                  !selectedCategory ? 'text-white' : 'text-[#090909]',
+                )}
               >
                 {t('tabAll')}
               </span>
@@ -356,13 +359,13 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
             />
           </div>
           <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
-            <div className='xsm:w-auto xsm:grow relative w-[13.61458rem] overflow-hidden'>
+            <div className='xsm:w-auto xsm:grow relative w-[16.61458rem] overflow-hidden'>
               <input
                 type='text'
                 placeholder={t('placeholderSearch')}
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.83333rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
+                className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:px-[0.83333rem] placeholder:text-primary/60 text-primary/80 h-[2.5rem] w-full rounded-[5.20833rem] border-none bg-[#F0F0F0] px-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal focus:ring-0'
               />
               <div className='xsm:right-[0.83333rem] absolute top-1/2 right-[1.14583rem] -translate-y-1/2'>
                 <ICSearch className='size-[0.83333rem]' />
