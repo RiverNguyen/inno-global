@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -78,6 +78,8 @@ export default function FormContact({ locale }: { locale: string }) {
     },
     mode: 'onBlur',
   })
+
+  const fieldValue = useWatch({ control: form.control, name: 'field', defaultValue: '' })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -185,12 +187,9 @@ export default function FormContact({ locale }: { locale: string }) {
                   type='button'
                   className={cn(inputClassName, 'flex w-full items-center justify-between text-left')}
                 >
-                  {(() => {
-                    const fieldValue = form.watch('field')
-                    return fieldValue
-                      ? fieldOptions.find((o) => o.value === fieldValue)?.label
-                      : translateContactForm('placeholderField')
-                  })()}
+                  {fieldValue
+                    ? fieldOptions.find((o) => o.value === fieldValue)?.label
+                    : translateContactForm('placeholderField')}
                 </button>
               </DrawerTrigger>
 
@@ -214,7 +213,7 @@ export default function FormContact({ locale }: { locale: string }) {
 
                 <div className='space-y-[0.52083rem] p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem]'>
                   {fieldOptions.map((option) => {
-                    const isSelected = form.watch('field') === option.value
+                    const isSelected = fieldValue === option.value
 
                     return (
                       <button
@@ -238,7 +237,7 @@ export default function FormContact({ locale }: { locale: string }) {
             </Drawer>
           ) : (
             <Select
-              value={form.watch('field')}
+              value={fieldValue}
               onValueChange={(value) => form.setValue('field', value, { shouldValidate: true })}
             >
               <SelectTrigger

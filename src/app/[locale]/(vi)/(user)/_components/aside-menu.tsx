@@ -65,10 +65,32 @@ const ICChangePassword = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 const ICLogout = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" {...props}>
-    <path d="M14.3857 7.76855C14.4646 7.68973 14.6007 7.68996 14.6797 7.76855L16.8135 9.90234C16.8923 9.98131 16.8924 10.1174 16.8135 10.1963L14.6797 12.3301C14.6371 12.3725 14.5868 12.3906 14.5332 12.3906C14.4795 12.3906 14.4285 12.3728 14.3857 12.3301C14.3068 12.2511 14.3068 12.1141 14.3857 12.0352L16.0781 10.3438L16.3721 10.0488L14.3857 8.0625C14.3072 7.9835 14.3069 7.84738 14.3857 7.76855Z" fill="currentColor" stroke="currentColor" strokeWidth="0.833333" />
-    <path d="M8.13281 9.84277H16.6074C16.719 9.84277 16.8164 9.93923 16.8164 10.0508C16.8164 10.1623 16.719 10.2588 16.6074 10.2588H8.13281C8.02126 10.2588 7.9248 10.1623 7.9248 10.0508C7.9248 9.93923 8.02126 9.84277 8.13281 9.84277Z" fill="currentColor" stroke="currentColor" strokeWidth="0.833333" />
-    <path d="M9.7998 3.12598C9.91122 3.12617 10.0078 3.22255 10.0078 3.33398C10.0078 3.44542 9.91122 3.5418 9.7998 3.54199C7.92115 3.54199 6.30064 4.19936 5.14941 5.35059C3.99819 6.50181 3.34082 8.12232 3.34082 10.001C3.3409 11.8794 3.99836 13.4992 5.14941 14.6504C6.30064 15.8016 7.92115 16.459 9.7998 16.459C9.91111 16.4592 10.0076 16.5557 10.0078 16.667C10.0078 16.7784 9.91122 16.8758 9.7998 16.876C7.75363 16.876 6.03984 16.1619 4.83887 14.9609C3.63806 13.76 2.92488 12.0469 2.9248 10.001C2.9248 7.9548 3.6379 6.24101 4.83887 5.04004C6.03984 3.83907 7.75363 3.12598 9.7998 3.12598Z" fill="#090909" stroke="currentColor" strokeWidth="0.833333" />
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='20'
+    height='20'
+    viewBox='0 0 20 20'
+    fill='none'
+    {...props}
+  >
+    <path
+      d='M14.3857 7.76855C14.4646 7.68973 14.6007 7.68996 14.6797 7.76855L16.8135 9.90234C16.8923 9.98131 16.8924 10.1174 16.8135 10.1963L14.6797 12.3301C14.6371 12.3725 14.5868 12.3906 14.5332 12.3906C14.4795 12.3906 14.4285 12.3728 14.3857 12.3301C14.3068 12.2511 14.3068 12.1141 14.3857 12.0352L16.0781 10.3438L16.3721 10.0488L14.3857 8.0625C14.3072 7.9835 14.3069 7.84738 14.3857 7.76855Z'
+      fill='currentColor'
+      stroke='currentColor'
+      strokeWidth='0.833333'
+    />
+    <path
+      d='M8.13281 9.84277H16.6074C16.719 9.84277 16.8164 9.93923 16.8164 10.0508C16.8164 10.1623 16.719 10.2588 16.6074 10.2588H8.13281C8.02126 10.2588 7.9248 10.1623 7.9248 10.0508C7.9248 9.93923 8.02126 9.84277 8.13281 9.84277Z'
+      fill='currentColor'
+      stroke='currentColor'
+      strokeWidth='0.833333'
+    />
+    <path
+      d='M9.7998 3.12598C9.91122 3.12617 10.0078 3.22255 10.0078 3.33398C10.0078 3.44542 9.91122 3.5418 9.7998 3.54199C7.92115 3.54199 6.30064 4.19936 5.14941 5.35059C3.99819 6.50181 3.34082 8.12232 3.34082 10.001C3.3409 11.8794 3.99836 13.4992 5.14941 14.6504C6.30064 15.8016 7.92115 16.459 9.7998 16.459C9.91111 16.4592 10.0076 16.5557 10.0078 16.667C10.0078 16.7784 9.91122 16.8758 9.7998 16.876C7.75363 16.876 6.03984 16.1619 4.83887 14.9609C3.63806 13.76 2.92488 12.0469 2.9248 10.001C2.9248 7.9548 3.6379 6.24101 4.83887 5.04004C6.03984 3.83907 7.75363 3.12598 9.7998 3.12598Z'
+      fill='#090909'
+      stroke='currentColor'
+      strokeWidth='0.833333'
+    />
   </svg>
 )
 
@@ -83,7 +105,7 @@ export default function AsideMenu() {
   const t = useTranslations('UserPage')
 
   return (
-    <div className='p-[0.42rem] bg-white xsm:rounded-[0.625rem]'>
+    <div className='xsm:rounded-[0.625rem] bg-white p-[0.42rem]'>
       {menuItems.map((item) => {
         const isActive = pathname?.endsWith(item.href)
 
@@ -91,17 +113,17 @@ export default function AsideMenu() {
           <Link
             key={item.href}
             href={item.href}
-            className={`p-[0.83rem] flex items-center space-x-[0.42rem] ${isActive ? 'bg-[#FFEBEB]' : 'group'}`}
+            className={`flex items-center space-x-[0.42rem] p-[0.83rem] ${isActive ? 'bg-[#FFEBEB]' : 'group'}`}
           >
             <span
               className={
-                isActive ? 'text-[#D32F2F]' : 'group-hover:text-[#D32F2F] text-[#090909] transition-colors duration-300'
+                isActive ? 'text-[#D32F2F]' : 'text-[#090909] transition-colors duration-300 group-hover:text-[#D32F2F]'
               }
             >
               {item.icon}
             </span>
             <p
-              className={`text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] ${isActive ? 'text-[#D32F2F]' : 'group-hover:text-[#D32F2F] text-[#090909] transition-colors duration-300'}`}
+              className={`text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] ${isActive ? 'text-[#D32F2F]' : 'text-[#090909] transition-colors duration-300 group-hover:text-[#D32F2F]'}`}
             >
               {t(item.labelKey)}
             </p>

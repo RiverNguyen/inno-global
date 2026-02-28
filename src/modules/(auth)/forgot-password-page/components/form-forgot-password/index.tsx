@@ -42,20 +42,20 @@ export default function FormForgotPassword() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-[1.0375rem] xsm:space-y-[0.83rem]'
+        className='xsm:space-y-[0.83rem] space-y-[1.0375rem]'
       >
-        <Field className='gap-0 space-y-[0.3125rem] w-[36.0625rem] xsm:w-full'>
+        <Field className='xsm:w-full w-[36.0625rem] gap-0 space-y-[0.3125rem]'>
           <FieldLabel
-            className='text-[#090909] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] xsm:text-[0.72rem] xsm:tracking-[-0.01458rem]'
+            className='xsm:text-[0.72rem] xsm:tracking-[-0.01458rem] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]'
             htmlFor='email'
           >
-            Email<span className='text-[#D32F2F] translate-x-[-0.15rem] xsm:translate-x-[-0.3rem]'>*</span>
+            Email<span className='xsm:translate-x-[-0.3rem] translate-x-[-0.15rem] text-[#D32F2F]'>*</span>
           </FieldLabel>
           <Input
             id='email'
             disabled={form.formState.isSubmitting}
             placeholder={t('placeholderEmail')}
-            className='xsm:h-[2.083rem] xsm:p-[0.72rem_0.625rem] xsm:rounded-[0.41rem] xsm:bg-[#f0f0f0] xsm:placeholder:text-[0.625rem] h-[2.91667rem] p-[0.83rem_0.625rem] rounded-[0.4167rem] bg-white shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 border-[#090909]/8 placeholder:text-[#090909]/40 text-[0.83rem] leading-[1.5] tracking-[-0.0167rem]'
+            className='xsm:h-[2.083rem] xsm:p-[0.72rem_0.625rem] xsm:rounded-[0.41rem] xsm:bg-[#f0f0f0] xsm:placeholder:text-[0.625rem] h-[2.91667rem] rounded-[0.4167rem] border-[#090909]/8 bg-white p-[0.83rem_0.625rem] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] shadow-none placeholder:text-[#090909]/40 focus-visible:ring-0 focus-visible:ring-offset-0'
             {...form.register('email')}
           />
 
@@ -63,12 +63,12 @@ export default function FormForgotPassword() {
         </Field>
         <ButtonRed
           type='submit'
-          className={`h-[2.6rem] xsm:mt-[0.63rem] text-[0.73rem] leading-[1.5] xsm:h-[2.083rem] w-full ${form.formState.isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`xsm:mt-[0.63rem] xsm:h-[2.083rem] h-[2.6rem] w-full text-[0.73rem] leading-[1.5] ${form.formState.isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
           disabled={form.formState.isSubmitting}
         >
           {form.formState.isSubmitting ? (
             <>
-              <Loader2 className='size-[1.25rem] animate-spin mr-2' /> {t('loading')}
+              <Loader2 className='mr-2 size-[1.25rem] animate-spin' /> {t('loading')}
             </>
           ) : (
             t('submit')

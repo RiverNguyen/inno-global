@@ -4,7 +4,7 @@ import FormVerifyOTP from '@/modules/(auth)/dashboard-change-password-page/compo
 const DashboardChangePasswordModule = async () => {
   const session = await auth()
   return (
-    <div className="p-[1.46rem] bg-white flex-1">
+    <div className='flex-1 bg-white p-[1.46rem]'>
       {/* <FormChangePassword /> */}
       <FormVerifyOTP email={session?.user?.email} />
     </div>

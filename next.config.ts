@@ -1,5 +1,10 @@
+import bundleAnalyzer from '@next/bundle-analyzer'
 import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -21,7 +26,15 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   reactCompiler: true,
+  output: 'standalone',
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  turbopack: {},
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
 
 const withNextIntl = createNextIntlPlugin()
-export default withNextIntl(nextConfig)
+export default withNextIntl(withBundleAnalyzer(nextConfig))

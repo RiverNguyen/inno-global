@@ -7,7 +7,7 @@ const Aside = async () => {
   const session = await auth()
 
   return (
-    <aside className='w-[13.85rem] space-y-[0.625rem] xsm:hidden'>
+    <aside className='xsm:hidden w-[13.85rem] space-y-[0.625rem]'>
       <AsideUserCard session={session} />
       <AsideMenu />
     </aside>

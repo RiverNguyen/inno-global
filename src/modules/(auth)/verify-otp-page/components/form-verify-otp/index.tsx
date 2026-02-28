@@ -144,7 +144,7 @@ export default function FormVerifyOTP({ email }: { email?: string }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-[1.0375rem] xsm:space-y-[1.25rem]'
+        className='xsm:space-y-[1.25rem] space-y-[1.0375rem]'
       >
         <input
           type='hidden'
@@ -152,25 +152,25 @@ export default function FormVerifyOTP({ email }: { email?: string }) {
         />
         <Field className='gap-0 space-y-[0.3125rem]'>
           <FieldLabel
-            className='text-[#090909] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] xsm:text-[0.72rem] xsm:tracking-[-0.01458rem]'
+            className='xsm:text-[0.72rem] xsm:tracking-[-0.01458rem] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]'
             htmlFor='otp'
           >
             {t('label')}
-            <span className='text-[#D32F2F] translate-x-[-0.15rem] xsm:translate-x-[-0.3rem]'>*</span>
+            <span className='xsm:translate-x-[-0.3rem] translate-x-[-0.15rem] text-[#D32F2F]'>*</span>
           </FieldLabel>
-          <div className='flex items-center space-x-[1.25rem] xsm:space-x-[0.625rem]'>
+          <div className='xsm:space-x-[0.625rem] flex items-center space-x-[1.25rem]'>
             <Input
               id='otp'
               disabled={form.formState.isSubmitting}
               placeholder={t('placeholderOTP')}
-              className='xsm:h-[2.083rem] xsm:p-[0.72rem_0.625rem] xsm:rounded-[0.41rem] xsm:bg-[#f0f0f0] xsm:placeholder:text-[0.625rem] h-[2.91667rem] p-[0.83rem_0.625rem] rounded-[0.4167rem] bg-white shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 border-[#090909]/8 placeholder:text-[#090909]/40 text-[0.83rem] leading-[1.5] tracking-[-0.0167rem]'
+              className='xsm:h-[2.083rem] xsm:p-[0.72rem_0.625rem] xsm:rounded-[0.41rem] xsm:bg-[#f0f0f0] xsm:placeholder:text-[0.625rem] h-[2.91667rem] rounded-[0.4167rem] border-[#090909]/8 bg-white p-[0.83rem_0.625rem] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] shadow-none placeholder:text-[#090909]/40 focus-visible:ring-0 focus-visible:ring-offset-0'
               {...form.register('otp')}
             />
             <button
               type='button'
               onClick={handleResendOTP}
               disabled={isResendDisabled}
-              className='xsm:h-[2.083rem] h-[2.91667rem] flex-center px-[1.15rem] rounded-[5.2rem] border border-[#090909]/60 text-[#090909]/60 text-[0.72rem] leading-[1.5] whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed'
+              className='xsm:h-[2.083rem] flex-center h-[2.91667rem] rounded-[5.2rem] border border-[#090909]/60 px-[1.15rem] text-[0.72rem] leading-[1.5] whitespace-nowrap text-[#090909]/60 disabled:cursor-not-allowed disabled:opacity-50'
             >
               {t('resendOTP')}
               {resendSecondsLeft > 0 ? ` (${resendSecondsLeft}s)` : ''}
@@ -181,12 +181,12 @@ export default function FormVerifyOTP({ email }: { email?: string }) {
         </Field>
         <ButtonRed
           type='submit'
-          className={`h-[2.6rem] xsm:mt-[0.63rem] text-[0.73rem] leading-[1.5] xsm:h-[2.083rem] w-full ${form.formState.isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`xsm:mt-[0.63rem] xsm:h-[2.083rem] h-[2.6rem] w-full text-[0.73rem] leading-[1.5] ${form.formState.isSubmitting ? 'cursor-not-allowed opacity-50' : ''}`}
           disabled={form.formState.isSubmitting}
         >
           {form.formState.isSubmitting ? (
             <>
-              <Loader2 className='size-[1.25rem] animate-spin mr-2' /> {t('loading')}
+              <Loader2 className='mr-2 size-[1.25rem] animate-spin' /> {t('loading')}
             </>
           ) : (
             t('submit')

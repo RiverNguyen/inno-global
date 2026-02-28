@@ -11,16 +11,16 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         }
         `}
       </style>
-      <section className='w-full h-[100vh] flex-center xsm:items-start relative xsm:pt-[6.51rem] xsm:px-[0.83rem]'>
+      <section className='flex-center xsm:items-start xsm:pt-[6.51rem] xsm:px-[0.83rem] relative h-[100vh] w-full'>
         <Image
           src='/login/bg.webp'
           alt='bg-login'
           fill
           sizes='100vw'
           preload
-          className='object-cover xsm:hidden'
+          className='xsm:hidden object-cover'
         />
-        <div className='relative z-[1] xsm:w-full'>{children}</div>
+        <div className='xsm:w-full relative z-[1]'>{children}</div>
       </section>
     </main>
   )

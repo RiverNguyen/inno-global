@@ -7,7 +7,7 @@ const PersonalPage = async () => {
   const session = await auth()
 
   return (
-    <div className="pt-[3.96rem] px-[0.83rem] space-y-[0.83rem]">
+    <div className='space-y-[0.83rem] px-[0.83rem] pt-[3.96rem]'>
       <AsideUserCard session={session} />
       <AsideMenu />
     </div>
