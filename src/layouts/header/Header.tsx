@@ -3,6 +3,7 @@
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
+import type { Session } from 'next-auth'
 import { useRouter } from 'nextjs-toploader/app'
 import { Fragment, useEffect, useRef, useState } from 'react'
 
@@ -12,6 +13,8 @@ import ICClose from '@/components/icons/ICClose'
 import ICMenu from '@/components/icons/ICMenu'
 import ICSearchHead from '@/components/icons/ICSearchHead'
 import ICUser from '@/components/icons/ICUser'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Skeleton } from '@/components/ui/skeleton'
 import ROUTES from '@/configs/routes'
 import { useScrollHeader } from '@/hooks/useScrollHeader'
 import { Link } from '@/i18n/navigation'
@@ -24,7 +27,13 @@ const languages = [
   { key: 'en' as const, label: 'Tiếng Anh' },
 ]
 
-export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu[] } }) {
+export default function Header({
+  data,
+  session,
+}: {
+  data: { logo: IAcfImage; menus: IMenu[] }
+  session: Session | null
+}) {
   const { logo, menus } = data
   const [openSearch, setOpenSearch] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
@@ -275,10 +284,14 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
             >
               {menus[menus.length - 1].link.title}
             </Link>
-            <ButtonRed className='xsm:hidden'>
-              <span>Đăng nhập</span>
-              <ICUser className='size-[0.83333rem] text-white' />
-            </ButtonRed>
+            {!session?.user && (
+              <Link href={locale === 'vi' ? '/dang-nhap' : '/login'}>
+                <ButtonRed className='xsm:hidden'>
+                  <span>{locale === 'vi' ? 'Đăng nhập' : 'Login'}</span>
+                  <ICUser className='size-[0.83333rem] text-white' />
+                </ButtonRed>
+              </Link>
+            )}
             <div className='flex-y-center pc-body-16-r text-text-100 xsm:hidden space-x-[0.42rem] uppercase'>
               {['vi', 'en'].map((lang, index) => (
                 <Fragment key={lang}>
@@ -293,6 +306,31 @@ export default function Header({ data }: { data: { logo: IAcfImage; menus: IMenu
                 </Fragment>
               ))}
             </div>
+
+            {session?.user && (
+              <Link
+                href={locale === 'vi' ? '/thong-tin-tai-khoan' : '/dashboard'}
+                className='flex-y-center space-x-[0.52rem]'
+              >
+                <div className='relative size-[2.5rem] overflow-hidden rounded-full border border-[#D32F2F]'>
+                  <Avatar className='size-full'>
+                    <AvatarImage
+                      src={session?.user?.avatar_512 || ''}
+                      className='object-cover'
+                    />
+                    <AvatarFallback>
+                      <Skeleton className='size-full rounded-full' />
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+                <div className=''>
+                  <p className='text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]'>
+                    {session?.user?.display_name || '---'}
+                  </p>
+                  <p className='text-[0.72917rem] leading-[1.5] text-[#090909]/40'>ID: {session?.user?.user_code}</p>
+                </div>
+              </Link>
+            )}
           </div>
           {/* mobile menu */}
           <form
