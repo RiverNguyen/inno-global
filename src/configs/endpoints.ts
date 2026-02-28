@@ -88,6 +88,8 @@ const ENDPOINTS = {
     cultureEn: 371,
     privacyPolicyVi: 865,
     privacyPolicyEn: 867,
+    termsOfUseVi: 884,
+    termsOfUseEn: 886,
   },
   aboutUs: {
     rank_math: {
@@ -169,6 +171,12 @@ const ENDPOINTS = {
     rank_math: {
       en: '/privacy-policy',
       vi: '/chinh-sach-bao-mat',
+    },
+  },
+  termsOfUse: {
+    rank_math: {
+      en: '/terms-of-use',
+      vi: '/dieu-khoan-su-dung',
     },
   },
 }

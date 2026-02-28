@@ -164,5 +164,8 @@
   },
   "PrivacyPolicyPage": {
     "effectiveDate": "Effective from"
+  },
+  "TermsOfUsePage": {
+    "effectiveDate": "Effective from"
   }
 }
