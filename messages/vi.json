@@ -149,6 +149,20 @@
     "seeLess": "Thu gọn",
     "seeMore": "Xem thêm"
   },
+  "ServiceListPage": {
+    "noServices": "Không tìm thấy dịch vụ"
+  },
+  "SearchPage": {
+    "result": "Kết quả tìm kiếm",
+    "project": "Dự án",
+    "service": "Dịch vụ",
+    "blog": "Tin tức",
+    "training": "Đào tạo",
+    "relatedProject": "Dự án liên quan",
+    "relatedService": "Dịch vụ liên quan",
+    "relatedBlog": "Tin tức liên quan",
+    "relatedTraining": "Tin tức đào tạo liên quan"
+  },
   "Breadcrumb": {
     "homePage": "Trang chủ",
     "servicePage": "Dịch vụ",
@@ -160,7 +174,8 @@
     "businessCulturePage": "Văn hóa doanh nghiệp",
     "organizationChartPage": "Sơ đồ tổ chức",
     "trainingPage": "Đào tạo",
-    "detailTrainingPage": "Chi tiết đào tạo"
+    "detailTrainingPage": "Chi tiết đào tạo",
+    "searchPage": "Tìm kiếm"
   },
   "LoginPage": {
     "title": "Đăng nhập",
@@ -249,5 +264,11 @@
     "resendOTP": "Gửi lại mã OTP",
     "resendOTPSuccess": "Mã OTP đã được gửi đến email của bạn",
     "resendOTPError": "Gửi lại mã OTP thất bại"
+  },
+  "PrivacyPolicyPage": {
+    "effectiveDate": "Hiệu lực từ ngày"
+  },
+  "TermsOfUsePage": {
+    "effectiveDate": "Hiệu lực từ ngày"
   }
 }

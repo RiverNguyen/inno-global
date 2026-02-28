@@ -32,7 +32,7 @@ export default async function TrainingPage({ params }: PageProps) {
   ])
 
   return (
-    <main className='relative pt-[3.65rem] xsm:pt-[2.92rem]'>
+    <main className='xsm:pt-[2.92rem] relative pt-[3.65rem]'>
       <TrainingListPage
         acfData={page?.acf}
         latestTrainingRes={latestTrainingRes}

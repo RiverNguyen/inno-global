@@ -65,10 +65,10 @@ const ProjectDetail = ({ res, relatedProjects }: { res: IProjectDetail; relatedP
     <>
       <div
         id='tab-bar'
-        className='sticky top-0 sm:hidden w-full shadow-[0_4px_30px_0_rgba(0,0,0,0.08)] z-[50]'
+        className='sticky top-0 z-[50] w-full shadow-[0_4px_30px_0_rgba(0,0,0,0.08)] sm:hidden'
       >
         <div
-          className='flex items-center overflow-x-auto space-x-[0.20833rem] bg-white px-[0.83333rem]'
+          className='flex items-center space-x-[0.20833rem] overflow-x-auto bg-white px-[0.83333rem]'
           style={{
             scrollbarWidth: 'none',
           }}
@@ -77,7 +77,7 @@ const ProjectDetail = ({ res, relatedProjects }: { res: IProjectDetail; relatedP
             type='button'
             onClick={() => handleScrollTo('info')}
             className={cn(
-              'font-open-sans text-[0.72917rem] leading-[150%] text-[#090909] text-edge-cap text-trim-both p-[0.8917rem_0.52083rem_0.625rem_0.52083rem] flex items-center justify-center border-b-2 border-b-transparent cursor-pointer transition ease-out duration-300',
+              'font-open-sans text-edge-cap text-trim-both flex cursor-pointer items-center justify-center border-b-2 border-b-transparent p-[0.8917rem_0.52083rem_0.625rem_0.52083rem] text-[0.72917rem] leading-[150%] text-[#090909] transition duration-300 ease-out',
               currentTab === 'info' && 'border-b-[#D32F2F]',
             )}
           >
@@ -87,7 +87,7 @@ const ProjectDetail = ({ res, relatedProjects }: { res: IProjectDetail; relatedP
             type='button'
             onClick={() => handleScrollTo('related')}
             className={cn(
-              'font-open-sans text-[0.72917rem] leading-[150%] text-[#090909] text-edge-cap text-trim-both p-[0.8917rem_0.52083rem_0.625rem_0.52083rem] flex items-center justify-center border-b-2 border-b-transparent cursor-pointer transition ease-out duration-300',
+              'font-open-sans text-edge-cap text-trim-both flex cursor-pointer items-center justify-center border-b-2 border-b-transparent p-[0.8917rem_0.52083rem_0.625rem_0.52083rem] text-[0.72917rem] leading-[150%] text-[#090909] transition duration-300 ease-out',
               currentTab === 'related' && 'border-b-[#D32F2F]',
             )}
           >

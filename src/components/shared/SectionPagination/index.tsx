@@ -27,7 +27,7 @@ export default function SectionPagination({
         {prev && prev.href !== undefined && (
           <Link
             href={prev.href}
-            className='flex cursor-pointer items-center gap-[0.3125rem] xsm:max-w-[5.5rem]'
+            className='xsm:max-w-[5.5rem] flex cursor-pointer items-center gap-[0.3125rem]'
           >
             <ICArrowLeft className='xsm:size-[0.625rem] size-[0.83333rem] shrink-0' />
             <span className='font-open-sans xsm:text-[0.625rem] text-[0.83333rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
@@ -48,12 +48,12 @@ export default function SectionPagination({
         {next && next.href !== undefined && (
           <Link
             href={next.href}
-            className='flex cursor-pointer items-center gap-[0.375rem] xsm:max-w-[5.5rem]'
+            className='xsm:max-w-[5.5rem] flex cursor-pointer items-center gap-[0.375rem]'
           >
             <span className='font-open-sans xsm:text-[0.625rem] text-[0.83333rem] leading-[150%] text-[#D32F2F] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
               {next.label}
             </span>
-            <ICArrowLeft className='xsm:size-[0.625rem] size-[0.83333rem] rotate-180 shrink-0' />
+            <ICArrowLeft className='xsm:size-[0.625rem] size-[0.83333rem] shrink-0 rotate-180' />
           </Link>
         )}
       </div>

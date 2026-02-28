@@ -25,6 +25,8 @@ const ENDPOINTS = {
     getAll: ({ locale, limit }: { locale: string; limit: number }) =>
       `api/v1/get-all/post?lang=${locale}&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
     relatedBlogs: 'api/v1/get-all/post',
+    search: ({ locale, limit, q }: { locale: string; limit: number; q: string }) =>
+      `api/v1/get-all/post?lang=${locale}&s=${q}&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
     getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=category`,
     rank_math: {
@@ -44,6 +46,8 @@ const ENDPOINTS = {
     getServices: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=service`,
     getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    search: ({ locale, q, limit }: { locale: string; q: string; limit: number }) =>
+      `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&s=${q}&orderby=date&order=DESC&limit=${limit}&paged=1`,
     rank_math: {
       en: '/en/projects',
       vi: '/danh-sach-du-an',
@@ -86,6 +90,10 @@ const ENDPOINTS = {
     organizationChartEn: 323,
     cultureVi: 368,
     cultureEn: 371,
+    privacyPolicyVi: 865,
+    privacyPolicyEn: 867,
+    termsOfUseVi: 884,
+    termsOfUseEn: 886,
   },
   aboutUs: {
     rank_math: {
@@ -97,6 +105,8 @@ const ENDPOINTS = {
     getAll: (locale: string) =>
       `api/v1/get-all-taxonomy/service?lang=${locale}&fields=thumbnail&orderby=date&order=DESC&limit=12&paged=1`,
     detail: (slug: string) => `api/v1/taxonomy/${slug}?acf=true`,
+    search: ({ locale, q, limit }: { locale: string; q: string; limit: number }) =>
+      `api/v1/get-all-taxonomy/service?lang=${locale}&s=${q}&fields=thumbnail&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
     relatedProjects: ({ slug, limit, lang, paged }: FetchRelatedProjectsProps) =>
       `api/v1/get-all/project?lang=${lang}&acf=true&tax=service&service=${slug}&limit=${limit}&paged=${paged}&orderby=date&order=DESC`,
     relatedBlogs: ({ slug, limit, lang, paged }: FetchRelatedBlogsProps) =>
@@ -162,10 +172,11 @@ const ENDPOINTS = {
   },
   training: {
     getRelated: 'api/v1/get-all/training',
+    search: ({ locale, limit, q }: { locale: string; limit: number; q: string }) =>
+      `api/v1/get-all/training?lang=${locale}&s=${q}&tax=format,training_category,lecturer,participant,starting_year&orderby=date&order=DESC&limit=${limit}&paged=1`,
     getAll: ({ locale, limit = 12 }: { locale: string; limit?: number }) =>
       `api/v1/get-all/training?lang=${locale}&tax=format,training_category,lecturer,participant,starting_year&orderby=date&order=DESC&limit=${limit}&paged=1`,
     getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=training_category`,
-
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
     getPage: {
       vi: 'wp/v2/pages/740?_fields=acf&acf_format=standard',
@@ -178,6 +189,18 @@ const ENDPOINTS = {
     rank_math_detail: {
       en: (slug: string) => `/en/training/${slug}`,
       vi: (slug: string) => `/training/${slug}`,
+    },
+  },
+  privacyPolicy: {
+    rank_math: {
+      en: '/privacy-policy',
+      vi: '/chinh-sach-bao-mat',
+    },
+  },
+  termsOfUse: {
+    rank_math: {
+      en: '/terms-of-use',
+      vi: '/dieu-khoan-su-dung',
     },
   },
 }

@@ -105,22 +105,22 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
   return (
     <div
       ref={containerRef}
-      className='flex min-h-screen xsm:hidden'
+      className='xsm:hidden flex min-h-screen'
     >
       {/* Left Menu */}
-      <div className='w-[35.3125rem] pt-[5.7rem] pr-[2.92rem] pl-[7.29rem] pb-[5.18rem] space-y-[2.24rem] z-20 relative bg-white'>
+      <div className='relative z-20 w-[35.3125rem] space-y-[2.24rem] bg-white pt-[5.7rem] pr-[2.92rem] pb-[5.18rem] pl-[7.29rem]'>
         <h3 className='pc-h3-40-s text-text-100'>{title}</h3>
         <div
           data-snap-ignore
           onWheelCapture={handleServiceListWheelCapture}
-          className='grid grid-cols-1 sm:max-h-[80vh] sm:overflow-y-auto sm:overscroll-contain sm:pb-[10vh] sm:pr-[0.25rem] sm:[scrollbar-width:thin] sm:[scrollbar-color:rgba(211,47,47,0.45)_transparent] sm:[&::-webkit-scrollbar]:w-[0.35rem] sm:[&::-webkit-scrollbar-track]:bg-transparent sm:[&::-webkit-scrollbar-thumb]:rounded-full sm:[&::-webkit-scrollbar-thumb]:bg-primary-red-100/40 sm:[&::-webkit-scrollbar-thumb:hover]:bg-primary-red-100/65'
+          className='sm:[&::-webkit-scrollbar-thumb]:bg-primary-red-100/40 sm:[&::-webkit-scrollbar-thumb:hover]:bg-primary-red-100/65 grid grid-cols-1 sm:max-h-[80vh] sm:overflow-y-auto sm:overscroll-contain sm:pr-[0.25rem] sm:pb-[10vh] sm:[scrollbar-color:rgba(211,47,47,0.45)_transparent] sm:[scrollbar-width:thin] sm:[&::-webkit-scrollbar]:w-[0.35rem] sm:[&::-webkit-scrollbar-thumb]:rounded-full sm:[&::-webkit-scrollbar-track]:bg-transparent'
         >
           {services.map((service, index) => (
             <p
               key={index}
               onClick={() => handleServiceClick(index)}
               className={cn(
-                `pc-body-20-r text-[1.04167rem] cursor-pointer px-[0.9375rem] py-[1.25rem] border-b border-b-en-60/10 transition-all duration-300 ${index === 0 ? 'border-t border-t-en-60/10' : ''}`,
+                `pc-body-20-r border-b-en-60/10 cursor-pointer border-b px-[0.9375rem] py-[1.25rem] text-[1.04167rem] transition-all duration-300 ${index === 0 ? 'border-t-en-60/10 border-t' : ''}`,
                 activeService === index
                   ? 'text-primary-red-100 bg-[linear-gradient(90deg,rgba(211,47,47,0.04)_87.82%,rgba(211,47,47,0.00)_100%)]'
                   : 'text-en-60 hover:text-primary-red-100 hover:bg-[linear-gradient(90deg,rgba(211,47,47,0.04)_87.82%,rgba(211,47,47,0.00)_100%)]',
@@ -133,7 +133,7 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
       </div>
 
       {/* Right Content */}
-      <div className='flex-1 overflow-hidden h-screen'>
+      <div className='h-screen flex-1 overflow-hidden'>
         <Swiper
           direction='vertical'
           modules={[Parallax]}
@@ -143,24 +143,24 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
           onSwiper={setSwiperInstance}
           onSlideChange={(swiper) => setActiveService(swiper.activeIndex)}
           speed={800}
-          className='w-full h-full'
+          className='h-full w-full'
           allowTouchMove={true}
         >
           {services.map((service, index) => (
             <SwiperSlide
               key={index}
-              className='relative w-full h-full overflow-hidden'
+              className='relative h-full w-full overflow-hidden'
             >
-              <div className='absolute inset-0 w-full h-[120%] -top-[10%] service-parallax-image-wrapper'>
+              <div className='service-parallax-image-wrapper absolute inset-0 -top-[10%] h-[120%] w-full'>
                 <div
-                  className='w-full h-full relative'
+                  className='relative h-full w-full'
                   data-swiper-parallax-y='-1%'
                 >
                   <Image
                     src={service.image || '/default.webp'}
                     alt={service.title}
                     fill
-                    className='object-cover w-full h-full'
+                    className='h-full w-full object-cover'
                     priority={index === 0}
                   />
                   {/* Dark Overlay */}
@@ -169,7 +169,7 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
               </div>
 
               {/* Text Content Wrapper for GSAP Parallax */}
-              <div className='absolute top-[5.68rem] left-[5.21rem] text-white z-10 service-parallax-text-wrapper pointer-events-none'>
+              <div className='service-parallax-text-wrapper pointer-events-none absolute top-[5.68rem] left-[5.21rem] z-10 text-white'>
                 {/* Text Inner for Swiper Parallax - pointer-events-auto to restore intersection */}
                 <div
                   className='pointer-events-auto'
@@ -177,11 +177,11 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
                   data-swiper-parallax-opacity='0'
                   data-swiper-parallax-duration='600'
                 >
-                  <h2 className='pc-34-34-m text-white mb-[0.94rem]'>{service.title}</h2>
-                  <p className='pc-body-20-r text-[1.04167rem] text-white mb-[2rem] max-w-[52.1875rem]'>
+                  <h2 className='pc-34-34-m mb-[0.94rem] text-white'>{service.title}</h2>
+                  <p className='pc-body-20-r mb-[2rem] max-w-[52.1875rem] text-[1.04167rem] text-white'>
                     {service.description}
                   </p>
-                  <div className='flex items-center cursor-pointer group w-fit space-x-[0.28rem] ml-auto'>
+                  <div className='group ml-auto flex w-fit cursor-pointer items-center space-x-[0.28rem]'>
                     <Link
                       href={service.href}
                       className='pc-button-16-r'

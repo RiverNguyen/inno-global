@@ -1,5 +1,14 @@
 import { ProjectFeaturedImage } from './project.interface'
 
+export interface ITrainingRes {
+  success: boolean
+  total: number
+  totalPages: number
+  page: number
+  limit: number
+  data: ITraining[]
+}
+
 export interface ITraining {
   id: number
   slug: string

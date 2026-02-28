@@ -119,18 +119,18 @@ export default function Footer({ data }: IFooterProps) {
 
   return (
     <footer
-      className={`${footerBgClass} p-[2.08333rem_0_1.66667rem_0]`}
+      className={`${footerBgClass} xsm:p-[2.5rem_0_0.62rem] p-[2.08333rem_0_1.66667rem_0]`}
       id='footer'
     >
-      <div className='max-w-[75rem] mx-auto flex xsm:flex-col xsm:max-w-full xsm:px-[0.83333rem]'>
-        <div className='max-w-[17.7rem] xsm:max-w-full xsm:pb-[0.83rem]'>
+      <div className='xsm:flex-col xsm:max-w-full xsm:px-[0.83333rem] mx-auto flex max-w-[75rem]'>
+        <div className='xsm:max-w-full xsm:pb-[0.83rem] max-w-[17.7rem]'>
           <Link href='/'>
             <Image
               src={logo?.url || ''}
               alt={logo?.alt || ''}
               width={160}
               height={74.5}
-              className='w-[8.33333rem] xsm:w-[4.89583rem] h-auto'
+              className='xsm:w-[4.89583rem] h-auto w-[8.33333rem]'
             />
           </Link>
           <div className='mt-[1rem] space-y-[0.73rem]'>
@@ -149,14 +149,14 @@ export default function Footer({ data }: IFooterProps) {
                       className='size-[0.83333rem] object-contain'
                     />
                     {item?.label ? (
-                      <span className='text-[#090909] text-[0.625rem] font-semibold leading-[1.4] tracking-[-0.00625rem]'>
+                      <span className='text-[0.625rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'>
                         {item?.label}
                       </span>
                     ) : (
                       <Link
                         href={item?.link?.url || ''}
                         target={item?.link?.target || '_self'}
-                        className='text-[#090909] text-[0.625rem] leading-[1.4] tracking-[-0.00625rem]'
+                        className='text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]'
                       >
                         {item?.link?.title}
                       </Link>
@@ -166,7 +166,7 @@ export default function Footer({ data }: IFooterProps) {
                     <Link
                       href={item?.link?.url || ''}
                       target={item?.link?.target || '_self'}
-                      className='text-[#090909] text-[0.625rem] leading-[1.4] tracking-[-0.00625rem]'
+                      className='text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]'
                     >
                       {item?.link?.title}
                     </Link>
@@ -175,30 +175,30 @@ export default function Footer({ data }: IFooterProps) {
               ))}
           </div>
         </div>
-        <hr className='sm:hidden border-t border-[#090909]/10 my-[0.83rem]' />
-        <div className='ml-auto w-[31.09375rem] flex flex-col justify-between xsm:w-full'>
-          <div className='flex justify-between xsm:flex-col'>
+        <hr className='my-[0.83rem] border-t border-[#090909]/10 sm:hidden' />
+        <div className='xsm:w-full ml-auto flex w-[31.09375rem] flex-col justify-between'>
+          <div className='xsm:flex-col flex justify-between'>
             <div className='space-y-[0.52rem]'>
               <p
                 onClick={(e: React.MouseEvent<HTMLParagraphElement>) => handleAccordionClick(e, 0)}
-                className='text-[#090909] text-[0.83333rem] font-semibold leading-[1.4] tracking-[-0.00625rem] mb-[0.71rem] xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem]'
+                className='xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem] mb-[0.71rem] text-[0.83333rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'
               >
                 {menu_column_1?.title}{' '}
                 <ChevronDown
                   ref={menuColumn1SvgRef}
-                  className='size-[0.83333rem] sm:hidden shrink-0 pointer-events-none text-[#D32F2F]'
+                  className='pointer-events-none size-[0.83333rem] shrink-0 text-[#D32F2F] sm:hidden'
                 />
               </p>
               <div
                 ref={menuColumn1Ref}
                 className='xsm:max-h-0 xsm:overflow-hidden xsm:transition-all xsm:duration-300 xsm:ease-in-out'
               >
-                <div className='client-height xsm:grid-cols-2 xsm:grid sm:space-y-[0.52rem] xsm:gap-[0.52rem] xsm:pb-[0.83rem]'>
+                <div className='client-height xsm:grid-cols-2 xsm:grid xsm:gap-[0.52rem] xsm:pb-[0.83rem] sm:space-y-[0.52rem]'>
                   {Array.isArray(menu_column_1?.items) &&
                     menu_column_1?.items?.map((item, index) => (
                       <p
                         className={cn(
-                          'text-[#090909]/80 text-[0.625rem] leading-[1.4] tracking-[-0.00625rem]',
+                          'text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/80',
                           index === 0 && 'xsm:order-1',
                           index === 1 && 'xsm:order-3',
                           index === 2 && 'xsm:order-5',
@@ -211,7 +211,7 @@ export default function Footer({ data }: IFooterProps) {
                         <Link
                           href={item?.link?.url || ''}
                           target={item?.link?.target || '_self'}
-                          className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[0.10417rem] after:w-full after:bg-[#E00000] after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100"
+                          className="relative inline-block pb-[0.1rem] after:absolute after:bottom-0 after:left-0 after:h-[0.10417rem] after:w-full after:origin-left after:scale-x-0 after:bg-[#E00000] after:transition-transform after:duration-300 after:ease-out after:content-[''] hover:after:scale-x-100 focus-visible:after:scale-x-100"
                         >
                           {item?.link?.title}
                         </Link>
@@ -220,30 +220,30 @@ export default function Footer({ data }: IFooterProps) {
                 </div>
               </div>
             </div>
-            <hr className='sm:hidden border-t border-[#090909]/10 mb-[0.83rem]' />
+            <hr className='mb-[0.83rem] border-t border-[#090909]/10 sm:hidden' />
             <div className='space-y-[0.52rem]'>
               <p
                 onClick={(e: React.MouseEvent<HTMLParagraphElement>) => handleAccordionClick(e, 1)}
-                className='text-[#090909] text-[0.83333rem] font-semibold leading-[1.4] tracking-[-0.00625rem] mb-[0.71rem] xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem]'
+                className='xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem] mb-[0.71rem] text-[0.83333rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'
               >
                 {menu_column_2?.title}{' '}
-                <ChevronDown className='size-[0.83333rem] sm:hidden shrink-0 pointer-events-none text-[#D32F2F]' />
+                <ChevronDown className='pointer-events-none size-[0.83333rem] shrink-0 text-[#D32F2F] sm:hidden' />
               </p>
               <div
                 ref={menuColumn2Ref}
                 className='xsm:max-h-0 xsm:overflow-hidden xsm:transition-all xsm:duration-300 xsm:ease-in-out'
               >
-                <div className='client-height xsm:grid-cols-2 space-y-[0.52rem] xsm:pb-[0.83rem]'>
+                <div className='client-height xsm:grid-cols-2 xsm:pb-[0.83rem] space-y-[0.52rem]'>
                   {Array.isArray(menu_column_2?.items) &&
                     menu_column_2?.items?.map((item, index) => (
                       <p
-                        className='text-[#090909]/80 text-[0.625rem] leading-[1.4] tracking-[-0.00625rem]'
+                        className='text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/80'
                         key={index}
                       >
                         <Link
                           href={item?.link?.url || ''}
                           target={item?.link?.target || '_self'}
-                          className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[0.10417rem] after:w-full after:bg-[#E00000] after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100"
+                          className="relative inline-block pb-[0.1rem] after:absolute after:bottom-0 after:left-0 after:h-[0.10417rem] after:w-full after:origin-left after:scale-x-0 after:bg-[#E00000] after:transition-transform after:duration-300 after:ease-out after:content-[''] hover:after:scale-x-100 focus-visible:after:scale-x-100"
                         >
                           {item?.link?.title}
                         </Link>
@@ -252,13 +252,13 @@ export default function Footer({ data }: IFooterProps) {
                 </div>
               </div>
             </div>
-            <hr className='sm:hidden border-t border-[#0 mb-[0.83rem]' />
+            <hr className='border-[#0 mb-[0.83rem] border-t sm:hidden' />
             <div className='space-y-[0.94rem]'>
-              <p className='xsm:hidden text-[#090909] text-[0.83333rem] font-semibold leading-[1.4] tracking-[-0.00625rem] mb-[0.71rem]'>
+              <p className='xsm:hidden mb-[0.71rem] text-[0.83333rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'>
                 {socials?.title}
               </p>
               <div>
-                <div className='flex space-x-[0.89rem] xsm:space-x-[0.62rem]'>
+                <div className='xsm:space-x-[0.62rem] flex space-x-[0.89rem]'>
                   {Array.isArray(socials?.items) &&
                     socials?.items?.map((item, index) => (
                       <Link
@@ -271,7 +271,7 @@ export default function Footer({ data }: IFooterProps) {
                           alt={item?.icon?.alt || ''}
                           width={40}
                           height={40}
-                          className='size-[1.75rem] xsm:size-[1rem] object-contain'
+                          className='xsm:size-[1rem] size-[1.75rem] object-contain'
                         />
                       </Link>
                     ))}
@@ -279,11 +279,11 @@ export default function Footer({ data }: IFooterProps) {
               </div>
             </div>
           </div>
-          <div className='mt-auto xsm:mt-[1.46rem] xsm:flex xsm:flex-col-reverse'>
-            <p className='sm:text-right text-[#090909]/60 text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] xsm:mt-[0.62rem]'>
+          <div className='xsm:mt-[1.46rem] xsm:flex xsm:flex-col-reverse mt-auto'>
+            <p className='xsm:mt-[0.62rem] text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/60 sm:text-right'>
               {copyright}
             </p>
-            <div className='flex items-center sm:justify-end space-x-[0.83rem] mt-[0.68rem] text-[#090909] text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] xsm:justify-between'>
+            <div className='xsm:justify-between mt-[0.68rem] flex items-center space-x-[0.83rem] text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909] sm:justify-end'>
               {Array.isArray(menu_column_3?.items) &&
                 menu_column_3?.items?.map((item, index) => (
                   <React.Fragment key={index}>
@@ -291,12 +291,12 @@ export default function Footer({ data }: IFooterProps) {
                       href={item?.link?.url || ''}
                       target={item?.link?.target || '_self'}
                       key={index}
-                      className="relative inline-block pb-[0.1rem] after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[0.10417rem] after:w-full after:bg-[#E00000] after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:after:scale-x-100"
+                      className="relative inline-block pb-[0.1rem] after:absolute after:bottom-0 after:left-0 after:h-[0.10417rem] after:w-full after:origin-left after:scale-x-0 after:bg-[#E00000] after:transition-transform after:duration-300 after:ease-out after:content-[''] hover:after:scale-x-100 focus-visible:after:scale-x-100"
                     >
                       {item?.link?.title}
                     </Link>
                     {index < (menu_column_3?.items?.length || 0) - 1 && (
-                      <span className='inline-block w-[0.05208rem] h-[0.57292rem] bg-[#090909]'></span>
+                      <span className='inline-block h-[0.57292rem] w-[0.05208rem] bg-[#090909]'></span>
                     )}
                   </React.Fragment>
                 ))}

@@ -44,6 +44,11 @@ const trainingService = {
       api: `${ENDPOINTS.training.getRelated}?${params.toString()}`,
     })
   },
+  search: async ({ locale, q, limit = 12 }: { locale: string; q: string; limit?: number }) => {
+    return await fetchData({
+      api: ENDPOINTS.training.search({ locale, limit, q }),
+    })
+  },
 }
 
 export default trainingService

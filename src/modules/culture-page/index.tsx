@@ -152,12 +152,12 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                 <button
                   type='button'
                   aria-label='Previous slide'
-                  className='size-[1.45833rem] cursor-pointer shrink-0'
+                  className='size-[1.45833rem] shrink-0 cursor-pointer'
                   onClick={() => swiperInstance?.slidePrev()}
                 >
                   <ChevronLeft className='xsm:text-white size-[1.45833rem] text-[#090909]' />
                 </button>
-                <div className='xsm:text-white sm:hidden xsm:h-[2.29167rem] flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)]'>
+                <div className='xsm:text-white xsm:h-[2.29167rem] flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)] sm:hidden'>
                   <div className='flex-y-center xsm:space-x-[0.41667rem] space-x-[0.4275rem]'>
                     <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
                       {formatNumber(activeIndex + 1)}/{formatNumber(totalSlides)}
@@ -181,14 +181,14 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                 <button
                   type='button'
                   aria-label='Next slide'
-                  className='size-[1.45833rem] cursor-pointer shrink-0'
+                  className='size-[1.45833rem] shrink-0 cursor-pointer'
                   onClick={() => swiperInstance?.slideNext()}
                 >
                   <ChevronRight className='xsm:text-white size-[1.45833rem] text-[#090909]' />
                 </button>
               </div>
             </div>
-            <div className='xsm:hidden flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)] mt-[1.25rem]'>
+            <div className='xsm:hidden mt-[1.25rem] flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)]'>
               <div className='flex-y-center xsm:space-x-[0.41667rem] space-x-[0.4275rem]'>
                 <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
                   {formatNumber(activeIndex + 1)}/{formatNumber(totalSlides)}
