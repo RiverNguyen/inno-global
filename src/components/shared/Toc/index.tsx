@@ -62,20 +62,22 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
 
   return (
     <>
-      <aside className='xsm:p-[0.72917rem] xsm:my-[2.08333rem] my-[2.08333rem] flex flex-col rounded-[0.20833rem] bg-[#F0F0F0] p-[1.5625rem]'>
+      <aside className='xsm:p-[0.72917rem] xsm:mt-[1.04167rem] xsm:mb-[2.08333rem] my-[2.08333rem] flex flex-col rounded-[0.20833rem] bg-[#F0F0F0] p-[1.5625rem]'>
         <h4 className='font-open-sans xsm:text-[0.72917rem] xsm:mb-[0.72917rem] mb-[0.83333rem] text-[1.25rem] leading-[150%] font-semibold text-[#090909]'>
           {t('contentSummary')}
         </h4>
         <ul className='xsm:gap-[0.52083rem] flex flex-col items-start gap-[0.625rem]'>
           {tocs.slice(0, expand ? tocs.length : 4).map((toc, i) => (
-            <li key={i}>
+            <li
+              key={i}
+              className={cn(
+                'font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.80)] transition-all duration-200',
+                activeId === toc.id && 'text-[rgba(9,9,9,1)]',
+              )}
+            >
               <button
                 type='button'
                 onClick={() => scrollToHeading(toc.id)}
-                className={cn(
-                  'font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.80)] transition-all duration-200',
-                  activeId === toc.id && 'text-[rgba(9,9,9,1)]',
-                )}
               >
                 {toc.text}
               </button>
@@ -130,17 +132,19 @@ export default function Toc({ tocs }: { tocs: TocItem[] }) {
               </div>
               <ul className='flex flex-col items-start gap-[0.52083rem] p-[0.83333rem_0_1.66667rem_0.83333rem]'>
                 {tocs.slice(0, expand ? tocs.length : 4).map((toc, i) => (
-                  <li key={i}>
+                  <li
+                    key={i}
+                    className={cn(
+                      'font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] text-[rgba(9,9,9,0.80)] transition-all duration-200',
+                      activeId === toc.id && 'text-[rgba(9,9,9,1)]',
+                    )}
+                  >
                     <button
                       type='button'
                       onClick={() => {
                         scrollToHeading(toc.id)
                         setOpen(false)
                       }}
-                      className={cn(
-                        'font-open-sans text-[0.72917rem] leading-[150%] tracking-[-0.00729rem] text-[rgba(9,9,9,0.80)] transition-all duration-200',
-                        activeId === toc.id && 'text-[rgba(9,9,9,1)]',
-                      )}
                     >
                       {toc.text}
                     </button>
