@@ -52,7 +52,7 @@ export default function TrainingCard({
         <div className='mb-[0.3125rem] flex items-center justify-between space-x-4 xsm:mb-[0.52083rem]'>
           <h3
             className={cn(
-              'font-open-sans line-clamp-1 max-w-[16rem] text-[0.9375rem] leading-[150%] font-semibold text-[#090909] xsm:text-[0.72917rem] xsm:max-w-full',
+              'font-open-sans line-clamp-2 text-[0.9375rem] leading-[150%] font-semibold text-[#090909] xsm:text-[0.72917rem]',
               classNameTitle,
             )}
           >

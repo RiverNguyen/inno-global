@@ -11,6 +11,8 @@ const ROUTES = {
   blogsVi: '/tin-tuc',
   trainingsVi: '/dao-tao',
   trainingsEn: '/trainings',
+  searchVi: '/tim-kiem',
+  searchEn: '/search',
 }
 
 export default ROUTES
