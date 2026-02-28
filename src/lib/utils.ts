@@ -24,6 +24,19 @@ export function formatDateDDMMYYYY(dateStr: string | undefined): string {
   return `${day}.${month}.${year}`
 }
 
+/**
+ * Convert ISO 8601 string -> Unix timestamp
+ * @param iso ISO string, vd: "2025-09-04T08:04:38+00:00"
+ * @param unit 's' => seconds (default), 'ms' => milliseconds
+ */
+export function isoToUnixTimestamp(iso: string, unit: 's' | 'ms' = 's'): number {
+  const ms = Date.parse(iso) // milliseconds since 1970-01-01T00:00:00Z
+  if (Number.isNaN(ms)) {
+    throw new Error(`Invalid ISO date string: ${iso}`)
+  }
+  return unit === 's' ? Math.floor(ms / 1000) : ms
+}
+
 export function formatDateToDDMMYYYY(dateStr?: string): string {
   if (!dateStr) return '-'
 
