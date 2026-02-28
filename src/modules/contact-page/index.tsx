@@ -3,8 +3,10 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
+import { ITaxonomyRes } from '@/interfaces/taxonomy.interface'
+
 import FormContact from './components/form-contact'
-export default function Contact({ locale }: { locale: string }) {
+export default function Contact({ locale, serviceTaxonomies }: { locale: string; serviceTaxonomies: ITaxonomyRes }) {
   const t = useTranslations('ContactForm')
   return (
     <main className='xsm:h-full relative h-[56.25rem] min-h-screen w-full'>
@@ -20,7 +22,10 @@ export default function Contact({ locale }: { locale: string }) {
         <h1 className='font-open-sans xsm:text-[1.35417rem] xsm:tracking-normal text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.80)]'>
           {t('title')}
         </h1>
-        <FormContact locale={locale} />
+        <FormContact
+          locale={locale}
+          serviceTaxonomies={serviceTaxonomies}
+        />
       </div>
     </main>
   )

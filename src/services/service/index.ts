@@ -41,6 +41,11 @@ const serviceApi = {
       api: ENDPOINTS.service.getPage[locale],
     })
   },
+  getTaxonomies: async (locale: string) => {
+    return await fetchData({
+      api: ENDPOINTS.taxonomies.get(locale, 'service'),
+    })
+  },
   search: async ({ locale, q, limit = 12 }: { locale: string; q: string; limit?: number }) => {
     return await fetchData({
       api: ENDPOINTS.service.search({

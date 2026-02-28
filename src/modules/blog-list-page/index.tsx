@@ -302,7 +302,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
               }}
               className={`flex-center xsm:h-[1.92708rem] xsm:px-[0.83333rem] xsm:border xsm:border-[rgba(9,9,9,0.08)] h-[2.5rem] rounded-[5.20833rem] px-[1.14583rem] ${
                 !selectedCategory
-                  ? 'xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)]'
+                  ? 'bg-gr-2 xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
                   : 'border border-[rgba(9,9,9,0.08)] bg-white'
               }`}
             >
@@ -333,7 +333,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                   }}
                   className={`flex-center xsm:h-[1.92708rem] xsm:px-[0.83333rem] h-[2.5rem] rounded-[5.20833rem] px-[1.14583rem] ${
                     isActive
-                      ? 'xsm:border xsm:border-[rgba(9,9,9,0.08)] xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)]'
+                      ? 'bg-gr-2 xsm:border xsm:border-[rgba(9,9,9,0.08)] xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
                       : 'border border-[rgba(9,9,9,0.08)] bg-white'
                   }`}
                 >
