@@ -129,6 +129,14 @@ const ENDPOINTS = {
       vi: '/trach-nhiem-xa-hoi',
     },
   },
+  history: {
+    en: 'wp/v2/pages/705?_fields=acf&acf_format=standard',
+    vi: 'wp/v2/pages/703?_fields=acf&acf_format=standard',
+    rank_math: {
+      en: '/en/history-of-formation',
+      vi: '/lich-su-hinh-thanh',
+    },
+  },
   leadershipPage: {
     vi: 'wp/v2/pages/594?_fields=acf&acf_format=standard',
     en: 'wp/v2/pages/596?_fields=acf&acf_format=standard',
@@ -152,6 +160,23 @@ const ENDPOINTS = {
       en: '/en/corporate-culture',
       vi: '/van-hoa-doanh-nghiep',
     },
+  },
+  auth: {
+    login: 'api/v1/auth/login',
+    register: 'api/v1/auth/register',
+    refreshToken: 'api/v1/auth/refresh',
+    logout: 'api/v1/auth/logout',
+    info: 'api/v1/auth/me',
+    requestOTP: 'api/v1/auth/password/otp/request',
+    verifyOTP: 'api/v1/auth/verify-otp-only',
+    verifyOTPAndResetPassword: 'api/v1/auth/verify-otp-and-reset',
+    resetPassword: 'api/v1/auth/password/otp/reset',
+    registerOTP: 'api/v1/auth/register/verify',
+    resendRegisterOTP: 'api/v1/auth/register/resend-otp',
+    updateInfo: 'api/v1/users/me/profile',
+    changePassword: 'api/v1/users/me/password',
+    forgotPassword: 'api/v1/auth/forgot-password',
+    updateAvatar: 'api/v1/auth/avatar',
   },
   training: {
     getRelated: 'api/v1/get-all/training',

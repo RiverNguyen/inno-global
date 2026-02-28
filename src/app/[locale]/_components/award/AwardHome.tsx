@@ -1,12 +1,12 @@
-/* eslint-disable import/order */
 'use client'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
-import { Navigation } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useState } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
 import { ISectionAwardAcf } from '@/interfaces/home.interface'
 
 export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
@@ -66,6 +66,7 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
             modules={[Navigation]}
             spaceBetween={80}
             slidesPerView={3}
+            centeredSlides
             loop={true}
             grabCursor
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}

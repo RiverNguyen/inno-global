@@ -18,6 +18,9 @@ export default async function fetchData(request: RequestPostGuest) {
         ...(!request.notJson && { 'Content-Type': 'application/json' }),
         ...request.headers,
       },
+      next: {
+        revalidate: 60,
+      },
       ...request.option,
     })
 
