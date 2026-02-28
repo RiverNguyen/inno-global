@@ -4,9 +4,9 @@ import { useLocale } from 'next-intl'
 import { useCallback, useMemo, useRef } from 'react'
 import useSWRInfinite from 'swr/infinite'
 
+import ServiceCard from '@/components/shared/ServiceCard'
 import { fetcherCMS } from '@/lib/swr'
 
-import ServiceCard from './_components/ServiceCard'
 import ServiceGrid from './_components/ServiceGrid'
 import ServiceListSkeleton from './_components/ServiceListSkeleton'
 import { useFadeInOnAppend } from './_hooks/useFadeInOnAppend'
