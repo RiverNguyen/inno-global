@@ -230,6 +230,24 @@
     "position": "Chức vụ",
     "employee": "Nhân viên",
     "undefined": "Không xác định",
-    "department": "Phòng ban"
+    "department": "Phòng ban",
+    "changeAvatar": "Đổi ảnh",
+    "avatarLoading": "Đang tải...",
+    "avatarUpdateSuccess": "Đã cập nhật ảnh đại diện",
+    "avatarUpdateFailed": "Cập nhật ảnh thất bại"
+  },
+  "DashboardChangePasswordPage": {
+    "title": "Xác thực tài khoản",
+    "desc": "Vui lòng nhập mã xác nhận đã được gửi đến email của bạn để đặt lại mật khẩu.",
+    "validateOTP": "Vui lòng nhập mã OTP",
+    "submit": "Xác thực",
+    "loading": "Đang xác thực tài khoản...",
+    "error": "Xác thực tài khoản thất bại",
+    "success": "Xác thực tài khoản thành công",
+    "label": "Mã xác thực",
+    "placeholderOTP": "Vui lòng nhập mã OTP",
+    "resendOTP": "Gửi lại mã OTP",
+    "resendOTPSuccess": "Mã OTP đã được gửi đến email của bạn",
+    "resendOTPError": "Gửi lại mã OTP thất bại"
   }
 }

@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { useRef, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -23,6 +24,7 @@ interface AvatarEditProps {
 }
 
 export default function AvatarEdit({ avatarUrl }: AvatarEditProps) {
+  const t = useTranslations('UserPage')
   const inputRef = useRef<HTMLInputElement>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
@@ -57,18 +59,18 @@ export default function AvatarEdit({ avatarUrl }: AvatarEditProps) {
       if (result?.success) {
         await update({ _action: 'updateInfo' })
         setIsLoading(false)
-        toast.success(result.message || 'Đã cập nhật ảnh đại diện')
+        toast.success(t('avatarUpdateSuccess'))
         clearPreview()
         router.refresh()
       } else {
         setIsLoading(false)
         clearPreview()
-        toast.error(result?.message || 'Cập nhật ảnh thất bại')
+        toast.error(t('avatarUpdateFailed'))
       }
     } catch {
       setIsLoading(false)
       clearPreview()
-      toast.error('Cập nhật ảnh thất bại')
+      toast.error(t('avatarUpdateFailed'))
     } finally {
       e.target.value = ''
     }
@@ -89,11 +91,11 @@ export default function AvatarEdit({ avatarUrl }: AvatarEditProps) {
           className="flex-center h-[2.083rem] px-[0.83rem] rounded-[5.2rem] border border-white disabled:opacity-60 xsm:border-none xsm:rounded-none"
         >
           {isLoading ? (
-            <span className="text-[0.73rem] text-white leading-[1.5]">Đang tải...</span>
+            <span className="text-[0.73rem] text-white leading-[1.5]">{t('avatarLoading')}</span>
           ) : (
             <>
               <ICEditAvatar className="size-[0.83rem] mr-[0.3125rem] xsm:size-[0.67rem] xsm:mr-[0.25rem]" />
-              <p className="text-[0.73rem] text-white leading-[1.5] xsm:text-[0.583rem]">Đổi ảnh</p>
+              <p className="text-[0.73rem] text-white leading-[1.5] xsm:text-[0.583rem]">{t('changeAvatar')}</p>
             </>
           )}
         </button>

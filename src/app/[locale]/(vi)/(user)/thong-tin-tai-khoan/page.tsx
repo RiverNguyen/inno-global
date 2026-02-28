@@ -1,9 +1,9 @@
 import { getTranslations } from 'next-intl/server'
 
 import { auth } from '@/auth'
+import AvatarEdit from '@/modules/(auth)/dashboard/_components/avatar-edit'
+import BackButton from '@/modules/(auth)/dashboard/_components/back-button'
 
-import AvatarEdit from './_components/AvatarEdit'
-import BackButton from './_components/BackButton'
 
 export default async function DashboardPage() {
   const [session, t] = await Promise.all([auth(), getTranslations('UserPage')])

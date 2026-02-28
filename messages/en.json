@@ -215,7 +215,11 @@
     "staffId": "Staff ID",
     "fullName": "Full name",
     "email": "Email",
-    "position": "Position"
+    "position": "Position",
+    "changeAvatar": "Change photo",
+    "avatarLoading": "Loading...",
+    "avatarUpdateSuccess": "Profile picture updated",
+    "avatarUpdateFailed": "Failed to update profile picture"
   },
   "ChangePasswordPage": {
     "title": "Change password",
