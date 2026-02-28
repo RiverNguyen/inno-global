@@ -176,6 +176,13 @@
     "organizationChartPage": "Organization chart",
     "trainingPage": "Trainings",
     "detailTrainingPage": "Detail training",
-    "searchPage": "Search"
+    "searchPage": "Search",
+    "detailTrainingPage": "Detail training"
+  },
+  "PrivacyPolicyPage": {
+    "effectiveDate": "Effective from"
+  },
+  "TermsOfUsePage": {
+    "effectiveDate": "Effective from"
   }
 }

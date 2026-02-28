@@ -1,0 +1,203 @@
+.terms-of-use__content {
+  color: rgba(9, 9, 9, 0.8);
+  font-family: 'Open Sans';
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+/* CSS tag heading */
+.terms-of-use__content h1,
+.terms-of-use__content h2,
+.terms-of-use__content h3,
+.terms-of-use__content h4,
+.terms-of-use__content h5,
+.terms-of-use__content h6 {
+  color: #090909;
+  font-weight: 600;
+  margin-top: 2.08333rem;
+}
+
+.terms-of-use__content :is(h1, h2, h3, h4, h5, h6):first-of-type {
+  margin-top: 0.83333rem;
+}
+
+.terms-of-use__content h1 {
+  font-size: 2rem;
+}
+
+.terms-of-use__content h2 {
+  font-size: 1.25rem;
+}
+
+.terms-of-use__content h3 {
+  font-size: 1.125rem;
+}
+
+.terms-of-use__content h4 {
+  font-size: 1rem;
+}
+
+.terms-of-use__content h5 {
+  font-size: 0.9375rem;
+}
+
+.terms-of-use__content h6 {
+  font-size: 0.875rem;
+}
+
+.terms-of-use__content p,
+.terms-of-use__content span {
+  color: rgba(9, 9, 9, 0.8);
+  font-family: 'Open Sans';
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.terms-of-use__content p + p,
+.terms-of-use__content span {
+  margin-top: 0.83333rem;
+}
+
+/* CSS tag image */
+.terms-of-use__content img {
+  max-width: 100%;
+  display: block;
+  margin-top: 2.08333rem;
+}
+
+/* CSS tag video */
+.terms-of-use__content .wp-video {
+  position: relative;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.terms-of-use__content video {
+  max-width: 100%;
+  display: block;
+  margin-top: 2.08333rem;
+}
+
+.terms-of-use__content .wp-video::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://cms.inno.okhub-tech.com/wp-content/uploads/2026/02/icon-play-video.webp') center center
+    no-repeat;
+  background-size: 2.70833rem 2.70833rem;
+  pointer-events: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.terms-of-use__content .wp-video::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background: #000;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.terms-of-use__content .wp-video::before,
+.terms-of-use__content .wp-video::after {
+  transition: opacity 0.3s ease;
+}
+
+.terms-of-use__content .wp-video.is-playing::before,
+.terms-of-use__content .wp-video.is-playing::after {
+  opacity: 0;
+}
+
+/* CSS tag ul, li */
+.terms-of-use__content ul {
+  list-style: disc;
+}
+
+.terms-of-use__content ol {
+  list-style: decimal;
+}
+
+.terms-of-use__content li {
+  margin-left: 1rem;
+}
+
+@media (max-width: 639px) {
+  .terms-of-use__content {
+    font-size: 0.72917rem;
+    text-box-edge: cap alphabetic;
+    text-box-trim: trim-both;
+  }
+
+  .terms-of-use__content h1,
+  .terms-of-use__content h2,
+  .terms-of-use__content h3,
+  .terms-of-use__content h4,
+  .terms-of-use__content h5,
+  .terms-of-use__content h6 {
+    margin-top: 1.66667rem;
+  }
+
+  .terms-of-use__content :is(h1, h2, h3, h4, h5, h6):first-of-type {
+    margin-top: 0.9375rem;
+  }
+
+  .terms-of-use__content h1 {
+    font-size: 1.04166rem;
+  }
+
+  .terms-of-use__content h2 {
+    font-size: 0.83333rem;
+  }
+
+  .terms-of-use__content h3 {
+    font-size: 0.66666rem;
+  }
+
+  .terms-of-use__content h4 {
+    font-size: 0.53333rem;
+  }
+
+  .terms-of-use__content h5 {
+    font-size: 0.42666rem;
+  }
+
+  .terms-of-use__content h6 {
+    font-size: 0.34133rem;
+  }
+
+  .terms-of-use__content p,
+  .terms-of-use__content span {
+    font-size: 0.72917rem;
+  }
+
+  .terms-of-use__content p + p,
+  .terms-of-use__content span {
+    margin-top: 0.9375rem;
+  }
+
+  /* CSS tag image */
+  .terms-of-use__content img {
+    max-width: 100%;
+    display: block;
+    margin-top: 0.9375rem;
+  }
+
+  /* CSS tag ul, li */
+  .terms-of-use__content ul {
+    list-style: disc;
+  }
+
+  .terms-of-use__content ol {
+    list-style: decimal;
+  }
+
+  .terms-of-use__content li {
+    margin-left: 0.83333rem;
+  }
+}

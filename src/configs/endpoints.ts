@@ -90,6 +90,10 @@ const ENDPOINTS = {
     organizationChartEn: 323,
     cultureVi: 368,
     cultureEn: 371,
+    privacyPolicyVi: 865,
+    privacyPolicyEn: 867,
+    termsOfUseVi: 884,
+    termsOfUseEn: 886,
   },
   aboutUs: {
     rank_math: {
@@ -168,6 +172,18 @@ const ENDPOINTS = {
     rank_math_detail: {
       en: (slug: string) => `/en/training/${slug}`,
       vi: (slug: string) => `/training/${slug}`,
+    },
+  },
+  privacyPolicy: {
+    rank_math: {
+      en: '/privacy-policy',
+      vi: '/chinh-sach-bao-mat',
+    },
+  },
+  termsOfUse: {
+    rank_math: {
+      en: '/terms-of-use',
+      vi: '/dieu-khoan-su-dung',
     },
   },
 }

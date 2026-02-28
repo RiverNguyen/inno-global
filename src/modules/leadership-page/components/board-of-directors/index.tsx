@@ -43,7 +43,7 @@ const BoardSection = ({ title, directors }: { title: string; directors: Director
             className='xsm:h-[11.22047rem] relative h-[22.86458rem] w-full object-cover'
           />
           <div className='xsm:py-[0.52083rem] xsm:px-[0.625rem] flex flex-col gap-[0.39333rem] bg-[#F0F0F0] py-[1.25rem] pr-[1.45833rem] pl-[1.25rem]'>
-            <h3 className='line-clamp-1 font-open-sans xsm:text-[0.72917rem] text-[1.25rem] leading-[150%] font-semibold text-[#090909]'>
+            <h3 className='font-open-sans xsm:text-[0.72917rem] line-clamp-1 text-[1.25rem] leading-[150%] font-semibold text-[#090909]'>
               {director.name}
             </h3>
             <div className='xsm:gap-[0.19302rem] flex items-center gap-[0.39333rem]'>
@@ -54,7 +54,7 @@ const BoardSection = ({ title, directors }: { title: string; directors: Director
                 height={20}
                 className='xsm:size-[0.625rem] size-[1.04896rem]'
               />
-              <span className='line-clamp-1 font-open-sans xsm:text-[0.625rem] text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
+              <span className='font-open-sans xsm:text-[0.625rem] line-clamp-1 text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
                 {director.position}
               </span>
             </div>

@@ -45,7 +45,7 @@ const Leadership = async ({ locale: _locale }: { locale: string }) => {
   )
 
   return (
-    <main className='xsm:bg-white bg-[#F8F8F8] pt-[3.65rem] xsm:pt-[2.92rem]'>
+    <main className='xsm:bg-white xsm:pt-[2.92rem] bg-[#F8F8F8] pt-[3.65rem]'>
       <Banner
         aboutUsBasePath={aboutUsBasePath}
         title={bannerTitle}

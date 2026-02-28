@@ -30,7 +30,7 @@ const Content = ({ content }: { content: string }) => {
         }}
       />
 
-      <h2 className='xsm:text-[1.25rem] mb-[2.08rem] relative text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+      <h2 className='xsm:text-[1.25rem] relative mb-[2.08rem] text-[2.083rem] leading-[1.2] font-semibold tracking-[-0.03125rem] text-[#090909]'>
         {t('learnMore')}
       </h2>
 

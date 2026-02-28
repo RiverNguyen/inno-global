@@ -113,9 +113,9 @@ export default function FormContact({ locale }: { locale: string }) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='space-y-[1.66667rem] xsm:space-y-[0.83333rem]'
+        className='xsm:space-y-[0.83333rem] space-y-[1.66667rem]'
       >
-        <div className='grid grid-cols-2 gap-[1.04167rem] xsm:grid-cols-1 xsm:gap-[0.72917rem]'>
+        <div className='xsm:grid-cols-1 xsm:gap-[0.72917rem] grid grid-cols-2 gap-[1.04167rem]'>
           <Field className={fieldClassName}>
             <FieldLabel className={labelClassName}>
               {translateContactForm('fullname')}
@@ -144,7 +144,7 @@ export default function FormContact({ locale }: { locale: string }) {
           </Field>
         </div>
 
-        <div className='grid grid-cols-2 gap-[1.04167rem] xsm:grid-cols-1 xsm:gap-[0.72917rem]'>
+        <div className='xsm:grid-cols-1 xsm:gap-[0.72917rem] grid grid-cols-2 gap-[1.04167rem]'>
           <Field className={fieldClassName}>
             <FieldLabel className={labelClassName}>{translateContactForm('companyName')}</FieldLabel>
             <Input
@@ -183,7 +183,7 @@ export default function FormContact({ locale }: { locale: string }) {
               <DrawerTrigger asChild>
                 <button
                   type='button'
-                  className={cn(inputClassName, 'w-full text-left flex items-center justify-between')}
+                  className={cn(inputClassName, 'flex w-full items-center justify-between text-left')}
                 >
                   {(() => {
                     const fieldValue = form.watch('field')
@@ -196,7 +196,7 @@ export default function FormContact({ locale }: { locale: string }) {
 
               <DrawerContent
                 hiddenDrag
-                className='rounded-[1.25rem_1.25rem_0_0] bg-white z-[102]'
+                className='z-[102] rounded-[1.25rem_1.25rem_0_0] bg-white'
               >
                 <DrawerHeader className='flex items-center justify-between border-b border-b-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
                   <DrawerTitle className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold capitalize'>
@@ -212,7 +212,7 @@ export default function FormContact({ locale }: { locale: string }) {
                   </DrawerClose>
                 </DrawerHeader>
 
-                <div className='p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem] space-y-[0.52083rem]'>
+                <div className='space-y-[0.52083rem] p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem]'>
                   {fieldOptions.map((option) => {
                     const isSelected = form.watch('field') === option.value
 
@@ -225,7 +225,7 @@ export default function FormContact({ locale }: { locale: string }) {
                           setOpen(false)
                         }}
                         className={cn(
-                          'w-full text-left text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal',
+                          'xsm:text-[0.625rem] xsm:tracking-normal w-full text-left text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]',
                           isSelected && 'font-semibold text-[#D32F2F]',
                         )}
                       >
@@ -244,11 +244,11 @@ export default function FormContact({ locale }: { locale: string }) {
               <SelectTrigger
                 className={cn(
                   inputClassName,
-                  'data-[placeholder]:text-[rgba(9,9,9,0.40)] xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal',
+                  'xsm:data-[placeholder]:text-[0.625rem] xsm:data-[placeholder]:tracking-normal data-[placeholder]:text-[rgba(9,9,9,0.40)]',
                 )}
               >
                 <SelectValue
-                  className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal'
+                  className='xsm:text-[0.625rem] xsm:tracking-normal text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'
                   placeholder={translateContactForm('placeholderField')}
                 />
               </SelectTrigger>
@@ -257,7 +257,7 @@ export default function FormContact({ locale }: { locale: string }) {
                   <SelectItem
                     key={option.value}
                     value={option.value}
-                    className='text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal'
+                    className='xsm:text-[0.625rem] xsm:tracking-normal text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]'
                   >
                     {option.label}
                   </SelectItem>
@@ -274,7 +274,7 @@ export default function FormContact({ locale }: { locale: string }) {
             <span className='text-[#D32F2F]'>*</span>
           </FieldLabel>
           <Textarea
-            className={cn(inputClassName, 'h-[7.13542rem] xsm:h-[5.20833rem]')}
+            className={cn(inputClassName, 'xsm:h-[5.20833rem] h-[7.13542rem]')}
             placeholder={translateContactForm('placeholderNote')}
             {...form.register('note')}
           />
@@ -284,7 +284,7 @@ export default function FormContact({ locale }: { locale: string }) {
         <ButtonRed
           type='submit'
           disabled={form.formState.isSubmitting}
-          className='w-full h-[2.60417rem] flex-center rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px] text-white font-open-sans text-[0.72917rem] leading-[150%] xsm:h-[2.08333rem] xsm:mt-[0.9375rem]'
+          className='flex-center font-open-sans xsm:h-[2.08333rem] xsm:mt-[0.9375rem] h-[2.60417rem] w-full rounded-[5.20833rem] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%))] text-[0.72917rem] leading-[150%] text-white shadow-[0_0_2px_0_rgba(0,0,0,0.10),0_1px_8px_0_rgba(0,0,0,0.10)] backdrop-blur-[6px]'
         >
           {form.formState.isSubmitting ? translateContactForm('submitLoading') : translateContactForm('submit')}
         </ButtonRed>

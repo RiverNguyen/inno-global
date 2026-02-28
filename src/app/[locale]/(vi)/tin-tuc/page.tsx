@@ -26,7 +26,7 @@ export default async function BlogListPageVi({ params }: BlogListPageViProps) {
   ])
 
   return (
-    <main className='relative pt-[3.65rem] xsm:pt-[2.92rem]'>
+    <main className='xsm:pt-[2.92rem] relative pt-[3.65rem]'>
       <BlogListPage
         initialBlogs={initialBlogs}
         taxonomies={taxonomies}
