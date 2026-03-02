@@ -68,14 +68,12 @@ function StatCard({ number, subtitle }: { number: string; subtitle: string }) {
 }
 
 export default function AboutUsHome({ data }: { data?: ISectionAboutUsAcf }) {
-  if (!data) return null
-  const { background_pc, background_mb, title, description, number } = data
   const rootRef = useRef<HTMLDivElement | null>(null)
   const hasAnimatedRef = useRef(false)
 
   useGSAP(
     () => {
-      if (!rootRef.current) return
+      if (!data || !rootRef.current) return
 
       const tracks = gsap.utils.toArray<HTMLElement>('[data-digit-track]', rootRef.current)
 
@@ -115,6 +113,9 @@ export default function AboutUsHome({ data }: { data?: ISectionAboutUsAcf }) {
     },
     { scope: rootRef },
   )
+
+  if (!data) return null
+  const { background_pc, background_mb, title, description, number } = data
 
   return (
     <div
@@ -163,28 +164,29 @@ export default function AboutUsHome({ data }: { data?: ISectionAboutUsAcf }) {
             </div>
 
             <div className='xsm:pb-[7.34rem] sm:hidden'>
-              {Array.isArray(number) && [0, 2, 4].map((startIndex) => {
-                const rowStats = number.slice(startIndex, startIndex + 2)
+              {Array.isArray(number) &&
+                [0, 2, 4].map((startIndex) => {
+                  const rowStats = number.slice(startIndex, startIndex + 2)
 
-                return (
-                  <div
-                    key={`mb-${startIndex}`}
-                    className='grid grid-cols-2 border-t border-[rgba(9,9,9,0.12)]'
-                  >
-                    {rowStats.map(({ number, subtitle }, colIndex) => (
-                      <div
-                        key={colIndex}
-                        className={`pt-[0.83rem] pb-[0.73rem] ${colIndex === 0 ? (rowStats.length > 1 ? 'pr-[0.52rem]' : '') : 'pl-[0.52rem]'}`}
-                      >
-                        <StatCard
-                          number={number}
-                          subtitle={subtitle}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )
-              })}
+                  return (
+                    <div
+                      key={`mb-${startIndex}`}
+                      className='grid grid-cols-2 border-t border-[rgba(9,9,9,0.12)]'
+                    >
+                      {rowStats.map(({ number, subtitle }, colIndex) => (
+                        <div
+                          key={colIndex}
+                          className={`pt-[0.83rem] pb-[0.73rem] ${colIndex === 0 ? (rowStats.length > 1 ? 'pr-[0.52rem]' : '') : 'pl-[0.52rem]'}`}
+                        >
+                          <StatCard
+                            number={number}
+                            subtitle={subtitle}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )
+                })}
             </div>
           </div>
         </div>
