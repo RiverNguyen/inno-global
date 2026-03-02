@@ -17,7 +17,6 @@ const UserLayout = async ({ children }: { children: React.ReactNode }) => {
           {children}
         </section>
       </main>
-      {/* <FooterDashboard /> */}
     </>
   )
 }
