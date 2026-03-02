@@ -29,14 +29,14 @@ const DEFAULT_ITEM_IMAGE_SIZE_REM = 10.41667
 const MAIN_PATH_STROKE_WIDTH = 3
 const IMAGE_BORDER_WIDTH = 8
 const DESCRIPTION_GAP_REM = 0.9
-const DESCRIPTION_BOX_WIDTH_REM = 18
+const DESCRIPTION_BOX_WIDTH_REM = 17.3875
 const YEAR_BOX_WIDTH_REM = 12
 const YEAR_BOX_HEIGHT_REM = 3.4
 const CONTENT_SAFE_PADDING_REM = 1
 
 const markerConfig = {
   default: {
-    radius: 8,
+    radius: 10,
     fill: '#ef3b3b',
   },
   start: {
@@ -47,13 +47,13 @@ const markerConfig = {
     iconSize: 60,
   },
   end: {
-    outerRadius: 12,
+    outerRadius: 15,
     outerFill: '#D32F2F',
     outerOpacity: 0.2,
-    outerRadius2: 16,
+    outerRadius2: 20,
     outerFill2: '#D32F2F',
     outerOpacity2: 0.1,
-    innerRadius: 8,
+    innerRadius: 10,
     innerFill: '#ef3b3b',
   },
 }
@@ -80,7 +80,7 @@ const maxPointLeftRem = Math.max(...positionRowOdd.map((item) => item[0]), ...po
 const RIGHT_BOUNDARY_X = toPx(maxPointLeftRem + BOUNDARY_MARGIN_REM)
 const SVG_WIDTH = RIGHT_BOUNDARY_X + toPx(BOUNDARY_MARGIN_REM)
 const CONTENT_SAFE_PADDING_X = toPx(CONTENT_SAFE_PADDING_REM)
-const TOP_PADDING = toPx(4)
+const TOP_PADDING = toPx(0)
 const FIRST_ITEM_LINE_Y = TOP_PADDING + maxStemHeight + toPx(FIRST_ITEM_IMAGE_SIZE_REM) + toPx(2)
 
 const getLinePositions = (itemLineIndex: number) => {
@@ -270,8 +270,12 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
   const points = visibleData.map((_, index) => getPointByIndex(index))
   const rows = Math.ceil(visibleData.length / ITEMS_PER_ROW)
 
-  const maxImageDiameter = toPx(FIRST_ITEM_IMAGE_SIZE_REM)
-  const svgHeight = rows > 0 ? getItemLineY(rows - 1) + maxStemHeight + maxImageDiameter + toPx(6) : toPx(40)
+  const actualBottomY = points.reduce((maxY, pt, index) => {
+    const imgSize = index === 0 ? toPx(FIRST_ITEM_IMAGE_SIZE_REM) : toPx(DEFAULT_ITEM_IMAGE_SIZE_REM)
+    const bottom = pt.stemUp ? pt.y : pt.y + pt.stemHeight + imgSize
+    return Math.max(maxY, bottom)
+  }, 0)
+  const svgHeight = rows > 0 ? actualBottomY + toPx(1) : toPx(40)
   const pathD = buildTimelinePath(points)
 
   return (
@@ -404,9 +408,15 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                         width={descriptionWidth}
                         height={descriptionHeight}
                       >
-                        <div className='flex h-full w-full items-center justify-start'>
+                        <div
+                          className={cn(
+                            'flex h-full max-w-full items-center',
+                            isOddItem ? 'justify-start' : 'justify-end',
+                          )}
+                        >
                           <div
-                            className='text-text-80 max-h-full w-full overflow-x-hidden overflow-y-auto pr-[0.35rem] text-[0.9375rem] leading-normal font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-[#090909] [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
+                            className='text-text-80 max-h-full overflow-x-hidden overflow-y-auto pr-[0.35rem] text-[0.9375rem] leading-normal font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-[#090909] [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
+                            style={{ maxWidth: '100%', width: 'max-content' }}
                             dangerouslySetInnerHTML={{ __html: currentItem.description }}
                           />
                         </div>

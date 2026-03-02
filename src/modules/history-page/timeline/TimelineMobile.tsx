@@ -83,7 +83,7 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
                       <div className='absolute-center size-[1.1875rem] rounded-full bg-[#D32F2F] opacity-20'></div>
 
                       {/* inner marker */}
-                      <div className='absolute-center size-[0.75rem] rounded-full bg-[#ef3b3b]'></div>
+                      <div className='absolute-center size-[0.75rem] rounded-full bg-[#D32F2F]'></div>
                     </>
                   )}
 
@@ -122,7 +122,7 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
                   <div
                     className={cn(
                       'font-open-sans text-[0.9375rem] leading-[120%] font-semibold tracking-[-0.01406rem] text-[#090909]',
-                      isToBeContinued && 'w-full px-0 text-right',
+                      isToBeContinued && 'w-full px-0 ml-[1rem]',
                       shouldHavePx && !isToBeContinued && 'pl-[0.9375rem]',
                     )}
                   >
