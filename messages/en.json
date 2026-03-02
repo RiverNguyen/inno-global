@@ -1,4 +1,9 @@
 {
+  "Header": {
+    "language": "Language",
+    "languageVi": "Vietnamese",
+    "languageEn": "English"
+  },
   "HomePage": {
     "title": "Hello world!",
     "blogs": "Blogs",
@@ -235,24 +240,48 @@
     "fullName": "Full name",
     "email": "Email",
     "position": "Position",
-    "changeAvatar": "Change photo",
+    "changeAvatar": "Change",
     "avatarLoading": "Loading...",
     "avatarUpdateSuccess": "Profile picture updated",
-    "avatarUpdateFailed": "Failed to update profile picture"
+    "avatarUpdateFailed": "Failed to update profile picture",
+    "department": "Department",
+    "employee": "Employee",
+    "undefined": "Undefined"
   },
   "ChangePasswordPage": {
     "title": "Change password",
-    "validatePasswordLength": "Password must be at least 6 characters",
-    "validateConfirmPasswordLength": "Confirm password must be at least 6 characters",
+    "validatePasswordLength": "New password must be at least 6 characters",
+    "validateConfirmPasswordLength": "Confirm new password must be at least 6 characters",
     "labelPassword": "New password",
     "placeholderPassword": "Enter new password",
     "labelConfirmPassword": "Confirm new password",
     "placeholderConfirmPassword": "Confirm new password",
-    "validateConfirmPassword": "Confirm password does not match",
+    "validateConfirmPassword": "Confirm new password does not match",
     "submit": "Submit",
     "loading": "Changing password...",
     "error": "Changing password failed",
-    "success": "Password changed successfully"
+    "success": "Password changed successfully",
+    "labelCurrentPassword": "Current password",
+    "placeholderCurrentPassword": "Enter current password",
+    "validateCurrentPassword": "Please enter current password",
+    "changePasswordSuccess": "Password changed successfully, please login again"
+  },
+  "DashboardChangePasswordPage": {
+    "title": "Verify account",
+    "desc": "Please enter the OTP sent to your email to reset your password.",
+    "validateOTP": "Please enter the OTP",
+    "submit": "Verify",
+    "loading": "Verifying account...",
+    "error": "Verifying account failed",
+    "success": "Account verified successfully",
+    "label": "OTP",
+    "placeholderOTP": "Please enter the OTP",
+    "resendOTP": "Resend OTP",
+    "resendOTPSuccess": "OTP has been sent to your email",
+    "resendOTPError": "Sending OTP failed",
+    "validateOTPLength": "OTP must be 6 characters",
+    "desc1": " The OTP will be sent to your email: ",
+    "desc2": "Click the “resend OTP” button below to send the OTP:"
   },
   "PrivacyPolicyPage": {
     "effectiveDate": "Effective from"

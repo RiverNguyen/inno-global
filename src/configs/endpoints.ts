@@ -82,7 +82,7 @@ const ENDPOINTS = {
     aboutUsEn: 106,
     home: {
       vi: 471,
-      en: 473,
+      en: 950,
     },
     subCompanyVi: 275,
     subCompanyEn: 277,

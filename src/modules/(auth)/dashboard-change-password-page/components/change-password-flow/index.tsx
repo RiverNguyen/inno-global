@@ -1,10 +1,15 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { User } from 'next-auth'
 import { useState } from 'react'
 
 import FormChangePassword from '@/modules/(auth)/dashboard-change-password-page/components/form-change-password'
-import FormVerifyOTP from '@/modules/(auth)/dashboard-change-password-page/components/form-verify-otp'
+
+const FormVerifyOTP = dynamic(
+  () => import('@/modules/(auth)/dashboard-change-password-page/components/form-verify-otp'),
+  { ssr: false },
+)
 
 type Step = 'verify' | 'change'
 

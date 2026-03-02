@@ -96,8 +96,8 @@ const ICLogout = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 const menuItems = [
-  { icon: <ICUser className='size-4' />, labelKey: 'accountInfo' as const, href: '/thong-tin-tai-khoan' },
-  { icon: <ICChangePassword className='size-4' />, labelKey: 'changePassword' as const, href: '/thay-doi-mat-khau' },
+  { icon: <ICUser className='size-4' />, labelKey: 'accountInfo' as const, href: '/info' },
+  { icon: <ICChangePassword className='size-4' />, labelKey: 'changePassword' as const, href: '/change-password' },
   { icon: <ICLogout className='size-4' />, labelKey: 'logout' as const, isLogout: true },
 ]
 

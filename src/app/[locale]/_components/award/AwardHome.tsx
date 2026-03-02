@@ -9,8 +9,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ISectionAwardAcf } from '@/interfaces/home.interface'
 
-export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
-  const { title, subtitle, list_awards } = data
+export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
+  if (!data) return null
+  const { title, subtitle } = data
+  const list_awards = Array.isArray(data.list_awards) ? data.list_awards : []
   const [activeIndex, setActiveIndex] = useState(0)
 
   return (

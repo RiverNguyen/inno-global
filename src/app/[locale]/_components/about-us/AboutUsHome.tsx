@@ -67,7 +67,8 @@ function StatCard({ number, subtitle }: { number: string; subtitle: string }) {
   )
 }
 
-export default function AboutUsHome({ data }: { data: ISectionAboutUsAcf }) {
+export default function AboutUsHome({ data }: { data?: ISectionAboutUsAcf }) {
+  if (!data) return null
   const { background_pc, background_mb, title, description, number } = data
   const rootRef = useRef<HTMLDivElement | null>(null)
   const hasAnimatedRef = useRef(false)
@@ -162,7 +163,7 @@ export default function AboutUsHome({ data }: { data: ISectionAboutUsAcf }) {
             </div>
 
             <div className='xsm:pb-[7.34rem] sm:hidden'>
-              {[0, 2, 4].map((startIndex) => {
+              {Array.isArray(number) && [0, 2, 4].map((startIndex) => {
                 const rowStats = number.slice(startIndex, startIndex + 2)
 
                 return (

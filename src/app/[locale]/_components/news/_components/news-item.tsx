@@ -33,7 +33,7 @@ export default function NewsItem({ data }: { data: IBlog }) {
       >
         <p className='xsm:text-[0.52083rem] mb-[0.25rem] text-[0.625rem] text-[rgba(9,9,9,0.60)] opacity-90'>
           <span className='mr-[0.62rem] text-[#D32F2F] uppercase'>{category}</span>
-          <span>{formatDateDDMMYYYY(data.date)}</span>
+          <span>{formatDateDDMMYYYY(data?.date || '')}</span>
         </p>
         <h3 className='xsm:text-[0.72917rem] line-clamp-2 text-[0.9375rem] leading-[1.5] text-[#090909]'>
           {data?.title}

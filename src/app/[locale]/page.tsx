@@ -45,11 +45,11 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
         <BannerHome data={acfData?.acf?.banner || []} />
       </section>
       <section data-snap>
-        <AboutUsHome data={acfData?.acf?.about_us || []} />
+        <AboutUsHome data={acfData?.acf?.about_us} />
       </section>
       <section data-snap>
-        <AwardHome data={acfData?.acf?.outstanding_award || []} />
-        <AwardHomeMobile data={acfData?.acf?.outstanding_award || []} />
+        <AwardHome data={acfData?.acf?.outstanding_award} />
+        <AwardHomeMobile data={acfData?.acf?.outstanding_award} />
       </section>
       <section data-snap>
         <ServiceSection

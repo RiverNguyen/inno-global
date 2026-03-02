@@ -30,7 +30,7 @@ export default async function layout({
           session={session}
         />
         {children}
-        <Footer data={footerData?.data.footer_fields} />
+        <Footer data={footerData?.data?.footer_fields} />
       </NuqsAdapter>
     </NextIntlClientProvider>
   )

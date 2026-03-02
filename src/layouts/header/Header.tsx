@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import type { Session } from 'next-auth'
+import { useTranslations } from 'next-intl'
 import { useRouter } from 'nextjs-toploader/app'
 import { Fragment, useEffect, useRef, useState } from 'react'
 
@@ -22,11 +23,6 @@ import { IAcfImage } from '@/interfaces/acf-wp.interface'
 import { IMenu } from '@/interfaces/header.interface'
 import { cn } from '@/lib/utils'
 
-const languages = [
-  { key: 'vi' as const, label: 'Tiếng Việt' },
-  { key: 'en' as const, label: 'Tiếng Anh' },
-]
-
 export default function Header({
   data,
   session,
@@ -34,6 +30,11 @@ export default function Header({
   data: { logo: IAcfImage; menus: IMenu[] }
   session: Session | null
 }) {
+  const t = useTranslations('Header')
+  const languages = [
+    { key: 'vi' as const, label: t('languageVi') },
+    { key: 'en' as const, label: t('languageEn') },
+  ]
   const { logo, menus } = data
   const [openSearch, setOpenSearch] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
@@ -334,61 +335,79 @@ export default function Header({
             )}
           </div>
           {/* mobile menu */}
-          <form
-            onSubmit={handleSearchSubmit}
-            className={cn(
-              'flex h-[1.875rem] w-[3.9rem] shrink-0 items-center overflow-hidden rounded-[5.20833rem] bg-[rgba(9,_9,_9,_0.10)] transition-[width,opacity,transform] duration-180 ease-out sm:hidden',
-              openSearch && 'w-[calc(100%-2.1rem)]',
-              openMenu && 'xsm:hidden',
-            )}
-          >
-            <input
-              ref={mobileSearchInputRef}
-              type='text'
-              placeholder='Nhập từ khoá tìm kiếm'
-              id='search-mobile'
+          <div className='flex-y-center space-x-[0.63rem] lg:hidden'>
+            <form
+              onSubmit={handleSearchSubmit}
               className={cn(
-                'text-en placeholder:pc-body-14-r placeholder:text-en-60 h-[1.875rem] max-w-0 min-w-0 flex-1 border-none bg-transparent p-0 opacity-0 transition-[max-width,opacity,padding] duration-200 ease-out [will-change:max-width,opacity] outline-none focus:border-none focus:ring-0 focus:outline-none',
-                openSearch && 'max-w-full px-[0.83rem] opacity-100',
-              )}
-            />
-            {!openSearch && (
-              <button
-                type='button'
-                onClick={handleOpenSearch}
-                className='flex-center size-[1.875rem] shrink-0'
-              >
-                <ICSearchHead className='text-text-80 size-[0.9375rem]' />
-              </button>
-            )}
-
-            {openSearch && (
-              <button
-                type='submit'
-                className='flex-center size-[1.875rem] shrink-0'
-              >
-                <ICSearchHead className='text-text-80 size-[0.9375rem]' />
-              </button>
-            )}
-
-            <div
-              className={cn(
-                'flex-y-center max-w-[3rem] shrink-0 overflow-hidden transition-[max-width,opacity,transform] duration-150 ease-out [will-change:max-width,opacity,transform]',
-                openSearch
-                  ? 'pointer-events-none max-w-0 -translate-x-1 opacity-0 duration-0'
-                  : 'max-w-[3rem] translate-x-0 opacity-100',
+                'flex h-[1.875rem] w-[3.9rem] shrink-0 items-center overflow-hidden rounded-[5.20833rem] bg-[rgba(9,_9,_9,_0.10)] transition-[width,opacity,transform] duration-180 ease-out sm:hidden',
+                openSearch && 'w-[calc(100%-2.1rem)]',
+                openMenu && 'xsm:hidden',
               )}
             >
-              <div className='h-[0.9375rem] border-l border-solid border-[rgba(9,_9,_9,_0.60)]/[0.28]'></div>
-              <button
-                type='button'
-                className='flex-center size-[1.875rem] shrink-0'
-                onClick={handleToggleMenu}
+              <input
+                ref={mobileSearchInputRef}
+                type='text'
+                placeholder='Nhập từ khoá tìm kiếm'
+                id='search-mobile'
+                className={cn(
+                  'text-en placeholder:pc-body-14-r placeholder:text-en-60 h-[1.875rem] max-w-0 min-w-0 flex-1 border-none bg-transparent p-0 opacity-0 transition-[max-width,opacity,padding] duration-200 ease-out [will-change:max-width,opacity] outline-none focus:border-none focus:ring-0 focus:outline-none',
+                  openSearch && 'max-w-full px-[0.83rem] opacity-100',
+                )}
+              />
+              {!openSearch && (
+                <button
+                  type='button'
+                  onClick={handleOpenSearch}
+                  className='flex-center size-[1.875rem] shrink-0'
+                >
+                  <ICSearchHead className='text-text-80 size-[0.9375rem]' />
+                </button>
+              )}
+
+              {openSearch && (
+                <button
+                  type='submit'
+                  className='flex-center size-[1.875rem] shrink-0'
+                >
+                  <ICSearchHead className='text-text-80 size-[0.9375rem]' />
+                </button>
+              )}
+
+              <div
+                className={cn(
+                  'flex-y-center max-w-[3rem] shrink-0 overflow-hidden transition-[max-width,opacity,transform] duration-150 ease-out [will-change:max-width,opacity,transform]',
+                  openSearch
+                    ? 'pointer-events-none max-w-0 -translate-x-1 opacity-0 duration-0'
+                    : 'max-w-[3rem] translate-x-0 opacity-100',
+                )}
               >
-                <ICMenu className='text-text-80 size-[0.9375rem]' />
-              </button>
-            </div>
-          </form>
+                <div className='h-[0.9375rem] border-l border-solid border-[rgba(9,_9,_9,_0.60)]/[0.28]'></div>
+                <button
+                  type='button'
+                  className='flex-center size-[1.875rem] shrink-0'
+                  onClick={handleToggleMenu}
+                >
+                  <ICMenu className='text-text-80 size-[0.9375rem]' />
+                </button>
+              </div>
+            </form>
+            {session?.user && !openMenu && (
+              <Link href={locale === 'vi' ? '/ca-nhan' : '/personal'}>
+                <div className='relative size-[2.03125rem] overflow-hidden rounded-full border border-[#D32F2F] lg:hidden'>
+                  <Avatar className='size-full'>
+                    <AvatarImage
+                      src={session?.user?.avatar_512 || ''}
+                      className='object-cover'
+                    />
+                    <AvatarFallback>
+                      <Skeleton className='size-full rounded-full' />
+                    </AvatarFallback>
+                  </Avatar>
+                </div>
+              </Link>
+            )}
+          </div>
+
           {/* close mobile */}
           {(openMenu || openSearch) && (
             <button
@@ -427,7 +446,7 @@ export default function Header({
             onClick={() => setOpenMobileLanguage((prev) => !prev)}
             className='mb-header-16-m text-en flex w-full items-center justify-between'
           >
-            <span>Ngôn ngữ</span>
+            <span>{t('language')}</span>
             <ChevronDown
               className={cn(
                 'size-[0.95rem] shrink-0 transition-transform duration-200 ease-out',
@@ -457,10 +476,17 @@ export default function Header({
             ))}
           </div>
         </div>
-        <ButtonRed className='mt-[2.19rem] mb-[0.83rem] w-full'>
-          <span>Đăng nhập</span>
-          <ICUser className='size-[0.83333rem] text-white' />
-        </ButtonRed>
+        {!session?.user && (
+          <Link
+            href={locale === 'vi' ? '/dang-nhap' : '/login'}
+            onClick={handleCloseAll}
+          >
+            <ButtonRed className='mt-[2.19rem] mb-[0.83rem] w-full'>
+              <span>{locale === 'vi' ? 'Đăng nhập' : 'Login'}</span>
+              <ICUser className='size-[0.83333rem] text-white' />
+            </ButtonRed>
+          </Link>
+        )}
 
         <Link
           href={menus[menus.length - 1].link.url || ''}

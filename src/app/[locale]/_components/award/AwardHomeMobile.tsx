@@ -10,8 +10,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { ISectionAwardAcf } from '@/interfaces/home.interface'
 
-export default function AwardHomeMobile({ data }: { data: ISectionAwardAcf }) {
-  const { title, list_awards } = data
+export default function AwardHomeMobile({ data }: { data?: ISectionAwardAcf }) {
+  if (!data) return null
+  const { title } = data
+  const list_awards = Array.isArray(data.list_awards) ? data.list_awards : []
   const [activeIndex, setActiveIndex] = useState(0)
   return (
     <div className='relative min-h-[19.9rem] overflow-hidden px-[0.83rem] pt-[8.65rem] pb-[2.08rem] sm:hidden'>

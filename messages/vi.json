@@ -1,4 +1,9 @@
 {
+  "Header": {
+    "language": "Ngôn ngữ",
+    "languageVi": "Tiếng Việt",
+    "languageEn": "Tiếng Anh"
+  },
   "HomePage": {
     "title": "Xin chào!",
     "blogs": "Tin tức",
@@ -272,7 +277,9 @@
     "resendOTP": "Lấy mã OTP",
     "resendOTPSuccess": "Mã OTP đã được gửi đến email của bạn",
     "resendOTPError": "Lấy mã OTP thất bại",
-    "validateOTPLength": "Mã OTP phải có 6 ký tự"
+    "validateOTPLength": "Mã OTP phải có 6 ký tự",
+    "desc1": " Mã xác nhận sẽ được gửi về email: ",
+    "desc2": "Nhấn nút “lấy mã xác thực” phía dưới để tiến hành gửi mã:"
   },
   "PrivacyPolicyPage": {
     "effectiveDate": "Hiệu lực từ ngày"
