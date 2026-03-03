@@ -181,7 +181,7 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
                   <p className='pc-body-20-r mb-[2rem] max-w-[52.1875rem] text-[1.04167rem] text-white'>
                     {service.description}
                   </p>
-                  <div className='group ml-auto flex w-fit cursor-pointer items-center space-x-[0.28rem]'>
+                  <div className='group ml-auto flex w-fit cursor-pointer items-center space-x-[0.28rem] opacity-80 hover:opacity-100 transition-all duration-300'>
                     <Link
                       href={service.href}
                       className='pc-button-16-r'
@@ -194,7 +194,7 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
                       height='11'
                       viewBox='0 0 7 11'
                       fill='none'
-                      className='transition-transform group-hover:translate-x-1'
+                      className='transition-transform group-hover:translate-x-1 size-2.5'
                     >
                       <path
                         d='M3.96486 5.17871L6.12832 5.18545L3.96631 5.17871L6.20402e-05 0.942809L0.942871 0L6.12832 5.18545L0.942867 10.3709L5.79098e-05 9.42809L3.96486 5.17871Z'

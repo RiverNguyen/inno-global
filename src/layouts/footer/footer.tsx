@@ -193,7 +193,7 @@ export default function Footer({ data }: IFooterProps) {
                 ref={menuColumn1Ref}
                 className='xsm:max-h-0 xsm:overflow-hidden xsm:transition-all xsm:duration-300 xsm:ease-in-out'
               >
-                <div className='client-height xsm:grid-cols-2 xsm:grid xsm:gap-[0.52rem] xsm:pb-[0.83rem] sm:space-y-[0.52rem]'>
+                <div className='client-height xsm:grid-cols-2 xsm:grid xsm:gap-[0.94rem] xsm:pb-[0.83rem] sm:space-y-[0.52rem]'>
                   {Array.isArray(menu_column_1?.items) &&
                     menu_column_1?.items?.map((item, index) => (
                       <p
@@ -271,7 +271,7 @@ export default function Footer({ data }: IFooterProps) {
                           alt={item?.icon?.alt || ''}
                           width={40}
                           height={40}
-                          className='xsm:size-[1rem] size-[1.75rem] object-contain'
+                          className='xsm:size-[1.67rem] size-[1.75rem] object-contain'
                         />
                       </Link>
                     ))}

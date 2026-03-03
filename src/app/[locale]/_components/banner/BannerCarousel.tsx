@@ -3,14 +3,16 @@
 import Image from 'next/image'
 import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
+import 'swiper/css/pagination'
 import 'swiper/css/parallax'
-import { Autoplay, Parallax } from 'swiper/modules'
+import { Autoplay, Pagination, Parallax } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { IAcfImage } from '@/interfaces/acf-wp.interface'
 
-const SWIPER_MODULES = [Parallax, Autoplay] as const
+const SWIPER_MODULES = [Parallax, Autoplay, Pagination] as const
 const SWIPER_AUTOPLAY = { delay: 3000, disableOnInteraction: false } as const
+const SWIPER_PAGINATION = { clickable: true } as const
 
 type BannerCarouselProps = {
   onSwiper: (swiper: SwiperType) => void
@@ -28,7 +30,8 @@ export default function BannerCarousel({ onSwiper, onActiveIndexChange, images }
       autoplay={SWIPER_AUTOPLAY}
       grabCursor={true}
       parallax={true}
-      className='relative size-full'
+      pagination={SWIPER_PAGINATION}
+      className='banner-carousel relative size-full'
       onSwiper={onSwiper}
       onSlideChange={(swiper) => onActiveIndexChange(swiper.realIndex)}
     >

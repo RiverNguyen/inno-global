@@ -163,7 +163,7 @@ export default function AboutUsHome({ data }: { data?: ISectionAboutUsAcf }) {
                 ))}
             </div>
 
-            <div className='xsm:pb-[7.34rem] sm:hidden'>
+            <div className='xsm:pb-[7.34rem] sm:hidden relative z-[1]'>
               {Array.isArray(number) &&
                 [0, 2, 4].map((startIndex) => {
                   const rowStats = number.slice(startIndex, startIndex + 2)

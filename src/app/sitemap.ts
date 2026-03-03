@@ -15,11 +15,14 @@ export default async function sitemap() {
       '/projects',
       '/services',
       '/about-us/corporate-culture',
+      '/about-us/history-of-formation',
       '/about-us/leadership',
       '/about-us/organizational-chart',
       '/about-us/social-responsibility',
       '/about-us/sub-company',
       '/trainings',
+      '/privacy-policy',
+      '/terms-of-use',
     ].map((path) => ({
       url: `${baseUrl}${locale}${path}`,
       lastModified,
@@ -36,11 +39,14 @@ export default async function sitemap() {
       '/du-an',
       '/dich-vu',
       '/ve-chung-toi/van-hoa-doanh-nghiep',
+      '/ve-chung-toi/lich-su-hinh-thanh',
       '/ve-chung-toi/ban-lanh-dao-cong-ty',
       '/ve-chung-toi/so-do-to-chuc',
       '/ve-chung-toi/trach-nhiem-xa-hoi',
       '/ve-chung-toi/cong-ty-con',
       '/dao-tao',
+      '/chinh-sach-bao-mat',
+      '/dieu-khoan-su-dung',
     ].map((path) => ({
       url: `${baseUrl}${locale}${path}`,
       lastModified,
@@ -58,7 +64,18 @@ export default async function sitemap() {
     }
   }
 
-  const [projectEn, projectVi, leadershipEn, leadershipVi, blogEn, blogVi, trainingEn, trainingVi] = await Promise.all([
+  const [
+    projectEn,
+    projectVi,
+    leadershipEn,
+    leadershipVi,
+    blogEn,
+    blogVi,
+    trainingEn,
+    trainingVi,
+    serviceEn,
+    serviceVi,
+  ] = await Promise.all([
     fetchSlugs('api/v1/slugs?post_type=project&lang=en'),
     fetchSlugs('api/v1/slugs?post_type=project&lang=vi'),
     fetchSlugs('api/v1/slugs?post_type=leadership&lang=en'),
@@ -67,6 +84,8 @@ export default async function sitemap() {
     fetchSlugs('api/v1/slugs?post_type=post&lang=vi'),
     fetchSlugs('api/v1/slugs?post_type=training&lang=en'),
     fetchSlugs('api/v1/slugs?post_type=training&lang=vi'),
+    fetchSlugs('api/v1/get-all-taxonomy/service?lang=en&limit=100&paged=1'),
+    fetchSlugs('api/v1/get-all-taxonomy/service?lang=vi&limit=100&paged=1'),
   ])
 
   // Helper to get slug from either string or object
@@ -150,6 +169,7 @@ export default async function sitemap() {
   const getLeaderships = (data: any) => data?.leaderships || data?.data || (Array.isArray(data) ? data : [])
   const getPosts = (data: any) => data?.posts || data?.data || (Array.isArray(data) ? data : [])
   const getTrainigs = (data: any) => data?.trainings || data?.data || (Array.isArray(data) ? data : [])
+  const getServices = (data: any) => data?.services || data?.data || (Array.isArray(data) ? data : [])
 
   const generatePageStaticProjectVi = generatePageStaticProject('du-an', getProjects(projectVi), '')
   const generatePageStaticProjectEn = generatePageStaticProject('projects', getProjects(projectEn), '/en')
@@ -171,6 +191,9 @@ export default async function sitemap() {
   const generatePageStaticTrainingVi = generatePageStaticTraining('dao-tao', getTrainigs(trainingVi), '')
   const generatePageStaticTrainingEn = generatePageStaticTraining('trainings', getTrainigs(trainingEn), '/en')
 
+  const generatePageStaticServiceVi = generatePageStaticProject('dich-vu', getServices(serviceVi), '')
+  const generatePageStaticServiceEn = generatePageStaticProject('services', getServices(serviceEn), '/en')
+
   return [
     // Static pages first
     ...generatePageStaticEn,
@@ -184,5 +207,7 @@ export default async function sitemap() {
     ...generatePageStaticBlogVi,
     ...generatePageStaticTrainingEn,
     ...generatePageStaticTrainingVi,
+    ...generatePageStaticServiceEn,
+    ...generatePageStaticServiceVi,
   ]
 }

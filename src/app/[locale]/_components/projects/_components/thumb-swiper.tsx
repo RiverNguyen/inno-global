@@ -64,15 +64,23 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
           {data.map((item) => (
             <SwiperSlide
               key={item.id + 'thumb_item'}
-              className='mr-[0.63rem] !h-[9.94792rem] w-full max-w-[17.08333rem] overflow-hidden rounded-[0.20833rem]'
+              className='mr-[0.63rem] relative !h-[9.94792rem] w-full max-w-[17.08333rem] overflow-hidden rounded-[0.20833rem]'
             >
               <Image
-                width={683}
-                height={410}
                 src={item.image || '/default.webp'}
                 alt={item.title}
+                fill
                 className='h-full w-full object-cover'
               />
+              <div
+                className='absolute bottom-0 left-0 h-[4.27rem] w-full'
+                style={{
+                  background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 8.26%, rgba(0, 0, 0, 0.40) 77.77%)',
+                }}
+              ></div>
+              <p className='absolute z-[1] bottom-[0.52rem] left-[0.83rem] right-[0.83rem] line-clamp-1 text-white text-[0.9375rem] font-semibold leading-[1.5]'>
+                {item?.title}
+              </p>
             </SwiperSlide>
           ))}
         </Swiper>

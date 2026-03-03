@@ -191,14 +191,14 @@ export default function Header({
               >
                 {Array.isArray(menus) &&
                   menus.slice(0, menus.length - 1).map((menu) => (
-                    <Link
+                    <button
                       key={menu.link.url || ''}
-                      href={menu.link.url || ''}
-                      target={menu.link.target || '_self'}
+                      type='button'
                       className='pc-body-16-r text-en whitespace-nowrap'
+                      onClick={() => router.push(menu.link.url || '')}
                     >
                       {menu.link.title}
-                    </Link>
+                    </button>
                   ))}
               </div>
             </div>
@@ -279,13 +279,13 @@ export default function Header({
                 </div>
               )}
             </form>
-            <Link
-              href={menus[menus.length - 1].link.url || ''}
-              target={menus[menus.length - 1].link.target || '_self'}
+            <button
+              type='button'
+              onClick={() => router.push(menus[menus.length - 1].link.url || '')}
               className='pc-body-16-r text-en xsm:hidden inline-block'
             >
               {menus[menus.length - 1].link.title}
-            </Link>
+            </button>
             {!session?.user && (
               <Link href={locale === 'vi' ? '/dang-nhap' : '/login'}>
                 <ButtonRed className='xsm:hidden'>

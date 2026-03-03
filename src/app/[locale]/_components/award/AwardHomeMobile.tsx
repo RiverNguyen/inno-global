@@ -34,8 +34,10 @@ export default function AwardHomeMobile({ data }: { data?: ISectionAwardAcf }) {
               background: 'linear-gradient(180deg, #FFF 31.27%, #FFB6B6 63.33%, #FF5050 82.33%)',
               WebkitTextFillColor: 'transparent',
               WebkitBackgroundClip: 'text',
+              textBoxEdge: 'cap alphabetic',
+              textBoxTrim: 'trim-both',
             }}
-            className='text-[2.70833rem] leading-[1.2] font-semibold capitalize text-shadow-[0_0_37.912px_rgba(255,255,255,0.25)]'
+            className='text-[2.70833rem] leading-[1.2] font-semibold capitalize text-shadow-[0_0_37.912px_rgba(255,255,255,0.25)] mb-[0.62rem]'
           >
             {list_awards?.length}
           </p>
