@@ -14,7 +14,7 @@ export default function NewsItem({ data }: { data: IBlog }) {
   const category = data?.taxonomies?.category[0]?.name || ''
 
   return (
-    <div className='group xsm:space-x-[0.52083rem] flex items-center space-x-[1.04083rem]'>
+    <div className='group xsm:space-x-[0.52083rem] flex items-center space-x-[1.04083rem] h-full'>
       <Link
         className='xsm:w-[5.10417rem] xsm:h-[3.59375rem] h-[6.35417rem] w-[9.01042rem] overflow-hidden rounded-[0.20833rem]'
         href={locale === 'vi' ? `${ROUTES.blogsVi}/${data?.slug}` : `${ROUTES.blogsEn}/${data?.slug}`}
@@ -29,7 +29,7 @@ export default function NewsItem({ data }: { data: IBlog }) {
       </Link>
       <Link
         href={locale === 'vi' ? `${ROUTES.blogsVi}/${data?.slug}` : `${ROUTES.blogsEn}/${data?.slug}`}
-        className='flex h-full flex-1 flex-col'
+        className='flex h-[6.35rem] flex-1 flex-col justify-between xsm:h-full'
       >
         <p className='xsm:text-[0.52083rem] mb-[0.625rem] text-[0.625rem] text-[rgba(9,9,9,0.60)] opacity-90'>
           <span className='mr-[0.62rem] text-[#D32F2F] uppercase'>{category}</span>

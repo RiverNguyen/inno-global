@@ -1,23 +1,14 @@
 'use client'
 
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { useRef, useState, type WheelEvent } from 'react'
+import { useState, type WheelEvent } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
-import 'swiper/css/parallax'
-import { Parallax } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { cn } from '@/lib/utils'
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger)
-}
 
 type ServiceHomeItem = {
   title: string
@@ -30,7 +21,6 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
   const t = useTranslations('ServiceSection')
   const [activeService, setActiveService] = useState(0)
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
 
   const handleServiceListWheelCapture = (event: WheelEvent<HTMLDivElement>) => {
     const list = event.currentTarget
@@ -58,55 +48,8 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
     }
   }
 
-  useGSAP(
-    () => {
-      // Parallax effect: Image moves up, Text moves down
-      // We apply this to the WRAPPERS so it doesn't conflict with Swiper Parallax
-      const images = gsap.utils.toArray<HTMLElement>('.service-parallax-image-wrapper')
-      const texts = gsap.utils.toArray<HTMLElement>('.service-parallax-text-wrapper')
-
-      images.forEach((img) => {
-        gsap.fromTo(
-          img,
-          { y: '0%' },
-          {
-            y: '-15%', // Functionality: scrolling down moves image up relative to container
-            ease: 'none',
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: 'top bottom', // Start when Section top hits viewport bottom
-              end: 'bottom top', // End when Section bottom hits viewport top
-              scrub: true,
-            },
-          },
-        )
-      })
-
-      texts.forEach((txt) => {
-        gsap.fromTo(
-          txt,
-          { y: '0%' },
-          {
-            y: '30%', // Functionality: scrolling down moves text down relative to container
-            ease: 'none',
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: true,
-            },
-          },
-        )
-      })
-    },
-    { scope: containerRef, dependencies: [swiperInstance] }, // Re-run if swiper changes
-  )
-
   return (
-    <div
-      ref={containerRef}
-      className='xsm:hidden flex min-h-screen'
-    >
+    <div className='xsm:hidden flex min-h-screen'>
       {/* Left Menu */}
       <div className='relative z-20 w-[35.3125rem] space-y-[2.24rem] bg-white pt-[5.7rem] pr-[2.92rem] pb-[5.18rem] pl-[7.29rem]'>
         <h3 className='pc-h3-40-s text-text-100'>{title}</h3>
@@ -136,8 +79,6 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
       <div className='h-screen flex-1 overflow-hidden'>
         <Swiper
           direction='vertical'
-          modules={[Parallax]}
-          parallax={true}
           spaceBetween={0}
           slidesPerView={1}
           onSwiper={setSwiperInstance}
@@ -151,11 +92,8 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
               key={index}
               className='relative h-full w-full overflow-hidden'
             >
-              <div className='service-parallax-image-wrapper absolute inset-0 -top-[10%] h-[120%] w-full'>
-                <div
-                  className='relative h-full w-full'
-                  data-swiper-parallax-y='-1%'
-                >
+              <div className='absolute inset-0 h-full w-full'>
+                <div className='relative h-full w-full'>
                   <Image
                     src={service.image || '/default.webp'}
                     alt={service.title}
@@ -168,15 +106,9 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
                 </div>
               </div>
 
-              {/* Text Content Wrapper for GSAP Parallax */}
-              <div className='service-parallax-text-wrapper pointer-events-none absolute top-[5.68rem] left-[5.21rem] z-10 text-white'>
-                {/* Text Inner for Swiper Parallax - pointer-events-auto to restore intersection */}
-                <div
-                  className='pointer-events-auto'
-                  data-swiper-parallax-y='-30%'
-                  data-swiper-parallax-opacity='0'
-                  data-swiper-parallax-duration='600'
-                >
+              {/* Text Content */}
+              <div className='pointer-events-none absolute top-[5.68rem] left-[5.21rem] z-10 text-white'>
+                <div className='pointer-events-auto'>
                   <h2 className='pc-34-34-m mb-[0.94rem] text-white'>{service.title}</h2>
                   <p className='pc-body-20-r mb-[2rem] max-w-[52.1875rem] text-[1.04167rem] text-white'>
                     {service.description}

@@ -335,7 +335,7 @@ export default function Header({
             )}
           </div>
           {/* mobile menu */}
-          <div className='flex-y-center space-x-[0.63rem] lg:hidden'>
+          <div className='flex-y-center space-x-[0.63rem] sm:hidden'>
             <form
               onSubmit={handleSearchSubmit}
               className={cn(

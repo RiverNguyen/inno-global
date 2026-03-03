@@ -7,7 +7,7 @@ import { IBannerHistory } from '@/interfaces/history.interface'
 export default function BannerHistory({ banner }: { banner: IBannerHistory }) {
   const t = useTranslations()
   return (
-    <section className='xsm:h-[18.17708rem] relative h-screen w-full tablet:h-[40vh]'>
+    <section className='xsm:h-[21.8125rem] relative h-screen w-full tablet:h-[40vh]'>
       <Image
         className='xsm:hidden size-full object-cover'
         src={banner?.image_desktop || '/history/d-bg-history.jpg'}
