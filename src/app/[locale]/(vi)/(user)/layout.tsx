@@ -1,4 +1,7 @@
+import { redirect } from 'next/navigation'
+
 import Aside from '@/app/[locale]/(vi)/(user)/_components/aside'
+import { auth } from '@/auth'
 import { IFooter } from '@/layouts/footer/footer'
 import FooterDashboard from '@/layouts/footer/footer-dashboard'
 import { footerService } from '@/services/home/footer.service'
@@ -6,7 +9,11 @@ import { footerService } from '@/services/home/footer.service'
 const UserLayout = async ({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) => {
   const { locale } = await params
   const { data } = await footerService.getFooterData<{ data: { footer_fields: IFooter } }>(locale)
+  const session = await auth()
 
+  if (!session?.user) {
+    redirect('/dang-nhap')
+  }
   return (
     <>
       <style>
