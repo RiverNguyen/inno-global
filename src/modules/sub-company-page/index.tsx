@@ -112,7 +112,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
               key={company?.id}
               description={company?.content}
               image={company?.featured_image?.url || '/default.webp'}
-              link={locale === 'vi' ? `/cong-ty/${company?.slug}` : `/company/${company?.slug}`}
+              // link={locale === 'vi' ? `/cong-ty/${company?.slug}` : `/company/${company?.slug}`}
             />
           ))}
         </div>

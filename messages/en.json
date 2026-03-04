@@ -2,7 +2,9 @@
   "Header": {
     "language": "Language",
     "languageVi": "Vietnamese",
-    "languageEn": "English"
+    "languageEn": "English",
+    "searchPlaceholder": "Enter search keyword",
+    "searchHistory": "Search history"
   },
   "HomePage": {
     "title": "Hello world!",
@@ -105,7 +107,8 @@
     "ceoMessage": "CEO Message"
   },
   "DetailProjectPage": {
-    "info": "Project information",
+    "share": "Share",
+    "info": "Project information:",
     "learnMore": "Learn more about the project",
     "related": "Related projects",
     "viewAll": "View all"
@@ -148,7 +151,7 @@
     "noTrainings": "No trainings found"
   },
   "DetailTrainingPage": {
-    "share": "Share",
+    "share": "Share:",
     "viewAll": "View all",
     "related": "Related trainings",
     "contentSummary": "Content summary",

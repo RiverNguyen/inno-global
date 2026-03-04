@@ -170,7 +170,6 @@ export default function Header({
               href='/'
               onClick={handleCloseAll}
             >
-              {/* {logo?.url && ( */}
               <Image
                 src={logo.url}
                 alt={logo?.alt || ''}
@@ -180,7 +179,6 @@ export default function Header({
                 priority
                 className='xsm:h-[1.5625rem] h-[2.29167rem] w-auto'
               />
-              {/* )} */}
             </Link>
             <div className='xsm:hidden relative ml-[2.08rem]'>
               <div
@@ -191,14 +189,13 @@ export default function Header({
               >
                 {Array.isArray(menus) &&
                   menus.slice(0, menus.length - 1).map((menu) => (
-                    <button
+                    <Link
                       key={menu.link.url || ''}
-                      type='button'
+                      href={menu.link.url || ''}
                       className='pc-body-16-r text-en whitespace-nowrap'
-                      onClick={() => router.push(menu.link.url || '')}
                     >
                       {menu.link.title}
-                    </button>
+                    </Link>
                   ))}
               </div>
             </div>
@@ -219,7 +216,7 @@ export default function Header({
                   id='search'
                   type='text'
                   className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none bg-transparent pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none'
-                  placeholder='Nhập từ khoá tìm kiếm'
+                  placeholder={t('searchPlaceholder')}
                 />
               )}
               <button
@@ -245,7 +242,7 @@ export default function Header({
                   }}
                 >
                   <div className='flex-y-center justify-between border-b border-solid border-[rgba(9,9,9,0.08)] pb-[0.83rem]'>
-                    <span className='pc-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
+                    <span className='pc-body-14-r text-text-40'>{t('searchHistory')}</span>
                     <Image
                       src='/header/ic-trash.svg'
                       alt='trash'
@@ -279,13 +276,12 @@ export default function Header({
                 </div>
               )}
             </form>
-            <button
-              type='button'
-              onClick={() => router.push(menus[menus.length - 1].link.url || '')}
+            <Link
+              href={menus[menus.length - 1].link.url || ''}
               className='pc-body-16-r text-en xsm:hidden inline-block'
             >
               {menus[menus.length - 1].link.title}
-            </button>
+            </Link>
             {!session?.user && (
               <Link href={locale === 'vi' ? '/dang-nhap' : '/login'}>
                 <ButtonRed className='xsm:hidden'>
@@ -311,7 +307,7 @@ export default function Header({
 
             {session?.user && (
               <Link
-                href={locale === 'vi' ? '/thong-tin-tai-khoan' : '/dashboard'}
+                href={locale === 'vi' ? '/thong-tin-tai-khoan' : '/info'}
                 className='flex-y-center space-x-[0.52rem]'
               >
                 <div className='relative size-[2.5rem] overflow-hidden rounded-full border border-[#D32F2F]'>
@@ -347,7 +343,7 @@ export default function Header({
               <input
                 ref={mobileSearchInputRef}
                 type='text'
-                placeholder='Nhập từ khoá tìm kiếm'
+                placeholder={t('searchPlaceholder')}
                 id='search-mobile'
                 className={cn(
                   'text-en placeholder:pc-body-14-r placeholder:text-en-60 h-[1.875rem] max-w-0 min-w-0 flex-1 border-none bg-transparent p-0 opacity-0 transition-[max-width,opacity,padding] duration-200 ease-out [will-change:max-width,opacity] outline-none focus:border-none focus:ring-0 focus:outline-none',
@@ -508,7 +504,7 @@ export default function Header({
         )}
       >
         <div className='flex-y-center h-[1.87rem] justify-between'>
-          <span className='mb-body-14-r text-text-40'>Lịch sử tìm kiếm</span>
+          <span className='mb-body-14-r text-text-40'>{t('searchHistory')}</span>
           <Image
             src='/header/ic-trash.svg'
             alt='trash'

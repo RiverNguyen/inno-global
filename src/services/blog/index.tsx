@@ -4,7 +4,7 @@ import fetchData from '@/fetches/fetchData'
 const blogService = {
   getBlogDetail: async (slug: string, locale: string) => {
     return await fetchData({
-      api: ENDPOINTS.detail(slug, locale),
+      api: ENDPOINTS.detail(slug, locale, 'post'),
     })
   },
   getRelatedBlogs: async ({

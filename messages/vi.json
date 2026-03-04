@@ -2,7 +2,9 @@
   "Header": {
     "language": "Ngôn ngữ",
     "languageVi": "Tiếng Việt",
-    "languageEn": "Tiếng Anh"
+    "languageEn": "Tiếng Anh",
+    "searchPlaceholder": "Nhập từ khoá tìm kiếm",
+    "searchHistory": "Lịch sử tìm kiếm"
   },
   "HomePage": {
     "title": "Xin chào!",
@@ -104,6 +106,7 @@
     "ceoMessage": "Thông điệp của CEO"
   },
   "DetailProjectPage": {
+    "share": "Chia sẻ",
     "info": "Thông tin dự án",
     "learnMore": "Tìm hiểu thêm về dự án",
     "related": "Dự án liên quan",

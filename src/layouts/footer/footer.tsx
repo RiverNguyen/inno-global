@@ -1,10 +1,10 @@
 'use client'
 import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 
+import { Link } from '@/i18n/navigation'
 import { IAcfImage, IAcfLink } from '@/interfaces/acf-wp.interface'
 import { cn } from '@/lib/utils'
 interface IFooterContact {

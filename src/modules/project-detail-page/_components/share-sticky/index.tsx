@@ -1,4 +1,5 @@
 'use client'
+import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 
 function IconCopy(props: React.SVGProps<SVGSVGElement>) {
@@ -129,6 +130,7 @@ function IconX(props: React.SVGProps<SVGSVGElement>) {
 }
 
 function ShareSticky() {
+  const t = useTranslations('DetailProjectPage')
   const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
   const encodedUrl = encodeURIComponent(shareUrl)
   const title = typeof document !== 'undefined' ? document.title : ''
@@ -159,7 +161,7 @@ function ShareSticky() {
   return (
     <aside className='sticky top-[30.25rem] flex flex-col'>
       <span className='text-[0.83rem] leading-[1.3] font-semibold tracking-[-0.0083rem] whitespace-nowrap text-[#090909]/80'>
-        Chia sẻ
+        {t('share')}
       </span>
       <hr className='mt-[0.43rem] mb-[0.83rem] border-[#090909]/8' />
       <div className='flex flex-col space-y-[0.625rem]'>

@@ -8,7 +8,16 @@ import { routing } from './i18n/routing'
 const intlMiddleware = createMiddleware(routing)
 
 // Các slug auth mà user đã login thì không được vào
-const AUTH_SLUGS = ['/dang-nhap', '/doi-mat-khau', '/xac-thuc-otp']
+const AUTH_SLUGS = [
+  '/dang-nhap',
+  '/doi-mat-khau',
+  '/xac-thuc-otp',
+  '/quen-mat-khau',
+  '/login',
+  '/forgot-password',
+  '/change-password',
+  '/verify-otp',
+]
 
 export default auth((req: NextRequest & { auth?: unknown }) => {
   const { pathname } = req.nextUrl

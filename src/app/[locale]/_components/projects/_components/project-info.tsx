@@ -1,9 +1,9 @@
 import { ChevronRightIcon } from 'lucide-react'
-import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 
 import { IProject } from '@/app/[locale]/_components/projects/projects'
 import ROUTES from '@/configs/routes'
+import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 interface IProjectInfoProps {

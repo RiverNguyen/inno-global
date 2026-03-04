@@ -14,7 +14,7 @@ const projectService = {
   },
   getProjectDetail: async (locale: string, slug: string) => {
     return await fetchData({
-      api: ENDPOINTS.detail(slug, locale),
+      api: ENDPOINTS.detail(slug, locale, 'project'),
     })
   },
   getRelated: async ({ locale, location, investor }: { locale: string; location?: string; investor?: string }) => {

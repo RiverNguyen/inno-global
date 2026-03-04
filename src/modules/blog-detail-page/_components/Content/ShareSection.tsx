@@ -69,7 +69,7 @@ export default function ShareSection({ blog }: ShareSectionProps) {
     <div className='xsm:flex-col-reverse xsm:items-start xsm:justify-start xsm:gap-[1.04167rem] xsm:p-[0.83333rem_0_2.08333rem_0] xsm:mt-[1.66667rem] mt-[2.08333rem] flex items-center justify-between border-t-[0.05208rem] border-t-[rgba(9,9,9,0.08)] pt-[0.9375rem]'>
       <div className='flex items-center gap-[0.52083rem]'>
         <span className='text-[rgba(9,9,9,0.80) font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] text-[0.9375rem] leading-[150%]'>
-          Chia sẻ:
+          {t('share')}:
         </span>
         <div className='flex items-center gap-[0.625rem]'>
           {shareLinks.map(({ type, src, label, ...rest }) =>

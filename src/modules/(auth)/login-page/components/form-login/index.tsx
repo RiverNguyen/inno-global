@@ -43,7 +43,7 @@ export default function FormLogin() {
 
     if (res?.ok) {
       toast.success(t('success'))
-      router.push('/')
+      router.push(locale === 'vi' ? '/' : '/en')
       form.reset()
       return
     }

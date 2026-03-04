@@ -1,10 +1,10 @@
 'use client'
 import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 
 import ROUTES from '@/configs/routes'
+import { Link } from '@/i18n/navigation'
 import { IBlog } from '@/interfaces/blog.interface'
 import { formatDateDDMMYYYY } from '@/lib/utils'
 

@@ -1,11 +1,11 @@
 import { ChevronRightIcon } from 'lucide-react'
-import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 import React from 'react'
 
 import NewsFeatured from '@/app/[locale]/_components/news/_components/news-featured'
 import NewsItem from '@/app/[locale]/_components/news/_components/news-item'
 import ROUTES from '@/configs/routes'
+import { Link } from '@/i18n/navigation'
 import { IBlog } from '@/interfaces/blog.interface'
 
 interface NewsProps {

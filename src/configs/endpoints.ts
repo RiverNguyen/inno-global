@@ -59,7 +59,7 @@ const ENDPOINTS = {
   },
   leadership: {
     list: 'api/v1/get-all/leadership',
-    detail: (slug: string) => `api/v1/detail/${slug}?acf=true`,
+    detail: (slug: string) => `api/v1/detail/${slug}?acf=true&lang=en`,
     rank_math: {
       en: '/leadership',
       vi: '/ban-lanh-dao-cong-ty',
@@ -89,7 +89,7 @@ const ENDPOINTS = {
     organizationChartVi: 318,
     organizationChartEn: 323,
     cultureVi: 368,
-    cultureEn: 371,
+    cultureEn: 999,
     privacyPolicyVi: 865,
     privacyPolicyEn: 867,
     termsOfUseVi: 884,
@@ -104,7 +104,7 @@ const ENDPOINTS = {
   service: {
     getAll: (locale: string) =>
       `api/v1/get-all-taxonomy/service?lang=${locale}&fields=thumbnail&orderby=date&order=DESC&limit=12&paged=1`,
-    detail: (slug: string) => `api/v1/taxonomy/${slug}?acf=true`,
+    detail: (slug: string) => `api/v1/taxonomy/${slug}?acf=true&taxonomy=service`,
     search: ({ locale, q, limit }: { locale: string; q: string; limit: number }) =>
       `api/v1/get-all-taxonomy/service?lang=${locale}&s=${q}&fields=thumbnail&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
     relatedProjects: ({ slug, limit, lang, paged }: FetchRelatedProjectsProps) =>
@@ -141,7 +141,8 @@ const ENDPOINTS = {
     vi: 'wp/v2/pages/594?_fields=acf&acf_format=standard',
     en: 'wp/v2/pages/596?_fields=acf&acf_format=standard',
   },
-  detail: (slug: string, locale: string) => `api/v1/detail/${slug}?locale=${locale}&acf=true`,
+  detail: (slug: string, locale: string, post_type: string) =>
+    `api/v1/detail/${slug}?lang=${locale}&post_type=${post_type}&acf=true`,
   company: {
     rank_math: {
       en: '/en/sub-company',
