@@ -1,10 +1,10 @@
 import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 import { HTMLAttributes } from 'react'
 
 import ROUTES from '@/configs/routes'
+import { Link } from '@/i18n/navigation'
 import { IBlog } from '@/interfaces/blog.interface'
 import { cn, formatDateDDMMYYYY } from '@/lib/utils'
 
@@ -41,10 +41,10 @@ export default function NewsFeatured({ data, ...props }: NewsFeaturedProps) {
       >
         <p className='xsm:text-[0.52083rem] text-[0.625rem] opacity-90'>
           <span className='mr-[0.62rem] uppercase'>{category || '-'}</span>
-          <span>{formatDateDDMMYYYY(data.date)}</span>
+          <span>{formatDateDDMMYYYY(data?.date || '')}</span>
         </p>
         <h3 className='xsm:text-[0.83333rem] line-clamp-2 text-[1.25rem] leading-normal font-semibold tracking-[-0.05rem]'>
-          {data.title}
+          {data?.title}
         </h3>
         <p className='xsm:hidden line-clamp-3 text-[0.9375rem] leading-[150%] font-normal tracking-[-0.025rem] opacity-80'>
           {data?.acf?.short_desc || '-'}

@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -77,6 +77,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
   })
 
   const isSubmitting = form.formState.isSubmitting
+  const fieldValue = useWatch({ control: form.control, name: 'field' })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -187,7 +188,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                   )}
                   disabled={isSubmitting}
                 >
-                  {form.watch('field') || translateContactForm('placeholderField')}
+                  {fieldValue || translateContactForm('placeholderField')}
 
                   <ChevronDown className='size-[1.04167rem] text-[#090909] opacity-60' />
                 </button>
@@ -213,7 +214,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
 
                 <div className='space-y-[0.52083rem] p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem]'>
                   {serviceTaxonomies.data.map((option) => {
-                    const isSelected = form.watch('field') === option.name
+                    const isSelected = fieldValue === option.name
 
                     return (
                       <button
@@ -239,7 +240,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
             </Drawer>
           ) : (
             <Select
-              value={form.watch('field')}
+              value={fieldValue}
               onValueChange={(value) => form.setValue('field', value, { shouldValidate: true })}
             >
               <SelectTrigger

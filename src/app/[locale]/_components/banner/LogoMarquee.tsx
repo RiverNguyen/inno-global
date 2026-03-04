@@ -104,7 +104,7 @@ export default function LogoMarquee({ logos }: LogoMarqueeProps) {
       <div className='absolute inset-0'>
         <div
           ref={marqueeViewportRef}
-          className='mx-auto h-full w-full overflow-hidden'
+          className='mx-auto h-full max-w-[86rem] overflow-hidden sm:[mask-image:linear-gradient(to_right,transparent_0%,black_12%,black_88%,transparent_100%)]'
         >
           <div
             ref={marqueeTrackRef}

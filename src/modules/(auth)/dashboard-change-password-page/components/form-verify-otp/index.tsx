@@ -142,7 +142,7 @@ export default function FormVerifyOTP({ user, onSuccess }: FormVerifyOTPProps) {
     <section className='xsm:pt-[3.54rem]'>
       <h1 className='xsm:flex xsm:text-[0.83rem] xsm:mb-[2.29rem] xsm:text-[#333] mb-[1.25rem] text-[1.45rem] leading-[1.5] font-semibold text-[#090909]'>
         <BackButton className='translate-y-[0.1rem]' />
-        Thay đổi mật khẩu
+        {t('title')}
       </h1>
       <div className='flex-y-center space-x-[0.62rem]'>
         <div className='relative size-[2.5rem] overflow-hidden rounded-full border border-[#D32F2F]'>
@@ -165,12 +165,12 @@ export default function FormVerifyOTP({ user, onSuccess }: FormVerifyOTPProps) {
       </div>
       <div className='xsm:mb-[1.25rem] xsm:text-[0.625rem] mt-[0.89rem] mb-[1.35rem] text-[0.83rem] leading-[1.5] tracking-[-0.0167rem] text-[#090909]/80'>
         <p>
-          Mã xác nhận sẽ được gửi về email: <br className='lg:hidden' />
+          {t('desc1')} <br className='lg:hidden' />
           <strong className='xsm:text-[0.729rem] leading-[1.3] font-semibold tracking-[-0.00833rem] text-[#090909]'>
             {user?.email}
           </strong>
         </p>
-        <p>Nhấn nút “lấy mã xác thực” phía dưới để tiến hành gửi mã:</p>
+        <p>{t('desc2')}</p>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>

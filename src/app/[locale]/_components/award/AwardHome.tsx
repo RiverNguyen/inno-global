@@ -1,7 +1,8 @@
 'use client'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import type { Swiper as SwiperType } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
@@ -9,9 +10,14 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ISectionAwardAcf } from '@/interfaces/home.interface'
 
-export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
-  const { title, subtitle, list_awards } = data
+export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const swiperRef = useRef<SwiperType | null>(null)
+
+  if (!data) return null
+  const { title, subtitle } = data
+
+  const list_awards = Array.isArray(data.list_awards) ? data.list_awards : []
 
   return (
     <div className='xsm:hidden h-screen w-full'>
@@ -69,6 +75,7 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
             centeredSlides
             loop={true}
             grabCursor
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             navigation={{
               nextEl: '.swiper-button-next-c',
@@ -108,7 +115,8 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
                 {list_awards?.map((_, index) => (
                   <div
                     key={index}
-                    className={`bg-text-60 h-[0.15625rem] rounded-full transition-all duration-300 ${
+                    onClick={() => swiperRef.current?.slideToLoop(index)}
+                    className={`bg-text-60 h-[0.15625rem] cursor-pointer rounded-full transition-all duration-300 ${
                       index === activeIndex ? 'w-[2.44rem]' : 'w-[1.2rem] opacity-[0.32]'
                     }`}
                   />
@@ -116,16 +124,16 @@ export default function AwardHome({ data }: { data: ISectionAwardAcf }) {
               </div>
             </div>
           </Swiper>
-          <button className='swiper-button-prev-c absolute top-[23%] left-[-4rem] z-20 !flex h-10 w-10 cursor-pointer items-center justify-center'>
+          <button className='swiper-button-prev-c absolute top-[23%] left-[-4rem] z-20 !flex h-10 w-10 cursor-pointer items-center justify-center hover:translate-x-[-0.5rem] group transition-all duration-300'>
             <ChevronLeft
               size={30}
-              className='text-text-100 h-[1.45833rem] w-[1.09375rem] transition-colors hover:text-[#D32F2F]'
+              className='text-text-100 h-[1.45833rem] w-[1.09375rem] transition-colors group-hover:text-[#D32F2F]'
             />
           </button>
-          <button className='swiper-button-next-c absolute top-[23%] right-[-4rem] z-20 !flex h-10 w-10 cursor-pointer items-center justify-center'>
+          <button className='swiper-button-next-c absolute top-[23%] right-[-4rem] z-20 !flex h-10 w-10 cursor-pointer items-center justify-center hover:translate-x-[0.5rem] group transition-all duration-300'>
             <ChevronRight
               size={30}
-              className='text-text-100 h-[1.45833rem] w-[1.09375rem] transition-colors hover:text-[#D32F2F]'
+              className='text-text-100 h-[1.45833rem] w-[1.09375rem] transition-colors group-hover:text-[#D32F2F]'
             />
           </button>
         </div>

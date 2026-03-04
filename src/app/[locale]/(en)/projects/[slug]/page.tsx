@@ -29,7 +29,7 @@ export async function generateMetadata({
 const ProjectDetailPage = async ({ params }: { params: Promise<{ locale: string; slug: string }> }) => {
   const { locale, slug } = await params
 
-  const res: IProjectDetail = await projectService.getProjectDetail(slug, locale)
+  const res: IProjectDetail = await projectService.getProjectDetail(locale, slug)
 
   const location = res?.taxonomies?.location[0]?.slug
   const investor = res?.taxonomies?.investor[0]?.slug

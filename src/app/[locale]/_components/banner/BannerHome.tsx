@@ -56,6 +56,7 @@ export default function BannerHome({ data }: { data: ISectionBannerAcf }) {
 
   return (
     <section className='tablet:h-[70vh] xsm:h-[18.17708rem] xsm:mt-[2.92rem] relative h-screen w-full overflow-hidden'>
+      <h1 className='sr-only'>Inno Global</h1>
       <BannerCarousel
         onSwiper={handleSwiper}
         onActiveIndexChange={setActiveIndex}

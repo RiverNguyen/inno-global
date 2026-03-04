@@ -10,9 +10,13 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { ISectionAwardAcf } from '@/interfaces/home.interface'
 
-export default function AwardHomeMobile({ data }: { data: ISectionAwardAcf }) {
-  const { title, list_awards } = data
+export default function AwardHomeMobile({ data }: { data?: ISectionAwardAcf }) {
   const [activeIndex, setActiveIndex] = useState(0)
+
+  if (!data) return null
+  const { title } = data
+  const list_awards = Array.isArray(data.list_awards) ? data.list_awards : []
+
   return (
     <div className='relative min-h-[19.9rem] overflow-hidden px-[0.83rem] pt-[8.65rem] pb-[2.08rem] sm:hidden'>
       <div className='absolute top-0 left-[0.83rem] h-[13.54167rem] w-[calc(100%-1.66rem)] overflow-hidden rounded-[1.25rem_1.25rem_0.20833rem_0.20833rem]'>
@@ -30,8 +34,10 @@ export default function AwardHomeMobile({ data }: { data: ISectionAwardAcf }) {
               background: 'linear-gradient(180deg, #FFF 31.27%, #FFB6B6 63.33%, #FF5050 82.33%)',
               WebkitTextFillColor: 'transparent',
               WebkitBackgroundClip: 'text',
+              textBoxEdge: 'cap alphabetic',
+              textBoxTrim: 'trim-both',
             }}
-            className='text-[2.70833rem] leading-[1.2] font-semibold capitalize text-shadow-[0_0_37.912px_rgba(255,255,255,0.25)]'
+            className='text-[2.70833rem] leading-[1.2] font-semibold capitalize text-shadow-[0_0_37.912px_rgba(255,255,255,0.25)] mb-[0.62rem]'
           >
             {list_awards?.length}
           </p>

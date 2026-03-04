@@ -359,8 +359,8 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               onChange={handleYearsChange}
             />
           </div>
-          <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
-            <div className='xsm:w-auto xsm:grow relative w-[13.61458rem] overflow-hidden'>
+          <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center'>
+            <div className='xsm:w-auto xsm:grow relative w-[16.9375rem] overflow-hidden mr-[0.9375rem]'>
               <input
                 type='text'
                 placeholder={t('placeholderSearch')}

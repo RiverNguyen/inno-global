@@ -1,4 +1,11 @@
 {
+  "Header": {
+    "language": "Ngôn ngữ",
+    "languageVi": "Tiếng Việt",
+    "languageEn": "Tiếng Anh",
+    "searchPlaceholder": "Nhập từ khoá tìm kiếm",
+    "searchHistory": "Lịch sử tìm kiếm"
+  },
   "HomePage": {
     "title": "Xin chào!",
     "blogs": "Tin tức",
@@ -27,7 +34,7 @@
     "featuredProjects": "Dự án nổi bật",
     "otherProjects": "Dự án khác",
     "viewDetail": "Chi tiết",
-    "labelInvestor": "Đầu tư",
+    "labelInvestor": "Chủ đầu tư",
     "labelLocation": "Địa điểm",
     "labelArea": "Quy mô",
     "labelYear": "Năm"
@@ -99,6 +106,7 @@
     "ceoMessage": "Thông điệp của CEO"
   },
   "DetailProjectPage": {
+    "share": "Chia sẻ",
     "info": "Thông tin dự án",
     "learnMore": "Tìm hiểu thêm về dự án",
     "related": "Dự án liên quan",
@@ -260,7 +268,7 @@
     "avatarUpdateFailed": "Cập nhật ảnh thất bại"
   },
   "DashboardChangePasswordPage": {
-    "title": "Xác thực tài khoản",
+    "title": "Thay đổi mật khẩu",
     "desc": "Vui lòng nhập mã xác nhận đã được gửi đến email của bạn để đặt lại mật khẩu.",
     "validateOTP": "Vui lòng nhập mã OTP",
     "submit": "Xác thực",
@@ -272,7 +280,9 @@
     "resendOTP": "Lấy mã OTP",
     "resendOTPSuccess": "Mã OTP đã được gửi đến email của bạn",
     "resendOTPError": "Lấy mã OTP thất bại",
-    "validateOTPLength": "Mã OTP phải có 6 ký tự"
+    "validateOTPLength": "Mã OTP phải có 6 ký tự",
+    "desc1": " Mã xác nhận sẽ được gửi về email: ",
+    "desc2": "Nhấn nút “Lấy mã OTP” phía dưới để tiến hành gửi mã:"
   },
   "PrivacyPolicyPage": {
     "effectiveDate": "Hiệu lực từ ngày"

@@ -28,7 +28,7 @@ const trainingService = {
   },
   getDetail: async (slug: string, locale: string) => {
     return await fetchData({
-      api: ENDPOINTS.detail(slug, locale),
+      api: ENDPOINTS.detail(slug, locale, 'training'),
     })
   },
   getRelated: async ({ locale, category }: { locale: string; category?: string }) => {

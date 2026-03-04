@@ -1,7 +1,6 @@
 'use client'
 import { useDebounce } from '@uidotdev/usehooks'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 import { parseAsArrayOf, parseAsString, useQueryStates } from 'nuqs'
 import { startTransition, useEffect, useMemo, useRef, useState } from 'react'
@@ -12,6 +11,7 @@ import useSWRInfinite from 'swr/infinite'
 
 import ICSearch from '@/components/icons/ICSearch'
 import ROUTES from '@/configs/routes'
+import { Link } from '@/i18n/navigation'
 import { ITraining, ITrainingAcfData, ITrainingTaxonomies } from '@/interfaces/training.inteface'
 import { fetcherCMS } from '@/lib/swr'
 import { cn, convertRemToPx } from '@/lib/utils'
@@ -26,8 +26,8 @@ import Banner from './components/Banner'
 import TrainingListContent from './components/TrainingListContent'
 
 import 'swiper/css'
-import 'swiper/css/pagination'
 import 'swiper/css/free-mode'
+import 'swiper/css/pagination'
 import './styles.css'
 
 type FilterItem = { label: string; value: string }
@@ -502,8 +502,8 @@ export default function TrainingListPage({
                 onChange={handleYearsChange}
               />
             </div>
-            <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:mb-[0.72917rem] flex items-center space-x-[0.9375rem]'>
-              <div className='xsm:w-auto xsm:grow relative w-[13.61458rem] overflow-hidden'>
+            <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:mb-[0.72917rem] flex items-center '>
+              <div className='xsm:w-auto xsm:grow relative w-[16.9375rem] overflow-hidden mr-[0.9375rem]'>
                 <input
                   type='text'
                   placeholder={t('placeholderSearch')}

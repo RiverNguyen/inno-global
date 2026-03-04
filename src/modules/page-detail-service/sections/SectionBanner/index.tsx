@@ -15,7 +15,7 @@ export default function SectionBanner({ title, description, slideItems }: Sectio
   const t = useTranslations('Breadcrumb')
   const locale = useLocale()
   const navBreadcrumbItems = [
-    { label: t('homePage'), href: locale === 'vi' ? ROUTES.homeVi : ROUTES.homeEn },
+    { label: t('homePage'), href: locale === 'vi' ? ROUTES.homeVi : '/' },
     { label: t('servicePage'), href: locale === 'vi' ? ROUTES.servicesVi : ROUTES.servicesEn },
   ]
   const lastBreadcrumbItem = { label: title }

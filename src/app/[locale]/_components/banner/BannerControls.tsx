@@ -14,7 +14,7 @@ type BannerControlsProps = {
 
 export default function BannerControls({ activeIndex, total, onPrev, onNext, onSelect }: BannerControlsProps) {
   return (
-    <div className='xsm:w-[17.86458rem] xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1.02rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[8.07rem] left-[12.5rem] z-10 flex items-end justify-between'>
+    <div className='xsm:w-full xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1.02rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[8.07rem] left-[12.5rem] z-10 flex items-end justify-between'>
       <div></div>
       {/* Slide counter */}
       <div className='xsm:justify-between xsm:w-full flex items-center space-x-[0.4375rem] text-white'>

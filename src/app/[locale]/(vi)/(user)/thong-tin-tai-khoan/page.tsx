@@ -18,7 +18,7 @@ export default async function DashboardPage() {
   ]
 
   return (
-    <div className='xsm:pt-[3.54rem] xsm:px-[0.83rem] flex-1 bg-white p-[1.46rem] pb-[3.3875rem]'>
+    <div className='xsm:pt-[3.54rem] xsm:px-[0.83rem] flex-1 bg-white p-[1.46rem] pb-[3.3875rem] overflow-auto max-h-[calc(100vh-6.46rem)]'>
       <div className='xsm:mb-[1.5rem] flex items-center'>
         <BackButton />
         <h1 className='xsm:mb-0 xsm:text-[0.83rem] xsm:text-[#333] xsm:font-semibold mb-[2.08rem] text-[1.46rem] leading-[1.5] font-semibold text-[#090909]'>

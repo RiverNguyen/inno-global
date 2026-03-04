@@ -138,7 +138,7 @@ export default function RelatedBlogs({ totalPages, initRelatedBlogs }: RelatedBl
             >
               <Link
                 locale={locale}
-                href={'/'}
+                href={locale === 'vi' ? `/tin-tuc/${item?.slug}` : `/blogs/${item?.slug}`}
                 className='block'
               >
                 <CardBlog

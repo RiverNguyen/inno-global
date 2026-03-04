@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 import SectionPagination from '@/components/shared/SectionPagination'
+import { Link } from '@/i18n/navigation'
 
 type DirectorCard = {
   name: string

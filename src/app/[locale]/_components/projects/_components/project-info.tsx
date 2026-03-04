@@ -1,9 +1,9 @@
 import { ChevronRightIcon } from 'lucide-react'
-import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 
 import { IProject } from '@/app/[locale]/_components/projects/projects'
 import ROUTES from '@/configs/routes'
+import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 interface IProjectInfoProps {
@@ -45,38 +45,29 @@ export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
               {item.content || '-'}
             </p>
             <div className='xsm:mt-auto mt-[1.46rem] grid grid-cols-2 gap-x-[1rem]'>
-              <div className='xsm:pb-[0.52rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]'>
-                <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
-                  {t('labelInvestor')}
-                </p>
-                <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
-                  {item.investor || '-'}
-                </p>
-              </div>
-              <div className='xsm:pt-[0.52rem] xsm:pb-[0.73rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]'>
-                <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
-                  {t('labelLocation')}
-                </p>
-                <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
-                  {item.location || '-'}
-                </p>
-              </div>
-              <div className='xsm:pb-[0.52rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]'>
-                <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
-                  {t('labelArea')}
-                </p>
-                <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
-                  {item.area || '-'}
-                </p>
-              </div>
-              <div className='xsm:pb-[0.52rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]'>
-                <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
-                  {t('labelYear')}
-                </p>
-                <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
-                  {item.year || '-'}
-                </p>
-              </div>
+              {(
+                [
+                  { label: t('labelInvestor'), value: item.investor, mobileOrder: 'xsm:order-1' },
+                  { label: t('labelLocation'), value: item.location, mobileOrder: 'xsm:order-3' },
+                  { label: t('labelArea'), value: item.area, mobileOrder: 'xsm:order-2' },
+                  { label: t('labelYear'), value: item.year, mobileOrder: 'xsm:order-4' },
+                ] as const
+              ).map(({ label, value, mobileOrder }) => (
+                <div
+                  key={label}
+                  className={cn(
+                    'xsm:pb-[0.52rem] xsm:border-[#090909]/10 flex border-t border-white/20 pt-[0.52rem] pb-[0.73rem]',
+                    mobileOrder,
+                  )}
+                >
+                  <p className='xsm:text-[0.625rem] xsm:text-[#090909] mr-[0.52rem] text-[0.83333rem] tracking-[-0.01667rem] text-white/90'>
+                    {label}
+                  </p>
+                  <p className='xsm:text-[0.625rem] xsm:text-[#090909]/90 text-[0.83333rem] font-semibold tracking-[-0.01667rem] text-white'>
+                    {value || '-'}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         ))}
