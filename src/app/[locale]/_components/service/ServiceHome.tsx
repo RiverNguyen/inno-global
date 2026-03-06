@@ -52,7 +52,7 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
     <div className='xsm:hidden flex min-h-screen'>
       {/* Left Menu */}
       <div className='relative z-20 w-[35.3125rem] space-y-[2.24rem] bg-white pt-[5.7rem] pr-[2.92rem] pb-[5.18rem] pl-[7.29rem]'>
-        <h3 className='pc-h3-40-s text-text-100'>{title}</h3>
+        <h3 className='pc-h2-54-s text-text-100'>{title}</h3>
         <div
           data-snap-ignore
           onWheelCapture={handleServiceListWheelCapture}

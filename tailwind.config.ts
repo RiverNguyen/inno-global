@@ -80,7 +80,7 @@ const config: Config = {
           '@apply text-[0.83333rem] font-normal leading-normal tracking-[-0.01667rem]': {},
         },
         '.pc-h2-54-s': {
-          '@apply text-[2.8125rem] font-normal font-semibold leading-[1.2] tracking-[-0.02813rem]': {},
+          '@apply text-[2.5rem] font-normal font-semibold leading-[1.2] tracking-[-0.02813rem]': {},
         },
         '.pc-h3-40-s': {
           '@apply text-[2.08333rem] font-normal font-semibold leading-[1.2] tracking-[-0.03125rem]': {},
