@@ -146,7 +146,7 @@ export default function AboutUsHome({ data }: { data?: ISectionAboutUsAcf }) {
       <div className='sm:absolute-center xsm:h-fit xsm:pt-[3.33rem] xsm:px-[0.83rem] z-10 container flex h-screen justify-end'>
         <div className='h-fit sm:my-auto sm:w-[36.4rem]'>
           <h2
-            className='pc-h1-64-s text-text-100 xsm:mb-h2-24-sm'
+            className='pc-h2-54-s text-text-100 xsm:mb-h2-24-sm'
             dangerouslySetInnerHTML={{ __html: title }}
           ></h2>
           <p className='pc-body-20-r text-text-80 xsm:mt-[0.94rem] xsm:mb-body-14-r mt-[02.08rem]'>{description}</p>

@@ -37,12 +37,12 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
               WebkitTextFillColor: 'transparent',
               WebkitBackgroundClip: 'text',
             }}
-            className='text-[10rem] leading-[1.2] font-semibold capitalize text-shadow-[0_0_37.912px_rgba(255,255,255,0.25)]'
+            className='text-[9rem] leading-[1.2] font-semibold capitalize text-shadow-[0_0_37.912px_rgba(255,255,255,0.25)]'
           >
             {list_awards?.length}
           </p>
           <div
-            className='text-[3.333rem] leading-[1.2] font-semibold tracking-[-0.06667rem] text-white capitalize text-shadow-[0_4px_4px_rgba(0,0,0,0.25)]'
+            className='pc-h2-54-s text-white capitalize text-shadow-[0_4px_4px_rgba(0,0,0,0.25)]'
             dangerouslySetInnerHTML={{ __html: title }}
           />
         </div>

@@ -78,9 +78,7 @@ export default async function ProjectsSection({
 
   return (
     <>
-      <h2 className='mb-[1.67rem] text-center text-[1.25rem] font-semibold text-[#090909] sm:hidden'>
-        {t('featuredProjects')}
-      </h2>
+      <h2 className='mb-[1.67rem] text-center xsm:mb-h2-24-sm text-[#090909] sm:hidden'>{t('featuredProjects')}</h2>
       <Projects data={data} />
     </>
   )

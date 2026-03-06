@@ -109,7 +109,7 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
               {/* Text Content */}
               <div className='pointer-events-none absolute top-[5.68rem] left-[5.21rem] z-10 text-white'>
                 <div className='pointer-events-auto'>
-                  <h2 className='pc-34-34-m mb-[0.94rem] text-white'>{service.title}</h2>
+                  <h3 className='pc-h3-40-s mb-[0.94rem] text-white'>{service.title}</h3>
                   <p className='pc-body-20-r mb-[2rem] max-w-[52.1875rem] text-[1.04167rem] text-white'>
                     {service.description}
                   </p>
