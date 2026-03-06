@@ -19,9 +19,7 @@ export default function ServiceHomeMobile({ services, title }: { services: Servi
 
   return (
     <div className='space-y-[1.67rem] px-[0.83rem] py-[3.33rem] sm:hidden'>
-      <h2 className='text-text-100 text-center text-[1.14583rem] leading-[1.2] font-semibold tracking-[-0.01146rem]'>
-        {title}
-      </h2>
+      <h2 className='text-text-100 text-center xsm:mb-h2-24-sm'>{title}</h2>
       <div className='grid grid-cols-2 gap-[0.31rem]'>
         {services.map((item, index) => (
           <div

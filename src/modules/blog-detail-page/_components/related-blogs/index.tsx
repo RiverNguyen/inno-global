@@ -29,9 +29,7 @@ const RelatedBlogs = ({ data }: { data: IBlog[] }) => {
       className='xsm:pb-[2.29rem] xsm:pt-[1.04167rem] pb-[6.25rem]'
     >
       <div className='flex-y-center mx-auto max-w-[75rem] justify-between'>
-        <h2 className='xsm:px-[0.8275rem] xsm:text-[1.25rem] xsm:font-semibold text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-[#090909]'>
-          {t('related')}
-        </h2>
+        <h2 className='xsm:px-[0.8275rem] pc-h2-54-s xsm:mb-h2-24-sm text-[#090909]'>{t('related')}</h2>
         <Link
           href={viewAllUrl}
           className='flex-center group xsm:hidden relative h-[2.6rem] w-fit overflow-hidden rounded-[5.20833rem] px-[1.15rem] text-[0.73rem] leading-[1.5] text-[#090909]/60 outline outline-[#090909]/60 transition-all duration-300 hover:text-white hover:outline-none'
