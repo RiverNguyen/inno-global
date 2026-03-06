@@ -202,80 +202,99 @@ export default function Header({
           </nav>
           {/* search */}
           <div className='flex-y-center xsm:hidden space-x-5'>
-            <form
-              ref={searchRef}
-              onClick={!openSearch ? handleOpenSearch : undefined}
-              onSubmit={handleSearchSubmit}
-              className={cn(
-                'flex-y-center relative size-[1.875rem] rounded-full bg-white/80 transition-all duration-500',
-                openSearch && 'w-[51.04167rem] shrink-0',
-              )}
-            >
-              {openSearch && (
-                <input
-                  id='search'
-                  type='text'
-                  className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none bg-transparent pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none'
-                  placeholder={t('searchPlaceholder')}
-                />
-              )}
-              <button
-                type={openSearch ? 'submit' : 'button'}
-                aria-label={openSearch ? 'Close search' : 'Open search'}
-                onClick={openSearch ? undefined : handleOpenSearch}
-                className='flex-center absolute top-0 right-0 size-[1.875rem]'
+            <div className='flex-y-center'>
+              <form
+                ref={searchRef}
+                onClick={!openSearch ? handleOpenSearch : undefined}
+                onSubmit={handleSearchSubmit}
+                className={cn(
+                  'flex-y-center relative size-[1.875rem] rounded-full bg-white/80 transition-all duration-500',
+                  openSearch && 'w-[40.04167rem] shrink-0',
+                )}
               >
-                <ICSearchHead className='text-text-100 size-[0.875rem]' />
-              </button>
-              {searchHistory.length > 0 && (
-                <div
-                  id='result'
-                  className={cn(
-                    'absolute bottom-[-0.88rem] left-0 h-fit w-full translate-y-full cursor-default bg-white p-[1.25rem_0.83rem]',
-                    openSearch
-                      ? 'pointer-events-auto opacity-100 transition-all delay-300 duration-300'
-                      : 'pointer-events-none opacity-0',
-                  )}
-                  style={{
-                    boxShadow:
-                      '0 563px 158px 0 rgba(92, 92, 92, 0.00), 0 361px 144px 0 rgba(92, 92, 92, 0.01), 0 203px 122px 0 rgba(92, 92, 92, 0.05), 0 90px 90px 0 rgba(92, 92, 92, 0.09), 0 23px 50px 0 rgba(92, 92, 92, 0.10)',
-                  }}
+                {openSearch && (
+                  <input
+                    id='search'
+                    type='text'
+                    className='pc-body-14-r placeholder:text-text-60 text-text-100 h-full w-full border-none bg-transparent pr-[2rem] pl-[0.73rem] outline-none focus:border-none focus:ring-0 focus:outline-none'
+                    placeholder={t('searchPlaceholder')}
+                  />
+                )}
+                <button
+                  type={openSearch ? 'submit' : 'button'}
+                  aria-label={openSearch ? 'Submit search' : 'Open search'}
+                  onClick={openSearch ? undefined : handleOpenSearch}
+                  className='flex-center absolute top-0 right-0 size-[1.875rem]'
                 >
-                  <div className='flex-y-center justify-between border-b border-solid border-[rgba(9,9,9,0.08)] pb-[0.83rem]'>
-                    <span className='pc-body-14-r text-text-40'>{t('searchHistory')}</span>
-                    <Image
-                      src='/header/ic-trash.svg'
-                      alt='trash'
-                      width={28}
-                      height={28}
-                      className='size-[1.25rem] shrink-0 cursor-pointer object-contain'
-                      unoptimized
-                      onClick={handleRemoveAllSearchHistory}
-                    />
-                  </div>
-                  {searchHistory.map((value, index) => (
-                    <div
-                      key={index}
-                      className='pc-body-16-r text-text-100 flex-y-center h-[2.29rem] w-full justify-between'
-                    >
-                      <Link
-                        href={locale === 'vi' ? `${ROUTES.searchVi}?q=${value}` : `${ROUTES.searchEn}?q=${value}`}
-                        className='grow text-left'
-                        onClick={handleCloseAll}
-                      >
-                        {value}
-                      </Link>
-                      <button
-                        type='button'
-                        onClick={() => handleRemoveSearchHistory(value)}
-                      >
-                        <ICClose className='text-text-100 size-[0.83333rem] shrink-0 stroke-[1.5px]' />
-                      </button>
+                  <ICSearchHead className='text-text-100 size-[0.875rem]' />
+                </button>
+                {searchHistory.length > 0 && (
+                  <div
+                    id='result'
+                    className={cn(
+                      'absolute bottom-[-0.88rem] left-0 h-fit w-full translate-y-full cursor-default bg-white p-[1.25rem_0.83rem]',
+                      openSearch
+                        ? 'pointer-events-auto opacity-100 transition-all delay-300 duration-300'
+                        : 'pointer-events-none opacity-0',
+                    )}
+                    style={{
+                      boxShadow:
+                        '0 563px 158px 0 rgba(92, 92, 92, 0.00), 0 361px 144px 0 rgba(92, 92, 92, 0.01), 0 203px 122px 0 rgba(92, 92, 92, 0.05), 0 90px 90px 0 rgba(92, 92, 92, 0.09), 0 23px 50px 0 rgba(92, 92, 92, 0.10)',
+                    }}
+                  >
+                    <div className='flex-y-center justify-between border-b border-solid border-[rgba(9,9,9,0.08)] pb-[0.83rem]'>
+                      <span className='pc-body-14-r text-text-40'>{t('searchHistory')}</span>
+                      <Image
+                        src='/header/ic-trash.svg'
+                        alt='trash'
+                        width={28}
+                        height={28}
+                        className='size-[1.25rem] shrink-0 cursor-pointer object-contain'
+                        unoptimized
+                        onClick={handleRemoveAllSearchHistory}
+                      />
                     </div>
-                  ))}
-                </div>
-              )}
-            </form>
+                    {searchHistory.map((value, index) => (
+                      <div
+                        key={index}
+                        className='pc-body-16-r text-text-100 flex-y-center h-[2.29rem] w-full justify-between'
+                      >
+                        <Link
+                          href={locale === 'vi' ? `${ROUTES.searchVi}?q=${value}` : `${ROUTES.searchEn}?q=${value}`}
+                          className='grow text-left'
+                          onClick={handleCloseAll}
+                        >
+                          {value}
+                        </Link>
+                        <button
+                          type='button'
+                          onClick={() => handleRemoveSearchHistory(value)}
+                        >
+                          <ICClose className='text-text-100 size-[0.83333rem] shrink-0 stroke-[1.5px]' />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </form>
+              <div
+                className={cn(
+                  'overflow-hidden transition-all duration-300 ease-out',
+                  openSearch
+                    ? 'max-w-[2.5rem] opacity-100 pointer-events-auto'
+                    : 'max-w-0 opacity-0 pointer-events-none',
+                )}
+              >
+                <button
+                  type='button'
+                  onClick={handleCloseSearch}
+                  aria-label='Close search'
+                  className='flex-center ml-1 size-[1.875rem] shrink-0'
+                >
+                  <ICClose className='text-text-100 size-[0.875rem] stroke-[1.5px]' />
+                </button>
+              </div>
+            </div>
             <Link
               href={menus[menus.length - 1].link.url || ''}
               className='pc-body-16-r text-en xsm:hidden inline-block'
@@ -387,7 +406,7 @@ export default function Header({
                 </button>
               </div>
             </form>
-            {session?.user && !openMenu && (
+            {session?.user && !openMenu && !openSearch && (
               <Link href={locale === 'vi' ? '/ca-nhan' : '/personal'}>
                 <div className='relative size-[2.03125rem] overflow-hidden rounded-full border border-[#D32F2F] lg:hidden'>
                   <Avatar className='size-full'>

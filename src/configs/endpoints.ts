@@ -59,7 +59,7 @@ const ENDPOINTS = {
   },
   leadership: {
     list: 'api/v1/get-all/leadership',
-    detail: (slug: string) => `api/v1/detail/${slug}?acf=true&lang=en`,
+    detail: (slug: string, locale: string) => `api/v1/detail/${slug}?acf=true&lang=${locale}`,
     rank_math: {
       en: '/leadership',
       vi: '/ban-lanh-dao-cong-ty',
@@ -71,6 +71,14 @@ const ENDPOINTS = {
     founder: {
       vi: 'wp/v2/pages/632?_fields=acf&acf_format=standard',
       en: 'wp/v2/pages/634?_fields=acf&acf_format=standard',
+    },
+    ceo: {
+      vi: 'wp/v2/pages/1021?_fields=acf&acf_format=standard',
+      en: 'wp/v2/pages/1026?_fields=acf&acf_format=standard',
+    },
+    ceo_rank_math: {
+      vi: '/thong-diep-cua-ceo',
+      en: '/ceo-message',
     },
   },
   taxonomies: {

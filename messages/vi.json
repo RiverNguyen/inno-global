@@ -99,7 +99,8 @@
     "bottomSheetTitle": "Năng lực - Dịch vụ"
   },
   "LeadershipPage": {
-    "title": "Ban Lãnh Đạo Công Ty"
+    "title": "Ban Lãnh Đạo Công Ty",
+    "ceoMessage": "Thông điệp của CEO"
   },
   "FounderPage": {
     "title": "Người Thành Lập",

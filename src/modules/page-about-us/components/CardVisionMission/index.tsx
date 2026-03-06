@@ -27,7 +27,7 @@ export default function CardVisionMission({
   return (
     <div
       className={cn(
-        'xsm:grid-cols-1 xsm:shadow-card-about-us-mb xsm:h-auto xsm:bg-white relative grid h-[23.73917rem] grid-cols-2',
+        'xsm:grid-cols-1 xsm:shadow-card-about-us-mb xsm:h-auto xsm:bg-white relative grid h-[20.73917rem] grid-cols-2',
         classNameCard,
       )}
     >
@@ -57,7 +57,7 @@ export default function CardVisionMission({
       </div>
       <div
         className={cn(
-          'xsm:h-[11.31422rem] xsm:row-start-1 col-span-1',
+          'xsm:h-[11.31422rem] h-[20.73917rem] xsm:row-start-1 col-span-1',
           alignContent === 'right' ? 'order-1' : 'order-2',
           classNameThumbnail,
         )}

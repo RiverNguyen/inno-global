@@ -11,9 +11,9 @@ const leadershipService = {
     })
   },
 
-  getLeadershipDetail: async (slug: string): Promise<ILeadership> => {
+  getLeadershipDetail: async (slug: string, locale: string): Promise<ILeadership> => {
     return await fetchData({
-      api: ENDPOINTS.leadership.detail(slug),
+      api: ENDPOINTS.leadership.detail(slug, locale),
     })
   },
 
@@ -40,6 +40,12 @@ const leadershipService = {
   getFounderPageAcf: async (locale: string) => {
     return await fetchData({
       api: locale === 'en' ? ENDPOINTS.leadership.founder.en : ENDPOINTS.leadership.founder.vi,
+    })
+  },
+
+  getCEOPageAcf: async (locale: string) => {
+    return await fetchData({
+      api: locale === 'en' ? ENDPOINTS.leadership.ceo.en : ENDPOINTS.leadership.ceo.vi,
     })
   },
 }

@@ -100,7 +100,8 @@
   },
 
   "LeadershipPage": {
-    "title": "Leadership"
+    "title": "Leadership",
+    "ceoMessage": "CEO Message"
   },
   "FounderPage": {
     "title": "Founder",

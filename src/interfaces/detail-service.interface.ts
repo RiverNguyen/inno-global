@@ -16,6 +16,7 @@ export interface IDetailServiceDataRes {
     slug: string
     acf: {
       banner: ISectionBannerAcfData
+      banner_desc: string
     }
   }
 }
