@@ -23,7 +23,7 @@ export default async function SubComapanyPage({ params }: { params: Promise<{ lo
   const { locale } = await params
   const [res, companyRes] = await Promise.all([
     companyService.getPage(locale),
-    companyService.getCompanys({ locale, limit: 4 }),
+    companyService.getCompanys({ locale }),
   ])
 
   return (

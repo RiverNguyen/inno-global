@@ -19,7 +19,7 @@ export default function Banner({ banner }: { banner: string }) {
         />
       </div>
 
-      <div className='z-2 sm:absolute sm:bottom-0 sm:left-0 sm:w-full sm:px-[12.5rem] sm:py-[3.33333rem]'>
+      <div className='z-2 sm:absolute sm:bottom-0 sm:max-w-[75rem] sm:left-0 sm:right-0 sm:mx-auto sm:py-[3.33333rem]'>
         <div className='mb-[1.25rem] hidden sm:block'>
           <Breadcrumb
             navItems={[{ label: t('Breadcrumb.homePage'), href: '/' }]}

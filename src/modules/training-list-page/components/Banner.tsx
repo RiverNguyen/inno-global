@@ -27,7 +27,7 @@ export default function Banner({ banner }: { banner: ITrainingAcfData['banner'] 
           className='object-cover sm:hidden'
         />
       </div>
-      <div className='xsm:px-[0.83333rem] xsm:py-[1.25rem] absolute bottom-0 left-0 z-2 w-full px-[12.5rem] py-[3.33333rem]'>
+      <div className='xsm:px-[0.83333rem] xsm:py-[1.25rem] absolute bottom-0 left-0 z-2 max-w-[75rem] mx-auto right-0 py-[3.33333rem]'>
         <div className='mb-[1.25rem] hidden sm:block'>
           <Breadcrumb
             navItems={[{ label: t('homePage'), href: '/' }]}

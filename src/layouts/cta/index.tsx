@@ -15,7 +15,7 @@ const ScrollToTopIcon = ({ circleRef }: { circleRef: React.RefObject<SVGCircleEl
       viewBox='0 0 61 61'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
-      className='size-[3rem] xsm:size-[2rem]'
+      className='size-[2.5rem] xsm:size-[2rem]'
     >
       <g clipPath='url(#clip0_604_10721)'>
         <circle
@@ -185,7 +185,7 @@ const CTA = ({ data }: { data: { icon: IMedia; link: string }[] }) => {
             width={24}
             height={24}
             unoptimized
-            className='size-[3rem] object-contain xsm:size-[2rem]'
+            className='size-[2.5rem] object-contain xsm:size-[2rem]'
           />
         </Link>
       ))}
