@@ -14,6 +14,10 @@ const ENDPOINTS = {
       en: '/en/contact',
       vi: '/lien-he',
     },
+    page_id: {
+      vi: 821,
+      en: 819,
+    },
   },
   home: {
     rank_math: {
@@ -28,6 +32,7 @@ const ENDPOINTS = {
     search: ({ locale, limit, q }: { locale: string; limit: number; q: string }) =>
       `api/v1/get-all/post?lang=${locale}&s=${q}&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    getAwards: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=award`,
     getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=category`,
     rank_math: {
       en: '/en/blogs',
@@ -46,6 +51,7 @@ const ENDPOINTS = {
     getServices: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=service`,
     getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    getAwards: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=award`,
     search: ({ locale, q, limit }: { locale: string; q: string; limit: number }) =>
       `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&s=${q}&orderby=date&order=DESC&limit=${limit}&paged=1`,
     rank_math: {

@@ -70,7 +70,7 @@ export default function Banner({ title, location, gallery }: { title: string; lo
             ))}
         </Swiper>
         {/* Custom pagination & navigation */}
-        <div className='xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[5.2125rem] left-[12.5rem] z-10 flex items-end justify-between'>
+        <div className='xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute bottom-[5.2125rem] xsm:w-full xsm:translate-x-0 w-[75rem] left-1/2 -translate-x-1/2 mx-auto z-10 flex items-end justify-between'>
           <div className='xsm:hidden space-y-4'>
             <h1 className='pc-h3-40-s text-white'>{title}</h1>
             <p className='flex-y-center text-[0.9375rem] leading-[1.5] text-white'>

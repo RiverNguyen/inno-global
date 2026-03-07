@@ -18,12 +18,15 @@ import { Textarea } from '@/components/ui/textarea'
 import endpoints from '@/configs/endpoints'
 import CF7Request from '@/fetches/cf7Request'
 import useIsMobile from '@/hooks/useIsMobile'
-import { ITaxonomyRes } from '@/interfaces/taxonomy.interface'
 import { cn } from '@/lib/utils'
 
 interface FormContactProps {
   locale: string
-  serviceTaxonomies: ITaxonomyRes
+  serviceTaxonomies: {
+    field: {
+      label: string
+    }[]
+  }
 }
 
 export default function FormContact({ locale, serviceTaxonomies }: FormContactProps) {
@@ -39,6 +42,8 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
     companysizeInvalid: translateContactForm('companysizeInvalid'),
     fieldRequired: translateContactForm('fieldRequired'),
     fieldInvalid: translateContactForm('fieldInvalid'),
+    fieldOther: translateContactForm('fieldOther'),
+    placeholderFieldOther: translateContactForm('placeholderFieldOther'),
     noteRequired: translateContactForm('noteRequired'),
     noteInvalid: translateContactForm('noteInvalid'),
   }
@@ -60,6 +65,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
     companyName: z.string().optional(),
     companysize: z.string().optional(),
     field: z.string().optional(),
+    fieldOther: z.string().optional(),
     note: z.string().optional(),
   })
 
@@ -71,6 +77,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
       companyName: '',
       companysize: '',
       field: '',
+      fieldOther: '',
       note: '',
     },
     mode: 'onBlur',
@@ -78,10 +85,16 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
 
   const isSubmitting = form.formState.isSubmitting
   const fieldValue = useWatch({ control: form.control, name: 'field' })
+  const FIELD_OTHER_VALUE = 'other'
+  const isFieldOther = fieldValue === FIELD_OTHER_VALUE
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const request = new CF7Request(values)
+      const payload = {
+        ...values,
+        field: values.field === FIELD_OTHER_VALUE ? values.fieldOther ?? '' : values.field,
+      }
+      const request = new CF7Request(payload)
       const cf7Form = locale === 'vi' ? endpoints.contact.form_contact_vi : endpoints.contact.form_contact_en
 
       const response = await request.send({
@@ -105,7 +118,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
   const labelClassName =
     'flex pb-[0.20833rem] gap-[0.10417rem] text-[#090909] font-open-sans text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:pb-[0.10417rem] xsm:text-[0.72917rem] xsm:tracking-[-0.01458rem]'
   const inputClassName =
-    'h-[2.91667rem] p-[0.83333rem_0.625rem] rounded-[0.41667rem] border border-[rgba(9,9,9,0.08)] bg-[#F0F0F0] backdrop-blur-sm placeholder:text-[rgba(9,9,9,0.40)] placeholder:font-open-sans placeholder:text-[0.83333rem] placeholder:leading-[150%] placeholder:tracking-[-0.01667rem] shadow-none outline-none ring-0 focus:ring-0 focus-visible:shadow-none focus-visible:outline-none focus-visible:ring-0 text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal xsm:h-[2.08333rem] xsm:p-[0.72917rem_0.625rem] xsm:placeholder:text-[0.625rem] xsm:placeholder:tracking-normal'
+    'h-[2.5rem] p-[0.83333rem_0.625rem] rounded-[0.41667rem] border border-[rgba(9,9,9,0.08)] bg-[#F0F0F0] backdrop-blur-sm placeholder:text-[rgba(9,9,9,0.40)] placeholder:font-open-sans placeholder:text-[0.83333rem] placeholder:leading-[150%] placeholder:tracking-[-0.01667rem] shadow-none outline-none ring-0 focus:ring-0 focus-visible:shadow-none focus-visible:outline-none focus-visible:ring-0 text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:text-[0.625rem] xsm:tracking-normal xsm:h-[2.08333rem] xsm:p-[0.72917rem_0.625rem] xsm:placeholder:text-[0.625rem] xsm:placeholder:tracking-normal'
   const messageClassName =
     'mt-[0.20833rem] text-[#D32F2F] text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] xsm:mt-[0.10417rem] xsm:text-[0.625rem] xsm:tracking-normal'
 
@@ -188,7 +201,9 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                   )}
                   disabled={isSubmitting}
                 >
-                  {fieldValue || translateContactForm('placeholderField')}
+                  {fieldValue === FIELD_OTHER_VALUE
+                    ? messages.fieldOther
+                    : fieldValue || translateContactForm('placeholderField')}
 
                   <ChevronDown className='size-[1.04167rem] text-[#090909] opacity-60' />
                 </button>
@@ -213,15 +228,16 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                 </DrawerHeader>
 
                 <div className='space-y-[0.52083rem] p-[0.83333rem_0.83333rem_1.66667rem_0.83333rem]'>
-                  {serviceTaxonomies.data.map((option) => {
-                    const isSelected = fieldValue === option.name
+                  {serviceTaxonomies.field.map((option) => {
+                    const isSelected = fieldValue === option.label
 
                     return (
                       <button
-                        key={option.slug}
+                        key={option.label}
                         type='button'
                         onClick={() => {
-                          form.setValue('field', option.name, { shouldValidate: true })
+                          form.setValue('field', option.label, { shouldValidate: true })
+                          form.setValue('fieldOther', '')
                           setOpen(false)
                         }}
                         disabled={isSubmitting}
@@ -231,17 +247,35 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                           isSubmitting && 'cursor-not-allowed opacity-50',
                         )}
                       >
-                        {option.name}
+                        {option.label}
                       </button>
                     )
                   })}
+                  <button
+                    type='button'
+                    onClick={() => {
+                      form.setValue('field', FIELD_OTHER_VALUE, { shouldValidate: true })
+                      setOpen(false)
+                    }}
+                    disabled={isSubmitting}
+                    className={cn(
+                      'xsm:text-[0.625rem] xsm:tracking-normal w-full text-left text-[0.83333rem] leading-[150%] tracking-[-0.01667rem]',
+                      fieldValue === FIELD_OTHER_VALUE && 'font-semibold text-[#D32F2F]',
+                      isSubmitting && 'cursor-not-allowed opacity-50',
+                    )}
+                  >
+                    {messages.fieldOther}
+                  </button>
                 </div>
               </DrawerContent>
             </Drawer>
           ) : (
             <Select
               value={fieldValue}
-              onValueChange={(value) => form.setValue('field', value, { shouldValidate: true })}
+              onValueChange={(value) => {
+                form.setValue('field', value, { shouldValidate: true })
+                if (value !== FIELD_OTHER_VALUE) form.setValue('fieldOther', '')
+              }}
             >
               <SelectTrigger
                 className={cn(
@@ -256,18 +290,37 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
                 />
               </SelectTrigger>
               <SelectContent>
-                {serviceTaxonomies.data.map((option) => (
+                {serviceTaxonomies.field.map((option) => (
                   <SelectItem
-                    key={option.slug}
-                    value={option.name}
+                    key={option.label}
+                    value={option.label}
                     className='xsm:text-[0.625rem] xsm:tracking-normal mb-[0.83333rem] cursor-pointer text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] text-[rgba(9,9,9,0.60)] last:mb-0 focus:bg-white focus:text-[#D32F2F] data-[state=checked]:text-[#D32F2F]'
                     disabled={isSubmitting}
                   >
-                    {option.name}
+                    {option.label}
                   </SelectItem>
                 ))}
+                <SelectItem
+                  key={FIELD_OTHER_VALUE}
+                  value={FIELD_OTHER_VALUE}
+                  className='xsm:text-[0.625rem] xsm:tracking-normal mb-[0.83333rem] cursor-pointer text-[0.83333rem] leading-[150%] tracking-[-0.01667rem] text-[rgba(9,9,9,0.60)] last:mb-0 focus:bg-white focus:text-[#D32F2F] data-[state=checked]:text-[#D32F2F]'
+                  disabled={isSubmitting}
+                >
+                  {messages.fieldOther}
+                </SelectItem>
               </SelectContent>
             </Select>
+          )}
+          {isFieldOther && (
+            <div className='mt-[0.83333rem]'>
+              <Input
+                placeholder={messages.placeholderFieldOther}
+                className={inputClassName}
+                {...form.register('fieldOther')}
+                disabled={isSubmitting}
+              />
+              <FieldError className={messageClassName}>{form.formState.errors.fieldOther?.message}</FieldError>
+            </div>
           )}
           <FieldError className={messageClassName}>{form.formState.errors.field?.message}</FieldError>
         </Field>

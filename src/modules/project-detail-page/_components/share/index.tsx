@@ -25,7 +25,7 @@ export default function ShareSection() {
       }
       try {
         await navigator.clipboard.writeText(encodedUrl)
-        toast.success(t('shareLinkCopied'))
+        toast.success('Liên kết đã được sao chép vào bảng tạm')
       } catch (clipboardError) {
         console.error('Clipboard error:', clipboardError)
       }

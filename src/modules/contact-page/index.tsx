@@ -3,10 +3,18 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-import { ITaxonomyRes } from '@/interfaces/taxonomy.interface'
-
 import FormContact from './components/form-contact'
-export default function Contact({ locale, serviceTaxonomies }: { locale: string; serviceTaxonomies: ITaxonomyRes }) {
+export default function Contact({
+  locale,
+  serviceTaxonomies,
+}: {
+  locale: string
+  serviceTaxonomies: {
+    field: {
+      label: string
+    }[]
+  }
+}) {
   const t = useTranslations('ContactForm')
   return (
     <main className='xsm:h-full relative h-[56.25rem] min-h-screen w-full'>

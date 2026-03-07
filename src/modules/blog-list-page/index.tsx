@@ -63,10 +63,16 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     [taxonomies.years.data],
   )
 
+  const awardItems: FilterItem[] = useMemo(
+    () => (taxonomies.awards?.data ?? []).map((a) => ({ label: a.name, value: a.slug })),
+    [taxonomies.awards?.data],
+  )
+
   // Use nuqs to manage query params — syncs with URL without full server round-trip
   const [
     {
       starting_year: selectedYears = [],
+      award: selectedAwards = [],
       category: selectedCategory = '',
       sort: sortValue = 'newest',
       s: searchQuery = '',
@@ -75,6 +81,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
   ] = useQueryStates(
     {
       starting_year: parseAsArrayOf(parseAsString).withDefault([]),
+      award: parseAsArrayOf(parseAsString).withDefault([]),
       category: parseAsString.withDefault(''),
       sort: parseAsString.withDefault('newest'),
       s: parseAsString.withDefault(''),
@@ -111,6 +118,12 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     })
   }
 
+  const handleAwardsChange = (newAwards: string[]) => {
+    setQueryStates({
+      award: newAwards,
+    })
+  }
+
   const baseQueryString = useMemo(() => {
     const params = new URLSearchParams()
 
@@ -122,10 +135,12 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
 
     // Add filters from state (normalize order so SWR keys stay stable)
     const normalizedYears = [...selectedYears].sort()
+    const normalizedAwards = [...selectedAwards].sort()
 
     // Build tax param to match active filters
     const activeTaxonomies = new Set<string>()
     if (normalizedYears.length > 0) activeTaxonomies.add('starting_year')
+    if (normalizedAwards.length > 0) activeTaxonomies.add('award')
     if (selectedCategory) activeTaxonomies.add('category')
 
     // Keep default behavior when no filters are selected
@@ -135,6 +150,9 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     if (normalizedYears.length > 0) {
       // API expects comma-separated values, e.g. starting_year=2020,2022
       params.append('starting_year', normalizedYears.join(','))
+    }
+    if (normalizedAwards.length > 0) {
+      params.append('award', normalizedAwards.join(','))
     }
     if (selectedCategory) {
       params.append('category', selectedCategory)
@@ -150,7 +168,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     }
 
     return params.toString()
-  }, [locale, selectedYears, selectedCategory, sortValue, searchQuery])
+  }, [locale, selectedYears, selectedAwards, selectedCategory, sortValue, searchQuery])
 
   const [useInitialFallbackData, setUseInitialFallbackData] = useState(true)
 
@@ -357,6 +375,12 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
               value={selectedYears}
               onChange={handleYearsChange}
             />
+            <FilterPopup
+              label={t('award')}
+              items={awardItems}
+              value={selectedAwards}
+              onChange={handleAwardsChange}
+            />
           </div>
           <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center'>
             <div className='xsm:w-auto xsm:grow relative w-[16.9375rem] overflow-hidden mr-[0.9375rem]'>
@@ -406,6 +430,17 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                 setQueryStates((prev) => ({
                   ...prev,
                   starting_year: prev.starting_year.filter((v) => v !== value),
+                }))
+              }
+            />
+            <SelectedTags
+              label={t('award')}
+              items={awardItems}
+              selectedValues={selectedAwards}
+              onRemove={(value) =>
+                setQueryStates((prev) => ({
+                  ...prev,
+                  award: prev.award.filter((v) => v !== value),
                 }))
               }
             />

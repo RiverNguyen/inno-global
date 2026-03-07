@@ -55,6 +55,13 @@ export interface ITaxonomies {
       slug: string
     }[]
   }
+  awards: {
+    data: {
+      id: number
+      name: string
+      slug: string
+    }[]
+  }
 }
 
 import { ITerm } from './taxonomy.interface'

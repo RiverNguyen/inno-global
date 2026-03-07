@@ -57,7 +57,7 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
           quality={100}
         />
         <div className='z-10 flex flex-col justify-center space-y-[1.04rem] sm:w-[28.80208rem]'>
-          <p className='pc-h2-54-s text-text-100'>{subtitle}</p>
+          <h2 className='pc-h2-54-s text-text-100'>{subtitle}</h2>
           <p
             key={activeIndex}
             className='pc-body-20-r text-text-80 animate-fade-in text-[1.04167rem] transition-all duration-500'

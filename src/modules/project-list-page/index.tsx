@@ -61,6 +61,11 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     [taxonomies.years.data],
   )
 
+  const awardItems: FilterItem[] = useMemo(
+    () => taxonomies.awards.data.map((a) => ({ label: a.name, value: a.slug })),
+    [taxonomies.awards.data],
+  )
+
   // Use nuqs to manage query params - automatically syncs with URL
   const [
     {
@@ -68,6 +73,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       service: selectedServices = [],
       location: selectedLocations = [],
       starting_year: selectedYears = [],
+      award: selectedAwards = [],
       investor: slugInvestor = '',
       sort: sortValue = 'newest',
       s: searchQuery = '',
@@ -79,6 +85,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       service: parseAsArrayOf(parseAsString).withDefault([]),
       location: parseAsArrayOf(parseAsString).withDefault([]),
       starting_year: parseAsArrayOf(parseAsString).withDefault([]),
+      award: parseAsArrayOf(parseAsString).withDefault([]),
       investor: parseAsString.withDefault(''),
       sort: parseAsString.withDefault('newest'),
       s: parseAsString.withDefault(''),
@@ -133,6 +140,12 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     })
   }
 
+  const handleAwardsChange = (newAwards: string[]) => {
+    setQueryStates({
+      award: newAwards,
+    })
+  }
+
   const baseQueryString = useMemo(() => {
     const params = new URLSearchParams()
 
@@ -147,6 +160,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     const normalizedServices = [...selectedServices].sort()
     const normalizedTypes = [...selectedTypes].sort()
     const normalizedYears = [...selectedYears].sort()
+    const normalizedAwards = [...selectedAwards].sort()
 
     // Build tax param to match active filters
     const activeTaxonomies = new Set<string>()
@@ -154,6 +168,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     if (normalizedServices.length > 0) activeTaxonomies.add('service')
     if (normalizedTypes.length > 0) activeTaxonomies.add('building_type')
     if (normalizedYears.length > 0) activeTaxonomies.add('starting_year')
+    if (normalizedAwards.length > 0) activeTaxonomies.add('award')
     if (slugInvestor) activeTaxonomies.add('investor')
 
     // Keep default behavior when no filters are selected
@@ -180,6 +195,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       params.append('starting_year', normalizedYears.join(','))
     }
 
+    if (normalizedAwards.length > 0) {
+      params.append('award', normalizedAwards.join(','))
+    }
+
     // Investor filter
     if (slugInvestor) {
       params.append('investor', slugInvestor)
@@ -195,7 +214,17 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     }
 
     return params.toString()
-  }, [locale, slugInvestor, selectedTypes, selectedServices, selectedLocations, selectedYears, sortValue, searchQuery])
+  }, [
+    locale,
+    slugInvestor,
+    selectedTypes,
+    selectedServices,
+    selectedLocations,
+    selectedYears,
+    selectedAwards,
+    sortValue,
+    searchQuery,
+  ])
 
   const [useInitialFallbackData, setUseInitialFallbackData] = useState(true)
 
@@ -358,6 +387,12 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               value={selectedYears}
               onChange={handleYearsChange}
             />
+            <FilterPopup
+              label={t('award')}
+              items={awardItems}
+              value={selectedAwards}
+              onChange={handleAwardsChange}
+            />
           </div>
           <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center'>
             <div className='xsm:w-auto xsm:grow relative w-[16.9375rem] overflow-hidden mr-[0.9375rem]'>
@@ -440,6 +475,17 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
                 setQueryStates((prev) => ({
                   ...prev,
                   starting_year: prev.starting_year.filter((v) => v !== value),
+                }))
+              }
+            />
+            <SelectedTags
+              label={t('award')}
+              items={awardItems}
+              selectedValues={selectedAwards}
+              onRemove={(value) =>
+                setQueryStates((prev) => ({
+                  ...prev,
+                  award: prev.award.filter((v) => v !== value),
                 }))
               }
             />

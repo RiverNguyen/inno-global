@@ -34,7 +34,7 @@ const projectService = {
     })
   },
   getTaxonomies: async (locale: string) => {
-    const [types, services, locations, years] = await Promise.all([
+    const [types, services, locations, years, awards] = await Promise.all([
       fetchData({
         api: ENDPOINTS.project.getTypes(locale),
       }),
@@ -47,12 +47,16 @@ const projectService = {
       fetchData({
         api: ENDPOINTS.project.getYears(locale),
       }),
+      fetchData({
+        api: ENDPOINTS.project.getAwards(locale),
+      }),
     ])
     return {
       types,
       services,
       locations,
       years,
+      awards,
     }
   },
 }

@@ -15,6 +15,8 @@ const positionRowEvent = [
   [48.54, 8.8],
   [68.49, 8.7],
 ]
+// Độ dài thống nhất cho mọi đường dọc (stem) = độ dài đường thứ 2 (positionRowOdd[1])
+const UNIFORM_STEM_HEIGHT_REM = positionRowOdd[1][1] // 12.4
 
 const ITEMS_PER_ROW = 4
 const REM_TO_PX = 16
@@ -93,13 +95,13 @@ const getItemLineY = (itemLineIndex: number) => FIRST_ITEM_LINE_Y + itemLineInde
 const getPointByIndex = (itemIndex: number): ITimelinePoint => {
   const itemLineIndex = Math.floor(itemIndex / ITEMS_PER_ROW)
   const indexInLine = itemIndex % ITEMS_PER_ROW
-  const [leftInRem, stemInRem] = getLinePositions(itemLineIndex)[indexInLine]
+  const [leftInRem] = getLinePositions(itemLineIndex)[indexInLine]
 
   return {
     x: toPx(leftInRem),
     y: getItemLineY(itemLineIndex),
     itemLineIndex,
-    stemHeight: toPx(stemInRem),
+    stemHeight: toPx(UNIFORM_STEM_HEIGHT_REM),
     stemUp: (itemIndex + 1) % 2 === 1,
   }
 }
@@ -415,7 +417,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                           )}
                         >
                           <div
-                            className='text-text-80 max-h-full overflow-x-hidden overflow-y-auto pr-[0.35rem] text-[0.9375rem] leading-normal font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-[#090909] [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
+                            className='text-text-80 max-h-full overflow-x-hidden overflow-y-auto pr-[0.35rem] text-[0.7375rem] leading-normal font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-[#090909] [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
                             style={{ maxWidth: '100%', width: 'max-content' }}
                             dangerouslySetInnerHTML={{ __html: currentItem.description }}
                           />

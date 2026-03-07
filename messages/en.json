@@ -37,7 +37,8 @@
     "labelInvestor": "Investor",
     "labelLocation": "Location",
     "labelArea": "Scale",
-    "labelYear": "Year"
+    "labelYear": "Year",
+    "award": "Award"
   },
   "BlogListPage": {
     "breadcrumbHome": "Home",
@@ -48,6 +49,7 @@
     "newestToOldest": "Newest to oldest",
     "oldestToNewest": "Oldest to newest",
     "year": "Year",
+    "award": "Award",
     "noBlogs": "No blogs found",
     "sortPopup": "Sort by"
   },
@@ -66,6 +68,8 @@
     "placeholderCompanyName": "Enter company name",
     "placeholderCompanysize": "Select company size",
     "placeholderField": "Select field",
+    "fieldOther": "Other",
+    "placeholderFieldOther": "Enter other field",
     "placeholderNote": "Enter note",
     "fullnameRequired": "Please enter your full name",
     "fullnameInvalid": "Please enter your full name",
@@ -157,7 +161,8 @@
     "related": "Related trainings",
     "contentSummary": "Content summary",
     "seeLess": "See less",
-    "seeMore": "See more"
+    "seeMore": "See more",
+    "shareLinkCopied": "Link has been copied to clipboard"
   },
   "ServiceListPage": {
     "noServices": "No services found"

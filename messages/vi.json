@@ -37,7 +37,8 @@
     "labelInvestor": "Chủ đầu tư",
     "labelLocation": "Địa điểm",
     "labelArea": "Quy mô",
-    "labelYear": "Năm"
+    "labelYear": "Năm",
+    "award": "Giải thưởng"
   },
   "BlogListPage": {
     "breadcrumbHome": "Trang chủ",
@@ -48,6 +49,7 @@
     "newestToOldest": "Mới nhất đến cũ nhất",
     "oldestToNewest": "Cũ nhất đến mới nhất",
     "year": "Năm",
+    "award": "Giải thưởng",
     "noBlogs": "Không tìm thấy bài viết",
     "sortPopup": "Sắp xếp theo"
   },
@@ -66,6 +68,8 @@
     "placeholderCompanyName": "Nhập tên công ty",
     "placeholderCompanysize": "Chọn quy mô công ty",
     "placeholderField": "Chọn lĩnh vực",
+    "fieldOther": "Khác",
+    "placeholderFieldOther": "Nhập lĩnh vực khác",
     "placeholderNote": "Nhập ghi chú",
     "fullnameRequired": "Vui lòng nhập họ tên",
     "fullnameInvalid": "Vui lòng nhập họ tên hợp lệ",
@@ -156,7 +160,8 @@
     "related": "Tin tức Đào tạo khác",
     "contentSummary": "Tóm tắt nội dung",
     "seeLess": "Thu gọn",
-    "seeMore": "Xem thêm"
+    "seeMore": "Xem thêm",
+    "shareLinkCopied": "Liên kết đã được sao chép vào bảng tạm"
   },
   "ServiceListPage": {
     "noServices": "Không tìm thấy dịch vụ"
@@ -181,8 +186,8 @@
     "aboutUsPage": "Về chúng tôi",
     "detailServicePage": "Chi tiết dịch vụ",
     "socialResponsibilityPage": "Trách nhiệm xã hội",
-    "historyPage": "Lịch sử hình thành & phát triển",
-    "developmentHistoryPage": "Lịch sử phát triển",
+    "historyPage": "Lịch sử hình thành",
+    "developmentHistoryPage": "Lịch sử hình thành",
     "companyPage": "Công ty con/liên kết",
     "businessCulturePage": "Văn hóa doanh nghiệp",
     "organizationChartPage": "Sơ đồ tổ chức",
