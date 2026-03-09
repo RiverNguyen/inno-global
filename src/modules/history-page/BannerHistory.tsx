@@ -39,7 +39,7 @@ export default function BannerHistory({ banner }: { banner: IBannerHistory }) {
             classNameIcon='text-white'
           />
         </div>
-        <h1 className='font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] text-[2.083rem] tracking-[-0.03125rem] leading-[1.2] font-semibold text-white'>
+        <h1 className='font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] pc-h2-54-s text-white'>
           {banner?.title || t('Breadcrumb.developmentHistoryPage')}
         </h1>
       </div>

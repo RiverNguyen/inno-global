@@ -48,7 +48,7 @@ export default function ProjectCard({
         <div className='mb-[0.3125rem] flex items-center justify-between space-x-4'>
           <h3
             className={cn(
-              'font-open-sans line-clamp-1 max-w-[16rem] text-[0.9375rem] leading-[150%] font-semibold text-[#090909]',
+              'font-open-sans line-clamp-1 max-w-[16rem] pc-body-18-m-primary text-[#090909]',
               classNameTitle,
             )}
           >
@@ -60,7 +60,7 @@ export default function ProjectCard({
           </div>
         </div>
         <div className='flex flex-col space-y-[0.46875rem]'>
-          <div className='font-open-sans flex items-center space-x-[0.3125rem] text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
+          <div className='font-open-sans flex items-center space-x-[0.3125rem] pc-body-14-r text-[rgba(9,9,9,0.6)]'>
             <Image
               src='/projects/d-brifecase-tick.png'
               alt=''
@@ -73,7 +73,7 @@ export default function ProjectCard({
             </span>
             <span className='line-clamp-1 max-w-full'>{project?.taxonomies?.investor?.[0]?.name || '-'}</span>
           </div>
-          <div className='font-open-sans flex items-center space-x-[0.3125rem] text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)]'>
+          <div className='font-open-sans flex items-center space-x-[0.3125rem] pc-body-14-r text-[rgba(9,9,9,0.6)]'>
             <Image
               src='/projects/d-location.png'
               alt=''

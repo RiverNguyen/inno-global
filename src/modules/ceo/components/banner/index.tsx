@@ -17,7 +17,7 @@ export default function Banner({ aboutUsBasePath }: { aboutUsBasePath: string })
           classNameContainer='xsm:hidden'
         />
 
-        <h1 className='font-open-sans xsm:text-[#090909] xsm:text-[1.35417rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.80)]'>
+        <h1 className='font-open-sans xsm:text-[#090909] xsm:text-[1.35417rem] pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
           {t('LeadershipPage.ceoMessage')}
         </h1>
       </div>

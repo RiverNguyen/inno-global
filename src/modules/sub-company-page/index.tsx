@@ -47,17 +47,17 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
             }}
             classNameContainer='mb-[1.25rem] xsm:hidden'
           />
-          <h1 className='xsm:text-[1.35417rem] xsm:text-[#090909] font-open-sans text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.80)]'>
+          <h1 className='xsm:text-[1.35417rem] xsm:text-[#090909] font-open-sans pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
             {title}
           </h1>
         </div>
       </div>
       <div className='xsm:max-w-full mx-auto max-w-[75rem] pt-[2.5rem]'>
         <div className='xsm:px-[0.83333rem]'>
-          <h2 className='xsm:text-[1.25rem] font-open-sans xsm:mb-[0.9375rem] mb-[1.04167rem] text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+          <h2 className='xsm:text-[1.25rem] font-open-sans xsm:mb-[0.9375rem] mb-[1.04167rem] pc-h3-40-s text-[#090909]'>
             {companyName}
           </h2>
-          <p className='font-open-sans xsm:text-[0.72917rem] xsm:[text-box-edge:cap_alphabetic] xsm:[text-box-trim:trim-both] text-[0.9375rem] leading-[150%] text-[#090909]'>
+          <p className='font-open-sans xsm:text-[0.72917rem] xsm:[text-box-edge:cap_alphabetic] xsm:[text-box-trim:trim-both] pc-body-18-r-primary text-[#090909]'>
             {companyDesc}
           </p>
         </div>
@@ -73,35 +73,35 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
           <div className='xsm:gap-x-[0.78125rem] xsm:px-[0.83333rem] xsm:gap-y-[1.04167rem] z-1 grid grid-cols-2 sm:absolute sm:top-0 sm:left-0 sm:size-full'>
             <div className='col-span-2 h-[0.05208rem] w-full bg-[rgba(9,9,9,0.08)] sm:hidden'></div>
             <div className='xsm:relative xsm:inset-auto xsm:translate-none absolute top-[3.44rem] left-1/2 -translate-x-1/2 space-y-[0.52083rem]'>
-              <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#D98345]'>
+              <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center pc-h3-40-s text-[#D98345]'>
                 {companyItems[0]?.label}
               </h3>
-              <p className='font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] xsm:text-left text-center text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
+              <p className='font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] xsm:text-left text-center pc-body-18-r-primary text-[rgba(9,9,9,0.60)]'>
                 {companyItems[0]?.value}
               </p>
             </div>
             <div className='xsm:relative xsm:inset-auto xsm:translate-none absolute top-1/2 right-[4.84rem] -translate-y-1/2 space-y-[0.52083rem]'>
-              <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#1ABC92]'>
+              <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center pc-h3-40-s text-[#1ABC92]'>
                 {companyItems[1]?.label}
               </h3>
-              <p className='font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] xsm:text-left text-center text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
+              <p className='font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] xsm:text-left text-center pc-body-18-r-primary text-[rgba(9,9,9,0.60)]'>
                 {companyItems[1]?.value}
               </p>
             </div>
             <div className='col-span-2 h-[0.05208rem] w-full bg-[rgba(9,9,9,0.08)] sm:hidden'></div>
             <div className='xsm:relative xsm:inset-auto xsm:translate-none absolute bottom-[3.28rem] left-1/2 -translate-x-1/2 space-y-[0.52083rem]'>
-              <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#D32F2F]'>
+              <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center pc-h3-40-s text-[#D32F2F]'>
                 {companyItems[2]?.label}
               </h3>
-              <p className='font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] xsm:text-left text-center text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
+              <p className='font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] xsm:text-left text-center pc-body-18-r-primary text-[rgba(9,9,9,0.60)]'>
                 {companyItems[2]?.value}
               </p>
             </div>
             <div className='xsm:relative xsm:inset-auto xsm:translate-none absolute top-1/2 left-[5.68rem] -translate-y-1/2 space-y-[0.52083rem]'>
-              <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#4280D8]'>
+              <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center pc-h3-40-s text-[#4280D8]'>
                 {companyItems[3]?.label}
               </h3>
-              <p className='font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] xsm:text-left text-center text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
+              <p className='font-open-sans xsm:text-[0.625rem] xsm:tracking-[-0.00625rem] xsm:text-left text-center pc-body-18-r-primary text-[rgba(9,9,9,0.60)]'>
                 {companyItems[3]?.value}
               </p>
             </div>
@@ -109,7 +109,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
         </div>
       </div>
       <div className='xsm:max-w-full xsm:py-[3.33333rem]  pt-[4.17rem] pb-[4.16667rem]'>
-        <h2 className='font-open-sans xsm:px-[0.83333rem] xsm:text-[1.25rem] mx-auto max-w-[75rem] xsm:mb-[1.46rem] mb-[2.5rem] text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+        <h2 className='font-open-sans xsm:px-[0.83333rem] xsm:text-[1.25rem] mx-auto max-w-[75rem] xsm:mb-[1.46rem] mb-[2.5rem] pc-h3-40-s text-[#090909]'>
           {t('SubCompanyPage.companyList')}
         </h2>
         <div className='relative'>

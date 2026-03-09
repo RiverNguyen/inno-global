@@ -12,10 +12,10 @@ export default function NoResult() {
 
   return (
     <div className='xsm:w-[19.53125rem] xsm:my-[3.54167rem] mx-auto my-[8.18rem] flex w-[25.15625rem] flex-col items-center justify-center space-y-[1.40625rem]'>
-      <h1 className='font-open-sans xsm:w-[11.71875rem] xsm:text-[#090909] xsm:text-[1.35417rem] text-center text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.8)]'>
+      <h1 className='font-open-sans xsm:w-[11.71875rem] xsm:text-[#090909] xsm:text-[1.35417rem] text-center pc-h2-54-s text-[rgba(9,9,9,0.8)]'>
         {t('noResult')}
       </h1>
-      <p className='font-open-sans xsm:text-[0.72917rem] text-trim-both xsm:w-[14.11458rem] text-center text-[0.9375rem] leading-[150%] font-normal text-[rgba(9,9,9,0.8)]'>
+      <p className='font-open-sans xsm:text-[0.72917rem] text-trim-both xsm:w-[14.11458rem] text-center pc-body-18-r-primary text-[rgba(9,9,9,0.8)]'>
         {t('noResultDesc')}
       </p>
 

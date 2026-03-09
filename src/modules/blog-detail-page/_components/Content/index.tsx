@@ -24,7 +24,7 @@ export default function Content({ blog }: ContentProps) {
 
   return (
     <section className='xsm:px-[0.83333rem]'>
-      <h2 className='font-open-sans xsm:text-[1.35417rem] xsm:tracking-normal text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+      <h2 className='font-open-sans xsm:text-[1.35417rem] xsm:tracking-normal pc-h3-40-s text-[#090909]'>
         {blog?.title}
       </h2>
 

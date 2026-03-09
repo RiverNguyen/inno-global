@@ -35,7 +35,7 @@ export default function OrganizationalChartDetail({ res }: { res: IOrganizationa
             }}
             classNameContainer='mb-[1.25rem] xsm:hidden'
           />
-          <h1 className='xsm:text-[1.35417rem] xsm:text-[#090909] font-open-sans text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.80)]'>
+          <h1 className='xsm:text-[1.35417rem] xsm:text-[#090909] font-open-sans pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
             {title}
           </h1>
         </div>

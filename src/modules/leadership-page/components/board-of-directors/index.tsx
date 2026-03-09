@@ -18,9 +18,9 @@ type BoardSectionData = {
 
 const BoardSection = ({ title, directors }: { title: string; directors: DirectorCard[] }) => (
   <div className='xsm:gap-[1.25rem] flex flex-col gap-[3.33333rem]'>
-    <h2 className='font-open-sans xsm:text-[1.04167rem] xsm:leading-[150%] text-center text-[1.875rem] leading-[1.35417rem] font-semibold text-[rgba(9,9,9,0.80)]'>
+    <h3 className='font-open-sans xsm:[text-box-edge:auto] xsm:[text-box-trim:none] xsm:text-[1.04167rem] xsm:leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] text-center text-[1.875rem] font-semibold leading-normal text-[rgba(9,9,9,0.80)]'>
       {title}
-    </h2>
+    </h3>
     <div className='xsm:gap-y-[0.625rem] xsm:gap-x-[0.83333rem] flex flex-wrap justify-center gap-x-[1.77rem] gap-y-[3.33333rem]'>
       {directors.map((director, index) => (
         <Link
@@ -43,7 +43,7 @@ const BoardSection = ({ title, directors }: { title: string; directors: Director
             className='xsm:h-[11.22047rem] relative h-[22.86458rem] w-full object-cover'
           />
           <div className='xsm:py-[0.52083rem] xsm:px-[0.625rem] flex flex-col gap-[0.39333rem] bg-[#F0F0F0] py-[1.25rem] pr-[1.45833rem] pl-[1.25rem]'>
-            <h3 className='font-open-sans xsm:text-[0.72917rem] line-clamp-1 text-[1.25rem] leading-[150%] font-semibold text-[#090909]'>
+            <h3 className='font-open-sans xsm:text-[0.72917rem] line-clamp-1 pc-24-24-semi text-[#090909]'>
               {director.name}
             </h3>
             <div className='xsm:gap-[0.19302rem] flex items-center gap-[0.39333rem]'>
@@ -54,7 +54,7 @@ const BoardSection = ({ title, directors }: { title: string; directors: Director
                 height={20}
                 className='xsm:size-[0.625rem] size-[1.04896rem]'
               />
-              <span className='font-open-sans xsm:text-[0.625rem] line-clamp-1 text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
+              <span className='font-open-sans xsm:text-[0.625rem] line-clamp-1 pc-body-18-r-primary text-[rgba(9,9,9,0.60)]'>
                 {director.position}
               </span>
             </div>
