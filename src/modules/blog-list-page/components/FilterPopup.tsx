@@ -70,7 +70,7 @@ export default function FilterPopup({ label, items, value, onChange }: FilterPop
         <PopoverTrigger asChild>
           <button
             type='button'
-            className='font-open-sans xsm:hidden flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
+            className='font-open-sans xsm:hidden flex h-[2.25rem] cursor-pointer items-center justify-center space-x-[0.52083rem] rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal text-[#090909]'
           >
             <span className='[text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>{label}</span>
             <ICChevronDown className='size-[0.83333rem] shrink-0' />

@@ -92,7 +92,7 @@ export default function FormContact({ locale, serviceTaxonomies }: FormContactPr
     try {
       const payload = {
         ...values,
-        field: values.field === FIELD_OTHER_VALUE ? values.fieldOther ?? '' : values.field,
+        field: values.field === FIELD_OTHER_VALUE ? (values.fieldOther ?? '') : values.field,
       }
       const request = new CF7Request(payload)
       const cf7Form = locale === 'vi' ? endpoints.contact.form_contact_vi : endpoints.contact.form_contact_en

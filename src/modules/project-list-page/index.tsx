@@ -75,7 +75,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       starting_year: selectedYears = [],
       award: selectedAwards = [],
       investor: slugInvestor = '',
-      sort: sortValue = 'newest',
+      sort: sortValue = 'oldest',
       s: searchQuery = '',
     },
     setQueryStates,
@@ -87,7 +87,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       starting_year: parseAsArrayOf(parseAsString).withDefault([]),
       award: parseAsArrayOf(parseAsString).withDefault([]),
       investor: parseAsString.withDefault(''),
-      sort: parseAsString.withDefault('newest'),
+      sort: parseAsString.withDefault('oldest'),
       s: parseAsString.withDefault(''),
     },
     {
@@ -401,7 +401,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
                 placeholder={t('placeholderSearch')}
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.83333rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
+                className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.5rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
               />
               <div className='xsm:right-[0.83333rem] absolute top-1/2 right-[1.14583rem] -translate-y-1/2'>
                 <ICSearch className='size-[0.83333rem]' />

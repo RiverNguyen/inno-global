@@ -177,7 +177,7 @@ export default function Header({
                 height={44}
                 unoptimized
                 priority
-                className='xsm:h-[1.5625rem] h-[2.29167rem] w-auto'
+                className='xsm:h-[1.5625rem] h-[1.875rem] w-auto'
               />
             </Link>
             <div className='xsm:hidden relative ml-[2.08rem]'>

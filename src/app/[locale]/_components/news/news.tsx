@@ -17,12 +17,12 @@ export default function News({ data }: NewsProps) {
   const locale = useLocale()
 
   return (
-    <div className='xsm:p-[2.5rem_0.83rem] h-screen w-full xsm:h-auto sm:py-[2.5rem]'>
-      <div className='flex-center xsm:flex-col xsm:max-w-full mx-auto h-full max-w-[85.42rem] xsm:h-auto'>
+    <div className='xsm:p-[2.5rem_0.83rem] h-screen w-full xsm:h-auto '>
+      <div className='flex-center xsm:flex-col xsm:max-w-full mx-auto h-full max-w-[85.42rem] xsm:h-auto sm:py-[2.5rem]'>
         <h2 className='mb-[1.25rem] xsm:mb-h2-24-sm text-[#090909] sm:hidden'>{t('blogs')}</h2>
         <NewsFeatured data={data[0]} />
         <div className='xsm:mt-[1.25rem] flex flex-1 flex-col sm:ml-[2.5rem]'>
-          <h2 className='xsm:hidden mb-[1.5rem] pc-h3-40-s text-[#090909]'>{t('blogs')}</h2>
+          <h2 className='xsm:hidden mb-[1.5rem] pc-h2-54-s text-[#090909]'>{t('blogs')}</h2>
           <hr className='xsm:hidden mb-[1.46rem] border-t border-gray-200' />
           {Array.isArray(data) &&
             data.slice(1).map((item) => (

@@ -131,7 +131,7 @@ export default function Footer({ data }: IFooterProps) {
               alt={logo?.alt || ''}
               width={160}
               height={74.5}
-              className='xsm:w-[4.89583rem] h-auto w-[8.33333rem]'
+              className='xsm:w-[4.89583rem] h-auto w-[7rem]'
             />
           </Link>
           <div className='mt-[1rem] space-y-[0.73rem]'>
