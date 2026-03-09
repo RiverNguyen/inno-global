@@ -52,7 +52,7 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
     <div className='xsm:hidden flex min-h-screen'>
       {/* Left Menu */}
       <div className='relative z-20 w-[35.3125rem] space-y-[2.24rem] bg-white pt-[5.7rem] pr-[2.92rem] pb-[5.18rem] pl-[7.29rem]'>
-        <h3 className='pc-h3-40-s text-text-100'>{title}</h3>
+        <h3 className='pc-h2-54-s text-text-100'>{title}</h3>
         <div
           data-snap-ignore
           onWheelCapture={handleServiceListWheelCapture}
@@ -107,12 +107,10 @@ export default function ServiceHome({ services, title }: { services: ServiceHome
               </div>
 
               {/* Text Content */}
-              <div className='pointer-events-none absolute top-[5.68rem] left-[5.21rem] z-10 text-white'>
+              <div className='pointer-events-none absolute top-[5.68rem] max-w-[calc(100%-7.29167rem-5.21rem)] left-[5.21rem] z-10 text-white'>
                 <div className='pointer-events-auto'>
-                  <h2 className='pc-34-34-m mb-[0.94rem] text-white'>{service.title}</h2>
-                  <p className='pc-body-20-r mb-[2rem] max-w-[52.1875rem] text-[1.04167rem] text-white'>
-                    {service.description}
-                  </p>
+                  <h3 className='pc-h3-40-s mb-[0.94rem] text-white'>{service.title}</h3>
+                  <p className='pc-body-20-r mb-[2rem] text-[1.04167rem] text-white'>{service.description}</p>
                   <div className='group ml-auto flex w-fit cursor-pointer items-center space-x-[0.28rem] opacity-80 hover:opacity-100 transition-all duration-300'>
                     <Link
                       href={service.href}

@@ -23,7 +23,7 @@ export default function BannerHistory({ banner }: { banner: IBannerHistory }) {
         height={350}
       />
       <div className='xsm:h-[8.38542rem] xsm:bg-[linear-gradient(180deg,_rgba(0,_0,_0,_0.00)_0%,_rgba(0,_0,_0,_0.70)_65.25%,_rgba(0,_0,_0,_0.90)_100%)] absolute bottom-0 left-0 h-[21.7rem] w-full bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_11.66%,rgba(0,0,0,0.70)_62.5%)] opacity-70'></div>
-      <div className='absolute bottom-0 left-0 z-2 w-full p-[1.46rem_0.83rem] sm:px-[12.5rem] sm:py-[5.21rem]'>
+      <div className='absolute bottom-0 left-0 z-2 max-w-[75rem] mx-auto right-0 w-full p-[1.46rem_0.83rem] sm:py-[5.21rem]'>
         <div className='mb-[1.67rem] hidden sm:block'>
           <Breadcrumb
             navItems={[

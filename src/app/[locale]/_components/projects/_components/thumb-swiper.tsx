@@ -34,7 +34,7 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
         className='absolute top-0 left-0 z-10 h-full w-full'
       />
       <div className='relative z-10'>
-        <div className='flex-y-center mb-[0.9375rem] justify-between'>
+        <div className='flex-y-center mb-[0.9375rem] space-x-[2rem]'>
           <p className='text-[1.25rem] leading-[100%] font-semibold tracking-[-0.0125rem] text-white'>
             {t('otherProjects')}
           </p>

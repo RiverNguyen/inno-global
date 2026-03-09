@@ -11,7 +11,7 @@ function renderCellValue(value: string) {
 
 export default function Overview({ overview }: { overview?: IProjectDetailAcf['project_overview'] }) {
   return (
-    <section className='xsm:pt-[1.46rem] xsm:px-[0.8275rem] xsm:pb-[1.04rem] p-[6.25rem_12.5rem]'>
+    <section className='xsm:pt-[1.46rem] xsm:px-[0.8275rem] xsm:pb-[1.04rem] p-[6.25rem_0] max-w-[75rem] mx-auto'>
       <table className='w-full border border-[#090909]/8'>
         <tbody>
           {Array.isArray(overview) &&

@@ -471,7 +471,7 @@ export default function TrainingListPage({
                 type='button'
                 onClick={() => handleCategoryChange('')}
                 className={cn(
-                  'font-open-sans xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold relative flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] overflow-hidden rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal whitespace-nowrap text-[#090909] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 before:ease-out before:content-[""] lg:hover:text-white lg:hover:before:opacity-100',
+                  'font-open-sans xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold relative flex h-[2.25rem] cursor-pointer items-center justify-center space-x-[0.52083rem] overflow-hidden rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal whitespace-nowrap text-[#090909] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 before:ease-out before:content-[""] lg:hover:text-white lg:hover:before:opacity-100',
                   !slugCategory && 'text-white before:opacity-100',
                 )}
               >
@@ -486,7 +486,7 @@ export default function TrainingListPage({
                     key={category.id}
                     onClick={() => handleCategoryChange(category?.slug || '')}
                     className={cn(
-                      'font-open-sans xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold relative flex h-10 cursor-pointer items-center justify-center space-x-[0.52083rem] overflow-hidden rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal whitespace-nowrap text-[#090909] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 before:ease-out before:content-[""] lg:hover:text-white lg:hover:before:opacity-100',
+                      'font-open-sans xsm:p-[0.52083rem_0.83333rem] xsm:h-auto xsm:text-[0.625rem] xsm:leading-[140%] xsm:tracking-[-0.00625rem] xsm:font-semibold relative flex h-[2.25rem] cursor-pointer items-center justify-center space-x-[0.52083rem] overflow-hidden rounded-[5.20833rem] border border-[rgba(9,9,9,0.08)] p-[0.75rem_0.75rem] text-[0.72917rem] leading-[150%] font-normal whitespace-nowrap text-[#090909] before:absolute before:inset-0 before:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#CA2A2A_15.19%,#D32F2F_53.77%,#FF6E6E_100%)] before:opacity-0 before:transition-all before:duration-300 before:ease-out before:content-[""] lg:hover:text-white lg:hover:before:opacity-100',
                       slugCategory === category?.slug && 'text-white before:opacity-100',
                     )}
                   >
@@ -509,7 +509,7 @@ export default function TrainingListPage({
                   placeholder={t('placeholderSearch')}
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
-                  className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.83333rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
+                  className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.5rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
                 />
                 <div className='xsm:right-[0.83333rem] absolute top-1/2 right-[1.14583rem] -translate-y-1/2'>
                   <ICSearch className='size-[0.83333rem]' />

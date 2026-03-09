@@ -28,13 +28,13 @@ export default function ProjectInfo({ data, activeIndex }: IProjectInfoProps) {
           >
             <h3 className='group xsm:text-[#090909] flex items-center justify-between space-x-[1rem] text-white'>
               <Link
-                className='xsm:text-[0.72917rem] line-clamp-1 text-[1.25rem] leading-normal font-semibold tracking-[-0.02813rem]'
+                className='xsm:text-[0.72917rem] line-clamp-1 text-[1.25rem] leading-normal font-semibold tracking-[-0.02813rem] hover:underline'
                 href={`/projects/${item.link}`}
               >
                 {item.title || '-'}
               </Link>
               <Link
-                className='xsm:text-[0.625rem] xsm:text-[#D32F2F] flex shrink-0 items-center space-x-[0.20833rem] text-[0.83rem] leading-normal tracking-[-0.01667rem] opacity-80'
+                className='xsm:text-[0.625rem] xsm:text-[#D32F2F] flex shrink-0 items-center space-x-[0.20833rem] text-[0.83rem] leading-normal tracking-[-0.01667rem] opacity-80 group-hover:underline'
                 href={locale === 'vi' ? `${ROUTES.projectsVi}/${item.link}` : `${ROUTES.projectsEn}/${item.link}`}
               >
                 {t('viewDetail')}{' '}

@@ -14,6 +14,10 @@ const ENDPOINTS = {
       en: '/en/contact',
       vi: '/lien-he',
     },
+    page_id: {
+      vi: 821,
+      en: 819,
+    },
   },
   home: {
     rank_math: {
@@ -28,6 +32,7 @@ const ENDPOINTS = {
     search: ({ locale, limit, q }: { locale: string; limit: number; q: string }) =>
       `api/v1/get-all/post?lang=${locale}&s=${q}&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    getAwards: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=award`,
     getCategories: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=category`,
     rank_math: {
       en: '/en/blogs',
@@ -40,12 +45,13 @@ const ENDPOINTS = {
   },
   project: {
     getAll: (locale: string) =>
-      `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&orderby=date&order=DESC&limit=12&paged=1`,
+      `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&orderby=date&order=ASC&limit=12&paged=1`,
     relatedProjects: 'api/v1/get-all/project',
     getTypes: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=building_type`,
     getServices: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=service`,
     getLocations: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=location`,
     getYears: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=starting_year`,
+    getAwards: (locale: string) => `api/v1/taxonomies?lang=${locale}&taxonomy=award`,
     search: ({ locale, q, limit }: { locale: string; q: string; limit: number }) =>
       `api/v1/get-all/project?lang=${locale}&tax=location,investor,service,building_type,starting_year&s=${q}&orderby=date&order=DESC&limit=${limit}&paged=1`,
     rank_math: {
@@ -59,7 +65,7 @@ const ENDPOINTS = {
   },
   leadership: {
     list: 'api/v1/get-all/leadership',
-    detail: (slug: string) => `api/v1/detail/${slug}?acf=true&lang=en`,
+    detail: (slug: string, locale: string) => `api/v1/detail/${slug}?acf=true&lang=${locale}`,
     rank_math: {
       en: '/leadership',
       vi: '/ban-lanh-dao-cong-ty',
@@ -71,6 +77,14 @@ const ENDPOINTS = {
     founder: {
       vi: 'wp/v2/pages/632?_fields=acf&acf_format=standard',
       en: 'wp/v2/pages/634?_fields=acf&acf_format=standard',
+    },
+    ceo: {
+      vi: 'wp/v2/pages/1021?_fields=acf&acf_format=standard',
+      en: 'wp/v2/pages/1026?_fields=acf&acf_format=standard',
+    },
+    ceo_rank_math: {
+      vi: '/thong-diep-cua-ceo',
+      en: '/ceo-message',
     },
   },
   taxonomies: {

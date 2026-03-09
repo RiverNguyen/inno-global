@@ -1,4 +1,3 @@
-import { useLocale } from 'next-intl'
 import { SVGProps } from 'react'
 
 import { Link } from '@/i18n/navigation'
@@ -9,7 +8,6 @@ interface AboutListProps {
 }
 
 export default function AboutList({ navItems }: AboutListProps) {
-  const locale = useLocale()
   if (!Array.isArray(navItems) || !navItems?.length) return null
 
   return (
@@ -20,7 +18,6 @@ export default function AboutList({ navItems }: AboutListProps) {
           className='border-primary/12 xsm:border-b-0 xsm:border-t-[0.05208rem] xsm:border-t-primary/10 xsm:pb-0 xsm:pt-[0.72917rem] col-span-1 border-b border-solid pb-[0.83333rem]'
         >
           <Link
-            locale={locale}
             href={item?.link?.url || '#'}
             target={item?.link?.target || '_self'}
             className='text-primary group xsm:space-x-[0.41667rem] flex space-x-[0.72917rem]'

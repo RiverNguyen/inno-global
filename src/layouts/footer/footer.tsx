@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 
+import FontSizeTrigger from '@/components/FontSizeGate/FontSizeTrigger'
 import { Link } from '@/i18n/navigation'
 import { IAcfImage, IAcfLink } from '@/interfaces/acf-wp.interface'
 import { cn } from '@/lib/utils'
@@ -130,7 +131,7 @@ export default function Footer({ data }: IFooterProps) {
               alt={logo?.alt || ''}
               width={160}
               height={74.5}
-              className='xsm:w-[4.89583rem] h-auto w-[8.33333rem]'
+              className='xsm:w-[4.89583rem] h-auto w-[7rem]'
             />
           </Link>
           <div className='mt-[1rem] space-y-[0.73rem]'>
@@ -284,13 +285,14 @@ export default function Footer({ data }: IFooterProps) {
               {copyright}
             </p>
             <div className='xsm:justify-between mt-[0.68rem] flex items-center space-x-[0.83rem] text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909] sm:justify-end'>
+              <FontSizeTrigger />
               {Array.isArray(menu_column_3?.items) &&
                 menu_column_3?.items?.map((item, index) => (
                   <React.Fragment key={index}>
+                    <span className='inline-block h-[0.57292rem] w-[0.05208rem] bg-[#090909]'></span>
                     <Link
                       href={item?.link?.url || ''}
                       target={item?.link?.target || '_self'}
-                      key={index}
                       className="relative inline-block pb-[0.1rem] after:absolute after:bottom-0 after:left-0 after:h-[0.10417rem] after:w-full after:origin-left after:scale-x-0 after:bg-[#E00000] after:transition-transform after:duration-300 after:ease-out after:content-[''] hover:after:scale-x-100 focus-visible:after:scale-x-100"
                     >
                       {item?.link?.title}

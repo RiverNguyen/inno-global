@@ -61,6 +61,11 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     [taxonomies.years.data],
   )
 
+  const awardItems: FilterItem[] = useMemo(
+    () => taxonomies.awards.data.map((a) => ({ label: a.name, value: a.slug })),
+    [taxonomies.awards.data],
+  )
+
   // Use nuqs to manage query params - automatically syncs with URL
   const [
     {
@@ -68,8 +73,9 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       service: selectedServices = [],
       location: selectedLocations = [],
       starting_year: selectedYears = [],
+      award: selectedAwards = [],
       investor: slugInvestor = '',
-      sort: sortValue = 'newest',
+      sort: sortValue = 'oldest',
       s: searchQuery = '',
     },
     setQueryStates,
@@ -79,8 +85,9 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       service: parseAsArrayOf(parseAsString).withDefault([]),
       location: parseAsArrayOf(parseAsString).withDefault([]),
       starting_year: parseAsArrayOf(parseAsString).withDefault([]),
+      award: parseAsArrayOf(parseAsString).withDefault([]),
       investor: parseAsString.withDefault(''),
-      sort: parseAsString.withDefault('newest'),
+      sort: parseAsString.withDefault('oldest'),
       s: parseAsString.withDefault(''),
     },
     {
@@ -133,6 +140,12 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     })
   }
 
+  const handleAwardsChange = (newAwards: string[]) => {
+    setQueryStates({
+      award: newAwards,
+    })
+  }
+
   const baseQueryString = useMemo(() => {
     const params = new URLSearchParams()
 
@@ -147,6 +160,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     const normalizedServices = [...selectedServices].sort()
     const normalizedTypes = [...selectedTypes].sort()
     const normalizedYears = [...selectedYears].sort()
+    const normalizedAwards = [...selectedAwards].sort()
 
     // Build tax param to match active filters
     const activeTaxonomies = new Set<string>()
@@ -154,6 +168,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     if (normalizedServices.length > 0) activeTaxonomies.add('service')
     if (normalizedTypes.length > 0) activeTaxonomies.add('building_type')
     if (normalizedYears.length > 0) activeTaxonomies.add('starting_year')
+    if (normalizedAwards.length > 0) activeTaxonomies.add('award')
     if (slugInvestor) activeTaxonomies.add('investor')
 
     // Keep default behavior when no filters are selected
@@ -180,6 +195,10 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
       params.append('starting_year', normalizedYears.join(','))
     }
 
+    if (normalizedAwards.length > 0) {
+      params.append('award', normalizedAwards.join(','))
+    }
+
     // Investor filter
     if (slugInvestor) {
       params.append('investor', slugInvestor)
@@ -195,7 +214,17 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
     }
 
     return params.toString()
-  }, [locale, slugInvestor, selectedTypes, selectedServices, selectedLocations, selectedYears, sortValue, searchQuery])
+  }, [
+    locale,
+    slugInvestor,
+    selectedTypes,
+    selectedServices,
+    selectedLocations,
+    selectedYears,
+    selectedAwards,
+    sortValue,
+    searchQuery,
+  ])
 
   const [useInitialFallbackData, setUseInitialFallbackData] = useState(true)
 
@@ -322,7 +351,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
           lastItem={{ label: t('breadcrumbProject') }}
           classNameContainer='xsm:hidden pt-[2.34375rem]'
         />
-        <h1 className='xsm:px-[0.83333rem] font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 mb-[0.41667rem] pt-[3.125rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rbga(9,9,9,0.8)]'>
+        <h1 className='xsm:px-[0.83333rem] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 mb-[0.41667rem] pt-[3.125rem] pc-h2-54-s xsm:mb-h2-24-sm text-[rbga(9,9,9,0.8)]'>
           {t('title')}
         </h1>
       </div>
@@ -358,6 +387,12 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
               value={selectedYears}
               onChange={handleYearsChange}
             />
+            <FilterPopup
+              label={t('award')}
+              items={awardItems}
+              value={selectedAwards}
+              onChange={handleAwardsChange}
+            />
           </div>
           <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center'>
             <div className='xsm:w-auto xsm:grow relative w-[16.9375rem] overflow-hidden mr-[0.9375rem]'>
@@ -366,7 +401,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
                 placeholder={t('placeholderSearch')}
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.83333rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
+                className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:pr-[calc(0.83333rem+0.83333rem+0.83333rem)] w-full rounded-[6.25rem] border-none bg-[#F0F0F0] py-[0.5rem] pr-[calc(0.83333rem+1.14583rem+1.14583rem)] pl-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal text-[rgba(9,9,9,0.6)] focus:ring-0'
               />
               <div className='xsm:right-[0.83333rem] absolute top-1/2 right-[1.14583rem] -translate-y-1/2'>
                 <ICSearch className='size-[0.83333rem]' />
@@ -440,6 +475,17 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
                 setQueryStates((prev) => ({
                   ...prev,
                   starting_year: prev.starting_year.filter((v) => v !== value),
+                }))
+              }
+            />
+            <SelectedTags
+              label={t('award')}
+              items={awardItems}
+              selectedValues={selectedAwards}
+              onRemove={(value) =>
+                setQueryStates((prev) => ({
+                  ...prev,
+                  award: prev.award.filter((v) => v !== value),
                 }))
               }
             />

@@ -23,7 +23,7 @@ export default function PageDetailService({
     <main className='font-open-sans xsm:space-y-0 relative space-y-[6.25rem]'>
       <SectionBanner
         title={detailServiceData?.data?.name}
-        description={detailServiceData?.data?.description}
+        description={detailServiceData?.data?.acf?.banner_desc}
         slideItems={detailServiceData?.data?.acf?.banner?.slide_items}
       />
       <CtaFixed />

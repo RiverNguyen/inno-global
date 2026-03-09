@@ -62,6 +62,13 @@ export interface ITaxonomies {
       slug: string
     }[]
   }
+  awards: {
+    data: {
+      id: number
+      name: string
+      slug: string
+    }[]
+  }
   categories: {
     data: {
       id: number

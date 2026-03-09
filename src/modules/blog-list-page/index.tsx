@@ -63,10 +63,16 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     [taxonomies.years.data],
   )
 
+  const awardItems: FilterItem[] = useMemo(
+    () => (taxonomies.awards?.data ?? []).map((a) => ({ label: a.name, value: a.slug })),
+    [taxonomies.awards?.data],
+  )
+
   // Use nuqs to manage query params — syncs with URL without full server round-trip
   const [
     {
       starting_year: selectedYears = [],
+      award: selectedAwards = [],
       category: selectedCategory = '',
       sort: sortValue = 'newest',
       s: searchQuery = '',
@@ -75,6 +81,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
   ] = useQueryStates(
     {
       starting_year: parseAsArrayOf(parseAsString).withDefault([]),
+      award: parseAsArrayOf(parseAsString).withDefault([]),
       category: parseAsString.withDefault(''),
       sort: parseAsString.withDefault('newest'),
       s: parseAsString.withDefault(''),
@@ -111,6 +118,12 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     })
   }
 
+  const handleAwardsChange = (newAwards: string[]) => {
+    setQueryStates({
+      award: newAwards,
+    })
+  }
+
   const baseQueryString = useMemo(() => {
     const params = new URLSearchParams()
 
@@ -122,10 +135,12 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
 
     // Add filters from state (normalize order so SWR keys stay stable)
     const normalizedYears = [...selectedYears].sort()
+    const normalizedAwards = [...selectedAwards].sort()
 
     // Build tax param to match active filters
     const activeTaxonomies = new Set<string>()
     if (normalizedYears.length > 0) activeTaxonomies.add('starting_year')
+    if (normalizedAwards.length > 0) activeTaxonomies.add('award')
     if (selectedCategory) activeTaxonomies.add('category')
 
     // Keep default behavior when no filters are selected
@@ -135,6 +150,9 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     if (normalizedYears.length > 0) {
       // API expects comma-separated values, e.g. starting_year=2020,2022
       params.append('starting_year', normalizedYears.join(','))
+    }
+    if (normalizedAwards.length > 0) {
+      params.append('award', normalizedAwards.join(','))
     }
     if (selectedCategory) {
       params.append('category', selectedCategory)
@@ -150,7 +168,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
     }
 
     return params.toString()
-  }, [locale, selectedYears, selectedCategory, sortValue, searchQuery])
+  }, [locale, selectedYears, selectedAwards, selectedCategory, sortValue, searchQuery])
 
   const [useInitialFallbackData, setUseInitialFallbackData] = useState(true)
 
@@ -302,7 +320,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                 }
               }}
               className={cn(
-                'flex-center xsm:h-[1.92708rem] xsm:px-[0.83333rem] xsm:border xsm:border-[rgba(9,9,9,0.08)] h-[2.5rem] rounded-[5.20833rem] px-[1.14583rem]',
+                'flex-center xsm:h-[1.92708rem] xsm:px-[0.83333rem] xsm:border xsm:border-[rgba(9,9,9,0.08)] h-[2.25rem] rounded-[5.20833rem] px-[1.14583rem]',
                 !selectedCategory
                   ? 'xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)]'
                   : 'border border-[rgba(9,9,9,0.08)] bg-white',
@@ -334,7 +352,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                       })
                     }
                   }}
-                  className={`flex-center xsm:h-[1.92708rem] xsm:px-[0.83333rem] h-[2.5rem] rounded-[5.20833rem] px-[1.14583rem] ${
+                  className={`flex-center xsm:h-[1.92708rem] xsm:px-[0.83333rem] h-[2.25rem] rounded-[5.20833rem] px-[1.14583rem] ${
                     isActive
                       ? 'bg-gr-2 xsm:border xsm:border-[rgba(9,9,9,0.08)] xsm:bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,#FF6E6E_0%,#D32F2F_46.23%,#CA2A2A_84.81%)]'
                       : 'border border-[rgba(9,9,9,0.08)] bg-white'
@@ -356,6 +374,12 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
               items={yearItems}
               value={selectedYears}
               onChange={handleYearsChange}
+            />
+            <FilterPopup
+              label={t('award')}
+              items={awardItems}
+              value={selectedAwards}
+              onChange={handleAwardsChange}
             />
           </div>
           <div className='xsm:w-full xsm:space-x-[0.41667rem] xsm:px-[0.75rem] xsm:mb-[0.72917rem] flex items-center'>
@@ -406,6 +430,17 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                 setQueryStates((prev) => ({
                   ...prev,
                   starting_year: prev.starting_year.filter((v) => v !== value),
+                }))
+              }
+            />
+            <SelectedTags
+              label={t('award')}
+              items={awardItems}
+              selectedValues={selectedAwards}
+              onRemove={(value) =>
+                setQueryStates((prev) => ({
+                  ...prev,
+                  award: prev.award.filter((v) => v !== value),
                 }))
               }
             />
