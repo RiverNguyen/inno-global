@@ -53,14 +53,14 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
             }}
             classNameContainer='mb-[1.25rem] xsm:hidden'
           />
-          <h1 className='xsm:text-[1.35417rem] xsm:text-[#090909] font-open-sans text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.80)]'>
+          <h1 className='xsm:text-[1.35417rem] xsm:text-[#090909] font-open-sans pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
             {title}
           </h1>
         </div>
       </div>
       <div className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] pt-[2.5rem] pb-[6.25rem]'>
         <div className='xsm:max-w-full xsm:px-[0.83333rem] mx-auto max-w-[75rem]'>
-          <h2 className='font-open-sans xsm:text-[1.25rem] xsm:mb-[1.25rem] mb-[1.67rem] text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+          <h2 className='font-open-sans xsm:text-[1.25rem] xsm:mb-[1.25rem] mb-[1.67rem] pc-h3-40-s text-[#090909]'>
             {formatNumber(items.length)}{' '}
             {items.length === 1 ? t('CorporateCulturePage.coreValue') : t('CorporateCulturePage.coreValues')}
           </h2>
@@ -114,7 +114,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
       </div>
       <div className='xsm:pb-[3.33333rem] pb-[6.25rem]'>
         <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
-          <h2 className='xsm:px-[0.83333rem] font-open-sans xsm:w-[13.28125rem] xsm:text-[1.25rem] xsm:mb-[1.04167rem] mb-[1.67rem] text-[2.08333rem] leading-[120%] font-semibold tracking-[-0.03125rem] text-[#090909]'>
+          <h2 className='xsm:px-[0.83333rem] font-open-sans xsm:w-[13.28125rem] xsm:text-[1.25rem] xsm:mb-[1.04167rem] mb-[1.67rem] pc-h3-40-s text-[#090909]'>
             {activity?.title}
           </h2>
           <div className='relative w-full'>
@@ -159,7 +159,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
                 </button>
                 <div className='xsm:text-white xsm:h-[2.29167rem] flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)] sm:hidden'>
                   <div className='flex-y-center xsm:space-x-[0.41667rem] space-x-[0.4275rem]'>
-                    <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
+                    <span className='xsm:text-[0.625rem] pc-body-16-r'>
                       {formatNumber(activeIndex + 1)}/{formatNumber(totalSlides)}
                     </span>
 
@@ -190,7 +190,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
             </div>
             <div className='xsm:hidden mt-[1.25rem] flex w-full items-center justify-center space-x-[0.4375rem] text-[rgba(9,9,9,0.60)]'>
               <div className='flex-y-center xsm:space-x-[0.41667rem] space-x-[0.4275rem]'>
-                <span className='xsm:text-[0.625rem] text-[0.833rem] leading-[1.5] tracking-[-0.0167rem]'>
+                <span className='xsm:text-[0.625rem] pc-body-16-r'>
                   {formatNumber(activeIndex + 1)}/{formatNumber(totalSlides)}
                 </span>
 

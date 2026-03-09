@@ -63,7 +63,7 @@ export default function Content({ contents, aboutUsHref, locale }: ContentProps)
               <AccordionTrigger className='text-primary font-open-sans xsm:text-[0.9375rem] xsm:leading-[120%] xsm:tracking-[-0.01406rem] xsm:[&>svg]:size-[1.04167rem] xsm:hover:no-underline xsm:[&[data-state=open]]:text-[0.9375rem] xsm:[&[data-state=open]]:leading-[120%] xsm:[&[data-state=open]]:tracking-[-0.01406rem] cursor-pointer p-0 text-[1.25rem] leading-[140%] font-semibold tracking-[-0.0125rem] capitalize transition-all duration-300 ease-out hover:no-underline [&>svg]:size-[1.45833rem] [&>svg]:text-[#090909] [&[data-state=open]]:text-[1.77083rem] [&[data-state=open]]:leading-[120%] [&[data-state=open]]:tracking-[-0.01771rem] [&[data-state=open]]:text-[#D32F2F] [&[data-state=open]>svg]:scale-y-[-1] [&[data-state=open]>svg]:rotate-0 [&[data-state=open]>svg]:text-[#D32F2F]'>
                 <span className='xsm:w-[14.32292rem] whitespace-pre-line'>{responsibility.title}</span>
               </AccordionTrigger>
-              <AccordionContent className='font-open-sans xsm:text-[0.72917rem] xsm:[text-box-trim:trim-both] xsm:[text-box-edge:cap_alphabetic] pt-[0.83333rem] pb-0 text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.60)]'>
+              <AccordionContent className='font-open-sans xsm:text-[0.72917rem] xsm:[text-box-trim:trim-both] xsm:[text-box-edge:cap_alphabetic] pt-[0.83333rem] pb-0 pc-body-18-r-primary text-[rgba(9,9,9,0.60)]'>
                 {responsibility.description}
                 <Image
                   src={responsibility.image || leftImage || fallbackImage}

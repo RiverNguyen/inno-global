@@ -65,7 +65,7 @@ export default function Toc({ tocs, classNameContentSummary }: { tocs: TocItem[]
       <aside className='xsm:p-[0.72917rem] xsm:my-[2.08333rem] my-[2.08333rem] flex flex-col rounded-[0.20833rem] bg-[#F0F0F0] p-[1.5625rem]'>
         <h4
           className={cn(
-            'font-open-sans xsm:text-[0.72917rem] xsm:mb-[0.72917rem] mb-[0.83333rem] text-[1.25rem] leading-[150%] font-semibold text-[#090909]',
+            'font-open-sans xsm:text-[0.72917rem] xsm:mb-[0.72917rem] mb-[0.83333rem] pc-24-24-semi text-[#090909]',
             classNameContentSummary,
           )}
         >
@@ -76,7 +76,7 @@ export default function Toc({ tocs, classNameContentSummary }: { tocs: TocItem[]
             <li
               key={i}
               className={cn(
-                'font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] text-[0.9375rem] leading-[150%] text-[rgba(9,9,9,0.80)] transition-all duration-200',
+                'font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] pc-body-18-r-primary text-[rgba(9,9,9,0.80)] transition-all duration-200',
                 activeId === toc.id && 'text-[rgba(9,9,9,1)]',
               )}
             >
@@ -92,7 +92,7 @@ export default function Toc({ tocs, classNameContentSummary }: { tocs: TocItem[]
             <button
               type='button'
               onClick={() => setExpand((prev) => !prev)}
-              className='font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] text-[0.9375rem] leading-[150%] text-[#000DFF]'
+              className='font-open-sans xsm:text-[0.72917rem] xsm:tracking-[-0.00729rem] pc-body-18-r-primary text-[#000DFF]'
             >
               {expand ? t('seeLess') : t('seeMore')}
             </button>

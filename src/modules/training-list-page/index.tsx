@@ -284,7 +284,7 @@ export default function TrainingListPage({
       <Banner banner={acfData?.banner} />
       <div className='xsm:pt-[2.08rem] relative pt-[6.25rem]'>
         <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
-          <h2 className='font-open-sans xsm:px-[0.83333rem] xsm:text-[1.25rem] xsm:mb-[0.72917rem] mb-[2.08333rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[#090909]'>
+          <h2 className='font-open-sans xsm:px-[0.83333rem] xsm:text-[1.25rem] xsm:mb-[0.72917rem] mb-[2.08333rem] pc-h2-54-s text-[#090909]'>
             {t('latest')}
           </h2>
           <div className='xsm:mb-[1.04rem] mb-[6.25rem] flex sm:space-x-[1.25rem]'>
@@ -460,7 +460,7 @@ export default function TrainingListPage({
         </div>
         <h2
           id='training-list'
-          className='xsm:max-w-full xsm:pt-[1.04rem] xsm:px-[0.83333rem] font-open-sans xsm:text-[1.25rem] xsm:mb-0 mx-auto mb-[0.52083rem] max-w-[75rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[#090909]'
+          className='xsm:max-w-full xsm:pt-[1.04rem] xsm:px-[0.83333rem] font-open-sans xsm:text-[1.25rem] xsm:mb-0 mx-auto mb-[0.52083rem] max-w-[75rem] pc-h2-54-s text-[#090909]'
         >
           {t('other')}
         </h2>

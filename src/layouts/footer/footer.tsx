@@ -147,17 +147,17 @@ export default function Footer({ data }: IFooterProps) {
                       alt={item?.icon?.alt || ''}
                       width={40}
                       height={40}
-                      className='size-[0.83333rem] object-contain'
+                      className='size-[0.9375rem] object-contain'
                     />
                     {item?.label ? (
-                      <span className='text-[0.625rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'>
+                      <span className='xsm:text-[0.67708rem] text-[0.833rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'>
                         {item?.label}
                       </span>
                     ) : (
                       <Link
                         href={item?.link?.url || ''}
                         target={item?.link?.target || '_self'}
-                        className='text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]'
+                        className='xsm:text-[0.67708rem] text-[0.833rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]'
                       >
                         {item?.link?.title}
                       </Link>
@@ -167,7 +167,7 @@ export default function Footer({ data }: IFooterProps) {
                     <Link
                       href={item?.link?.url || ''}
                       target={item?.link?.target || '_self'}
-                      className='text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]'
+                      className='xsm:text-[0.67708rem] text-[0.833rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]'
                     >
                       {item?.link?.title}
                     </Link>
@@ -182,7 +182,7 @@ export default function Footer({ data }: IFooterProps) {
             <div className='space-y-[0.52rem]'>
               <p
                 onClick={(e: React.MouseEvent<HTMLParagraphElement>) => handleAccordionClick(e, 0)}
-                className='xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem] mb-[0.71rem] text-[0.83333rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'
+                className='xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.67708rem] mb-[0.71rem] text-[0.9375rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'
               >
                 {menu_column_1?.title}{' '}
                 <ChevronDown
@@ -199,7 +199,7 @@ export default function Footer({ data }: IFooterProps) {
                     menu_column_1?.items?.map((item, index) => (
                       <p
                         className={cn(
-                          'text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/80',
+                          'xsm:text-[0.67708rem] text-[0.833rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/80',
                           index === 0 && 'xsm:order-1',
                           index === 1 && 'xsm:order-3',
                           index === 2 && 'xsm:order-5',
@@ -225,7 +225,7 @@ export default function Footer({ data }: IFooterProps) {
             <div className='space-y-[0.52rem]'>
               <p
                 onClick={(e: React.MouseEvent<HTMLParagraphElement>) => handleAccordionClick(e, 1)}
-                className='xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.625rem] mb-[0.71rem] text-[0.83333rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'
+                className='xsm:flex xsm:justify-between xsm:items-center xsm:text-[0.67708rem] mb-[0.71rem] text-[0.9375rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'
               >
                 {menu_column_2?.title}{' '}
                 <ChevronDown className='pointer-events-none size-[0.83333rem] shrink-0 text-[#D32F2F] sm:hidden' />
@@ -238,7 +238,7 @@ export default function Footer({ data }: IFooterProps) {
                   {Array.isArray(menu_column_2?.items) &&
                     menu_column_2?.items?.map((item, index) => (
                       <p
-                        className='text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/80'
+                        className='xsm:text-[0.67708rem] text-[0.833rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/80'
                         key={index}
                       >
                         <Link
@@ -255,7 +255,7 @@ export default function Footer({ data }: IFooterProps) {
             </div>
             <hr className='border-[#0 mb-[0.83rem] border-t sm:hidden' />
             <div className='space-y-[0.94rem]'>
-              <p className='xsm:hidden mb-[0.71rem] text-[0.83333rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'>
+              <p className='xsm:hidden mb-[0.71rem] text-[0.9375rem] leading-[1.4] font-semibold tracking-[-0.00625rem] text-[#090909]'>
                 {socials?.title}
               </p>
               <div>
@@ -272,7 +272,7 @@ export default function Footer({ data }: IFooterProps) {
                           alt={item?.icon?.alt || ''}
                           width={40}
                           height={40}
-                          className='xsm:size-[1.67rem] size-[1.75rem] object-contain'
+                          className='xsm:size-[1.725rem] size-[2rem] object-contain'
                         />
                       </Link>
                     ))}
@@ -281,10 +281,10 @@ export default function Footer({ data }: IFooterProps) {
             </div>
           </div>
           <div className='xsm:mt-[1.46rem] xsm:flex xsm:flex-col-reverse mt-auto'>
-            <p className='xsm:mt-[0.62rem] text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/60 sm:text-right'>
+            <p className='xsm:mt-[0.62rem] text-[0.67708rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909]/60 sm:text-right'>
               {copyright}
             </p>
-            <div className='xsm:justify-between mt-[0.68rem] flex items-center space-x-[0.83rem] text-[0.625rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909] sm:justify-end'>
+            <div className='xsm:justify-between mt-[0.68rem] flex items-center space-x-[0.83rem] text-[0.67708rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909] sm:justify-end'>
               <FontSizeTrigger />
               {Array.isArray(menu_column_3?.items) &&
                 menu_column_3?.items?.map((item, index) => (

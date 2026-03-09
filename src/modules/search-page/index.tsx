@@ -169,7 +169,7 @@ export default function SearchDetail({
             label: t('Breadcrumb.searchPage'),
           }}
         />
-        <h1 className='font-open-sans xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:pb-0 xsm:text-[1.35417rem] xsm:tracking-normal xsm:text-[#090909] container pt-[3.125rem] pb-[0.41667rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem] text-[rgba(9,9,9,0.8)]'>
+        <h1 className='font-open-sans xsm:px-[0.83333rem] xsm:pt-[1.66667rem] xsm:pb-0 xsm:text-[1.35417rem] xsm:tracking-normal xsm:text-[#090909] container pt-[3.125rem] pb-[0.41667rem] pc-h2-54-s text-[rgba(9,9,9,0.8)]'>
           {t('SearchPage.result')}
         </h1>
       </div>
@@ -205,7 +205,7 @@ export default function SearchDetail({
           id='search-result'
         >
           <section id='project'>
-            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] text-[2.08333rem] leading-[120%] font-semibold text-[#090909]'>
+            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] pc-h3-40-s text-[#090909]'>
               {t('SearchPage.relatedProject')}
             </h2>
             {Array.isArray(projectRes.data) && projectRes.data.length > 0 && (
@@ -234,7 +234,7 @@ export default function SearchDetail({
             id='service'
             className='xsm:pt-[2.91667rem] pt-[4.69rem]'
           >
-            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] text-[2.08333rem] leading-[120%] font-semibold text-[#090909]'>
+            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] pc-h3-40-s text-[#090909]'>
               {t('SearchPage.relatedService')}
             </h2>
             {Array.isArray(serviceRes.data) && serviceRes.data.length > 0 && (
@@ -264,7 +264,7 @@ export default function SearchDetail({
             id='blog'
             className='xsm:pt-[2.91667rem] pt-[4.69rem]'
           >
-            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] text-[2.08333rem] leading-[120%] font-semibold text-[#090909]'>
+            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] pc-h3-40-s text-[#090909]'>
               {t('SearchPage.relatedBlog')}
             </h2>
             {Array.isArray(blogRes.data) && blogRes.data.length > 0 && (
@@ -306,7 +306,7 @@ export default function SearchDetail({
             id='training'
             className='xsm:pt-[2.91667rem] pt-[4.69rem]'
           >
-            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] text-[2.08333rem] leading-[120%] font-semibold text-[#090909]'>
+            <h2 className='font-open-sans xsm:text-[1.25rem] xsm:tracking-normal xsm:mb-[1.04167rem] traking-[-0.03125rem] xsm:px-[0.83333rem] mb-[2.08333rem] pc-h3-40-s text-[#090909]'>
               {t('SearchPage.relatedTraining')}
             </h2>
             {Array.isArray(trainingRes.data) && trainingRes.data.length > 0 && (

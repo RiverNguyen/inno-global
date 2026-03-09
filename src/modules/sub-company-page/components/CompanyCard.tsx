@@ -25,7 +25,7 @@ export default function CompanyCard({
           {title}
         </h3>
         <article
-          className='font-open-sans text-[0.72917rem] leading-[150%] text-[rgba(9,9,9,0.6)] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'
+          className='font-open-sans pc-body-14-r text-[rgba(9,9,9,0.6)] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'
           dangerouslySetInnerHTML={{ __html: description }}
         ></article>
       </div>

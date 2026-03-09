@@ -295,7 +295,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
           lastItem={{ label: t('breadcrumbBlog') }}
           classNameContainer='xsm:hidden pt-[2.34375rem]'
         />
-        <h1 className='xsm:px-[0.83333rem] font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 text-primary/80 mb-[0.41667rem] pt-[3.125rem] text-[2.8125rem] leading-[120%] font-semibold tracking-[-0.02813rem]'>
+        <h1 className='xsm:px-[0.83333rem] font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 text-primary/80 mb-[0.41667rem] pt-[3.125rem] pc-h2-54-s'>
           {t('title')}
         </h1>
       </div>
@@ -328,7 +328,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
             >
               <span
                 className={cn(
-                  'font-open-sans xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] text-[0.72917rem] leading-[150%] whitespace-nowrap',
+                  'font-open-sans xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] pc-button-14-r whitespace-nowrap',
                   !selectedCategory ? 'text-white' : 'text-[#090909]',
                 )}
               >
@@ -359,7 +359,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                   }`}
                 >
                   <span
-                    className={`font-open-sans xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] text-[0.72917rem] leading-[150%] whitespace-nowrap ${
+                    className={`font-open-sans xsm:text-[0.625rem] xsm:font-semibold xsm:leading-[140%] xsm:tracking-[-0.00625rem] pc-button-14-r whitespace-nowrap ${
                       isActive ? 'text-white' : 'text-[#090909]'
                     }`}
                   >
@@ -389,7 +389,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
                 placeholder={t('placeholderSearch')}
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:px-[0.83333rem] placeholder:text-primary/60 text-primary/80 h-[2.5rem] w-full rounded-[5.20833rem] border-none bg-[#F0F0F0] px-[1.14583rem] text-[0.72917rem] leading-[150%] font-normal focus:ring-0'
+                className='font-open-sans xsm:h-[2.08333rem] xsm:p-[0.83333rem] xsm:text-[0.625rem] xsm:px-[0.83333rem] placeholder:text-primary/60 text-primary/80 h-[2.5rem] w-full rounded-[5.20833rem] border-none bg-[#F0F0F0] px-[1.14583rem] pc-button-14-r focus:ring-0'
               />
               <div className='xsm:right-[0.83333rem] absolute top-1/2 right-[1.14583rem] -translate-y-1/2'>
                 <ICSearch className='size-[0.83333rem]' />

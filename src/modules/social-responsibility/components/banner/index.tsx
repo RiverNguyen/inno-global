@@ -45,11 +45,11 @@ export default function Banner({ banner, aboutUsHref }: BannerProps) {
           classNameContainer='xsm:hidden'
         />
 
-        <h1 className='font-open-sans xsm:text-primary xsm:text-[1.35417rem] xsm:leading-[120%] xsm:tracking-normal xsm:mt-0 xsm:mb-[1.04167rem] mt-[1.66667rem] mb-[1.40625rem] text-[3.33333rem] leading-[2.39583rem] font-semibold tracking-[-0.06667rem] text-white'>
+        <h1 className='font-open-sans xsm:text-primary xsm:text-[1.35417rem] xsm:leading-[120%] xsm:tracking-normal xsm:mt-0 xsm:mb-[1.04167rem] mt-[1.66667rem] mb-[1.40625rem] pc-h3-40-s text-white'>
           {banner?.title}
         </h1>
 
-        <p className='font-open-sans xsm:w-full xsm:pb-[0.625rem] xsm:text-[rgba(9,9,9,0.60)] xsm:text-justify xsm:text-[0.72917rem] xsm:leading-[150%] xsm:[text-box-trim:trim-both] xsm:[text-box-edge:cap_alphabetic] w-[44.32292rem] text-[0.9375rem] leading-[150%] text-[rgba(255,255,255,0.80)]'>
+        <p className='font-open-sans xsm:w-full xsm:pb-[0.625rem] xsm:text-[rgba(9,9,9,0.60)] xsm:text-justify xsm:text-[0.72917rem] xsm:leading-[150%] xsm:[text-box-trim:trim-both] xsm:[text-box-edge:cap_alphabetic] w-[44.32292rem] pc-body-18-r-primary text-[rgba(255,255,255,0.80)]'>
           {banner?.description}
         </p>
       </div>

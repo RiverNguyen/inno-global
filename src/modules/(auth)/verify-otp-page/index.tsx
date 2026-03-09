@@ -12,10 +12,8 @@ const VerifyOTPModule = () => {
 
   return (
     <>
-      <h1 className='xsm:text-[1.35rem] xsm:leading-[1.2] text-center text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-[#090909]/80'>
-        {t('title')}
-      </h1>
-      <h2 className='xsm:mt-[1.25rem] xsm:text-[#090909] xsm:text-[0.72rem] xsm:mb-[0.42rem] mt-[1.25rem] text-center text-[0.9375rem] leading-[1.5] text-[#090909]'>
+      <h1 className='xsm:text-[1.35rem] xsm:leading-[1.2] text-center pc-h2-54-s text-[#090909]/80'>{t('title')}</h1>
+      <h2 className='xsm:mt-[1.25rem] xsm:text-[#090909] xsm:text-[0.72rem] xsm:mb-[0.42rem] mt-[1.25rem] text-center pc-body-18-r-primary text-[#090909]'>
         {t('desc')}
       </h2>
       <div className='xsm:mt-0 xsm:mb-[1.25rem] mt-[0.21rem] mb-[1.67rem] flex items-center justify-center space-x-[0.36rem]'>

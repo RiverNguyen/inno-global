@@ -55,7 +55,7 @@ export default function CoreValueCard({ item, number, pageTitle }: CoreValueCard
               {formatNumber(number)}
             </span>
 
-            <h3 className='xsm:text-[0.72917rem] font-open-sans xsm:min-h-auto line-clamp-2 min-h-[2.875rem] text-[0.9275rem] leading-[150%] font-semibold text-white'>
+            <h3 className='xsm:text-[0.72917rem] font-open-sans xsm:min-h-auto line-clamp-2 min-h-[2.875rem] pc-body-18-m-primary text-white'>
               {item?.title}
             </h3>
           </div>

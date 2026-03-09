@@ -29,7 +29,7 @@ export default function Banner({ banner }: { banner: string }) {
             classNameIcon='text-[rgba(255,255,255,0.40)]'
           />
         </div>
-        <h1 className='font-open-sans xsm:text-[#090909] xsm:text-[1.35417rem] xsm:leading-[120%] text-[3.33333rem] leading-[2.39583rem] font-semibold text-white'>
+        <h1 className='font-open-sans xsm:text-[#090909] xsm:text-[1.35417rem] xsm:leading-[120%] pc-h2-54-s text-white'>
           {t('Breadcrumb.servicePage')}
         </h1>
       </div>

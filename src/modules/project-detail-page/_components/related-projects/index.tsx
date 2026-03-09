@@ -29,7 +29,7 @@ const RelatedProjects = ({ data }: { data: IProjectDetail[] }) => {
       className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] py-[5.20833rem]'
     >
       <div className='flex-y-center mx-auto max-w-[75rem] justify-between'>
-        <h2 className='xsm:px-[0.8275rem] xsm:text-[1.25rem] xsm:font-semibold text-[2.8125rem] leading-[1.2] font-semibold tracking-[-0.02813rem] text-[#090909]'>
+        <h2 className='xsm:px-[0.8275rem] xsm:text-[1.25rem] xsm:font-semibold pc-h2-54-s text-[#090909]'>
           {t('related')}
         </h2>
         <Link
