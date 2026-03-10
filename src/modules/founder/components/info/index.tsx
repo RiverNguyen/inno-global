@@ -48,9 +48,9 @@ export default function Info({ leader }: { leader: ILeadership }) {
         <div className='flex w-full flex-col'>
           {leaderShow && (
             <>
-              <h2 className='font-open-sans xsm:[text-box-edge:auto] xsm:[text-box-trim:none] xsm:text-[1.04167rem] xsm:leading-[150%] xsm:mb-[0.3125rem] mb-[0.72917rem] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] text-[1.875rem] font-semibold leading-normal text-[#090909]'>
+              <p className='font-open-sans xsm:[text-box-edge:auto] xsm:[text-box-trim:none] xsm:text-[1.04167rem] xsm:leading-[150%] xsm:mb-[0.3125rem] mb-[0.72917rem] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] text-[1.875rem] font-semibold leading-normal text-[#090909]'>
                 {leader?.title ?? ''}
-              </h2>
+              </p>
               <p className='font-open-sans xsm:text-[0.83333rem] pc-body-18-r-primary text-[rgba(9,9,9,0.80)]'>
                 {leader?.acf?.position ?? ''}
               </p>

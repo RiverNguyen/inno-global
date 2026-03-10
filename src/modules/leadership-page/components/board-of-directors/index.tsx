@@ -18,7 +18,7 @@ type BoardSectionData = {
 
 const BoardSection = ({ title, directors }: { title: string; directors: DirectorCard[] }) => (
   <div className='xsm:gap-[1.25rem] flex flex-col gap-[3.33333rem]'>
-    <h2 className='font-open-sans xsm:[text-box-edge:auto] xsm:[text-box-trim:none] xsm:text-[1.04167rem] xsm:leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] text-center pc-h3-40-s text-[rgba(9,9,9,0.80)]'>
+    <h2 className='font-open-sans xsm:[text-box-edge:auto] xsm:[text-box-trim:none] xsm:mb-h2-24-sm [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] text-center pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
       {title}
     </h2>
     <div className='xsm:gap-y-[0.625rem] xsm:gap-x-[0.83333rem] flex flex-wrap justify-center gap-x-[1.77rem] gap-y-[3.33333rem]'>

@@ -24,9 +24,7 @@ export default function Content({ blog }: ContentProps) {
 
   return (
     <section className='xsm:px-[0.83333rem]'>
-      <h2 className='font-open-sans xsm:text-[1.35417rem] xsm:tracking-normal pc-h3-40-s text-[#090909]'>
-        {blog?.title}
-      </h2>
+      <h2 className='font-open-sans xsm:mb-h2-24-sm pc-h2-54-s text-[#090909]'>{blog?.title}</h2>
 
       <Toc tocs={tocs} />
 

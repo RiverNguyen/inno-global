@@ -63,14 +63,14 @@ export default function Toc({ tocs, classNameContentSummary }: { tocs: TocItem[]
   return (
     <>
       <aside className='xsm:p-[0.72917rem] xsm:my-[2.08333rem] my-[2.08333rem] flex flex-col rounded-[0.20833rem] bg-[#F0F0F0] p-[1.5625rem]'>
-        <h4
+        <span
           className={cn(
             'font-open-sans xsm:text-[0.72917rem] xsm:mb-[0.72917rem] mb-[0.83333rem] pc-24-24-semi text-[#090909]',
             classNameContentSummary,
           )}
         >
           {t('contentSummary')}
-        </h4>
+        </span>
         <ul className='xsm:gap-[0.52083rem] flex flex-col items-start gap-[0.625rem]'>
           {tocs.slice(0, expand ? tocs.length : 4).map((toc, i) => (
             <li
@@ -123,9 +123,9 @@ export default function Toc({ tocs, classNameContentSummary }: { tocs: TocItem[]
               className='z-120 rounded-t-[1.25rem]'
             >
               <div className='flex items-center justify-between border-b-[0.8px] border-[rgba(9,9,9,0.08)] p-[0.83333rem]'>
-                <h2 className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold text-[#090909] capitalize'>
+                <span className='font-open-sans text-[0.83333rem] leading-[150%] font-semibold text-[#090909] capitalize'>
                   {t('contentSummary')}
-                </h2>
+                </span>
                 <DrawerClose asChild>
                   <button
                     type='button'

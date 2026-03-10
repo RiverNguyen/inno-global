@@ -28,7 +28,7 @@ export default function Banner({
           classNameContainer='xsm:hidden'
         />
 
-        <h1 className='font-open-sans xsm:text-[#090909] xsm:text-[1.35417rem] pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
+        <h1 className='font-open-sans xsm:text-[#090909] xsm:mb-h2-24-sm pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
           {title}
         </h1>
       </div>
