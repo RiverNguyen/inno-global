@@ -149,7 +149,9 @@ export default function AboutUsHome({ data }: { data?: ISectionAboutUsAcf }) {
             className='pc-h2-54-s text-text-100 xsm:mb-h2-24-sm'
             dangerouslySetInnerHTML={{ __html: title }}
           ></h2>
-          <p className='pc-body-20-r text-text-80 xsm:mt-[0.94rem] xsm:mb-body-14-r mt-[02.08rem]'>{description}</p>
+          <p className='relative pc-body-20-r text-text-80 xsm:mt-[0.94rem] xsm:mb-body-14-r mt-[02.08rem]'>
+            {description}
+          </p>
           <div className='xsm:mt-[1.46rem] mt-[1.67rem]'>
             <div className='xsm:hidden grid grid-cols-3 gap-x-[2.6rem] gap-y-[1.88rem]'>
               {Array.isArray(number) &&
