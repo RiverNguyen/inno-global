@@ -295,7 +295,7 @@ export default function BlogListPage({ initialBlogs, taxonomies }: BlogListPageP
           lastItem={{ label: t('breadcrumbBlog') }}
           classNameContainer='xsm:hidden pt-[2.34375rem]'
         />
-        <h1 className='xsm:px-[0.83333rem] font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 text-primary/80 mb-[0.41667rem] pt-[3.125rem] pc-h2-54-s'>
+        <h1 className='xsm:px-[0.83333rem] font-open-sans xsm:mb-h2-24-sm xsm:text-[#090909] xsm:pt-[1.66667rem] xsm:mb-0 text-primary/80 mb-[0.41667rem] pt-[3.125rem] pc-h2-54-s'>
           {t('title')}
         </h1>
       </div>

@@ -43,7 +43,7 @@ export default function Banner({ banner }: { banner: ITrainingAcfData['banner'] 
             classNameIcon='text-white'
           />
         </div>
-        <h1 className='font-open-sans xsm:text-[1.35417rem] xsm:leading-[120%] xsm:w-full w-[29.11458rem] pc-h3-40-s text-white'>
+        <h1 className='font-open-sans xsm:mb-h2-24-sm xsm:w-full w-[29.11458rem] pc-h2-54-s text-white'>
           {banner?.title}
         </h1>
       </div>

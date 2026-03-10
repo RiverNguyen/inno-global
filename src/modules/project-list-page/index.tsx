@@ -351,7 +351,7 @@ export default function ProjectListPage({ initialProjects, taxonomies }: Project
           lastItem={{ label: t('breadcrumbProject') }}
           classNameContainer='xsm:hidden pt-[2.34375rem]'
         />
-        <h1 className='xsm:px-[0.83333rem] xsm:text-[#090909] xsm:tracking-normal xsm:pt-[1.66667rem] xsm:mb-0 mb-[0.41667rem] pt-[3.125rem] pc-h2-54-s xsm:mb-h2-24-sm text-[rbga(9,9,9,0.8)]'>
+        <h1 className='xsm:px-[0.83333rem] xsm:text-[#090909] xsm:pt-[1.66667rem] xsm:mb-0 mb-[0.41667rem] pt-[3.125rem] pc-h2-54-s xsm:mb-h2-24-sm text-[rbga(9,9,9,0.8)]'>
           {t('title')}
         </h1>
       </div>

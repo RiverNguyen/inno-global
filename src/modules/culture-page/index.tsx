@@ -53,14 +53,14 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
             }}
             classNameContainer='mb-[1.25rem] xsm:hidden'
           />
-          <h1 className='xsm:text-[1.35417rem] xsm:text-[#090909] font-open-sans pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
+          <h1 className='xsm:mb-h2-24-sm xsm:text-[#090909] font-open-sans pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
             {title}
           </h1>
         </div>
       </div>
       <div className='xsm:pt-[1.66667rem] xsm:pb-[3.33333rem] pt-[2.5rem] pb-[6.25rem]'>
         <div className='xsm:max-w-full xsm:px-[0.83333rem] mx-auto max-w-[75rem]'>
-          <h2 className='font-open-sans xsm:text-[1.25rem] xsm:mb-[1.25rem] mb-[1.67rem] pc-h3-40-s text-[#090909]'>
+          <h2 className='font-open-sans xsm:mb-h2-24-sm xsm:mb-[1.25rem] mb-[1.67rem] pc-h2-54-s text-[#090909]'>
             {formatNumber(items.length)}{' '}
             {items.length === 1 ? t('CorporateCulturePage.coreValue') : t('CorporateCulturePage.coreValues')}
           </h2>
@@ -114,7 +114,7 @@ export default function CultureDetail({ res }: { res: ICultureRes }) {
       </div>
       <div className='xsm:pb-[3.33333rem] pb-[6.25rem]'>
         <div className='xsm:max-w-full mx-auto max-w-[75rem]'>
-          <h2 className='xsm:px-[0.83333rem] font-open-sans xsm:w-[13.28125rem] xsm:text-[1.25rem] xsm:mb-[1.04167rem] mb-[1.67rem] pc-h3-40-s text-[#090909]'>
+          <h2 className='xsm:px-[0.83333rem] font-open-sans xsm:w-[13.28125rem] xsm:mb-h2-24-sm xsm:mb-[1.04167rem] mb-[1.67rem] pc-h2-54-s text-[#090909]'>
             {activity?.title}
           </h2>
           <div className='relative w-full'>

@@ -47,14 +47,14 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
             }}
             classNameContainer='mb-[1.25rem] xsm:hidden'
           />
-          <h1 className='xsm:text-[1.35417rem] xsm:text-[#090909] font-open-sans pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
+          <h1 className='xsm:mb-h2-24-sm xsm:text-[#090909] font-open-sans pc-h2-54-s text-[rgba(9,9,9,0.80)]'>
             {title}
           </h1>
         </div>
       </div>
       <div className='xsm:max-w-full mx-auto max-w-[75rem] pt-[2.5rem]'>
         <div className='xsm:px-[0.83333rem]'>
-          <h2 className='xsm:text-[1.25rem] font-open-sans xsm:mb-[0.9375rem] mb-[1.04167rem] pc-h3-40-s text-[#090909]'>
+          <h2 className='xsm:mb-h2-24-sm font-open-sans xsm:mb-[0.9375rem] mb-[1.04167rem] pc-h2-54-s text-[#090909]'>
             {companyName}
           </h2>
           <p className='font-open-sans xsm:text-[0.72917rem] xsm:[text-box-edge:cap_alphabetic] xsm:[text-box-trim:trim-both] pc-body-18-r-primary text-[#090909]'>
@@ -109,7 +109,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
         </div>
       </div>
       <div className='xsm:max-w-full xsm:py-[3.33333rem]  pt-[4.17rem] pb-[4.16667rem]'>
-        <h2 className='font-open-sans xsm:px-[0.83333rem] xsm:text-[1.25rem] mx-auto max-w-[75rem] xsm:mb-[1.46rem] mb-[2.5rem] pc-h3-40-s text-[#090909]'>
+        <h2 className='font-open-sans xsm:px-[0.83333rem] xsm:mb-h2-24-sm mx-auto max-w-[75rem] xsm:mb-[1.46rem] mb-[2.5rem] pc-h2-54-s text-[#090909]'>
           {t('SubCompanyPage.companyList')}
         </h2>
         <div className='relative'>

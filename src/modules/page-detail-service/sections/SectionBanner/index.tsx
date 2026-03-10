@@ -38,7 +38,7 @@ export default function SectionBanner({ title, description, slideItems }: Sectio
             classNameIcon='text-white'
             classNameContainer='xsm:hidden'
           />
-          <h1 className='xsm:text-[1.35417rem] xsm:tracking-normal pc-h2-54-s text-white'>{title || ''}</h1>
+          <h1 className='xsm:mb-h2-24-sm pc-h2-54-s text-white'>{title || ''}</h1>
           <p className='xsm:text-[0.72917rem] xsm:text-trim-both xsm:text-edge-[cap_alphabetic] max-w-[37.5rem] text-[0.9375rem] leading-[1.5] text-white/90'>
             {description || ''}
           </p>

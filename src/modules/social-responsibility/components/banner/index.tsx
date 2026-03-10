@@ -45,7 +45,7 @@ export default function Banner({ banner, aboutUsHref }: BannerProps) {
           classNameContainer='xsm:hidden'
         />
 
-        <h1 className='font-open-sans xsm:text-primary xsm:text-[1.35417rem] xsm:leading-[120%] xsm:tracking-normal xsm:mt-0 xsm:mb-[1.04167rem] mt-[1.66667rem] mb-[1.40625rem] pc-h2-54-s text-white'>
+        <h1 className='font-open-sans xsm:text-primary xsm:mb-h2-24-sm xsm:mt-0 xsm:mb-[1.04167rem] mt-[1.66667rem] mb-[1.40625rem] pc-h2-54-s text-white'>
           {banner?.title}
         </h1>
 

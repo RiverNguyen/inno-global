@@ -40,7 +40,7 @@ export default function CardVisionMission({
         <div className='xsm:space-y-[0.41667rem] xsm:pt-[0.9375rem] xsm:pb-[1.25rem] xsm:px-[1.04167rem] relative z-1 space-y-[1.04167rem] p-[3.125rem]'>
           <h2
             className={cn(
-              'text-primary sm:text-trim-both sm:text-edge-[cap_alphabetic] xsm:text-[1.25rem] xsm:tracking-normal text-[1.66667rem] font-semibold leading-[120%] tracking-[-0.01667rem]',
+              'text-primary sm:text-trim-both sm:text-edge-[cap_alphabetic] xsm:mb-h2-24-sm pc-h2-54-s',
               classNameTitle,
             )}
           >
