@@ -25,8 +25,6 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
     ENDPOINTS.contact.page_id[locale as keyof typeof ENDPOINTS.contact.page_id],
   )
 
-  console.log(contactAcfData)
-
   return (
     <Contact
       locale={locale}

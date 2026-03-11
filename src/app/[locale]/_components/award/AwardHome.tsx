@@ -1,5 +1,7 @@
 /* eslint-disable indent */
 'use client'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
@@ -10,6 +12,7 @@ import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { ISectionAwardAcf } from '@/interfaces/home.interface'
+import { convertRemToPx } from '@/lib/utils'
 
 type AwardItem = {
   image?: { url?: string; link?: string; alt?: string }
@@ -67,6 +70,39 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
   const [activeYearIndex, setActiveYearIndex] = useState(0)
   const [activeItemIndex, setActiveItemIndex] = useState(0)
   const swiperRef = useRef<SwiperType | null>(null)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      const el = statsRef.current
+      if (!el) return
+      gsap.set(el, { opacity: 0, x: 48 })
+      const animate = () => {
+        gsap.to(el, {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+        })
+      }
+      if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+              requestAnimationFrame(animate)
+              observer.disconnect()
+            }
+          },
+          { threshold: 0.25 },
+        )
+        if (rootRef.current) observer.observe(rootRef.current)
+        return () => observer.disconnect()
+      }
+      requestAnimationFrame(animate)
+    },
+    { scope: rootRef },
+  )
 
   if (!data) return null
   const { title } = data
@@ -102,7 +138,10 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
   }
 
   return (
-    <div className='xsm:hidden h-screen w-full'>
+    <div
+      ref={rootRef}
+      className='xsm:hidden h-screen w-full'
+    >
       <div className='relative h-[calc(100vh-25.22rem)] w-[100%]'>
         <Image
           src={'/home/d-bg-award.webp'}
@@ -112,7 +151,10 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
           className='size-full object-cover'
           quality={100}
         />
-        <div className='absolute top-[50%] right-[9.38rem] flex translate-y-[-50%] items-center space-x-[1.61rem]'>
+        <div
+          ref={statsRef}
+          className='absolute top-[50%] right-[9.38rem] flex translate-y-[-50%] items-center space-x-[1.61rem]'
+        >
           <p
             style={{
               background: 'linear-gradient(180deg, #FFF 31.27%, #FFB6B6 63.33%, #FF5050 82.33%)',
@@ -142,7 +184,7 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
 
         {/* Left: subtitle + description */}
         <div className='z-10 flex flex-col justify-center space-y-[1.04rem] sm:w-[28.80208rem]'>
-          <h2 className='pc-h2-54-s text-text-100'>{currentItems[activeItemIndex]?.name}</h2>
+          <h2 className='pc-h2-54-s text-text-100 line-clamp-2'>{currentItems[activeItemIndex]?.name}</h2>
           <p
             key={`${activeYearIndex}-${activeItemIndex}`}
             className='pc-body-20-r text-text-80 animate-fade-in text-[1.04167rem] transition-all duration-500'
@@ -152,29 +194,29 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
         </div>
 
         {/* Right: year nav + swiper */}
-        <div className='z-10 flex flex-col items-center'>
+        <div className='z-10 flex flex-col items-center translate-y-[-1rem]'>
           {/* Year navigation */}
           {hasYears && (
-            <div className='mb-[0.75rem] flex items-center gap-[1.25rem]'>
+            <div className='mb-[2.76rem] flex items-center gap-[1.56rem]'>
               <button
                 onClick={handlePrevYear}
-                className='group flex cursor-pointer items-center justify-center transition-all duration-300 hover:translate-x-[-0.25rem]'
+                className='group flex cursor-pointer items-center justify-center transition-all duration-300 hover:translate-x-[-0.5rem]'
               >
                 <ChevronLeft
-                  size={28}
-                  className='text-text-100 transition-colors group-hover:text-[#D32F2F]'
+                  strokeWidth={1.3}
+                  className='text-[#D32F2F] size-[2.25rem]'
                 />
               </button>
-              <span className='min-w-[5rem] text-center text-[2rem] font-bold leading-[1.2] text-[#D32F2F]'>
+              <span className='min-w-[5rem] text-center text-[2.5rem] leading-[1.2] font-semibold tracking-[-0.05rem] text-[#D32F2F]'>
                 {currentGroup?.year}
               </span>
               <button
                 onClick={handleNextYear}
-                className='group flex cursor-pointer items-center justify-center transition-all duration-300 hover:translate-x-[0.25rem]'
+                className='group flex cursor-pointer items-center justify-center transition-all duration-300 hover:translate-x-[0.5rem]'
               >
                 <ChevronRight
-                  size={28}
-                  className='text-text-100 transition-colors group-hover:text-[#D32F2F]'
+                  strokeWidth={1.3}
+                  className='text-[#D32F2F] size-[2.25rem]'
                 />
               </button>
             </div>
@@ -185,7 +227,7 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
             <Swiper
               key={activeYearIndex}
               modules={[Navigation]}
-              spaceBetween={80}
+              spaceBetween={convertRemToPx(4.17)}
               slidesPerView={3}
               centeredSlides
               loop={true}
@@ -193,9 +235,15 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               onSlideChange={(swiper) => setActiveItemIndex(swiper.realIndex % currentItems.length)}
               onClick={(swiper) => {
-                if (swiper.clickedIndex !== undefined) {
-                  swiper.slideTo(swiper.clickedIndex)
-                }
+                const slide = swiper.clickedSlide
+                if (!slide) return
+                const slideRect = slide.getBoundingClientRect()
+                const slideCenter = slideRect.left + slideRect.width / 2
+                const swiperRect = swiper.el.getBoundingClientRect()
+                const swiperCenter = swiperRect.left + swiperRect.width / 2
+                const threshold = 15
+                if (slideCenter < swiperCenter - threshold) swiper.slidePrev()
+                else if (slideCenter > swiperCenter + threshold) swiper.slideNext()
               }}
               navigation={{
                 nextEl: '.swiper-button-next-c',
@@ -233,7 +281,7 @@ export default function AwardHome({ data }: { data?: ISectionAwardAcf }) {
                   </SwiperSlide>
                 )
               })}
-              <div className='z-20 mt-[3.18rem] flex items-center justify-center gap-4'>
+              <div className='z-20 mt-[1.5rem] flex items-center justify-center gap-4'>
                 <span className='pc-body-16-r text-text-60'>
                   {String(activeItemIndex + 1).padStart(2, '0')}/{String(currentItems.length).padStart(2, '0')}
                 </span>

@@ -165,7 +165,8 @@
     "shareLinkCopied": "Link has been copied to clipboard"
   },
   "ServiceListPage": {
-    "noServices": "No services found"
+    "noServices": "No services found",
+    "viewServiceDetail": "View service detail"
   },
   "SearchPage": {
     "result": "Search results",

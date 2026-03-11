@@ -4,7 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 
 function ServiceCardSkeleton() {
   return (
-    <div className='group xsm:rounded-[0.20833rem] xsm:h-[5.29167rem] relative flex h-[23.69792rem] flex-col overflow-hidden'>
+    <div className='group xsm:rounded-[0.20833rem] xsm:h-[5.29167rem] relative flex h-[20.83rem] flex-col overflow-hidden'>
       <Skeleton className='xsm:h-full absolute top-0 left-0 h-[18.9rem] w-full rounded-none bg-[#F0F0F0]' />
 
       <div className='xsm:absolute-y-center xsm:bg-transparent xsm:py-[0.20833rem] xsm:px-[0.41667rem] xsm:justify-start xsm:gap-[0.41667rem] absolute top-full left-0 flex w-full translate-y-[-4.8rem] flex-col justify-center gap-[0.52083rem] bg-[#F0F0F0] p-[1.45833rem]'>

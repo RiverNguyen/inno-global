@@ -164,7 +164,8 @@
     "shareLinkCopied": "Liên kết đã được sao chép vào bảng tạm"
   },
   "ServiceListPage": {
-    "noServices": "Không tìm thấy dịch vụ"
+    "noServices": "Không tìm thấy dịch vụ",
+    "viewServiceDetail": "Xem chi tiết dịch vụ"
   },
   "SearchPage": {
     "result": "Kết quả tìm kiếm",
