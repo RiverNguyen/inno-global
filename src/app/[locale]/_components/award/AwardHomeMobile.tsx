@@ -10,12 +10,33 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { ISectionAwardAcf } from '@/interfaces/home.interface'
 
+type AwardItem = { image?: { url?: string; link?: string; alt?: string }; description?: string; year?: string; detail?: unknown[] }
+
+function getImageUrl(item: AwardItem): string | null {
+  const img = item.image as { url?: string; link?: string } | undefined
+  return img?.url ?? img?.link ?? null
+}
+
+function normalizeListAwards(raw: unknown[]): AwardItem[] {
+  const items: AwardItem[] = []
+  for (const item of raw) {
+    const obj = item as AwardItem
+    if (Array.isArray(obj.detail)) {
+      items.push(...(obj.detail as AwardItem[]))
+    } else if (obj?.image) {
+      items.push(obj)
+    }
+  }
+  return items.filter((item) => getImageUrl(item))
+}
+
 export default function AwardHomeMobile({ data }: { data?: ISectionAwardAcf }) {
   const [activeIndex, setActiveIndex] = useState(0)
 
   if (!data) return null
   const { title } = data
-  const list_awards = Array.isArray(data.list_awards) ? data.list_awards : []
+  const rawList = Array.isArray(data.list_awards) ? data.list_awards : []
+  const list_awards = normalizeListAwards(rawList)
 
   return (
     <div className='relative min-h-[19.9rem] overflow-hidden px-[0.83rem] pt-[8.65rem] pb-[2.08rem] sm:hidden'>
@@ -64,14 +85,17 @@ export default function AwardHomeMobile({ data }: { data?: ISectionAwardAcf }) {
           }}
           className='!overflow-visible'
         >
-          {list_awards?.map((item, index) => (
-            <SwiperSlide key={index}>
-              {({ isActive }) => (
-                <div className={'flex flex-col items-center transition-all duration-300'}>
-                  <div className='relative flex items-center justify-center'>
-                    <Image
-                      src={item.image.url}
-                      alt={item.image.alt}
+          {list_awards?.map((item, index) => {
+            const imageUrl = getImageUrl(item)
+            if (!imageUrl) return null
+            return (
+              <SwiperSlide key={index}>
+                {({ isActive }) => (
+                  <div className={'flex flex-col items-center transition-all duration-300'}>
+                    <div className='relative flex items-center justify-center'>
+                      <Image
+                        src={imageUrl}
+                        alt={item.image?.alt ?? ''}
                       width={300}
                       height={300}
                       className='z-1 size-[8.95rem] object-contain'
@@ -91,7 +115,8 @@ export default function AwardHomeMobile({ data }: { data?: ISectionAwardAcf }) {
                 </div>
               )}
             </SwiperSlide>
-          ))}
+            )
+          })}
           <div className='z-20 mt-[0.83rem] flex items-center justify-center space-x-[0.42rem]'>
             <span className='mb-caption-12-12-r text-text-60'>
               {String(activeIndex + 1).padStart(2, '0')}/{String(list_awards?.length).padStart(2, '0')}
