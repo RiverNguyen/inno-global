@@ -1,6 +1,6 @@
 'use client'
 
-import { X } from 'lucide-react'
+import { ChevronRight, X } from 'lucide-react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
@@ -81,10 +81,10 @@ export default function ServiceDetailModal({
 
             <Link
               href={href}
-              className=' inline-flex w-fit items-center gap-[0.3125rem] text-[0.83rem] font-medium text-[#0077FF] transition-colors hover:text-[#1D4ED8]'
+              className='hover:underline inline-flex w-fit items-center gap-[0.3125rem] text-[0.83rem] font-medium text-[#0077FF] transition-colors hover:text-[#1D4ED8]'
             >
               {t('viewServiceDetail')}
-              <svg
+              {/* <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='24'
                 height='24'
@@ -108,7 +108,11 @@ export default function ServiceDetailModal({
                   strokeLinecap='round'
                   strokeLinejoin='round'
                 />
-              </svg>
+              </svg> */}
+              <ChevronRight
+                className='size-4 text-[#0077FF]'
+                strokeWidth={1.5}
+              />
             </Link>
           </div>
         </DialogContent>
