@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils'
 const START_MARKER_ICON = '/history/marker.svg'
 
 export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[] }) {
+  const lastIndex = timeline.length - 1
+
   return (
     <section className='relative p-[3.33rem_0_4.84rem_0]'>
       <Image
@@ -35,6 +37,10 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
           const hasUl = item.description?.includes('<ul')
           const shouldHavePx = !isLeftContent || hasUl
           const isFirstItem = index === 0
+          const isToBeContinuedLastItem = isToBeContinued && index === lastIndex
+          const markerWrapperClass = isToBeContinued
+            ? 'absolute top-1/2 left-1/2 h-auto w-full -translate-x-1/2 -translate-y-1/2'
+            : 'absolute top-0 left-0 h-[5.20833rem] w-full'
 
           return (
             <div
@@ -42,12 +48,7 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
               className='relative mb-[1.6rem] flex w-full last:mb-0'
             >
               {/* Marker + driver + image */}
-              <div
-                className={cn(
-                  'absolute top-0 left-0 h-[5.20833rem] w-full',
-                  isToBeContinued && 'top-1/2 left-1/2 h-auto -translate-x-1/2 -translate-y-1/2',
-                )}
-              >
+              <div className={markerWrapperClass}>
                 <div className='absolute-center w-full'>
                   {/* driver line (hide for "To be continued") */}
                   {!isToBeContinued && (
@@ -60,12 +61,12 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
                   )}
 
                   {/* main marker at center line */}
-                  {isFirstItem ? (
+                  {isFirstItem || isToBeContinuedLastItem ? (
                     <div className='absolute-center'>
                       <div className='relative size-[2.67854rem]'>
                         <Image
                           src={START_MARKER_ICON}
-                          alt='Start marker'
+                          alt='Timeline marker'
                           fill
                           className='object-contain'
                         />
@@ -122,7 +123,7 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
                   <div
                     className={cn(
                       'font-open-sans text-[0.9375rem] leading-[120%] font-semibold tracking-[-0.01406rem] text-[#090909]',
-                      isToBeContinued && 'w-full px-0 ml-[1rem]',
+                      isToBeContinued && 'px-0 translate-x-8 w-fit',
                       shouldHavePx && !isToBeContinued && 'pl-[0.9375rem]',
                     )}
                   >

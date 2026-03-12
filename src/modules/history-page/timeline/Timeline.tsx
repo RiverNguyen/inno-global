@@ -150,12 +150,11 @@ const buildTimelinePath = (rows: ITimelinePoint[]): string => {
 }
 
 const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoint: boolean) => {
-  if (isStartPoint) {
+  const renderStartEndMarker = () => {
     const baseRadius = markerConfig.start.radius
 
     return (
       <g>
-        {/* Ripple 1 (giống 0.75rem mobile) */}
         <circle
           cx={point.x}
           cy={point.y}
@@ -179,7 +178,6 @@ const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoi
           />
         </circle>
 
-        {/* Ripple 2 (giống 1.5rem mobile) */}
         <circle
           cx={point.x}
           cy={point.y}
@@ -203,7 +201,6 @@ const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoi
           />
         </circle>
 
-        {/* Icon chính */}
         <image
           href={START_MARKER_ICON}
           x={point.x - markerConfig.start.iconSize / 2}
@@ -216,31 +213,8 @@ const renderMainMarker = (point: ITimelinePoint, isStartPoint: boolean, isEndPoi
     )
   }
 
-  if (isEndPoint) {
-    return (
-      <g>
-        <circle
-          cx={point.x}
-          cy={point.y}
-          r={markerConfig.end.outerRadius2}
-          fill={markerConfig.end.outerFill2}
-          opacity={markerConfig.end.outerOpacity2}
-        />
-        <circle
-          cx={point.x}
-          cy={point.y}
-          r={markerConfig.end.outerRadius}
-          fill={markerConfig.end.outerFill}
-          opacity={markerConfig.end.outerOpacity}
-        />
-        <circle
-          cx={point.x}
-          cy={point.y}
-          r={markerConfig.end.innerRadius}
-          fill={markerConfig.end.innerFill}
-        />
-      </g>
-    )
+  if (isStartPoint || isEndPoint) {
+    return renderStartEndMarker()
   }
 
   return (
@@ -436,7 +410,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                   <div
                     className={cn(
                       'text-text-100/20 flex h-full w-full items-center justify-center text-center text-[2.083333rem] leading-[1.2] font-semibold -tracking-[0.03125rem] whitespace-nowrap',
-                      isToBeContinued && 'text-[1.25rem] -tracking-[0.0125rem]',
+                      isToBeContinued && 'text-[1.25rem] -tracking-[0.0125rem] translate-y-4',
                       isStartPoint && 'text-[2.083333rem] text-[#111111]',
                     )}
                   >
