@@ -8,7 +8,8 @@ import { cn } from '@/lib/utils'
 const START_MARKER_ICON = '/history/marker.svg'
 
 export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[] }) {
-  const lastIndex = timeline.length - 1
+  const hasVisibleToBeContinuedAtEnd = timeline[timeline.length - 1]?.isToBeContinued === true
+  const endPointIndex = timeline.length > 1 && hasVisibleToBeContinuedAtEnd ? timeline.length - 2 : timeline.length - 1
 
   return (
     <section className='relative p-[3.33rem_0_4.84rem_0]'>
@@ -37,7 +38,8 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
           const hasUl = item.description?.includes('<ul')
           const shouldHavePx = !isLeftContent || hasUl
           const isFirstItem = index === 0
-          const isToBeContinuedLastItem = isToBeContinued && index === lastIndex
+          const isEndPoint = index === endPointIndex && !isToBeContinued
+          const shouldUseIconMarker = (isFirstItem || isEndPoint) && !isToBeContinued
           const markerWrapperClass = isToBeContinued
             ? 'absolute top-1/2 left-1/2 h-auto w-full -translate-x-1/2 -translate-y-1/2'
             : 'absolute top-0 left-0 h-[5.20833rem] w-full'
@@ -61,7 +63,7 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
                   )}
 
                   {/* main marker at center line */}
-                  {isFirstItem || isToBeContinuedLastItem ? (
+                  {shouldUseIconMarker ? (
                     <div className='absolute-center'>
                       <div className='relative size-[2.67854rem]'>
                         <Image
@@ -75,11 +77,6 @@ export default function TimelineMobile({ timeline }: { timeline: ITimelineItem[]
                     </div>
                   ) : (
                     <>
-                      {/* outer marker 1 */}
-                      {isToBeContinued && (
-                        <div className='absolute-center size-[1.5625rem] rounded-full bg-[#D32F2F] opacity-20'></div>
-                      )}
-
                       {/* outer marker 2 */}
                       <div className='absolute-center size-[1.1875rem] rounded-full bg-[#D32F2F] opacity-20'></div>
 

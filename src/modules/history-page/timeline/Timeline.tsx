@@ -242,6 +242,9 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
   const totalRealItems = hasToBeContinuedAtEnd ? timeline.length - 1 : timeline.length
   const shouldHideToBeContinued = hasToBeContinuedAtEnd && totalRealItems % ITEMS_PER_ROW === 0
   const visibleData = shouldHideToBeContinued ? timeline.slice(0, -1) : timeline
+  const hasVisibleToBeContinuedAtEnd = visibleData[visibleData.length - 1]?.isToBeContinued === true
+  const endPointIndex =
+    visibleData.length > 1 && hasVisibleToBeContinuedAtEnd ? visibleData.length - 2 : visibleData.length - 1
 
   const points = visibleData.map((_, index) => getPointByIndex(index))
   const rows = Math.ceil(visibleData.length / ITEMS_PER_ROW)
@@ -292,8 +295,8 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
           {points.map((point, index) => {
             const currentItem = visibleData[index]
             const isToBeContinued = currentItem.isToBeContinued === true
-            const isStartPoint = index === 0
-            const isEndPoint = index === points.length - 1
+            const isStartPoint = index === 0 && !isToBeContinued
+            const isEndPoint = index === endPointIndex && !isToBeContinued
             const isOddItem = (index + 1) % 2 === 1
             const stemEndY = point.stemUp ? point.y - point.stemHeight : point.y + point.stemHeight
             const imageSize = index === 0 ? toPx(FIRST_ITEM_IMAGE_SIZE_REM) : toPx(DEFAULT_ITEM_IMAGE_SIZE_REM)
@@ -409,8 +412,9 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                 >
                   <div
                     className={cn(
-                      'text-text-100/20 flex h-full w-full items-center justify-center text-center text-[2.083333rem] leading-[1.2] font-semibold -tracking-[0.03125rem] whitespace-nowrap',
+                      'text-text-100/20 flex h-full w-full items-center justify-center text-center text-[2.083333rem] leading-[1.2] font-semibold whitespace-nowrap',
                       isToBeContinued && 'text-[1.25rem] -tracking-[0.0125rem] translate-y-4',
+                      !isToBeContinued && '-tracking-[0.03125rem]',
                       isStartPoint && 'text-[2.083333rem] text-[#111111]',
                     )}
                   >
