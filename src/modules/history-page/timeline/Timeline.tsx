@@ -415,7 +415,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                       'text-text-100/20 flex h-full w-full items-center justify-center text-center text-[2.083333rem] leading-[1.2] font-semibold whitespace-nowrap',
                       isToBeContinued && 'text-[1.25rem] -tracking-[0.0125rem] translate-y-4',
                       !isToBeContinued && '-tracking-[0.03125rem]',
-                      isStartPoint && 'text-[2.083333rem] text-[#111111]',
+                      (isStartPoint || isEndPoint) && 'text-[2.083333rem] text-[#111111]',
                     )}
                   >
                     {currentItem.year}
