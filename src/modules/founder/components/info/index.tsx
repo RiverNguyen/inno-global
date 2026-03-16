@@ -30,7 +30,7 @@ export default function Info({ leader }: { leader: ILeadership }) {
   const leaderImage = leader?.featured_image?.url ?? ''
 
   return (
-    <div className='xsm:min-h-auto xsm:px-[0.83333rem] xsm:py-[2.29167rem] relative min-h-[44.47917rem] py-[4.16667rem]'>
+    <div className='xsm:min-h-auto xsm:px-[0.83333rem] xsm:py-[2.29167rem] relative min-h-[44.47917rem] py-[2rem]'>
       <Image
         src='/leadership/bg-founder-mb.webp'
         alt='bg-founder'
@@ -66,7 +66,7 @@ export default function Info({ leader }: { leader: ILeadership }) {
             <div dangerouslySetInnerHTML={{ __html: leader?.content ?? '' }} />
           </div>
 
-          {leaderShow && (
+          {/* {leaderShow && (
             <div className='flex flex-col items-end gap-[0.72917rem]'>
               <p className='font-open-sans xsm:text-[0.83333rem] text-[1.04167rem] font-semibold text-[#000] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
                 {leader?.title ?? ''}
@@ -75,7 +75,7 @@ export default function Info({ leader }: { leader: ILeadership }) {
                 {leader?.acf?.position ?? ''}
               </p>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

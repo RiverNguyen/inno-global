@@ -14,6 +14,7 @@ export interface ISubCompanyRes {
       name: string
       description: string
       image: IMedia
+      image_mobile: IMedia
       items: ISubCompanyItem[]
     }
   }
@@ -28,4 +29,7 @@ export interface ICompany {
   excerpt: string
   date: string
   featured_image: IMedia
+  acf: {
+    show: boolean
+  }
 }

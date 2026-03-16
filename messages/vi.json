@@ -104,11 +104,11 @@
   },
   "LeadershipPage": {
     "title": "Ban Lãnh Đạo Công Ty",
-    "ceoMessage": "Thông điệp của CEO"
+    "ceoMessage": "Thông điệp của người sáng lập"
   },
   "FounderPage": {
     "title": "Người Thành Lập",
-    "ceoMessage": "Thông điệp của CEO"
+    "ceoMessage": "Thông điệp của người sáng lập"
   },
   "DetailProjectPage": {
     "share": "Chia sẻ",

@@ -46,9 +46,10 @@ export default function NewsFeatured({ data, ...props }: NewsFeaturedProps) {
         <h3 className='xsm:text-[0.83333rem] line-clamp-2 text-[1.25rem] leading-normal font-semibold tracking-[-0.05rem]'>
           {data?.title}
         </h3>
-        <p className='xsm:hidden line-clamp-3 text-[0.9375rem] leading-[150%] font-normal tracking-[-0.025rem] opacity-80'>
-          {data?.acf?.short_desc || '-'}
-        </p>
+        <article
+          className='xsm:hidden line-clamp-3 text-[0.9375rem] leading-[150%] font-normal tracking-[-0.025rem] opacity-80'
+          dangerouslySetInnerHTML={{ __html: data?.acf?.short_desc || '-' }}
+        ></article>
         <span className='xsm:text-[0.67708rem] xsm:mt-auto flex items-center space-x-[0.20833rem] text-[0.833rem] sm:self-end'>
           {t('viewDetail')}{' '}
           <ChevronRight className='xsm:size-[0.72917rem] size-[0.833rem] transition-all duration-300 ease-in-out group-hover:translate-x-[0.25rem]' />

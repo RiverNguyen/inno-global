@@ -394,7 +394,7 @@ export default function Timeline({ timeline }: { timeline: ITimelineItem[] }) {
                           )}
                         >
                           <div
-                            className='text-text-80 max-h-full overflow-x-hidden overflow-y-auto pr-[0.35rem] text-[0.7375rem] leading-normal font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-[#090909] [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
+                            className='xsm:text-[0.67708rem] text-[0.833rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909] max-h-full overflow-x-hidden overflow-y-auto pr-[0.35rem] font-normal [scrollbar-width:thin] [&_li]:mb-1 [&_p]:m-0 [&_strong]:font-semibold [&_strong]:text-[#090909] [&_ul]:m-0 [&_ul]:list-disc [&_ul]:pl-4'
                             style={{ maxWidth: '100%', width: 'max-content' }}
                             dangerouslySetInnerHTML={{ __html: currentItem.description }}
                           />

@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import ICChevronDown from '@/components/icons/ICChevronDown'
 import Breadcrumb from '@/components/shared/Breadcrumb'
 import ROUTES from '@/configs/routes'
+import useIsMobile from '@/hooks/useIsMobile'
 import { Link } from '@/i18n/navigation'
 import { ICompany, ISubCompanyRes } from '@/interfaces/subcompany.interface'
 
@@ -22,11 +23,13 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
   const locale = useLocale()
   const swiperRef = useRef<SwiperType | null>(null)
   const title = res?.acf?.company_banner?.title
+  const { isMobile } = useIsMobile()
 
   const companyName = res?.acf?.company_detail?.name
   const companyDesc = res?.acf?.company_detail?.description
   const companyImage = res?.acf?.company_detail?.image
-  const companyItems = res?.acf?.company_detail?.items
+  const companyImageMobile = res?.acf?.company_detail?.image_mobile
+
   return (
     <>
       <div className='xsm:pt-[1.66667rem] xsm:pb-[1.04167rem] bg-white py-[2.08333rem]'>
@@ -52,7 +55,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
           </h1>
         </div>
       </div>
-      <div className='xsm:max-w-full mx-auto max-w-[75rem] pt-[2.5rem]'>
+      <div className='xsm:max-w-full mx-auto max-w-[75rem] pt-[2.5rem] xsm:pt-[1.25rem]'>
         <div className='xsm:px-[0.83333rem]'>
           <h2 className='xsm:mb-h2-24-sm font-open-sans xsm:mb-[0.9375rem] mb-[1.04167rem] pc-h2-54-s text-[#090909]'>
             {companyName}
@@ -62,15 +65,15 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
           </p>
         </div>
 
-        <div className='xsm:h-auto xsm:pt-[3.33333rem] relative flex h-[47.39583rem] flex-col items-center justify-center'>
+        <div className='xsm:h-[28.28125rem] xsm:mt-[3.33333rem] relative flex h-[56.875rem] flex-col items-center justify-center'>
           <Image
-            src={companyImage?.url}
+            src={isMobile ? companyImageMobile?.url : companyImage?.url}
             alt={companyImage?.alt}
-            width={732}
-            height={525}
-            className='xsm:h-[15.41667rem] xsm:w-[15.81932rem] xsm:mb-[1.66667rem] mx-auto h-[27.35146rem] w-[38.12854rem] object-cover'
+            fill
+            className='object-cover'
+            sizes='100vw'
           />
-          <div className='xsm:gap-x-[0.78125rem] xsm:px-[0.83333rem] xsm:gap-y-[1.04167rem] z-1 grid grid-cols-2 sm:absolute sm:top-0 sm:left-0 sm:size-full'>
+          {/* <div className='xsm:gap-x-[0.78125rem] xsm:px-[0.83333rem] xsm:gap-y-[1.04167rem] z-1 grid grid-cols-2 sm:absolute sm:top-0 sm:left-0 sm:size-full'>
             <div className='col-span-2 h-[0.05208rem] w-full bg-[rgba(9,9,9,0.08)] sm:hidden'></div>
             <div className='xsm:relative xsm:inset-auto xsm:translate-none absolute top-[3.44rem] left-1/2 -translate-x-1/2 space-y-[0.52083rem]'>
               <h3 className='font-open-sans xsm:text-[1.25rem] xsm:text-left mb-[0.52083rem] text-center pc-h3-40-s text-[#D98345]'>
@@ -105,7 +108,7 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
                 {companyItems[3]?.value}
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className='xsm:max-w-full xsm:py-[3.33333rem]  pt-[4.17rem] pb-[4.16667rem]'>
@@ -128,20 +131,22 @@ export default function SubCompanyDetail({ res, companys }: { res: ISubCompanyRe
             }}
             className='sub-company-swiper max-w-[75rem]! xsm:px-[0.83333rem]!'
           >
-            {companys.map((company) => (
-              <SwiperSlide key={company?.id}>
-                <Link
-                  href={locale === 'vi' ? `/cong-ty/${company?.slug}` : `/company/${company?.slug}`}
-                  className='block h-full'
-                >
-                  <CompanyCard
-                    title={company?.title ?? ''}
-                    description={company?.content ?? ''}
-                    image={company?.featured_image?.url || '/default.webp'}
-                  />
-                </Link>
-              </SwiperSlide>
-            ))}
+            {companys
+              ?.filter((company) => company?.acf?.show)
+              .map((company) => (
+                <SwiperSlide key={company?.id}>
+                  <Link
+                    href={locale === 'vi' ? `/cong-ty/${company?.slug}` : `/company/${company?.slug}`}
+                    className='block h-full'
+                  >
+                    <CompanyCard
+                      title={company?.title ?? ''}
+                      description={company?.content ?? ''}
+                      image={company?.featured_image?.url || '/default.webp'}
+                    />
+                  </Link>
+                </SwiperSlide>
+              ))}
           </Swiper>
           {companys.length > 4 && (
             <div className='absolute top-1/2 left-0 right-0 z-10 flex justify-between max-w-[84rem] pointer-events-none mx-auto'>

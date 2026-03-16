@@ -105,11 +105,11 @@
 
   "LeadershipPage": {
     "title": "Leadership",
-    "ceoMessage": "CEO Message"
+    "ceoMessage": "Founder’s Message"
   },
   "FounderPage": {
     "title": "Founder",
-    "ceoMessage": "CEO Message"
+    "ceoMessage": "Founder’s Message"
   },
   "DetailProjectPage": {
     "share": "Share",

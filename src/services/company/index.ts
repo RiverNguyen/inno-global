@@ -17,7 +17,7 @@ const companyService = {
     }
 
     return await fetchData({
-      api: `${ENDPOINTS.company.list}?${params.toString()}`,
+      api: `${ENDPOINTS.company.list}?${params.toString()}&acf=true`,
     })
   },
 }

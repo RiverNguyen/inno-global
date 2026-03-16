@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
 const formatDateDDMMYYYY = (value?: string) => {
@@ -24,6 +25,7 @@ interface CardBlogProps {
   classNameCard?: string
   classNameMetaWrapper?: string
   classNameMetaRow?: string
+  tags?: string[]
 }
 
 export default function CardBlog({
@@ -38,12 +40,13 @@ export default function CardBlog({
   classNameCard,
   classNameMetaWrapper,
   classNameMetaRow,
+  tags,
 }: CardBlogProps) {
   const formattedDate = formatDateDDMMYYYY(date)
   return (
     <article
       className={cn(
-        'xsm:space-y-0 xsm:space-x-[0.52083rem] xsm:flex xsm:items-center relative w-full space-y-[0.72917rem]',
+        'xsm:space-y-0 group xsm:space-x-[0.52083rem] xsm:flex xsm:items-center relative w-full space-y-[0.72917rem]',
         classNameCard,
       )}
     >
@@ -53,12 +56,24 @@ export default function CardBlog({
           classNameThumbnail,
         )}
       >
+        {tags && tags.length > 0 && (
+          <div className='absolute top-4 left-4 z-10'>
+            {tags?.map((tag) => (
+              <Badge
+                className='bg-[#D32F2F] rounded-full text-white pc-body-16-r'
+                key={tag}
+              >
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        )}
         <Image
           alt=''
           width={455}
           height={290}
           src={thumbnail.url || '/default.webp'}
-          className='size-full rounded-[inherit] object-cover'
+          className='size-full rounded-[inherit] object-cover group-hover:scale-105 transition-all duration-300'
         />
       </div>
       <div className={cn('xsm:space-y-[0.5rem] space-y-[0.3125rem]', classNameMetaWrapper)}>
@@ -72,7 +87,7 @@ export default function CardBlog({
         </div>
         <h3
           className={cn(
-            'pc-body-18-m-primary xsm:font-normal xsm:text-[0.72917rem] text-primary line-clamp-2',
+            'pc-body-18-m-primary group-hover:text-primary-red/90 transition-all duration-300 xsm:font-normal xsm:text-[0.72917rem] text-primary line-clamp-2',
             classNameTitle,
           )}
         >

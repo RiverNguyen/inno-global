@@ -37,6 +37,8 @@ export default async function DetailTrainingPage({ params }: { params: Promise<{
     category,
   })
 
+  const page = await trainingService.getPage(locale as 'vi' | 'en')
+  const acfData = page?.acf
   const relatedTrainings = Array.isArray(relatedRes?.data) ? relatedRes.data : []
 
   return (
@@ -44,6 +46,7 @@ export default async function DetailTrainingPage({ params }: { params: Promise<{
       <TrainingDetail
         training={trainingData}
         relatedTrainings={relatedTrainings}
+        acfData={acfData}
       />
     </main>
   )

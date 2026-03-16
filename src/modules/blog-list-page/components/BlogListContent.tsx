@@ -178,6 +178,7 @@ export default function BlogListContent({
                 classNameDate='xsm:text-[0.52083rem] xsm:tracking-normal text-[0.52083rem]'
                 classNameMetaWrapper='xsm:space-y-[0.41667rem]'
                 classNameMetaRow='xsm:space-x-[0.41667rem]'
+                tags={blog.taxonomies?.tags?.map((tag) => tag.name) || []}
               />
             </Link>
           </div>
