@@ -17,14 +17,14 @@ export default function Banner({ banner }: { banner: ITrainingAcfData['banner'] 
         <div className='absolute right-0 bottom-0 left-0 z-2 h-[20.3125rem] w-full bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_49.89%,rgba(0,0,0,0.74)_75.85%,#000_96.54%)] opacity-60 sm:hidden'></div>
         <Image
           src={banner?.image?.desktop}
-          alt='banner'
+          alt={banner?.title}
           fill
           priority
           className='xsm:hidden object-cover'
         />
         <Image
           src={banner?.image?.mobile}
-          alt='Banner'
+          alt={banner?.title}
           fill
           priority
           className='object-cover sm:hidden'
@@ -43,7 +43,7 @@ export default function Banner({ banner }: { banner: ITrainingAcfData['banner'] 
             classNameIcon='text-white'
           />
         </div>
-        <h1 className='font-open-sans xsm:mb-h2-24-sm xsm:w-full w-[29.11458rem] pc-h2-54-s text-white'>
+        <h1 className='font-open-sans xsm:mb-h2-24-sm xsm:w-full line-clamp-2 pc-h2-54-s text-white'>
           {banner?.title}
         </h1>
       </div>

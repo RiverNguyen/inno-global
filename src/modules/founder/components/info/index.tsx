@@ -30,7 +30,7 @@ export default function Info({ leader }: { leader: ILeadership }) {
   const leaderImage = leader?.featured_image?.url ?? ''
 
   return (
-    <div className='xsm:min-h-auto xsm:px-[0.83333rem] xsm:py-[2.29167rem] relative min-h-[44.47917rem] py-[4.16667rem]'>
+    <div className='xsm:min-h-auto xsm:px-[0.83333rem] xsm:py-[2.29167rem] relative min-h-[44.47917rem] py-[2rem]'>
       <Image
         src='/leadership/bg-founder-mb.webp'
         alt='bg-founder'
@@ -48,9 +48,9 @@ export default function Info({ leader }: { leader: ILeadership }) {
         <div className='flex w-full flex-col'>
           {leaderShow && (
             <>
-              <p className='font-open-sans xsm:[text-box-edge:auto] xsm:[text-box-trim:none] xsm:text-[1.04167rem] xsm:leading-[150%] xsm:mb-[0.3125rem] mb-[0.72917rem] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] text-[1.875rem] font-semibold leading-normal text-[#090909]'>
+              <h2 className='font-open-sans xsm:[text-box-edge:auto] xsm:[text-box-trim:none] xsm:text-[1.04167rem] xsm:leading-[150%] xsm:mb-[0.3125rem] mb-[0.72917rem] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both] text-[1.875rem] font-semibold leading-normal text-[#090909]'>
                 {leader?.title ?? ''}
-              </p>
+              </h2>
               <p className='font-open-sans xsm:text-[0.83333rem] pc-body-18-r-primary text-[rgba(9,9,9,0.80)]'>
                 {leader?.acf?.position ?? ''}
               </p>
@@ -66,7 +66,7 @@ export default function Info({ leader }: { leader: ILeadership }) {
             <div dangerouslySetInnerHTML={{ __html: leader?.content ?? '' }} />
           </div>
 
-          {leaderShow && (
+          {/* {leaderShow && (
             <div className='flex flex-col items-end gap-[0.72917rem]'>
               <p className='font-open-sans xsm:text-[0.83333rem] text-[1.04167rem] font-semibold text-[#000] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'>
                 {leader?.title ?? ''}
@@ -75,7 +75,7 @@ export default function Info({ leader }: { leader: ILeadership }) {
                 {leader?.acf?.position ?? ''}
               </p>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

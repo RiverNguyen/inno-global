@@ -104,11 +104,11 @@
   },
   "LeadershipPage": {
     "title": "Ban Lãnh Đạo Công Ty",
-    "ceoMessage": "Thông điệp của CEO"
+    "ceoMessage": "Thông điệp của người sáng lập"
   },
   "FounderPage": {
     "title": "Người Thành Lập",
-    "ceoMessage": "Thông điệp của CEO"
+    "ceoMessage": "Thông điệp của người sáng lập"
   },
   "DetailProjectPage": {
     "share": "Chia sẻ",
@@ -164,7 +164,8 @@
     "shareLinkCopied": "Liên kết đã được sao chép vào bảng tạm"
   },
   "ServiceListPage": {
-    "noServices": "Không tìm thấy dịch vụ"
+    "noServices": "Không tìm thấy dịch vụ",
+    "viewServiceDetail": "Xem chi tiết dịch vụ"
   },
   "SearchPage": {
     "result": "Kết quả tìm kiếm",

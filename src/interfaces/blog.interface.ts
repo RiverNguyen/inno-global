@@ -41,6 +41,7 @@ export interface IBlog {
     post_tag: ITerm[]
     post_translation: ITerm[]
     service: ITerm[]
+    tags: ITerm[]
   }
   acf: {
     short_desc: string

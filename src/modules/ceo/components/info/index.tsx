@@ -30,7 +30,7 @@ export default function Info({ data }: { data: ICEOPageAcfDataRes['acf']['messag
   const leaderImage = data[0]?.thumbnail ?? ''
 
   return (
-    <div className='xsm:min-h-auto xsm:px-[0.83333rem] xsm:py-[2.29167rem] relative min-h-[44.47917rem] py-[4.16667rem]'>
+    <div className='xsm:min-h-auto xsm:px-[0.83333rem] xsm:py-[2.29167rem] relative min-h-[44.47917rem] py-[2rem]'>
       <Image
         src='/leadership/bg-founder-mb.webp'
         alt='bg-founder'

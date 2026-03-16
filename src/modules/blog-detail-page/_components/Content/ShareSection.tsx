@@ -109,12 +109,12 @@ export default function ShareSection({ blog }: ShareSectionProps) {
       </div>
 
       <div className='xsm:flex-col xsm:items-start xsm:gap-[0.625rem] flex items-center gap-[1.71875rem]'>
-        <div className='font-open-sans xsm:gap-[0.26042rem] xsm:text-[0.625rem] flex items-center gap-[0.52083rem] text-[0.9375rem] leading-[150%]'>
+        {/* <div className='font-open-sans xsm:gap-[0.26042rem] xsm:text-[0.625rem] flex items-center gap-[0.52083rem] text-[0.9375rem] leading-[150%]'>
           <span className='xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem] text-[rgba(9,9,9,0.80)]'>
             {t('writtenBy')}:
           </span>
           <span className='xsm:capitalize font-semibold text-[#090909]'>{blog?.author}</span>
-        </div>
+        </div> */}
 
         <div className='font-open-sans xsm:gap-[0.26042rem] xsm:text-[0.625rem] flex items-center gap-[0.52083rem] text-[0.9375rem] leading-[150%]'>
           <span className='xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem] text-[rgba(9,9,9,0.80)]'>
@@ -122,22 +122,23 @@ export default function ShareSection({ blog }: ShareSectionProps) {
           </span>
           <span className='xsm:capitalize font-semibold text-[#090909]'>{formatDateToDDMMYYYY(blog?.date)}</span>
         </div>
-
-        <div className='font-open-sans xsm:gap-[0.26042rem] xsm:text-[0.625rem] flex items-center gap-[0.52083rem] text-[0.9375rem] leading-[150%]'>
-          <span className='xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem] text-[rgba(9,9,9,0.80)]'>
-            {t('tag')}:
-          </span>
-          <div className='flex items-center gap-[0.26042rem]'>
-            {blog?.taxonomies?.post_tag?.map((tag) => (
-              <span
-                key={tag.id}
-                className='flex-center font-open-sans xsm:text-[0.625rem] text-primary-red xsm:h-[1.3021rem] h-[1.3542rem] bg-[rgba(211,47,47,0.06)] px-[0.52083rem] text-[0.72917rem] leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'
-              >
-                {tag.name}
-              </span>
-            ))}
+        {blog?.taxonomies?.tags?.length > 0 && (
+          <div className='font-open-sans xsm:gap-[0.26042rem] xsm:text-[0.625rem] flex items-center gap-[0.52083rem] text-[0.9375rem] leading-[150%]'>
+            <span className='xsm:text-[rgba(46,46,46,0.75)] xsm:tracking-[-0.00625rem] text-[rgba(9,9,9,0.80)]'>
+              {t('tag')}:
+            </span>
+            <div className='flex items-center gap-[0.26042rem]'>
+              {blog?.taxonomies?.tags?.map((tag) => (
+                <span
+                  key={tag.id}
+                  className='flex-center font-open-sans xsm:text-[0.625rem] text-primary-red xsm:h-[1.3021rem] h-[1.3542rem] bg-[rgba(211,47,47,0.06)] px-[0.52083rem] text-[0.72917rem] leading-[150%] [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]'
+                >
+                  {tag.name}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )

@@ -16,7 +16,7 @@ export default function Banner({
   const title = bannerTitle || t('FounderPage.ceoMessage')
 
   return (
-    <div className='bg-white'>
+    <div className=''>
       <div className='xsm:p-[1.66667rem_0.83333rem_0.83333rem_0.83333rem] mx-auto flex w-full max-w-[75rem] flex-col gap-[1.25rem] py-[2.08333rem]'>
         <Breadcrumb
           navItems={[

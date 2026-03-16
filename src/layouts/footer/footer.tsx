@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
 
-import FontSizeTrigger from '@/components/FontSizeGate/FontSizeTrigger'
 import { Link } from '@/i18n/navigation'
 import { IAcfImage, IAcfLink } from '@/interfaces/acf-wp.interface'
 import { cn } from '@/lib/utils'
@@ -285,11 +284,9 @@ export default function Footer({ data }: IFooterProps) {
               {copyright}
             </p>
             <div className='xsm:justify-between mt-[0.68rem] flex items-center space-x-[0.83rem] text-[0.67708rem] leading-[1.4] tracking-[-0.00625rem] text-[#090909] sm:justify-end'>
-              <FontSizeTrigger />
               {Array.isArray(menu_column_3?.items) &&
                 menu_column_3?.items?.map((item, index) => (
                   <React.Fragment key={index}>
-                    <span className='inline-block h-[0.57292rem] w-[0.05208rem] bg-[#090909]'></span>
                     <Link
                       href={item?.link?.url || ''}
                       target={item?.link?.target || '_self'}

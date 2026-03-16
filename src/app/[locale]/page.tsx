@@ -36,7 +36,6 @@ export default async function Page({ params }: { params: Promise<{ locale: 'vi' 
     homeService.getHomeData<IHomeAcfDataRes>(ENDPOINTS.pageIds.home[locale]),
     homeService.getBlogs<IBlogRes>({ locale, limit: 5 }),
   ])
-
   if (!acfData) return null
   return (
     <ScrollSnapWrapper includeFooterSnap>

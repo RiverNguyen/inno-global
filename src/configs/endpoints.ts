@@ -83,8 +83,8 @@ const ENDPOINTS = {
       en: 'wp/v2/pages/1026?_fields=acf&acf_format=standard',
     },
     ceo_rank_math: {
-      vi: '/thong-diep-cua-ceo',
-      en: '/ceo-message',
+      vi: '/thong-diep-cua-nguoi-sang-lap',
+      en: '/founders-message',
     },
   },
   taxonomies: {
