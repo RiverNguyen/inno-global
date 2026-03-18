@@ -26,6 +26,7 @@ export default async function layout({
     auth(),
     ctaService.getCTAData<{ data: { cta_field: { icon: IMedia; link: string }[] } }>(),
   ])
+
   return (
     <NextIntlClientProvider>
       <NuqsAdapter>

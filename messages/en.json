@@ -85,6 +85,13 @@
     "submitFailed": "Submit failed",
     "submitFailedMessage": "Submit failed, please try again"
   },
+  "InnoHub": {
+    "breadcrumbHome": "Home",
+    "blog": "News",
+    "title": "INNO Hub",
+    "description": "Proactively delivering and spreading an ecosystem of innovative features, along with optimized website platforms that INNO has been developing.",
+    "Demo": "Demo Section"
+  },
   "DetailBlogPage": {
     "breadcrumbHome": "Home",
     "blog": "Blog",

@@ -124,6 +124,9 @@ const config: Config = {
         '.pc-body-18-r-primary': {
           '@apply text-[0.9375rem] font-normal leading-normal': {},
         },
+        '.pc-20-20-sm': {
+          '@apply text-[1.04167rem] font-semibold leading-[150%]': {},
+        },
         '.mb-h2-24-sm': {
           '@apply text-[1.25rem] font-semibold leading-[1.2]': {},
         },
