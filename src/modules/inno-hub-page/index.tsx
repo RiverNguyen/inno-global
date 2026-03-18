@@ -1,17 +1,21 @@
+import { IInnoHub } from '@/interfaces/inno-hub.interface'
+
 import ContentDemo from './components/content-demo'
 import HeroSection from './components/hero-section'
 
-const InnoHubModule = ({ locale }: { locale: string }) => {
+interface InnoHubModuleProps {
+  acfData: IInnoHub
+}
+
+const InnoHubModule = ({ acfData }: InnoHubModuleProps) => {
+  if (!acfData) return null
+  const { desc, purpose } = acfData
+
   return (
     <>
-      <HeroSection locale={locale} />
-
-      <div className='bg-[#F8F8F8]'>
-        <ContentDemo locale={locale} />
-
-        <div className='pb-[5rem] pt-[2.88rem]'>
-          <ContentDemo locale={locale} />
-        </div>
+      <HeroSection desc={desc} />
+      <div className='bg-[#F8F8F8] lg:pb-[5rem] pb-[1rem]'>
+        <ContentDemo purpose={purpose} />
       </div>
     </>
   )
