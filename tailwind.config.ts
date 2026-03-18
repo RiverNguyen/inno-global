@@ -112,8 +112,14 @@ const config: Config = {
         '.mb-header-16-m': {
           '@apply text-[0.83333rem] font-semibold leading-normal': {},
         },
+        '.mb-header-h1-26-semi': {
+          '@apply text-[1.35417rem] font-semibold leading-[1.625rem]': {},
+        },
         '.mb-body-14-r': {
           '@apply text-[0.72917rem] font-normal leading-normal': {},
+        },
+        '.pc-body-16-s': {
+          '@apply text-[0.83333rem] font-semibold leading-[1.3] tracking-[-0.00833rem]': {},
         },
         '.pc-h1-64-s': {
           '@apply text-[3.33333rem] font-normal font-semibold leading-[1.2] tracking-[-0.06667rem]': {},

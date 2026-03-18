@@ -195,7 +195,8 @@
     "organizationChartPage": "Organization chart",
     "trainingPage": "Trainings",
     "detailTrainingPage": "Detail training",
-    "searchPage": "Search"
+    "searchPage": "Search",
+    "businessDataPage": "Business Data"
   },
   "LoginPage": {
     "title": "Login",
@@ -302,5 +303,16 @@
   },
   "HistoryPage": {
     "continue": "To be continued..."
+  },
+  "BusinessDataPage": {
+    "title": "Business Data",
+    "nextPage": {
+      "url": "/about-us/history-of-formation",
+      "title": "History of Formation"
+    },
+    "prevPage": {
+      "url": "/about-us/corporate-culture",
+      "title": "Corporate culture"
+    }
   }
 }

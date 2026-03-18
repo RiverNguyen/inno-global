@@ -194,7 +194,8 @@
     "organizationChartPage": "Sơ đồ tổ chức",
     "trainingPage": "Đào tạo",
     "detailTrainingPage": "Chi tiết đào tạo",
-    "searchPage": "Tìm kiếm"
+    "searchPage": "Tìm kiếm",
+    "businessDataPage": "Dữ liệu doanh nghiệp"
   },
   "LoginPage": {
     "title": "Đăng nhập",
@@ -299,5 +300,16 @@
   },
   "HistoryPage": {
     "continue": "Còn tiếp..."
+  },
+  "BusinessDataPage": {
+    "title": "Dữ liệu doanh nghiệp",
+    "nextPage": {
+      "url": "/ve-chung-toi/lich-su-hinh-thanh",
+      "title": "Lịch sử hình thành"
+    },
+    "prevPage": {
+      "url": "/ve-chung-toi/van-hoa-doanh-nghiep",
+      "title": "Văn Hóa Doanh Nghiệp"
+    }
   }
 }

@@ -115,6 +115,16 @@ const ENDPOINTS = {
       vi: '/ve-chung-toi',
     },
   },
+  businessData: {
+    rank_math: {
+      en: '/ve-chung-toi/du-lieu-doanh-nghiep',
+      vi: '/ve-chung-toi/du-lieu-doanh-nghiep',
+    },
+    pageId: {
+      en: 3766,
+      vi: 3749,
+    },
+  },
   service: {
     getAll: (locale: string) =>
       `api/v1/get-all-taxonomy/service?lang=${locale}&fields=thumbnail&orderby=date&order=DESC&limit=12&paged=1`,
