@@ -16,6 +16,7 @@ function wrapTablesInWrapper(html: string) {
 
 const Content = ({ content }: { content: string }) => {
   const t = useTranslations('DetailProjectPage')
+
   return (
     <section className='xsm:p-[2.4rem_0.8275rem] xsm:bg-[#F5F5F5] xsm:overflow-hidden relative p-[4rem_0] '>
       <div

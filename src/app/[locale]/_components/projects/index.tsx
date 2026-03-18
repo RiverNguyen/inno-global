@@ -55,6 +55,7 @@ function mapApiProjectsToHomeProjects(items: ProjectListApiResponse['data']): IP
         area: item?.acf?.area ?? '',
         year,
         link: item?.slug ?? '',
+        acf: item?.acf ?? {},
       }
     })
     .filter((p) => Boolean(p.link))

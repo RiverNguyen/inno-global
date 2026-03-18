@@ -40,6 +40,8 @@ const ProjectDetailPage = async ({ params }: { params: Promise<{ locale: string;
     investor,
   })
 
+  console.log(res)
+
   return (
     <main className='xsm:pt-[2.92rem] relative'>
       <ProjectDetail

@@ -17,9 +17,10 @@ export default function BannerControls({ activeIndex, total, onPrev, onNext, onS
     <div className='xsm:w-full xsm:mx-auto xsm:py-[0.6875rem] xsm:px-[1.02rem] xsm:right-0 xsm:left-0 xsm:bottom-0 xsm:bg-[linear-gradient(180deg,rgba(0,0,0,0.00)_0%,rgba(0,0,0,0.70)_100%)] absolute right-[12.5rem] bottom-[8.07rem] left-[12.5rem] z-10 flex items-end justify-between'>
       <div></div>
       {/* Slide counter */}
-      <div className='xsm:justify-between xsm:w-full flex items-center space-x-[0.4375rem] text-white'>
-        <div className='flex-y-center xsm:hidden space-x-[0.4275rem]'>
-          {/* <button
+      {total > 1 && (
+        <div className='xsm:justify-between xsm:w-full flex items-center space-x-[0.4375rem] text-white'>
+          <div className='flex-y-center xsm:hidden space-x-[0.4275rem]'>
+            {/* <button
             type='button'
             aria-label={isPlaying ? 'Pause autoplay' : 'Play autoplay'}
             aria-pressed={!isPlaying}
@@ -44,42 +45,43 @@ export default function BannerControls({ activeIndex, total, onPrev, onNext, onS
             />
           </button> */}
 
-          {/* Progress bar segments */}
-          <div className='flex items-center space-x-[0.1875rem]'>
-            {Array.from({ length: total }).map((_, index) => (
-              <button
-                key={index}
-                type='button'
-                aria-label={`Go to slide ${index + 1}`}
-                className={`h-[0.15625rem] min-w-0 shrink-0 cursor-pointer transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] bg-white' : 'xsm:w-[0.67rem] w-[1.19792rem] bg-white/30'}`}
-                onClick={() => onSelect(index)}
-              />
-            ))}
+            {/* Progress bar segments */}
+            <div className='flex items-center space-x-[0.1875rem]'>
+              {Array.from({ length: total }).map((_, index) => (
+                <button
+                  key={index}
+                  type='button'
+                  aria-label={`Go to slide ${index + 1}`}
+                  className={`h-[0.15625rem] min-w-0 shrink-0 cursor-pointer transition-[width,background-color] duration-300 ease-out ${index === activeIndex ? 'xsm:w-[2.1875rem] w-[3.2rem] bg-white' : 'xsm:w-[0.67rem] w-[1.19792rem] bg-white/30'}`}
+                  onClick={() => onSelect(index)}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation arrows - icons absolute để tránh layout shift khi hover (hover vùng không bị thu nhỏ) */}
+          <div className='xsm:hidden flex items-center space-x-[0.2rem]'>
+            <button
+              type='button'
+              aria-label='Previous slide'
+              className='group xsm:hidden relative size-[1.25rem] -scale-x-100 transition-opacity'
+              onClick={onPrev}
+            >
+              <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
+              <NavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
+            </button>
+            <button
+              type='button'
+              aria-label='Next slide'
+              className='group relative size-[1.25rem] transition-opacity'
+              onClick={onNext}
+            >
+              <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
+              <NavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
+            </button>
           </div>
         </div>
-
-        {/* Navigation arrows - icons absolute để tránh layout shift khi hover (hover vùng không bị thu nhỏ) */}
-        <div className='xsm:hidden flex items-center space-x-[0.2rem]'>
-          <button
-            type='button'
-            aria-label='Previous slide'
-            className='group xsm:hidden relative size-[1.25rem] -scale-x-100 transition-opacity'
-            onClick={onPrev}
-          >
-            <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
-            <NavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
-          </button>
-          <button
-            type='button'
-            aria-label='Next slide'
-            className='group relative size-[1.25rem] transition-opacity'
-            onClick={onNext}
-          >
-            <NavigationArrows className='absolute inset-0 size-full transition-opacity group-hover:opacity-0' />
-            <NavigationArrowsHover className='absolute inset-0 size-full opacity-0 transition-opacity group-hover:opacity-100' />
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   )
 }

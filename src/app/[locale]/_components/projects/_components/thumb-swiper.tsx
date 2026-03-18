@@ -67,7 +67,7 @@ export default function ThumbSwiper({ data, setThumbsSwiper }: IThumbSwiperProps
               className='mr-[0.63rem] relative !h-[9.94792rem] w-full max-w-[17.08333rem] overflow-hidden rounded-[0.20833rem]'
             >
               <Image
-                src={item.image || '/default.webp'}
+                src={item?.acf?.project_gallery?.[0]?.url || item.image || '/default.webp'}
                 alt={item.title}
                 fill
                 className='h-full w-full object-cover'
