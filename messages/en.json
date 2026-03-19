@@ -313,6 +313,10 @@
     "prevPage": {
       "url": "/about-us/corporate-culture",
       "title": "Corporate culture"
+    },
+    "aboutUsUrl": {
+      "url": "/about-us",
+      "title": "About us"
     }
   }
 }

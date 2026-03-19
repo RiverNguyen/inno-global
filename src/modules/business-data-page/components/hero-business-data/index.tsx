@@ -6,7 +6,7 @@ const HeroBusinessData = () => {
   const t = useTranslations()
   const locale = useLocale()
   return (
-    <section className='xsm:px-[0.83333rem] bg-[#FFF]'>
+    <section className='xsm:px-[0.83333rem] xsm:bg-transparent bg-[#FFF]'>
       <div className='xsm:p-0 xsm:mt-[2.92rem] mt-[4.38rem] max-w-[75rem] py-[2.08rem] mx-auto'>
         <Breadcrumb
           navItems={[

@@ -310,6 +310,10 @@
     "prevPage": {
       "url": "/ve-chung-toi/van-hoa-doanh-nghiep",
       "title": "Văn Hóa Doanh Nghiệp"
+    },
+    "aboutUsUrl": {
+      "url": "/ve-chung-toi",
+      "title": "Về chúng tôi"
     }
   }
 }
