@@ -127,8 +127,8 @@ const ENDPOINTS = {
   },
   businessData: {
     rank_math: {
-      en: '/ve-chung-toi/du-lieu-doanh-nghiep',
-      vi: '/ve-chung-toi/du-lieu-doanh-nghiep',
+      en: '/en/business-data',
+      vi: '/du-lieu-doanh-nghiep',
     },
     pageId: {
       en: 3766,
