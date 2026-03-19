@@ -6,7 +6,7 @@ import innoHubService from '@/services/inno-hub'
 import metadataValues from '@/utils/metadataValues'
 
 export function generateStaticParams() {
-  return [{ locale: 'vi' }]
+  return [{ locale: 'en' }]
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {

@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Link } from '@/i18n/navigation'
 import { IInnoHub } from '@/interfaces/inno-hub.interface'
@@ -12,6 +12,42 @@ interface ContentDemoProps {
 
 const ContentDemo = ({ purpose }: ContentDemoProps) => {
   const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    if (!purpose?.length) return
+
+    const sections = purpose
+      .map((_, index) => document.getElementById(`section-${index}`))
+      .filter((el): el is HTMLElement => Boolean(el))
+
+    if (!sections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0]
+
+        if (!visible?.target) return
+        const id = (visible.target as HTMLElement).id
+        const idx = Number(id.replace('section-', ''))
+        if (Number.isFinite(idx)) setActive(idx)
+      },
+      {
+        root: null,
+        threshold: [0.2, 0.35, 0.5, 0.65],
+        rootMargin: '-80px 0px -55% 0px',
+      },
+    )
+
+    sections.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [purpose])
+
+  useEffect(() => {
+    const tab = document.getElementById(`tab-${active}`)
+    tab?.scrollIntoView?.({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+  }, [active])
 
   const handleClick = (index: number) => {
     setActive(index)
@@ -34,10 +70,10 @@ const ContentDemo = ({ purpose }: ContentDemoProps) => {
           {/* Scroll container */}
           <div
             className='flex overflow-x-auto gap-2 px-[0.83rem]
-  snap-x snap-mandatory
-  [-ms-overflow-style:none] [scrollbar-width:none]
-  [&::-webkit-scrollbar]:hidden
-  [-webkit-overflow-scrolling:touch]'
+                    snap-x snap-mandatory
+                    [-ms-overflow-style:none] [scrollbar-width:none]
+                    [&::-webkit-scrollbar]:hidden
+                    [-webkit-overflow-scrolling:touch]'
           >
             {purpose.map((item, index) => {
               const realIndex = index % purpose.length
@@ -46,10 +82,10 @@ const ContentDemo = ({ purpose }: ContentDemoProps) => {
                   key={index}
                   id={`tab-${realIndex}`}
                   onClick={() => handleClick(realIndex)}
-                  className={`flex-shrink-0 snap-start whitespace-nowrap 
-  font-open-sans 
-  text-[0.72917rem] leading-[150%] 
-  px-[0.52083rem] pt-[0.8917rem] pb-[0.625rem] 
+                  className={`flex-shrink-0 snap-start whitespace-nowrap
+  font-open-sans
+  text-[0.72917rem] leading-[150%]
+  px-[0.52083rem] pt-[0.8917rem] pb-[0.625rem]
   border-b-2 transition duration-300 ease-out ${active === realIndex ? 'border-b-[#D32F2F]' : 'border-b-transparent'}`}
                 >
                   {item.purpose_detail.title}
@@ -59,17 +95,17 @@ const ContentDemo = ({ purpose }: ContentDemoProps) => {
           </div>
         </div>
       </div>
-      <section className='max-w-300 bg-[#F8F8F8] mx-auto lg:pl-[0] lg:pr-[0] lg:pt-[3.58rem] pl-[0.82rem] pr-[0.82rem] pt-[1.5rem]'>
+      <section className='max-w-300 bg-[#F8F8F8] mx-auto lg:pl-[0] lg:pr-[0] lg:pt-[3.58rem] pl-[0.82rem] pr-[0.82rem] pt-[2rem]'>
         {purpose.map((item, index) => {
           const { title, purpose_repeat } = item.purpose_detail
           return (
             <div
               key={index}
               id={`section-${index}`} // 👈 dùng để scroll
-              className='mb-[3rem] scroll-mt-[70px]' // 👈 tránh bị header che
+              className={`scroll-mt-[70px] ${index === purpose.length - 1 ? 'mb-0 xsm:mb-[0]' : 'mb-[6.25rem] xsm:mb-[3.75rem]'}`} // 👈 tránh bị header che
             >
-              <h3 className='mb-header-h2-24-sm mb-[1.56rem] lg:pc-h3-40-s'>{title}</h3>
-              <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-x-[1.25rem] lg:gap-y-[2.5rem] gap-y-[1.25rem] gap-x-[0.83rem]'>
+              <h3 className='mb-header-h2-24-sm mb-[1.56rem] lg:pc-h3-40-s xsm:mb-[1.04rem]'>{title}</h3>
+              <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-x-[1.04rem] lg:gap-y-[2.6rem] gap-y-[1.25rem] gap-x-[0.83rem]'>
                 {purpose_repeat.map((sub, i) => (
                   <Link
                     key={i}
@@ -84,7 +120,7 @@ const ContentDemo = ({ purpose }: ContentDemoProps) => {
                       className='w-full h-auto'
                     />
 
-                    <p className='lg:pc-20-20-sm mb-body-14-sm text-primary/80 mt-[0.62rem] lg:text-primary'>
+                    <p className='lg:pc-20-20-sm mb-body-14-sm text-primary/80 mt-[0.62rem] xsm:mt-[0.42rem] lg:text-primary'>
                       {sub.title}
                     </p>
                   </Link>

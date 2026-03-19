@@ -14,7 +14,7 @@ const InnoHubModule = ({ acfData }: InnoHubModuleProps) => {
   return (
     <>
       <HeroSection desc={desc} />
-      <div className='bg-[#F8F8F8] lg:pb-[5rem] pb-[1rem]'>
+      <div className='bg-[#F8F8F8] lg:pb-[5.83rem] pb-[2.92rem]'>
         <ContentDemo purpose={purpose} />
       </div>
     </>

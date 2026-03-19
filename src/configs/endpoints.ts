@@ -26,9 +26,10 @@ const ENDPOINTS = {
     },
   },
   inno_hub: {
-    en: '/inno-hub',
-    vi: '/inno-hub',
-
+    rank_math: {
+      en: '/en/inno-hub',
+      vi: '/inno-hub',
+    },
     page_id: {
       vi: '3779',
       en: '3785',
