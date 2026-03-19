@@ -115,14 +115,26 @@ const config: Config = {
         '.mb-body-14-r': {
           '@apply text-[0.72917rem] font-normal leading-normal': {},
         },
+        '.mb-header-h1-26-semi': {
+          '@apply text-[1.35417rem] font-semibold leading-[1.2] font-["Open_Sans"]': {},
+        },
+        '.mb-header-h2-24-sm': {
+          '@apply text-[1.25rem] font-semibold leading-[1.2] font-["Open_Sans"]': {},
+        },
         '.pc-h1-64-s': {
           '@apply text-[3.33333rem] font-normal font-semibold leading-[1.2] tracking-[-0.06667rem]': {},
+        },
+        '.mb-body-14-sm': {
+          '@apply text-[0.875rem] font-semibold leading-[150%] font-["Open_Sans"]': {},
         },
         '.pc-body-20-r': {
           '@apply text-[1.04167rem] font-normal leading-normal tracking-[-0.00521rem]': {},
         },
         '.pc-body-18-r-primary': {
           '@apply text-[0.9375rem] font-normal leading-normal': {},
+        },
+        '.pc-20-20-sm': {
+          '@apply text-[1.04167rem] font-semibold leading-[150%]': {},
         },
         '.mb-h2-24-sm': {
           '@apply text-[1.25rem] font-semibold leading-[1.2]': {},

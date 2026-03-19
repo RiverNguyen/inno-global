@@ -53,6 +53,13 @@
     "noBlogs": "Không tìm thấy bài viết",
     "sortPopup": "Sắp xếp theo"
   },
+  "InnoHub": {
+    "breadcrumbHome": "Trang chủ",
+    "blog": "Tin tức",
+    "Demo": "Mục nhỏ Demo",
+    "title": "INNO Hub",
+    "description": "Chủ động cung cấp và lan tỏa hệ sinh thái các tính năng đột phá, cùng các nền tảng website tối ưu mà INNO đã và đang phát triển."
+  },
   "ContactForm": {
     "title": "Liên hệ",
     "fullname": "Họ tên",

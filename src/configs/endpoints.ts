@@ -25,6 +25,15 @@ const ENDPOINTS = {
       vi: '/trang-chu',
     },
   },
+  inno_hub: {
+    en: '/inno-hub',
+    vi: '/inno-hub',
+
+    page_id: {
+      vi: '3779',
+      en: '3785',
+    },
+  },
   blog: {
     getAll: ({ locale, limit }: { locale: string; limit: number }) =>
       `api/v1/get-all/post?lang=${locale}&orderby=date&order=DESC&limit=${limit}&paged=1&acf=true`,
