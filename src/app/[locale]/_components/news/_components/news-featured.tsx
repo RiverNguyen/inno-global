@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 import { HTMLAttributes } from 'react'
 
+import { Badge } from '@/components/ui/badge'
 import ROUTES from '@/configs/routes'
 import { Link } from '@/i18n/navigation'
 import { IBlog } from '@/interfaces/blog.interface'
@@ -22,10 +23,22 @@ export default function NewsFeatured({ data, ...props }: NewsFeaturedProps) {
     <div
       {...props}
       className={cn(
-        'xsm:w-full xsm:h-[21rem] flex h-[45.52083rem] w-[41.09375rem] flex-col overflow-hidden rounded-[0.20833rem]',
+        'xsm:w-full xsm:h-[21rem] flex h-[45.52083rem] w-[41.09375rem] relative flex-col overflow-hidden rounded-[0.20833rem]',
         props.className,
       )}
     >
+      {data?.taxonomies?.tags && data?.taxonomies?.tags.length > 0 && (
+        <div className='absolute top-4 left-4 z-10'>
+          {data?.taxonomies?.tags?.map((tag) => (
+            <Badge
+              className='bg-[#D32F2F] rounded-full text-white pc-body-16-r hover:bg-[#D32F2F]'
+              key={tag?.id}
+            >
+              {tag?.name}
+            </Badge>
+          ))}
+        </div>
+      )}
       <Link href={locale === 'vi' ? `${ROUTES.blogsVi}/${data?.slug}` : `${ROUTES.blogsEn}/${data?.slug}`}>
         <Image
           src={data?.featured_image?.url || '/default.webp'}

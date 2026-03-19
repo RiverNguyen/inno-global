@@ -60,7 +60,7 @@ export default function CardBlog({
           <div className='absolute top-4 left-4 z-10'>
             {tags?.map((tag) => (
               <Badge
-                className='bg-[#D32F2F] rounded-full text-white pc-body-16-r'
+                className='bg-[#D32F2F] rounded-full text-white pc-body-16-r hover:bg-[#D32F2F]'
                 key={tag}
               >
                 {tag}
