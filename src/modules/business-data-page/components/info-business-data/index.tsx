@@ -8,7 +8,7 @@ const InfoBusinessData = ({ acfOverView }: { acfOverView: IBDProjectOverview[] }
           {acfOverView?.map((data, index) => {
             return (
               <tr key={index}>
-                <td className='xsm:p-[0.41667rem] xsm:w-[6.17rem] xsm:mb-body-14-r xsm:font-semibold text-[#090909]/80 pc-body-16-s uppercase py-[1.46rem] w-[18.02rem] px-[1.67rem] border-1 border-[#09090914]/80'>
+                <td className='xsm:p-[0.41667rem] xsm:w-[6.17rem] xsm:mb-body-14-r xsm:font-semibold text-[#090909]/80 pc-body-16-s uppercase py-[1.46rem] w-[18.02rem] px-[1.67rem] align-top border-1 border-[#09090914]/80'>
                   {data?.label}
                 </td>
                 <td

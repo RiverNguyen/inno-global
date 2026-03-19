@@ -32,11 +32,7 @@ const PolicyBusinessData = ({ acfOurPolicy }: { acfOurPolicy: IBDOurPolicy }) =>
                       fill='#090909'
                     />
                   </svg>
-                  <p
-                    className='relative inline-block xsm:text-[0.625rem] pc-body-18-m-primary
-                      after:absolute after:left-0 after:top-[calc(100%+0.125rem)] after:h-[0.125rem] after:w-full after:origin-left after:scale-x-0 after:bg-[#D32F2F] after:transition-transform after:duration-300 after:ease-out
-                      group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100'
-                  >
+                  <p className='lg:group-hover:border-primary-red xsm:text-[0.625rem] border-b border-solid border-transparent text-[0.9375rem] leading-[1.5] font-semibold text-current transition-colors duration-300 ease-out'>
                     {policy.link.title}
                   </p>
                 </div>
