@@ -2,7 +2,7 @@ import { IBDProjectOverview } from '@/interfaces/business-data.interface'
 
 const InfoBusinessData = ({ acfOverView }: { acfOverView: IBDProjectOverview[] }) => {
   return (
-    <section className='xsm:px-[0.83333rem] xsm:mt-[1.25rem] xsm:mb-[2.08333rem] max-w-[75rem] my-[3.75rem] mx-auto bg-[#F8F8F8]'>
+    <section className='xsm:px-[0.83333rem] xsm:mt-[1.25rem] xsm:mb-[2.08333rem] max-w-[75rem] my-[3.75rem] mx-auto bg-[#F8F8F8] xsm:bg-transparent'>
       <table className='w-[100%] border-1 border-[#09090914]/80'>
         <tbody>
           {acfOverView?.map((data, index) => {

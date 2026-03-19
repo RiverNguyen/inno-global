@@ -8,7 +8,7 @@ import PolicyBusinessData from './components/policy'
 
 const BusinessDataPage = ({ acfData }: { acfData: IBusinessDataAcf }) => {
   return (
-    <main className='bg-[#F8F8F8]'>
+    <main className='bg-[#F8F8F8] xsm:bg-transparent'>
       <HeroBusinessData></HeroBusinessData>
       <InfoBusinessData acfOverView={acfData.project_overview}></InfoBusinessData>
       <OfficeBusinessData acfOurOffice={acfData.our_office}></OfficeBusinessData>
