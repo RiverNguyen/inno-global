@@ -104,7 +104,7 @@ const ContentDemo = ({ purpose }: ContentDemoProps) => {
               id={`section-${index}`} // 👈 dùng để scroll
               className={`scroll-mt-[70px] ${index === purpose.length - 1 ? 'mb-0 xsm:mb-[0]' : 'mb-[6.25rem] xsm:mb-[3.75rem]'}`} // 👈 tránh bị header che
             >
-              <h3 className='mb-header-h2-24-sm mb-[1.56rem] lg:pc-h3-40-s xsm:mb-[1.04rem]'>{title}</h3>
+              <h2 className='mb-header-h2-24-sm mb-[1.56rem] lg:pc-h2-54-s xsm:mb-[1.04rem]'>{title}</h2>
               <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-x-[1.04rem] lg:gap-y-[2.6rem] gap-y-[1.25rem] gap-x-[0.83rem]'>
                 {purpose_repeat.map((sub, i) => (
                   <Link

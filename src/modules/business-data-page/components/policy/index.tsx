@@ -5,7 +5,7 @@ const PolicyBusinessData = ({ acfOurPolicy }: { acfOurPolicy: IBDOurPolicy }) =>
   return (
     <section className='xsm:py-[2.08333rem] py-[3.75rem] '>
       <div className='xsm:px-[0.83333rem] xsm:py-0 max-w-[75rem] mx-auto pt-[0.72917rem] pb-[3.95833rem]'>
-        <h3 className='xsm:mb-header-h1-26-semi pc-h3-40-s line-clamp-1'>{acfOurPolicy.title}</h3>
+        <h2 className='xsm:mb-header-h1-26-semi pc-h2-54-s line-clamp-1'>{acfOurPolicy.title}</h2>
         <p className='xsm:mb-[1.45833rem] xsm:mb-body-14-r text-[#090909]/80 pc-body-18-r-primary mb-[2.6rem] mt-[1.04rem] line-clamp-5'>
           {acfOurPolicy.desc}
         </p>
