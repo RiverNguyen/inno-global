@@ -24,7 +24,9 @@ const HeroBusinessData = () => {
           }}
           classNameContainer='mb-[1.25rem] xsm:hidden'
         />
-        <h1 className='xsm:pt-[2.08333rem] xsm:mb-header-h1-26-semi pc-h2-54-s '>{t('BusinessDataPage.title')}</h1>
+        <h1 className='xsm:pt-[2.08333rem] xsm:mb-header-h1-26-semi pc-h2-54-s text-[2.8125rem]'>
+          {t('BusinessDataPage.title')}
+        </h1>
       </div>
     </section>
   )

@@ -16,7 +16,7 @@ const PolicyBusinessData = ({ acfOurPolicy }: { acfOurPolicy: IBDOurPolicy }) =>
                 key={index}
                 href={policy.link.url}
                 target={policy.link.target}
-                className='xsm:pb-0 xsm:pt-[0.72917rem] xsm:border-b-0 xsm:border-t-1 xsm:even:mr-0 xsm:even:mb-[1.04167rem] xsm:w-[8.41rem]  xsm:mr-[1.04167rem] xsm:flex-none flex-1 mr-[1.66667rem] pb-[0.83333rem] border-b-1 border-[#090909]/12'
+                className='group xsm:pb-0 xsm:pt-[0.72917rem] xsm:border-b-0 xsm:border-t-1 xsm:even:mr-0 xsm:even:mb-[1.04167rem] xsm:w-[8.41rem] xsm:mr-[1.04167rem] xsm:flex-none flex-1 mr-[1.66667rem] pb-[0.83333rem] border-b-1 border-[#090909]/12'
               >
                 <div className='flex items-center'>
                   <svg
@@ -32,8 +32,13 @@ const PolicyBusinessData = ({ acfOurPolicy }: { acfOurPolicy: IBDOurPolicy }) =>
                       fill='#090909'
                     />
                   </svg>
-                  {/* border-b-1 border-[#D32F2F] gach chan mau do cho vao the p */}
-                  <p className='xsm:text-[0.625rem] pc-body-18-m-primary '>{policy.link.title}</p>
+                  <p
+                    className='relative inline-block xsm:text-[0.625rem] pc-body-18-m-primary
+                      after:absolute after:left-0 after:top-[calc(100%+0.125rem)] after:h-[0.125rem] after:w-full after:origin-left after:scale-x-0 after:bg-[#D32F2F] after:transition-transform after:duration-300 after:ease-out
+                      group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100'
+                  >
+                    {policy.link.title}
+                  </p>
                 </div>
               </Link>
             )

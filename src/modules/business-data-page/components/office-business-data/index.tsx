@@ -19,7 +19,7 @@ const OfficeBusinessData = ({ acfOurOffice }: { acfOurOffice: IBDOurOffice }) =>
             <Link
               href={acfOurOffice.link.url}
               target={acfOurOffice.link.target}
-              className='flex-center group xsm:hidden relative h-[2.6rem] w-fit overflow-hidden rounded-[5.20833rem] px-[1.15rem] text-[0.73rem] leading-[1.5] text-[#090909]/60 outline outline-[#090909]/60 transition-all duration-300 hover:text-white hover:outline-none'
+              className='flex-center group relative h-[2.6rem] w-fit overflow-hidden rounded-[5.20833rem] px-[1.15rem] text-[0.73rem] leading-[1.5] text-[#090909]/60 outline outline-[#090909]/60 transition-all duration-300 hover:text-white hover:outline-none xsm:h-[2.083rem] xsm:mb-[2.08rem]'
             >
               <span className='absolute inset-0 rounded-[inherit] bg-[radial-gradient(298.39%_130.99%_at_6.62%_16.15%,_#CA2A2A_15.19%,_#D32F2F_53.77%,_#FF6E6E_100%)] opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100' />
               <span className='flex-center relative z-10'>
